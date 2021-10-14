@@ -1,7 +1,8 @@
 const app = require( './express' )()
+const { getTotalSupply } = require( './contract' )
 
 // Specific Rocketeer instances
-app.get( '/rocketeer/:id', ( req, res ) => res.json( {
+app.get( '/rocketeer/:id', async ( req, res ) => res.json( {
     description: "A testnet Rocketeer",
     external_url: `https://openseacreatures.io/${ req.params.id }`,
     image: "https://rocketpool.net/images/rocket.png",
@@ -14,7 +15,8 @@ app.get( '/rocketeer/:id', ( req, res ) => res.json( {
 
 
 // Collection data
-app.get( '/collection', ( req, res ) => res.json( {
+app.get( '/collection', async ( req, res ) => res.json( {
+	totalSupply: await getTotalSupply( 'rinkeby' ),
     description: "A testnet collection",
     external_url: `https://openseacreatures.io/`,
     image: "https://rocketpool.net/images/rocket.png",

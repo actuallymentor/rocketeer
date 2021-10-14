@@ -1,6 +1,7 @@
 const app = require( './express' )()
 const name = require( 'random-name' )
 const { db } = require( './firebase' )
+const { getTotalSupply } = require( './contract' )
 
 // ///////////////////////////////
 // Data sources
@@ -63,6 +64,32 @@ app.get( '/rocketeer/:id', async ( req, res ) => {
     // Parse the request
     const { id } = req.params
     if( !id ) return res.json( { error: `No ID specified in URL` } )
+
+    // Chech if this is an illegal ID
+    try {
+
+        // Get the last know total supply
+        const { cachedTotalSupply } = await db.collection( 'meta' ).doc( 'contract' ).get().then( doc => doc.data() )
+
+        // If the requested ID is larger than that, check if the new total supply is more
+        if( cachedTotalSupply < id ) {
+
+            // Get net total supply through infura, if infura fails, return the cached value just in case
+            const totalSupply = await getTotalSupply().catch( f => cachedTotalSupply )
+
+            // Write new value to cache
+            await db.collection( 'meta' ).doc( 'contract' ).set( { cachedTotalSupply: totalSupply }, { merge: true } )
+
+            // If the requested ID is larger than total supply, exit
+            if( totalSupply < id ) return res.json( {
+                trace: 'total supply getter',
+                error: 'This Rocketeer does not yet exist.'
+            } )
+
+        }
+    } catch( e ) {
+        return res.json( { trace: 'total supply getter', error: e.message || JSON.stringify( e ) } )
+    }
 
     // Get existing rocketeer if it exists
     try {
