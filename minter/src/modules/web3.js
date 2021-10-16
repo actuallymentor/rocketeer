@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { log } from './helpers'
+import { log, setListenerAndReturnUnlistener } from './helpers'
 
 // Ethers and web3 sdk
 import { ethers } from "ethers"
@@ -38,21 +38,11 @@ export function useAddress() {
 	}, [] )
 
 	// Create listener to accounts change
-	useEffect( f => {
-
-		if( !ethereum ) return
-
-		log( 'Starting account listener with ', ethereum )
-
-		const listener = ethereum.on( 'accountsChanged', addresses => {
+	useEffect( f => setListenerAndReturnUnlistener( ethereum, 'accountsChanged', addresses => {
 			log( 'Addresses changed to ', addresses )
 			setAddress( addresses[0] )
-		} )
+	} ), [] )
 
-		return () => ethereum.removeListener( 'accountsChanged', listener )
-
-
-	}, [] )
 
 	return address
 
@@ -87,7 +77,7 @@ export function useTotalSupply() {
 		} )(  )
 
 		// Listen to token transfers andor mints
-		const listener = contract.on( 'Transfer', async ( from, to, amount, event ) => {
+		return setListenerAndReturnUnlistener( contract, 'Transfer', async ( from, to, amount, event ) => {
 			
 			try {
 
@@ -102,8 +92,6 @@ export function useTotalSupply() {
 
 		} )
 
-		return () => contract.removeListener( 'Transfer', listener )
-
 
 	}, [ contract ] )
 
@@ -117,18 +105,10 @@ export function useChainId() {
 	const [ chain, setChain ] = useState( undefined )
 
 	// Create listener to chain change
-	useEffect( f => {
-
-		if( !ethereum ) return
-
-		const listener = ethereum.on('chainChanged', chainId => {
-			log( 'Chain changed to ', chainId )
-			setChain( chainId )
-		} )
-
-		return (  ) => ethereum.removeListener( 'chainChanged', listener )
-
-	}, [] )
+	useEffect( f => setListenerAndReturnUnlistener( ethereum, 'chainChanged', chainId => {
+		log( 'Chain changed to ', chainId )
+		setChain( chainId )
+	} ), [] )
 
 	// Initial chain detection
 	useEffect( f => {
@@ -216,6 +196,7 @@ export function useContract() {
 
 	const chainId = useChainId()
 	const [ contract, setContract ] = useState( undefined )
+	const address = useAddress()
 
 	useEffect( f => {
 
@@ -238,7 +219,7 @@ export function useContract() {
 			setContract( undefined )
 		}
 
-	}, [ chainId ] )
+	}, [ chainId, address ] )
 
 	return contract
 

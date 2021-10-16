@@ -1,3 +1,6 @@
+import Fox from './assets/metamask-fox.svg'
+// import LaunchBackground from './assets/undraw_To_the_stars_qhyy.svg'
+import LaunchBackground from './assets/undraw_relaunch_day_902d-fixed.svg'
 import './App.css'
 
 import { useState, useEffect } from 'react'
@@ -67,21 +70,47 @@ function App() {
 	// ///////////////////////////////
 	// Rendering
 	// ///////////////////////////////
-	log( error, loading, address )
+
 	// Initialisation interface
 	if( error || loading || !address ) return <main>
 		{ error && <p>{ error }</p> }
 		{ loading && <p>{ loading }</p> }
-		{ !address && <button onClick={ metamasklogin }>Connect Metamask</button> }
+		{ !address && ( !error && !loading ) && <div className="container">
+
+			<h1>Rocketeer Minter</h1>
+			<p>This interface is used to mint new Rocketeer NFTs. Minting is free, except for the gas fees. After minting you can view your new Rocketeer and its attributes on Opensea.</p>
+
+			<a className="button" href="#" onClick={ metamasklogin }>
+				<img alt="metamask fox" src={ Fox } />
+				Connect wallet
+			</a>
+
+		</div> }
 	</main>
 
 	// Render main interface
 	return (
 		<main>
 
-			<p>Logged in as { address }</p>
-			<p>Total minted: { totalSupply }</p>
-			{ contract && <button onClick={ mintRocketeer }>Mint new Rocketeer</button> }
+			<div className="container">
+
+
+				<h1>Rocketeer Minter</h1>
+				<p>We are ready to mint! There are currently { totalSupply } minted Rocketeers.</p>
+
+				<label for='address'>Minting to:</label>
+				<input id='address' value={ address } disabled />
+				{ contract && <a className="button" href="#" onClick={ metamasklogin }>
+					<img alt="metamask fox" src={ Fox } />
+					Mint new Rocketeer
+				</a> }
+
+				
+
+
+			</div>
+
+			<img className="stretchBackground" src={ LaunchBackground } alt="Launching rocket" />
 
 		</main>
 	);
