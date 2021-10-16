@@ -34,7 +34,7 @@ export function useAddress() {
 
 	// Set initial value if known
 	useEffect( f => {
-		if( ethereum.selectedAddress ) setAddress( ethereum.selectedAddress )
+		if( ethereum && ethereum.selectedAddress ) setAddress( ethereum.selectedAddress )
 	}, [] )
 
 	// Create listener to accounts change
