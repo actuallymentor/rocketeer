@@ -49,10 +49,6 @@ jobs:
         run: npm i
         working-directory: minter
 
-      - name: test if all links work
-        run: npm test
-        working-directory: minter
-
       - name: Build website files
         env:
           NODE_ENV: production
