@@ -1,0 +1,55 @@
+head
+	meta( charset='utf-8' )
+	meta( http-equiv="x-ua-compatible" content="ie=edge" )
+	meta( name="viewport" content="width=device-width, initial-scale=1" )
+	base( href=site.system.url )
+	meta( name="robots" content="index,follow,noodp" )
+	meta( name="googlebot" content="index,follow" )
+	if site.track.gverification
+		meta( name="google-site-verification" content=site.track.gverification )
+
+	//- Regular meta tags
+	title !{site.identity.title} - #{page.title}
+	meta( name="description" content=site.identity.desc )
+
+	//- Facebook tags
+	meta( property="og:site_name" content=site.identity.title )
+	meta( property="og:title" content=site.identity.title + ' - ' + page.title )
+	meta( property="og:description" content=page.desc )
+	meta( property="article:published_time" content=page.published)
+	meta( property="og:type" content="article" )
+	meta( property="og:url" content=page.url )
+	meta( property="og:image" content=page.featuredimg)
+	meta( property="fb:admins" content=site.author.facebook )
+	meta( property="profile:first_name" content=site.author.firstname)
+	meta( property="profile:last_name" content=site.author.lastname)
+
+
+	//- Twitter tags
+	meta( name="twitter:site" content=site.author.twitter )
+	meta( name="twitter:title" content=site.identity.title + ' - ' + page.title )
+	meta( name="twitter:description" content=page.desc)
+	meta( name="twitter:image" content=page.featuredimg)
+	meta( name="name=twitter:image:alt" content=page.title )
+	meta( name="twitter:card" content=page.desc )
+
+	//- Load essential css
+	style( type="text/css" charset="utf-8" )!=css
+	//- Load the main css stylesheet if there is no js support
+	noscript: link( rel="stylesheet" type="text/css" href=site.system.url + 'assets/css/styles.css?t=' + site.system.timestamp )
+
+	//- Load the main css stylesheet if there is js support
+	//- Async loading of css and fonts
+	script( type="application/javascript" ).
+		const loadAsync = ( url, mime ) => {
+			let link = document.createElement( "link" )
+			link.href = url
+			link.type = mime || ""
+			link.rel = "stylesheet"
+			document.getElementsByTagName( "head" )[0].appendChild( link )
+		}
+		loadAsync( "#{ site.system.url + 'assets/css/styles.css?t=' + site.system.timestamp }", "text/css" )
+		// loadAsync( "https://fonts.googleapis.com/css?family=Roboto:300&display=swap", "" )
+
+	//- Get the webpack script
+	script( src=site.system.url + `assets/js/app-${site.system.timestamp}.js` , async)

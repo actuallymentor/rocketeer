@@ -1,0 +1,45 @@
+//- --------------------------------
+//- HiPew settings
+//- --------------------------------
+
+//- This is pace-specific metadata
+-
+	const page = {
+		title: 'Subpage', desc: 'Live demo of the Hi Pew high performance static website boilerplate.', url: '/',
+		published: '2020-02-11', featuredimg: '/assets/robert-katzki-jbtfM0XBeRc-unsplash.jpg'
+	}
+//- This is a file with helpers
+include ../pug/_helpers.pug
+
+
+//- --------------------------------
+//- Webpage source code
+//- --------------------------------
+
+doctype html
+html( lang=content.lang )
+	include ../pug/_header.pug
+	body#index
+		
+		main
+			section#hero
+				h1 👋 🔫 HI PEW
+				h2 Subpage example
+				a( target='_blank' href='https://developers.google.com/speed/pagespeed/insights/?url=https://actuallymentor.github.io/hi-pew/' ) View Pagespeed Score
+				+rimg.stretch( src=site.system.url+'/assets/marc-olivier-jodoin-NqOInJ-ttqM-unsplash.jpg' )
+			section#usps
+					div.usp
+						p 🚀
+						p 100% Google Pagespeed score
+					div.usp
+						p 👓
+						p Easy to configure SEO best-practices
+					div.usp
+						p 🧪
+						p Advanced configuration options for geeks
+
+			section#cta
+				+cimg.circle#compressed( size=120 src=site.system.url+'/assets/robert-katzki-jbtfM0XBeRc-unsplash.jpg' )
+				a( href='https://github.com/actuallymentor/hi-pew/' ) 👨‍💻 View README on Github
+
+		include ../pug/_footer.pug

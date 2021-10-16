@@ -1,0 +1,50 @@
+footer#footer
+	div © Copyright #{site.system.year} #{site.author.firstname} #{site.author.lastname}
+	div( style='margin-top: 20px' ) Made with 
+		a( href='https://github.com/actuallymentor/hi-pew/' ) hi-pew
+script( type="application/ld+json" ).
+	{
+		"@context": "http://schema.org",
+		"@type": "Article",
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": "#{page.url}"
+		},
+		"headline": "#{page.title}",
+		"image": {
+			"@type": "ImageObject",
+			"url": "#{site.system.url}#{page.featuredimg}",
+			"height": "696px",
+			"width": "696px"
+		},
+		"datePublished": "#{page.published}",
+		"dateModified": "#{page.updated}",
+		"author": {
+			"@type": "Person",
+			"name": "#{site.author.firstname} #{site.author.lastname}",
+			"url": "#{site.author.url}"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "#{site.identity.title}",
+			"url": "#{site.system.url}",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "#{site.identity.logo}",
+				"width": "60px",
+				"height": "600px"
+			}
+		},
+		"description": "#{page.desc}"
+	}
+
+//- Googe tag manager
+if site.track.gtm
+	script.
+		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer', '!{ site.track.gtm }');
+	noscript.
+		<iframe src='https://www.googletagmanager.com/ns.html?id=!{site.track.gtm}'  height="0" width="0" style="display:none;visibility:hidden"></iframe>

@@ -1,0 +1,58 @@
+//- --------------------------------
+//- HiPew settings
+//- --------------------------------
+
+//- This is pace-specific metadata
+-
+	const page = {
+		title: 'Home', desc: 'Live demo of the Hi Pew high performance static website boilerplate.', url: '/',
+		published: '2020-02-11', featuredimg: '/assets/mike-kiev-Opzk_hvwO9Q-unsplash.jpg'
+	}
+//- This is a file with helpers
+include pug/_helpers.pug
+
+
+//- --------------------------------
+//- Webpage source code
+//- --------------------------------
+
+doctype html
+html( lang=content.lang )
+	include pug/_header.pug
+	body#index
+		
+		main
+			section#hero
+				h1 Rocketeer NFT
+				h2 10,000,000 possible combinations, 0 price.
+				a( target='_blank' href='' ) Mint now
+				+rimg.stretch( src=site.system.url+'/assets/mike-kiev-Opzk_hvwO9Q-unsplash.jpg' )
+			section#usps
+				div.usp
+					p 🕶
+					p 5 visors in 20 possible colors
+				div.usp
+					p 👔
+					p 9 suits in 10 colors
+				div.usp
+					p 🏔
+					p 20 backdrops in 5 colors
+				div#ctabuttons
+					a( href='/' ) Mint now
+					a( href='/' ) View on Opensea
+
+			section#credits
+				h1 Acknowledgements
+				p Designs by unvetica.eth, code by mentor.eth, logistical support from colfax and LookingForOwls.
+				p Photos taken by Mike Kiev and Adam Miller.
+
+			section#cta
+				+cimg.circle#compressed( size=200 src=site.system.url+'/assets/adam-miller-dBaz0xhCkPY-unsplash-cropped.jpg' )
+				a( href='/' ) Mint now
+
+			section#about
+				h1 About this project
+				p This is a Rocketpool community led initiative. There is no grand idea behind it, other than to create avatar-worthy Rocketeer images for the Rocketpool Discord members.
+				p We all hope to look back 10 years from now at our Rocketeers and remember the days when we were still wondering wen mainnet.
+
+		include pug/_footer.pug

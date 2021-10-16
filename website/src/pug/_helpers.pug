@@ -1,0 +1,63 @@
+//- Responsive image tag
+mixin rimg( )
+	picture.rimg( class!=attributes.class )
+
+
+
+		//- Shared definitions
+		-
+			const [ full, path, filename, dot, extension ] = attributes.src.match( /(.*\/)(.*)(\.)(.*)/ )
+			const sizes = site.system.images.sizes.reduce( ( acc, size ) => {
+				return acc += `( max-width: ${ size }px ) ${ size }px, `
+			},'' )
+
+		
+
+		//- Source tag for avif
+		-
+			const avifsrcset = site.system.images.sizes.reduce( ( acc, size ) => {
+				return acc += `${ path }${ filename }-${ size }.avif ${ size }w, `
+			},'' )
+		source( type="image/avif" srcset=avifsrcset class!=attributes.class )
+
+		
+
+		//- Source tag for webp
+		-
+			const webpsrcset = site.system.images.sizes.reduce( ( acc, size ) => {
+				return acc += `${ path }${ filename }-${ size }.webp ${ size }w, `
+			},'' )
+		source( type="image/webp" srcset=webpsrcset class!=attributes.class )
+		
+
+		
+
+		//- Img tag for jpg
+		-
+			const srcset = site.system.images.sizes.reduce( ( acc, size ) => {
+				return acc += `${ path }${ filename }-${ size }.jpg ${ size }w, `
+			},'' )
+			
+		img( src=attributes.src srcset=srcset sizes=sizes alt=attributes.alt class!=attributes.class )
+
+//- Compressed image tag
+mixin cimg( )
+	picture.cimg( class!=attributes.class id!=attributes.id )
+
+
+
+		//- Shared definitions
+		-
+			const [ full, path, filename, dot, extension ] = attributes.src.match( /(.*\/)(.*)(\.)(.*)/ )
+			const sortedSizes = site.system.images.sizes.sort( ( a, b ) => {
+					if( a > b ) return -1
+					if( a < b ) return 1
+					else return 0
+				} )
+			let closestSize = sortedSizes.find( availablesize => availablesize <= attributes.size )
+			const test = closestSize
+			if( !closestSize ) closestSize = sortedSizes[ sortedSizes.length - 1 ]
+			const closestSrc = `${ path }${ filename }-${ closestSize }`
+		source( type="image/avif" src=closestSrc + '.avif' class!=attributes.class )
+		source( type="image/webp" src=closestSrc + '.webp' class!=attributes.class )
+		img( src=closestSrc + '.jpg' alt=attributes.alt class!=attributes.class )
