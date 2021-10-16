@@ -9,8 +9,8 @@ module.exports = {
 	// ⚠️ You should edit this section
 	// ///////////////////////////////
 	identity: {
-		title: "Hi Pew",
-		desc: "High Performance Website Boilerplate",
+		title: "Rocketeer NFT project",
+		desc: "Rocketeer NFT drop website.",
 		"logo": "logo.jpg"
 	},
 	
@@ -21,7 +21,7 @@ module.exports = {
 	system: {
 
 		// // ⚠️ You should edit the 'url' key to be the production URL
-		url: process.env.NODE_ENV == 'production' ? 'https://actuallymentor.github.io/hi-pew/' : 'http://' + ip.address() + ':3000/',
+		url: process.env.NODE_ENV == 'production' ? 'https://rocketeer.web.app/' : 'http://' + ip.address() + ':3000/',
 
 		public: normalize( process.env.NODE_ENV == 'production' ? __dirname + '/../docs/' : __dirname + '/../public/' ),
 		source: normalize( __dirname + '/../src/' ),
@@ -56,9 +56,7 @@ module.exports = {
 		lastname: "Palokaj",
 		email: "mentor@palokaj.co",
 		twitter: "@actuallymentor",
-		// facebook profile id, used for retargeting ad permissions
-		facebook: "1299359953416544",
-		url: "https://www.skillcollector.com/"
+		url: "https://github.com/actuallymentor"
 	},
 
 	// ///////////////////////////////
