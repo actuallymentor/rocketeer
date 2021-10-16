@@ -3,13 +3,13 @@ name: Deploy Frontend on push/merge
 # Only trigger on PR/push and only for frontend files
 on:
   # Trigger on PR close
-  # pull_request:
-  #   types: [ closed ]
-  #   paths:
-  #     - 'src/**'
-  #     - 'modules/**'
-  #   branches:
-  #     - master
+  pull_request:
+    types: [ closed ]
+    paths:
+      - 'src/**'
+      - 'modules/**'
+    branches:
+      - master
   
   # Trigger on push to master (edge case, local merge)
   push:
