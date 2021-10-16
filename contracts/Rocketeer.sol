@@ -43,7 +43,7 @@ contract Rocketeer is ERC721Tradable {
     // Minting
     // ///////////////////////////////
 
-    function spawnRocketeer( address _to ) public onlyOwner {
+    function spawnRocketeer( address _to ) public {
 
         uint256 nextTokenId = _getNextTokenId();
 

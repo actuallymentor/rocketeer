@@ -5,7 +5,7 @@ import './App.css'
 
 import { useState, useEffect } from 'react'
 
-import { getAddress, useAddress, useTotalSupply, useContract, signer } from './modules/web3'
+import { getAddress, useAddress, useTotalSupply, useContract } from './modules/web3'
 import { log } from './modules/helpers'
 
 function App() {
@@ -26,7 +26,9 @@ function App() {
 	// ///////////////////////////////
 
 	// Handle user login interaction
-	async function metamasklogin() {
+	async function metamasklogin( e ) {
+
+		e.preventDefault()
 
 		try {
 
@@ -42,7 +44,9 @@ function App() {
 
 	}
 
-	async function mintRocketeer() {
+	async function mintRocketeer( e ) {
+
+		e.preventDefault()
 
 		try {
 
@@ -80,7 +84,7 @@ function App() {
 			<h1>Rocketeer Minter</h1>
 			<p>This interface is used to mint new Rocketeer NFTs. Minting is free, except for the gas fees. After minting you can view your new Rocketeer and its attributes on Opensea.</p>
 
-			<a className="button" href="#" onClick={ metamasklogin }>
+			<a className="button" href="/#" onClick={ metamasklogin }>
 				<img alt="metamask fox" src={ Fox } />
 				Connect wallet
 			</a>
@@ -100,7 +104,7 @@ function App() {
 
 				<label for='address'>Minting to:</label>
 				<input id='address' value={ address } disabled />
-				{ contract && <a className="button" href="#" onClick={ metamasklogin }>
+				{ contract && <a className="button" href="/#" onClick={ mintRocketeer }>
 					<img alt="metamask fox" src={ Fox } />
 					Mint new Rocketeer
 				</a> }
