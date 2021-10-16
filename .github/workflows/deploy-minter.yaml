@@ -9,12 +9,12 @@ on:
       - 'src/**'
       - 'modules/**'
     branches:
-      - master
+      - main
   
   # Trigger on push to master (edge case, local merge)
   push:
     branches:
-      - master
+      - main
     paths:
       - '*.json'
       - '*.js'
