@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "rocketeer-nft"
+  },
+  "targets": {
+    "rocketeer-nft": {
+      "hosting": {
+        "website": [
+          "rocketeer"
+        ],
+        "minter": [
+          "rocketeer-nft"
+        ]
+      }
+    }
   }
 }

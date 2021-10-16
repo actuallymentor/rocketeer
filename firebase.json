@@ -8,14 +8,16 @@
       "npm --prefix \"$RESOURCE_DIR\" run lint"
     ]
   },
-  "hosting": {
-    "public": "docs",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  },
+  "hosting": [
+    {
+      "target": "website", 
+      "public": "website/docs"
+    },
+    {
+      "target": "minter", 
+      "public": "minter/docs"
+    }
+  ],
   "storage": {
     "rules": "storage.rules"
   }
