@@ -1,4 +1,4 @@
-name: Deploy Frontend on push/merge
+name: Deploy Website on push/merge
 
 # Only trigger on PR/push and only for frontend files
 on:
@@ -6,8 +6,10 @@ on:
   pull_request:
     types: [ closed ]
     paths:
-      - 'src/**'
-      - 'modules/**'
+      - 'website/*.json'
+      - 'website/*.js'
+      - 'website/**'
+      - '.github/workflows/deploy-website.yml'
     branches:
       - main
   
@@ -16,8 +18,8 @@ on:
     branches:
       - main
     paths:
-      - '*.json'
-      - '*.js'
+      - 'website/*.json'
+      - 'website/*.js'
       - 'website/**'
       - '.github/workflows/deploy-website.yml'
 

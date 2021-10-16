@@ -1,4 +1,4 @@
-name: Deploy Frontend on push/merge
+name: Deploy Minter on push/merge
 
 # Only trigger on PR/push and only for frontend files
 on:
@@ -6,8 +6,10 @@ on:
   pull_request:
     types: [ closed ]
     paths:
-      - 'src/**'
-      - 'modules/**'
+      - 'minter/*.json'
+      - 'minter/*.js'
+      - 'minter/**'
+      - '.github/workflows/deploy-minter.yml'
     branches:
       - main
   
@@ -16,8 +18,8 @@ on:
     branches:
       - main
     paths:
-      - '*.json'
-      - '*.js'
+      - 'minter/*.json'
+      - 'minter/*.js'
       - 'minter/**'
       - '.github/workflows/deploy-minter.yml'
 
