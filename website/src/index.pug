@@ -5,7 +5,7 @@
 //- This is pace-specific metadata
 -
 	const page = {
-		title: 'Home', desc: 'Live demo of the Hi Pew high performance static website boilerplate.', url: '/',
+		title: 'Rocketeer NFT', desc: 'Mint your Rocketeer NFT', url: '/',
 		published: '2020-02-11', featuredimg: '/assets/mike-kiev-Opzk_hvwO9Q-unsplash.jpg'
 	}
 //- This is a file with helpers
@@ -24,38 +24,41 @@ html( lang=content.lang )
 		main
 			section#hero
 				h1 Rocketeer NFT
-				//- h2 10,000,000 possible combinations, 0 price.
+				h2 A Rocketeer views the moon.<br/>It seems so far yet so close.<br/>The only thought is wen.
 				//- a( target='_blank' href='' ) Mint now
 				p Launching Soon™️
 				+rimg.stretch( src=site.system.url+'/assets/mike-kiev-Opzk_hvwO9Q-unsplash.jpg' )
-			section#usps
-				div.usp
-					p 🕶
-					p Unique visors & helmets
-				div.usp
-					p 👔
-					p Unique suits
-				div.usp
-					p 🏔
-					p Unique backdrops
-				div#ctabuttons
-					//- a( href='/' ) Mint now
-					//- a( href='/' ) View on Opensea
-					p Launching Soon™️
-
-			section#credits
-				h1 Acknowledgements
-				p Designs by unvetica.eth, code by mentor.eth, logistical support from colfax and LookingForOwls.
-				p Photos taken by Mike Kiev and Adam Miller.
+			section#story
+				p Until minted, each Rocketeer exists in a superposition of 10,000,000 possible identities. They are each unique, but share a foundational desire to reach the moon.
+			//- section#usps
+			//- 	div.usp
+			//- 		p 🕶
+			//- 		p Unique visors & helmets
+			//- 	div.usp
+			//- 		p 👔
+			//- 		p Unique suits
+			//- 	div.usp
+			//- 		p 🏔
+			//- 		p Unique backdrops
+			//- 	div#ctabuttons
+			//- 		//- a( href='/' ) Mint now
+			//- 		//- a( href='/' ) View on Opensea
+			//- 		p Launching Soon™️
 
 			section#cta
 				+cimg.circle#compressed( size=200 src=site.system.url+'/assets/adam-miller-dBaz0xhCkPY-unsplash-cropped.jpg' )
 				//- a( href='/' ) Mint now
 				p Launching Soon™️
 
+			section#credits
+				h1 Acknowledgements
+				p Designs by unvetica.eth, code by mentor.eth, logistical support from colfax and LookingForOwls.
+				p Photos taken by Mike Kiev and Adam Miller. Illustrations by Katerina Limpitsouni.
+
+
 			section#about
 				h1 About this project
-				p This is a Rocketpool community led initiative. There is no grand idea behind it, other than to create avatar-worthy Rocketeer images for the Rocketpool Discord members.
-				p We all hope to look back 10 years from now at our Rocketeers and remember the days when we were still wondering wen mainnet.
+				p This is a Rocketpool community led initiative to fill the void between the present and mainnet.
+				p We all hope to look back 10 years from now at our Rocketeers and remember the days when we asked silly questions like wen mainnet and wen moon.
 
 		include pug/_footer.pug
