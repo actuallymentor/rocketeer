@@ -108,7 +108,7 @@ function App() {
 	// Initialisation interface
 	if( error || loading || !address ) return <Container>
 		{ error && <p>{ error }</p> }
-		{ loading && <div className="loading">
+		{ !error && loading && <div className="loading">
 			
 			<div className="lds-dual-ring"></div>
 			<p>{ loading }</p>
