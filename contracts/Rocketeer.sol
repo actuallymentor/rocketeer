@@ -13,7 +13,7 @@ contract Rocketeer is ERC721Tradable {
     // ///////////////////////////////
     // Globals
     // ///////////////////////////////
-    uint256 private ROCKETEER_MAX_SUPPLY = 5;
+    uint256 private ROCKETEER_MAX_SUPPLY = 9001;
 
     // Construct as Opensea tradable item
     constructor(address _proxyRegistryAddress)

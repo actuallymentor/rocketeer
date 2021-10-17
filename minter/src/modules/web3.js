@@ -134,7 +134,8 @@ export function useChainId() {
 // ///////////////////////////////
 const contractAddressByChainId = {
 	'0x1': '',
-	'0x4': '0x2829ba9d76e675b8867E1707A9aB49B280D916c6'
+	// '0x4': '0x2829ba9d76e675b8867E1707A9aB49B280D916c6', // Old
+	'0x4': '0x89D9f02D2877A35E8323DC1b578FD1f6014B04d0'
 }
 
 const ABI = [
@@ -224,3 +225,16 @@ export function useContract() {
 	return contract
 
 }
+
+export function rocketeerCollectionUriOnOpensea( chainId ) {
+
+	return `${ chainId === '0x01' ? '' : 'testnets.' }opensea.io/collection/rocketeer`
+
+}
+
+export function rocketeerUriOnOpensea( chainId, tokenId ) {
+
+	return `https://${ chainId === '0x01' ? '' : 'testnets.' }opensea.io/assets/${ contractAddressByChainId[ chainId ] }/${ tokenId }`
+	
+}
+
