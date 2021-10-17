@@ -52,6 +52,7 @@ jobs:
       - name: Build website files
         env:
           NODE_ENV: production
+          CI: false
         run: npm run build
         working-directory: minter
 
