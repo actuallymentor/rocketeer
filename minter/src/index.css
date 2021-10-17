@@ -8,6 +8,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+body * {
+  box-sizing: border-box;
 }
 
 code {
@@ -15,8 +20,13 @@ code {
     monospace;
 }
 
+main {
+  padding:  1rem;
+}
+
 div.container {
-  max-width: 400px;
+  width: 400px;
+  max-width:  100%;
   display: flex;
   flex-direction: column;
   align-items: center;
