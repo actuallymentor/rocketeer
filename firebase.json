@@ -11,7 +11,17 @@
   "hosting": [
     {
       "target": "website", 
-      "public": "website/docs"
+      "public": "website/docs",
+      "rewrites": [
+        {
+          "source": "/api",
+          "function": "mainnetMetadata"
+        },
+        {
+          "source": "/testnetapi",
+          "function": "testnetMetadata"
+        }
+      ]
     },
     {
       "target": "minter", 

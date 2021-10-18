@@ -34,6 +34,20 @@ jobs:
       - name: Install functions dependencies
         run: npm i
         working-directory: functions
+
+      # Backup firestore before deploying to database
+      - name: 'Set up gcloud cli'
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: "${{ secrets.GCP_SERVICE_ACCOUT_JSON_PRODUCTION }}"
+          export_default_credentials: true
+
+      - name: Backup firestore
+        run: |
+          gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID_PRODUCTION }}
+          echo "Project is now set to ${{ secrets.FIREBASE_PROJECT_ID_PRODUCTION }}"
+          gcloud firestore export ${{ secrets.GCP_BUCKET_LINK_PRODUCTION }}/firestore-backups/$(date +'%Y-%m-%d-%s')/
+
           
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
