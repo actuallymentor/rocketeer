@@ -14,11 +14,11 @@
       "public": "website/docs",
       "rewrites": [
         {
-          "source": "/api",
+          "source": "/api/**",
           "function": "mainnetMetadata"
         },
         {
-          "source": "/testnetapi",
+          "source": "/testnetapi/**",
           "function": "testnetMetadata"
         }
       ]

@@ -14,7 +14,7 @@ const globalAttributes = [
     ] }
 ]
 const heavenlyBodies = [ "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "the Moon", "the Sun" ]
-const web2domain = 'https://mentor.eth.link/'
+const web2domain = 'https://rocketeer.fans'
 
 // ///////////////////////////////
 // Rocketeer helpers
@@ -59,7 +59,7 @@ function pickRandomAttributes( attributes ) {
 // ///////////////////////////////
 // Specific Rocketeer instances
 // ///////////////////////////////
-app.get( '/rocketeer/:id', async ( req, res ) => {
+app.get( '/api/rocketeer/:id', async ( req, res ) => {
 
     // Parse the request
     const { id } = req.params
@@ -106,7 +106,7 @@ app.get( '/rocketeer/:id', async ( req, res ) => {
         name: `${ name.first() } ${ name.middle() } ${ name.last() } of ${ pickRandomArrayEntry( heavenlyBodies ) }`,
         description: ``,
         image: ``,
-        external_url: `${ web2domain }rocketeer/${ id }`,
+        external_url: `${ web2domain }/api/rocketeer/${ id }`,
         attributes: []
     }
 
@@ -132,9 +132,9 @@ app.get( '/rocketeer/:id', async ( req, res ) => {
 // ///////////////////////////////
 // Static collection data
 // ///////////////////////////////
-app.get( '/collection', ( req, res ) => res.json( {
+app.get( '/api/collection', ( req, res ) => res.json( {
     description: "A testnet collection",
-    external_url: `https://openseacreatures.io/`,
+    external_url: web2domain,
     image: "https://rocketpool.net/images/rocket.png",
     name: `Rocketeer collection`,
     seller_fee_basis_points: 0,

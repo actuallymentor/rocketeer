@@ -34,7 +34,7 @@ module.exports = {
 				// browsers: [ 'last 2 versions', 'not dead' ],
 
 				// Format your own based on: https://github.com/browserslist/browserslist
-				browsers: [ '>1%' ]
+				browsers: [ '>0.2%', 'last 2 versions', 'not dead', 'not op_mini all', 'not IE 11' ]
 			}
 		},
 

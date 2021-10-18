@@ -41,6 +41,24 @@ main
 	opacity: 0.6
 	font-size: 13px
 
+a.button
+	padding: 1rem
+	text-decoration: none
+	margin: 1rem
+	background: black
+	color: white
+	font-size: 1.2rem
+	&.outline
+		border: 2px solid black
+		color: black
+		background: none
+
+.row
+	display: flex
+	flex-direction: row
+	flex-wrap: wrap	
+	justify-content: center
+
 // ///////////////////////////////
 // Index page
 // ///////////////////////////////
@@ -63,6 +81,7 @@ main
 			text-align: center
 		&:nth-child(2n+1)
 			background: rgba( 0,0,0, .05 )
+			box-shadow: 0px 0 20px 2px rgba( 0, 0, 0, .2)
 		&:first-child
 			text-align: left
 			padding: 0
@@ -70,7 +89,6 @@ main
 			max-width: 100%
 
 		
-
 	.stretch
 		position: absolute
 		z-index: -1
@@ -90,7 +108,7 @@ main
 		height: 99vh
 		max-height: 100vh
 	
-		h1, h2, a
+		h1, h2
 			background: rgba( 0,0,0,.9 )
 			color: white
 			padding: 1rem
@@ -98,6 +116,8 @@ main
 		h2
 			font-family: "Courier New", monospace, serif
 			line-height: 2rem
+		a
+			margin-top: 2rem
 
 	#story
 		p
@@ -107,15 +127,21 @@ main
 			font-size: 1.5rem
 			border-left: 5px solid black
 			padding-left: 1.5rem
+			margin-bottom: 4rem
 
-	#usps
+	.usps
 		flex-direction: row
 		flex-wrap: wrap
+		width: 100%
+		justify-content: space-evenly	
 		.usp
 			width: 300px
 			max-width: 100%
 			padding: 1rem
 			text-align: center
+			img
+				height: 200px
+				width: 200px
 			p
 				&:first-child
 					font-size: 4rem
@@ -127,21 +153,9 @@ main
 			margin-top: 4rem
 			width: 100%
 			text-align: center
-			a
-				padding: 1rem
-				text-decoration: none
-				margin: 0 1rem
-				&:first-child
-					background: black
-					color: white
-				&:last-child
-					border: 2px solid black
-					color: black
+			
 
 	#cta
-		#compressed
-			height: 200px
-			width: 200px
 		a
 			background: black
 			color: white

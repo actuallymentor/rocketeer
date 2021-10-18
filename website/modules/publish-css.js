@@ -34,7 +34,7 @@ const file = site => new Promise( ( resolve, reject ) => {
 			postcss( [
 				autoprefixer,
 				cssnano,
-				doiuse( { ...site.system.browser, onFeatureUsage: cssWarning } )
+				doiuse( { ...site.system.browser.support, onFeatureUsage: cssWarning } )
 			] )
 			.process( result.css, { from: css.from, to: css.to } )
 			.then( result => fs.writeFile( css.to, result.css ) )
