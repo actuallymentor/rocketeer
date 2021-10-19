@@ -138,6 +138,7 @@ const contractAddressByChainId = {
 	'0x4': '0x89D9f02D2877A35E8323DC1b578FD1f6014B04d0'
 }
 
+// Contract ABI with only totalSupply and Transfer
 const ABI = [
 	{
       "inputs": [],
@@ -193,6 +194,7 @@ const ABI = [
     }
 ]
 
+// Contract custom hook
 export function useContract() {
 
 	const chainId = useChainId()
@@ -228,12 +230,14 @@ export function useContract() {
 
 export function rocketeerCollectionUriOnOpensea( chainId ) {
 
+	// Opensea collection link depending on network
 	return `${ chainId === '0x01' ? '' : 'testnets.' }opensea.io/collection/rocketeer`
 
 }
 
 export function rocketeerUriOnOpensea( chainId, tokenId ) {
 
+	// Opensea specific link depending on network
 	return `https://${ chainId === '0x01' ? '' : 'testnets.' }opensea.io/assets/${ contractAddressByChainId[ chainId ] }/${ tokenId }`
 	
 }

@@ -24,9 +24,9 @@ html( lang=content.lang )
 		main
 			section#hero
 				h1 Rocketeer NFT
-				h2 The Rocketeers stand.<br/>
-					| Moon looms, rocket waits, eyes stare.<br/>
-					| The sole thought is wen.
+				h2 Moon boots touch the earth.<br/>
+					| Visored faces tilt upward. <br/>
+					| Their sole thought is wen.
 				
 				//- p Launching Soon™️
 				+rimg.stretch( src=site.system.url+'/assets/mike-kiev-Opzk_hvwO9Q-unsplash.jpg' )
@@ -35,6 +35,25 @@ html( lang=content.lang )
 				div.row
 					a( target='_blank' href='' ).button Mint now
 					a( target='_blank' href='' ).button.outline View on Opensea
+
+			section#about
+				h1 FAQ
+
+				h2 Wen mint?
+				p Minting will open within the coming two weeks. Minting will be free (besides gas costs).
+
+				h2 Which attributes do Rocketeers have?
+				p They will have a variety of helmets, visors, suits and backdrops. Each with multiple color options.
+
+				h2 How random are Rocketeers?
+				p The attributes have weighted probabilities. Upon mint a random number generator probablistically determines the attributes.
+
+				h2 What inspired the Rocketeer NFT?
+				p The undying patience and excited optimism of the Rocketpool community.
+
+				h2 What media are available for the Rocketeers?
+				p Each Rocketeer have a scalable vector file so you can use the art on any size medium. Opensea automatically offers these as PNG for easy use online.
+
 
 			//- section#usps
 			//- 	div.usp
@@ -56,6 +75,13 @@ html( lang=content.lang )
 			//- 	a( href='/' ) Mint now
 			//- 	//- p Launching Soon™️
 
+			section#community
+				h1 Community
+				p Join us for questions, conversations, and suggestions.
+				a( href="https://discord.gg/mXHe2BYG" )
+					img( src="/assets/discord-logo-black.svg" )
+				a( href="https://discord.gg/mXHe2BYG" ).button.outline Join on Discord
+
 			section#credits
 				h1 Acknowledgements
 
@@ -65,23 +91,13 @@ html( lang=content.lang )
 						p NFT design components by unvetica.eth and team.
 					div.usp
 						+cimg.circle( size=200 src=site.system.url+'/assets/adam-miller-dBaz0xhCkPY-unsplash-cropped.jpg' )
-						p Contract, frontend and API code by mentor.eth
+						p Contract, frontend and API code by mentor.eth.
 					div.usp
 						+cimg.circle( size=200 src=site.system.url+'/assets/adam-miller-dBaz0xhCkPY-unsplash-cropped.jpg' )
-						p Logistical support by LookingForOwls and colfax
-				p Photos taken by Mike Kiev and Adam Miller. Illustrations by Katerina Limpitsouni.
+						p Logistical support by Discord users LookingForOwls and colfax.
+				p.sidenote Website media: Photos taken by Mike Kiev and Adam Miller. Illustrations by Katerina Limpitsouni.
 
 
-			section#about
-				h1 About this project
-				p This is a Rocketpool community inspired initiative to fill the void between the present and mainnet.
-				p We all hope to look back 10 years from now at our Rocketeers and remember the days when we asked silly questions like wen mainnet and wen moon.
-
-			section#community
-				h1 Community
-				p Join us for questions, conversations, and suggestions.
-				a( href="https://discord.gg/mXHe2BYG" )
-					img( src="/assets/discord-logo-black.svg" )
-				a( href="https://discord.gg/mXHe2BYG" ).button.outline Join on Discord
+			
 
 		include pug/_footer.pug
