@@ -8,6 +8,8 @@ const contractAddress = {
 	mainnet: '',
 	rinkeby: '0x2829ba9d76e675b8867E1707A9aB49B280D916c6'
 }
+
+// ABI with only the supply definitions
 const ABI = [
 	{
       "inputs": [],
@@ -25,6 +27,7 @@ const ABI = [
     }
 ]
 
+// Total current supply, in accordance with ERC721 spec
 async function getTotalSupply( network='mainnet' ) {
 
 	// Initialise contract connection

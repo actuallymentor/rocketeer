@@ -3,7 +3,7 @@ const { db } = require( './firebase' )
 const { getTotalSupply } = require( './contract' )
 
 // ///////////////////////////////
-// Data sources
+// Attribute sources
 // ///////////////////////////////
 const globalAttributes = [
     { trait_type: "Age", display_type: "number", values: [

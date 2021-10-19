@@ -1,5 +1,5 @@
 // Dependencies
-const admin = require('firebase-admin')
+const admin = require( 'firebase-admin' )
 
 // Admin api
 const app = admin.initializeApp()
