@@ -92,7 +92,7 @@ export default function Verifier() {
 	return <Container>
 
 		<h1>Verify your hodlr status</h1>
-		<p>Verify your Rocketeer status by signing a message with your wallet. This does NOT trigger a transaction. Therefore it is free.</p>
+		<p>Verify your Rocketeer status by logging in with your wallet. This does NOT trigger a transaction. Therefore it is free.</p>
 		<input onChange={ e => setUsername( e.target.value ) } type="text" placeholder="Your Discord username" />
 		<a onClick={ showVerificationUrl } href="/#" className="button">Verify</a>
 		

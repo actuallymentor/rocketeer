@@ -6,8 +6,7 @@ import { ethers } from "ethers"
 
 // Convenience objects
 const { providers: { Web3Provider }, Contract } = ethers
-const { ethereum } = window
-export const provider = ethereum && new Web3Provider(ethereum)
+export const provider = window.ethereum && new Web3Provider( window.ethereum )
 export const signer = provider && provider.getSigner()
 
 // ///////////////////////////////
@@ -18,10 +17,10 @@ export const signer = provider && provider.getSigner()
 export async function getAddress() {
 
 	// Check if web3 is exposed
-	if( !ethereum ) throw new Error( 'No web3 provider detected, please install metamask' )
+	if( !window.ethereum ) throw new Error( 'No web3 provider detected, please install metamask' )
 
 	// Get the first address ( which is the selected address )
-	const [ address ] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+	const [ address ] = await window.ethereum.request( { method: 'eth_requestAccounts' } )
 
 	return address
 
@@ -34,14 +33,15 @@ export function useAddress() {
 
 	// Set initial value if known
 	useEffect( f => {
-		if( ethereum && ethereum.selectedAddress ) setAddress( ethereum.selectedAddress )
+		log( 'useAddress setting: ', window.ethereum && window.ethereum.selectedAddress, ` based on `, window.ethereum )
+		if( window.ethereum && window.ethereum.selectedAddress ) setAddress( window.ethereum.selectedAddress )
 	}, [] )
 
 	// Create listener to accounts change
-	useEffect( f => setListenerAndReturnUnlistener( ethereum, 'accountsChanged', addresses => {
+	useEffect( f => setListenerAndReturnUnlistener( window.ethereum, 'accountsChanged', addresses => {
 			log( 'Addresses changed to ', addresses )
 			setAddress( addresses[0] )
-	} ), [] )
+	} ), [ ] )
 
 
 	return address
@@ -141,7 +141,7 @@ export function useChainId() {
 	const [ chain, setChain ] = useState( undefined )
 
 	// Create listener to chain change
-	useEffect( f => setListenerAndReturnUnlistener( ethereum, 'chainChanged', chainId => {
+	useEffect( f => setListenerAndReturnUnlistener( window.ethereum, 'chainChanged', chainId => {
 		log( 'Chain changed to ', chainId )
 		setChain( chainId )
 	} ), [] )
@@ -152,8 +152,8 @@ export function useChainId() {
 		// Check for initial chain and set to state
 		( async () => {
 
-			if( !ethereum ) return
-			const initialChain = await ethereum.request( { method: 'eth_chainId' } )
+			if( !window.ethereum ) return
+			const initialChain = await window.ethereum.request( { method: 'eth_chainId' } )
 			log( 'Initial chain detected as ', initialChain )
 			setChain( initialChain )
 

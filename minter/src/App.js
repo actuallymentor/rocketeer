@@ -82,7 +82,7 @@ function App() {
 
 			<h1>Rocketeer { action === 'mint' ? 'Minter' : 'Verifier' }</h1>
 			{ action === 'mint' && <p>This interface is used to mint new Rocketeer NFTs. Minting is free, except for the gas fees. After minting you can view your new Rocketeer and its attributes on Opensea.</p> }
-			{ action === 'verify' && <p>This interface is used to veriy that you are the owner of a Rocketeer</p> }
+			{ action === 'verify' && <p>This interface is used to verify that you are the owner of a Rocketeer</p> }
 			<a className="button" href="/#" onClick={ metamasklogin }>
 				<img alt="metamask fox" src={ Fox } />
 				Connect wallet
