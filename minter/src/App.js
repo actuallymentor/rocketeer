@@ -62,13 +62,13 @@ function App() {
 	// Check for action on load
 	useEffect( f => {
 		checkAction()
-		window.addEventListener( 'popstate', checkAction )
-	}, [] )
+		return window.addEventListener( 'popstate', checkAction )
+	}, [ address, loading ] )
 
 	// ///////////////////////////////
 	// Rendering
 	// ///////////////////////////////
-	log( action, error, loading, address )
+	log( 'Rendering with ', action, error, loading, address )
 	// Initialisation interface
 	if( error || loading || !address ) return <Container>
 		{ error && <p>{ error }</p> }
@@ -80,9 +80,9 @@ function App() {
 		</div> }
 		{ !address && ( !error && !loading ) && <>
 
-			<h1>Rocketeer { action == 'mint' ? 'Minter' : 'Verifier' }</h1>
-			{ action == 'mint' && <p>This interface is used to mint new Rocketeer NFTs. Minting is free, except for the gas fees. After minting you can view your new Rocketeer and its attributes on Opensea.</p> }
-			{ action == 'verify' && <p>This interface is used to veriy that you are the owner of a Rocketeer</p> }
+			<h1>Rocketeer { action === 'mint' ? 'Minter' : 'Verifier' }</h1>
+			{ action === 'mint' && <p>This interface is used to mint new Rocketeer NFTs. Minting is free, except for the gas fees. After minting you can view your new Rocketeer and its attributes on Opensea.</p> }
+			{ action === 'verify' && <p>This interface is used to veriy that you are the owner of a Rocketeer</p> }
 			<a className="button" href="/#" onClick={ metamasklogin }>
 				<img alt="metamask fox" src={ Fox } />
 				Connect wallet

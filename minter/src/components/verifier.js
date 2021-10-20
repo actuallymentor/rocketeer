@@ -1,8 +1,8 @@
 import { Container } from './generic'
 import '../App.css'
 
-import { useState, useEffect, useReducer } from 'react'
-import { log, setListenerAndReturnUnlistener } from '../modules/helpers'
+import { useState, useEffect } from 'react'
+import { log } from '../modules/helpers'
 import { useAddress, useChainId, useBalanceOf } from '../modules/web3'
 
 export default function Verifier() {
@@ -36,9 +36,13 @@ export default function Verifier() {
 
 	function verifyIfNeeded() {
 
+		log( 'Check the need to verify' )
+
 		if( !window.location.href.includes( 'message' ) ) return
 
 		try {
+
+			log( 'Verification started' )
 
 			const { search } = window.location
 			const query = new URLSearchParams( search )
@@ -46,6 +50,8 @@ export default function Verifier() {
 			const verification = atob( message )
 			log( 'Received message: ', verification )
 			const json = JSON.parse( verification )
+
+			log( 'Showing status for ', json )
 
 			return setMessage( json )
 
@@ -61,16 +67,17 @@ export default function Verifier() {
 	// Lifecycle
 	// ///////////////////////////////
 	useEffect( f => {
+		log( 'Triggering verification check and popstate listener' )
 		verifyIfNeeded()
-		window.addEventListener( 'popstate', verifyIfNeeded )
+		return window.addEventListener( 'popstate', verifyIfNeeded )
 	}, [] )
 
 	// ///////////////////////////////
 	// Rendering
 	// ///////////////////////////////
-
+	log('Rendering with ', message, verifyUrl )
 	if( message ) return <Container>
-		{ message.balance > 0 && <p>✅ { message.username } has { message.balance } Rocketeers</p> }
+		{ message.balance > 0 && <p>✅ { message.username } has { message.balance } Rocketeers on chain ${ chainId }</p> }
 		{ message.balance < 1 && <p>🛑 Computer says no</p> }
 	</Container>
 
