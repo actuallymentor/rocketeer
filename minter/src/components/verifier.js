@@ -77,7 +77,7 @@ export default function Verifier() {
 	// ///////////////////////////////
 	log('Rendering with ', message, verifyUrl )
 	if( message ) return <Container>
-		{ message.balance > 0 && <p>✅ { message.username } has { message.balance } Rocketeers on chain ${ chainId }</p> }
+		{ message.balance > 0 && <p>✅ { message.username } has { message.balance } Rocketeers on chain { chainId }</p> }
 		{ message.balance < 1 && <p>🛑 Computer says no</p> }
 	</Container>
 
