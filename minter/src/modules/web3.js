@@ -99,6 +99,42 @@ export function useTotalSupply() {
 
 }
 
+export function useBalanceOf() {
+
+	const [ balance, setBalance ] = useState( 'loading' )
+	const contract = useContract( )
+	const address = useAddress()
+
+	// Create listener to minting
+	useEffect( f => {
+
+		// Do nothing if there is not contract object
+		if( !contract || !address ) return
+
+		// Load initial supply value
+		( async (  ) => {
+
+			try {
+
+				const balance = await contract.balanceOf( address )
+				log( 'Balance detected: ', balance, `(${ balance.toString() })` )
+				setBalance( balance.toString() )
+
+			} catch( e ) {
+
+				log( 'Error getting initial supply: ', e )
+
+			}
+
+		} )(  )
+
+
+	}, [ contract, address ] )
+
+	return balance
+
+}
+
 // Chain ID hook
 export function useChainId() {
 
@@ -138,11 +174,31 @@ const contractAddressByChainId = {
 	'0x4': '0x89D9f02D2877A35E8323DC1b578FD1f6014B04d0'
 }
 
-// Contract ABI with only totalSupply and Transfer
+// Contract ABI with only totalSupply, balanceOf and Transfer
 const ABI = [
 	{
       "inputs": [],
       "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
       "outputs": [
         {
           "internalType": "uint256",
