@@ -105,7 +105,7 @@ async function generateRocketeer( id, network='mainnet' ) {
         name: `${ name.first() } ${ name.middle() } ${ name.last() } of ${ pickRandomArrayEntry( heavenlyBodies ) }`,
         description: ``,
         image: ``,
-        external_url: `${ web2domain }/${ network == 'mainnet' ? 'api' : 'testnetapi' }/rocketeer/${ id }`,
+        external_url: `https://viewer.rocketeer.fans/rocketeer/${ id }` + network == 'mainnet' ? '' : '?testnet=true',
         attributes: []
     }
 
