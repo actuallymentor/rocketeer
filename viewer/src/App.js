@@ -1,6 +1,7 @@
 import { Container, Loading } from './components/generic'
 import { log, callApi, exportSvg } from './modules/helpers'
 import download from 'downloadjs'
+import DraftRocketeer from './assets/draft-rocketeer.png'
 
 import './App.css'
 import { useEffect, useState } from 'react'
@@ -22,11 +23,11 @@ function App() {
   // Get ID from url
   useEffect( () => {
 
-    // Expecting /rocketeer/:id
-    const { pathname } = window.location
+    const { search } = window.location
+    const query = new URLSearchParams( search )
+    const id = Number( query.get( 'rocketeer' ) || 'none' )
 
-    // Remove '/rocketeer/'
-    const id = Number( pathname.replace( '/rocketeer/', '' ) )
+    log( 'Id found: ', id )
 
     // Check if id is a number
     if( isNaN( id ) ) return setError( 'No rocketeer selected' )
@@ -105,15 +106,15 @@ function App() {
 
 	if( rocketeer ) return <Container>
 		
-    <img src={ rocketeer.image } />
+    <img alt={ `Rocketeer ${ rocketeerId }` } src={ rocketeer.image || DraftRocketeer } />
     <h1>{ rocketeer.name }</h1>
-    <p>{ rocketeer.description }</p>
+    <p>{ rocketeer.description || "This is a generic Rocketeer without a description. That should only happen during testing. Contact us on Discord if you see this." }</p>
 
     <div>
       
       <a href={ rocketeer.image } className="button">Download SVG</a>
 
-      <a onClick={ e => downloadJPEG( e, 500 ) } className="button">Download JPEG</a>
+      <a href='/#' onClick={ e => downloadJPEG( e, 500 ) } className="button">Download JPEG</a>
 
     </div>
 

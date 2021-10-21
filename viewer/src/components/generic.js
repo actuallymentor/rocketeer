@@ -1,4 +1,4 @@
-// import ContainerBackground from '../assets/undraw_launch_day_4e04.svg'
+import ContainerBackground from '../assets/undraw_connected_world_wuay.svg'
 
 export const Container = ( { children } ) => <main>
 
@@ -8,7 +8,7 @@ export const Container = ( { children } ) => <main>
 
 	</div>
 
-	{  /* <img className="stretchBackground" src={ ContainerBackground } alt="Launching rocket" /> */ }
+	<img className="stretchBackground" src={ ContainerBackground } alt="Launching rocket" />
 
 </main>
 
