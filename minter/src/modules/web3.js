@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import useInterval from 'use-interval'
 import { log, setListenerAndReturnUnlistener } from './helpers'
 
 // Ethers and web3 sdk
@@ -30,17 +31,31 @@ export async function getAddress() {
 export function useAddress() {
 
 	const [ address, setAddress ] = useState( undefined )
+	const [ interval, setInterval ] = useState( 5000 )
+
+	useInterval( () => {
+
+		log( 'Checking for address' )
+		if( window.ethereum && window.ethereum.selectedAddress ) setAddress( window.ethereum.selectedAddress )
+
+	}, interval )
 
 	// Set initial value if known
 	useEffect( f => {
 		log( 'useAddress setting: ', window.ethereum && window.ethereum.selectedAddress, ` based on `, window.ethereum )
-		if( window.ethereum && window.ethereum.selectedAddress ) setAddress( window.ethereum.selectedAddress )
+		if( window.ethereum && window.ethereum.selectedAddress ) {
+			setAddress( window.ethereum.selectedAddress )
+			setInterval( null )
+		} else {
+			setInterval( 5000 )
+		}
 	}, [] )
 
 	// Create listener to accounts change
 	useEffect( f => setListenerAndReturnUnlistener( window.ethereum, 'accountsChanged', addresses => {
 			log( 'Addresses changed to ', addresses )
 			setAddress( addresses[0] )
+			setInterval( 5000 )
 	} ), [ ] )
 
 

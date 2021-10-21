@@ -79,6 +79,7 @@ export default function Verifier() {
 	if( message ) return <Container>
 		{ message.balance > 0 && <p>✅ { message.username } has { message.balance } Rocketeers on chain { chainId }</p> }
 		{ message.balance < 1 && <p>🛑 Computer says no</p> }
+		<p>Something went wrong, contact #support in Discord</p>
 	</Container>
 
 	if( verifyUrl ) return <Container>
