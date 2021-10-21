@@ -14,6 +14,7 @@ const globalAttributes = [
 ]
 const heavenlyBodies = [ "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "the Moon", "the Sun" ]
 const web2domain = 'https://rocketeer.fans'
+const lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
 // ///////////////////////////////
 // Rocketeer helpers
@@ -103,9 +104,9 @@ async function generateRocketeer( id, network='mainnet' ) {
     // The base object of a new Rocketeer
     const rocketeer = {
         name: `${ name.first() } ${ name.middle() } ${ name.last() } of ${ pickRandomArrayEntry( heavenlyBodies ) }`,
-        description: ``,
+        description: lorem,
         image: ``,
-        external_url: `https://viewer.rocketeer.fans/rocketeer/${ id }` + network == 'mainnet' ? '' : '?testnet=true',
+        external_url: `https://viewer.rocketeer.fans/?rocketeer=${ id }` + network == 'mainnet' ? '' : '&testnet=true',
         attributes: []
     }
 
@@ -113,7 +114,7 @@ async function generateRocketeer( id, network='mainnet' ) {
     rocketeer.attributes = pickRandomAttributes( globalAttributes )
 
     // TODO: Generate, compile and upload image
-    rocketeer.image = web2domain
+    rocketeer.image = `${web2domain}/assets/draft-rocketeer.png`
 
     // Save new Rocketeer
     await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer )
