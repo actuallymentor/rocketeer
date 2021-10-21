@@ -26,6 +26,10 @@
     {
       "target": "minter", 
       "public": "minter/build"
+    },
+    {
+      "target": "viewer", 
+      "public": "viewer/build"
     }
   ],
   "storage": {

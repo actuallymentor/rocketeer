@@ -1,3 +1,20 @@
+/*Custom*/
+
+/* // //////////////////////////////
+// Globals
+// ////////////////////////////// */
+
+body * {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
 main {
   display: flex;
   flex-grow: 1;
@@ -7,21 +24,7 @@ main {
   align-content: center;
   align-items: center;
   justify-content: center;
-}
-
-body * {
-  box-sizing: border-box;
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-main {
-  padding:  1rem;
+  padding: 1rem;
 }
 
 div.container {
@@ -34,7 +37,6 @@ div.container {
   text-align: center;
 }
 
-/*Login button*/
 a.button {
   display: flex;
   flex-direction: row;
@@ -54,12 +56,6 @@ a img {
   padding-right: 20px;
 }
 
-input#address {
-  padding: .2rem .5rem;
-  margin-top: 1rem;
-  text-align: center;
-  width: 100%;
-}
 
 .stretchBackground {
   position: absolute;

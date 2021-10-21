@@ -10,6 +10,9 @@
         ],
         "minter": [
           "rocketeer-nft"
+        ],
+        "viewer": [
+          "rocketeer-viewer"
         ]
       }
     }
