@@ -1,60 +1,8 @@
 const name = require( 'random-name' )
 const { db } = require( './firebase' )
 const { getTotalSupply } = require( './contract' )
-
-// ///////////////////////////////
-// Attribute sources
-// ///////////////////////////////
-const globalAttributes = [
-    { trait_type: "Age", display_type: "number", values: [
-        { value: 35, probability: .5 },
-        { value: 45, probability: .25 },
-        { value: 25, probability: .25 }
-    ] }
-]
-const heavenlyBodies = [ "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "the Moon", "the Sun" ]
-const web2domain = 'https://rocketeer.fans'
-const lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-// ///////////////////////////////
-// Rocketeer helpers
-// ///////////////////////////////
-
-// Pick random item from array with equal probability
-const pickRandomArrayEntry = array => array[ Math.floor( Math.random() * array.length ) ]
-
-// Pick random attributes based on global attribute array
-function pickRandomAttributes( attributes ) {
-
-    // Decimal accuracy, if probabilities have the lowest 0.01 then 100 is enough, for 0.001 1000 is needed
-    const probabilityDecimals = 3
-
-    // Remap the trait so it has a 'lottery ticket box' based on probs
-    const attributeLottery = attributes.map( ( { values, ...attribute } ) => ( {
-        // Attribute meta stays the same
-        ...attribute,
-        // Values are reduced from objects with probabilities to an array with elements
-        values: values.reduce( ( acc, val ) => {
-
-            const { probability, value } = val
-
-            // Map probabilities to a flat array of items
-            const amountToAdd = 10 * probabilityDecimals * probability
-            for ( let i = 0; i < amountToAdd; i++ ) acc.push( value )
-            return acc
-
-        }, [] )
-    } ) )
-
-    // Pick a random element from the lottery box array items
-    return attributeLottery.map( ( { values, ...attribute } ) => ( {
-        // Attribute meta stays the same
-        ...attribute,
-        // Select random entry from array
-        value: pickRandomArrayEntry( values )
-    } ) )
-
-}
+const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, lorem } = require( './helpers' )
+const svgFromAttributes = require( './svg-generator' )
 
 // ///////////////////////////////
 // Caching
@@ -106,15 +54,36 @@ async function generateRocketeer( id, network='mainnet' ) {
         name: `${ name.first() } ${ name.middle() } ${ name.last() } of ${ pickRandomArrayEntry( heavenlyBodies ) }`,
         description: lorem,
         image: ``,
-        external_url: `https://viewer.rocketeer.fans/?rocketeer=${ id }` + network == 'mainnet' ? '' : '&testnet=true',
+        external_url: `https://viewer.rocketeer.fans/?rocketeer=${ id }` + ( network == 'mainnet' ? '' : '&testnet=true' ),
         attributes: []
     }
 
     // Generate randomized attributes
     rocketeer.attributes = pickRandomAttributes( globalAttributes )
 
+    // Generate color attributes
+    rocketeer.attributes.push( {
+        "trait_type": "outfit color",
+        value: `rgb( ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) } )`
+    } )
+    rocketeer.attributes.push( {
+        "trait_type": "outfit accent color",
+        value: `rgb( ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) } )`
+    } )
+    rocketeer.attributes.push( {
+        "trait_type": "backpack color",
+        value: `rgb( ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) } )`
+    } )
+    rocketeer.attributes.push( {
+        "trait_type": "visor color",
+        value: `rgb( ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) } )`
+    } )
+
+    // Write to demo file
+
+
     // TODO: Generate, compile and upload image
-    rocketeer.image = `${web2domain}/assets/draft-rocketeer.png`
+    rocketeer.image = await svgFromAttributes( rocketeer.attributes )
 
     // Save new Rocketeer
     await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer )
@@ -125,13 +94,13 @@ async function generateRocketeer( id, network='mainnet' ) {
 
 async function safelyReturnRocketeer( id, network ) {
 
-    // Chech if this is an illegal ID
-    const invalidId = await isInvalidRocketeerId( id, network )
-    if( invalidId ) throw invalidId
+    // // Chech if this is an illegal ID
+    // const invalidId = await isInvalidRocketeerId( id, network )
+    // if( invalidId ) throw invalidId
 
-    // Get old rocketeer if it exists
-    const oldRocketeer = await getExistingRocketeer( id, network )
-    if( oldRocketeer ) return oldRocketeer
+    // // Get old rocketeer if it exists
+    // const oldRocketeer = await getExistingRocketeer( id, network )
+    // if( oldRocketeer ) return oldRocketeer
 
     // If no old rocketeer exists, make a new one and save it
     return generateRocketeer( id, network )

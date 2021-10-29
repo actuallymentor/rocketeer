@@ -1,12 +1,13 @@
 // Dependencies
-const admin = require( 'firebase-admin' )
+const { initializeApp } = require( 'firebase-admin/app' )
+const { getFirestore, FieldValue, FieldPath } = require( 'firebase-admin/firestore' )
 
 // Admin api
-const app = admin.initializeApp()
-const db = app.firestore()
-const { FieldValue, FieldPath } = admin.firestore
+const app = initializeApp()
+const db = getFirestore()
 
 module.exports = {
+	app: app,
 	db: db,
 	FieldValue: FieldValue,
 	FieldPath: FieldPath
