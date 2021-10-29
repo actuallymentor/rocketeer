@@ -51,7 +51,7 @@ async function generateRocketeer( id, network='mainnet' ) {
 
     // The base object of a new Rocketeer
     const rocketeer = {
-        name: `${ name.first() } ${ name.middle() } ${ name.last() } of ${ pickRandomArrayEntry( heavenlyBodies ) }`,
+        name: `${ name.first() } ${ name.middle() } ${ name.last() } of ${ id % 42 == 0 ? 'the Towel' : pickRandomArrayEntry( heavenlyBodies ) }`,
         description: lorem,
         image: ``,
         external_url: `https://viewer.rocketeer.fans/?rocketeer=${ id }` + ( network == 'mainnet' ? '' : '&testnet=true' ),
@@ -94,13 +94,13 @@ async function generateRocketeer( id, network='mainnet' ) {
 
 async function safelyReturnRocketeer( id, network ) {
 
-    // // Chech if this is an illegal ID
-    // const invalidId = await isInvalidRocketeerId( id, network )
-    // if( invalidId ) throw invalidId
+    // Chech if this is an illegal ID
+    const invalidId = await isInvalidRocketeerId( id, network )
+    if( invalidId ) throw invalidId
 
-    // // Get old rocketeer if it exists
-    // const oldRocketeer = await getExistingRocketeer( id, network )
-    // if( oldRocketeer ) return oldRocketeer
+    // Get old rocketeer if it exists
+    const oldRocketeer = await getExistingRocketeer( id, network )
+    if( oldRocketeer ) return oldRocketeer
 
     // If no old rocketeer exists, make a new one and save it
     return generateRocketeer( id, network )
