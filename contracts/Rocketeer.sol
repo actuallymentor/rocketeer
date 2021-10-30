@@ -33,15 +33,15 @@ contract Rocketeer is ERC721Tradable {
     // TODO: add Api data
     // https://docs.opensea.io/docs/metadata-standards
     function baseTokenURI() override public pure returns (string memory) {
-        // return "https://rocketeer.fans/testnetapi/rocketeer/";
-        return "https://rocketeer.fans/api/rocketeer/";
+        return "https://rocketeer.fans/testnetapi/rocketeer/";
+        // return "https://rocketeer.fans/api/rocketeer/";
     }
 
     // TODO: add API link
     // https://docs.opensea.io/docs/contract-level-metadata
     function contractURI() public pure returns (string memory) {
-        // return "https://rocketeer.fans/testnetapi/collection/";
-        return "https://rocketeer.fans/api/rocketeer/";
+        return "https://rocketeer.fans/testnetapi/collection/";
+        // return "https://rocketeer.fans/api/rocketeer/";
     }
 
     // ///////////////////////////////

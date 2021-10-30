@@ -20,7 +20,9 @@
 
 require('dotenv').config()
 
-const HDWalletProvider = require('@truffle/hdwallet-provider');
+// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const LedgerWalletProvider = require('truffle-ledger-provider');
+const ledgerOptions = {}
 
 // Copied from https://github.com/ProjectOpenSea/opensea-creatures
 const MNEMONIC = process.env.MNEMONIC;
@@ -69,7 +71,8 @@ module.exports = {
     },
     rinkeby: {
       provider: function () {
-        return new HDWalletProvider(MNEMONIC, rinkebyNodeUrl);
+        // return new HDWalletProvider(MNEMONIC, rinkebyNodeUrl);
+        return new LedgerWalletProvider( ledgerOptions, rinkebyNodeUrl );
       },
       gas: 5000000,
       network_id: 4,
@@ -77,7 +80,8 @@ module.exports = {
     live: {
       network_id: 1,
       provider: function () {
-        return new HDWalletProvider(MNEMONIC, mainnetNodeUrl);
+        // return new HDWalletProvider(MNEMONIC, mainnetNodeUrl);
+        return new LedgerWalletProvider( ledgerOptions, rinkebyNodeUrl );
       },
       gas: 5000000,
       gasPrice: 5000000000,

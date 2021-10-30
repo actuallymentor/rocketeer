@@ -15,6 +15,7 @@ export default function Minter() {
 	const [ loading, setLoading ] = useState( false )
 	const [ error, setError ] = useState( undefined )
 	const [ mintedTokenId, setMintedTokenId ] = useState( undefined )
+	const [ txHash, setTxhash ] = useState( null )
 	const totalSupply = useTotalSupply(  )
 	const address = useAddress()
 	const chainId = useChainId()
@@ -36,7 +37,7 @@ export default function Minter() {
 			setLoading( 'Confirm transaction in metamask' )
 			const response = await contract.spawnRocketeer( address )
 			log( 'Successful mint with: ', response )
-
+			setTxhash( response.hash )
 			setLoading( 'Waiting for confirmations...' )
 
 		} catch( e ) {
@@ -54,16 +55,24 @@ export default function Minter() {
 			
 		try {
 
+			// Get confirmation details
 			log( `useEffect: Transfer ${ from } sent to ${ to } `, amount, event )
 			const [ transFrom, transTo, tokenId ] = event.args
-			setMintedTokenId( tokenId.toString() )
+			const id = tokenId.toString()
+
+			// Trigger remote generation
+			const rocketeer = await fetch( `https://rocketeer.fans/${ chainId === 'api' ? '' : 'testnetapi'}/rocketeer/${id}` ).then( res => res.json() )
+			log( 'Oracle returned: ', rocketeer )
+
+			// Set token to state
+			setMintedTokenId( id )
 			setLoading( false )
 
 		} catch( e ) {
 			log( 'Error getting Transfer event from contract: ', e )
 		}
 
-	} ), [ contract, loading ] )
+	} ), [ contract, loading, chainId ] )
 
 	// ///////////////////////////////
 	// Rendering
@@ -75,6 +84,7 @@ export default function Minter() {
 			
 			<div className="lds-dual-ring"></div>
 			<p>{ loading }</p>
+			{ txHash && <a className="button" rel='noreferrer' target="_blank" href={ `https://${ chainId === '0x01' ? 'etherscan' : 'rinkeby.etherscan' }.io/tx/${ txHash }` }>View tx on Etherscan</a> }
 
 		</div> }
 	</Container>

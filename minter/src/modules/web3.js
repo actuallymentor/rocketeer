@@ -31,12 +31,17 @@ export async function getAddress() {
 export function useAddress() {
 
 	const [ address, setAddress ] = useState( undefined )
-	const [ interval, setInterval ] = useState( 5000 )
+	const [ interval, setInterval ] = useState( 1000 )
+	const [ timesChecked, setTimesChecked ] = useState( 0 )
 
 	useInterval( () => {
 
+		setTimesChecked( timesChecked++ )
 		log( 'Checking for address' )
-		if( window.ethereum && window.ethereum.selectedAddress ) setAddress( window.ethereum.selectedAddress )
+		if( window.ethereum && window.ethereum.selectedAddress ) return setAddress( window.ethereum.selectedAddress )
+
+		// if checked five times and interval still running, slow it down
+		if( timesChecked > 5 && !!interval ) setInterval( 5000 )
 
 	}, interval )
 
@@ -46,16 +51,21 @@ export function useAddress() {
 		if( window.ethereum && window.ethereum.selectedAddress ) {
 			setAddress( window.ethereum.selectedAddress )
 			setInterval( null )
-		} else {
-			setInterval( 5000 )
 		}
 	}, [] )
 
 	// Create listener to accounts change
 	useEffect( f => setListenerAndReturnUnlistener( window.ethereum, 'accountsChanged', addresses => {
 			log( 'Addresses changed to ', addresses )
-			setAddress( addresses[0] )
-			setInterval( 5000 )
+			const [ newAddress ] = addresses
+
+			// No new address? Change nothing
+			if( !newAddress ) return
+
+			// New address? Set it to state and stop interval
+			setAddress( newAddress )
+			setInterval( null )
+			
 	} ), [ ] )
 
 
