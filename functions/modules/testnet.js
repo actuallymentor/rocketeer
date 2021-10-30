@@ -36,7 +36,7 @@ app.get( '/testnetapi/rocketeer/:id', async ( req, res ) => {
 // Collection data
 app.get( '/testnetapi/collection', async ( req, res ) => res.json( {
     totalSupply: await getTotalSupply( 'rinkeby' ).catch( f => 'error' ),
-    description: "A testnet collection",
+    description: "A testnet collection.\n\nTesting newlines.\n\nAnd emoji 😎.\n\nAlso: urls; https://rocketeer.fans/",
     external_url: web2domain,
     image: "https://rocketeer.fans/assets/draft-rocketeer.png",
     name: `Rocketeer collection`,
