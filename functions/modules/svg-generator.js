@@ -87,9 +87,7 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 		// In others, keeping is cool, and removing is less cool
 		// so higher rarity means less looping
 		const toRemove = 4 - background_complexity
-		console.log( `Removing ${ toRemove } background props` )
 		for ( let i = 1; i <= toRemove; i++ ) {
-			console.log( `Remove #${ background }-element-${ 5 - i }` )
 			const element = document.querySelector( `#${ background }-element-${ 5 - i }` )
 			if( element ) element.remove()
 			else console.log( `Could not find #${ background }-element-${ 5 - i }` )

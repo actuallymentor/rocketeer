@@ -80,10 +80,10 @@ exports.globalAttributes = [
 
     ] },
     { trait_type: "background complexity", values: [
-        { value: 1, probability: .4 },
-        { value: 2, probability: .3 },
-        { value: 3, probability: .2 },
-        { value: 4, probability: .1 }
+        { value: 1, probability: .05 },
+        { value: 2, probability: .10 },
+        { value: 3, probability: .10 },
+        { value: 4, probability: .75 }
     ] }
 
 
