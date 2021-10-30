@@ -89,7 +89,7 @@ async function generateRocketeer( id, network='mainnet' ) {
 
     // Special editions
     const edition = { "trait_type": "edition", value: "regular" }
-    if( id < 50 ) edition.value = 'genesis'
+    if( id <= 50 ) edition.value = 'genesis'
     if( id % 42 === 0 ) edition.value = 'hitchhiker'
     rocketeer.attributes.push( edition )
 
