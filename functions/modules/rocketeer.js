@@ -79,13 +79,20 @@ async function generateRocketeer( id, network='mainnet' ) {
         value: `rgb( ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) } )`
     } )
 
+    // Set birthday
+    rocketeer.attributes.push( {
+      "display_type": "date", 
+      "trait_type": "birthday", 
+      "value": Date.now() / 1000
+    } )
+
     // Special editions
     const edition = { "trait_type": "edition", value: "regular" }
     if( id > 50 ) edition.value = 'genesis'
     if( id % 42 === 0 ) edition.value = 'hitchhiker'
 
     // Generate, compile and upload image
-    rocketeer.image = await svgFromAttributes( rocketeer.attributes, `${ network }Rocketeers/${id}.svg` )
+    rocketeer.image = await svgFromAttributes( rocketeer.attributes, `${ network }Rocketeers/${id}` )
 
     // Save new Rocketeer
     await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer )
@@ -96,13 +103,13 @@ async function generateRocketeer( id, network='mainnet' ) {
 
 async function safelyReturnRocketeer( id, network ) {
 
-    // Chech if this is an illegal ID
-    const invalidId = await isInvalidRocketeerId( id, network )
-    if( invalidId ) throw invalidId
+    // // Chech if this is an illegal ID
+    // const invalidId = await isInvalidRocketeerId( id, network )
+    // if( invalidId ) throw invalidId
 
-    // Get old rocketeer if it exists
-    const oldRocketeer = await getExistingRocketeer( id, network )
-    if( oldRocketeer ) return oldRocketeer
+    // // Get old rocketeer if it exists
+    // const oldRocketeer = await getExistingRocketeer( id, network )
+    // if( oldRocketeer ) return oldRocketeer
 
     // If no old rocketeer exists, make a new one and save it
     return generateRocketeer( id, network )

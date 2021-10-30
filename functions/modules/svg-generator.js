@@ -2,9 +2,10 @@ const masterPath = `${ __dirname }/../assets/master.svg`
 const jsdom = require("jsdom")
 const { JSDOM } = jsdom
 const { promises: fs } = require( 'fs' )
-
 const { getStorage } = require( 'firebase-admin/storage' )
 
+// SVG to JPEG
+const { convert } = require("convert-svg-to-jpeg")
 
 module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 
@@ -113,23 +114,34 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 	replace( defaultVisor, visor_color )
 	replace( defaultBackpack, backpack_color )
 
-	const bakedSvg = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">${ document.querySelector( 'svg' ).outerHTML }`
+	const bakedSvg = [
+		`<?xml version="1.0" encoding="UTF-8" standalone="no"?>`,
+		`<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">`,
+		document.querySelector( 'svg' ).outerHTML
+	].join( '' )
+
+	const bakedRaster = await convert( bakedSvg, {  } )
+
+	await fs.writeFile( `${ __dirname }/../assets/temp.jpg`, bakedRaster )
 
 	// Store file on firebase
 	const storage = getStorage()
 	const bucket = storage.bucket()
 
 	// Make file reference	
-	const file = bucket.file( path )
+	const svgFile = bucket.file( `${path}.svg` )
+	const resterFile = bucket.file( `${path}.jpg` )
 
-	// Save file buffer
-	await file.save( bakedSvg )
+	// Save files
+	await svgFile.save( bakedSvg )
+	await resterFile.save( bakedRaster )
 
 	// Make file public
-	await file.makePublic( )
+	await svgFile.makePublic( )
+	await resterFile.makePublic( )
 
 	// Return public url
-	return file.publicUrl()		
+	return resterFile.publicUrl()		
 
 
 }

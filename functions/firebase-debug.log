@@ -1,0 +1,1014 @@
+[debug] [2021-10-30T10:20:24.957Z] ----------------------------------------------------------------------
+[debug] [2021-10-30T10:20:24.959Z] Command:       /Users/mentor/.nvm/versions/node/v12.20.1/bin/node /Users/mentor/.nvm/versions/node/v12.20.1/bin/firebase functions:shell
+[debug] [2021-10-30T10:20:24.959Z] CLI Version:   9.6.1
+[debug] [2021-10-30T10:20:24.959Z] Platform:      darwin
+[debug] [2021-10-30T10:20:24.959Z] Node Version:  v12.20.1
+[debug] [2021-10-30T10:20:24.963Z] Time:          Sat Oct 30 2021 12:20:24 GMT+0200 (Central European Summer Time)
+[debug] [2021-10-30T10:20:24.963Z] ----------------------------------------------------------------------
+[debug] [2021-10-30T10:20:24.963Z] 
+[debug] [2021-10-30T10:20:24.970Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-30T10:20:24.971Z] > authorizing via signed-in user
+[debug] [2021-10-30T10:20:24.971Z] [iam] checking project rocketeer-nft for permissions ["firebase.projects.get"]
+[debug] [2021-10-30T10:20:24.973Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-10-30T10:20:24.973Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-10-30T10:20:25.288Z] <<< HTTP RESPONSE 200 {"date":"Sat, 30 Oct 2021 10:20:25 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-30T10:20:25.304Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/rocketeer-nft:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-10-30T10:20:26.500Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 30 Oct 2021 10:20:26 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=575","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-30T10:20:26.513Z] [functions] Using node@12 from host.
+[debug] [2021-10-30T10:20:26.517Z] defaultcredentials: writing to file /Users/mentor/.config/firebase/mentorpalokaj_gmail_com_application_default_credentials.json
+[debug] [2021-10-30T10:20:26.518Z] DEBUG: Setting GAC to /Users/mentor/.config/firebase/mentorpalokaj_gmail_com_application_default_credentials.json
+[debug] [2021-10-30T10:20:26.520Z] > refreshing access token with scopes: []
+[debug] [2021-10-30T10:20:26.520Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-10-30T10:20:26.734Z] <<< HTTP RESPONSE 200 {"date":"Sat, 30 Oct 2021 10:20:26 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-30T10:20:26.753Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/rocketeer-nft/adminSdkConfig [none]
+[debug] [2021-10-30T10:20:27.353Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/rocketeer-nft/adminSdkConfig 200
+[debug] [2021-10-30T10:20:27.353Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/rocketeer-nft/adminSdkConfig {"projectId":"rocketeer-nft","storageBucket":"rocketeer-nft.appspot.com","locationId":"europe-west"}
+[debug] [2021-10-30T10:20:27.379Z] [functions] Watching "/Users/mentor/dev/rocketeer-nft/functions" for Cloud Functions...
+[debug] [2021-10-30T10:20:27.391Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:20:27.391Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2021-10-30T10:20:27.392Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:20:27.392Z] DEBUG: [worker-~diagnostic~-ebc4abc6-c3c1-4e72-85d1-798932c8b19a]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_90012.sock
+[debug] [2021-10-30T10:20:27.392Z] DEBUG: [worker-~diagnostic~-ebc4abc6-c3c1-4e72-85d1-798932c8b19a]: BUSY
+[debug] [2021-10-30T10:20:27.547Z] DEBUG: [runtime-status] [90012] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:20:27.548Z] DEBUG: [runtime-status] [90012] Disabled runtime features: undefined
+[debug] [2021-10-30T10:20:27.551Z] DEBUG: [runtime-status] [90012] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:20:27.553Z] DEBUG: [runtime-status] [90012] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:27.554Z] DEBUG: [runtime-status] [90012] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:20:27.555Z] DEBUG: [runtime-status] [90012] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:27.556Z] DEBUG: [runtime-status] [90012] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:20:27.557Z] DEBUG: [runtime-status] [90012] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:27.611Z] DEBUG: [runtime-status] [90012] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:20:27.611Z] DEBUG: [runtime-status] [90012] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:20:27.612Z] DEBUG: [runtime-status] [90012] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:27.613Z] DEBUG: [runtime-status] [90012] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:20:27.613Z] DEBUG: [runtime-status] [90012] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:27.613Z] DEBUG: [runtime-status] [90012] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:20:30.089Z] [functions[testnetMetadata]] http function initialized (http://localhost:5000/rocketeer-nft/us-central1/testnetMetadata).
+[debug] [2021-10-30T10:20:30.089Z] [functions[mainnetMetadata]] http function initialized (http://localhost:5000/rocketeer-nft/us-central1/mainnetMetadata).
+[info] i  functions: Loaded functions: testnetMetadata, mainnetMetadata 
+[warn] ⚠  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub 
+[debug] [2021-10-30T10:20:30.106Z] DEBUG: [worker-~diagnostic~-ebc4abc6-c3c1-4e72-85d1-798932c8b19a]: IDLE
+[debug] [2021-10-30T10:20:37.897Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js changed, reloading triggers
+[debug] [2021-10-30T10:20:38.902Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:20:38.902Z] DEBUG: [worker-~diagnostic~-ebc4abc6-c3c1-4e72-85d1-798932c8b19a]: FINISHING
+[debug] [2021-10-30T10:20:38.912Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:20:38.912Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:20:38.912Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:20:38.912Z] DEBUG: [worker-~diagnostic~-1f0d7cdf-8cb9-42b3-a13e-58889ee939f4]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_90416.sock
+[debug] [2021-10-30T10:20:38.913Z] DEBUG: [worker-~diagnostic~-1f0d7cdf-8cb9-42b3-a13e-58889ee939f4]: BUSY
+[debug] [2021-10-30T10:20:38.915Z] DEBUG: [worker-~diagnostic~-ebc4abc6-c3c1-4e72-85d1-798932c8b19a]: exited
+[debug] [2021-10-30T10:20:38.915Z] DEBUG: [worker-~diagnostic~-ebc4abc6-c3c1-4e72-85d1-798932c8b19a]: FINISHED
+[debug] [2021-10-30T10:20:39.070Z] DEBUG: [runtime-status] [90416] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:20:39.072Z] DEBUG: [runtime-status] [90416] Disabled runtime features: undefined
+[debug] [2021-10-30T10:20:39.076Z] DEBUG: [runtime-status] [90416] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:20:39.078Z] DEBUG: [runtime-status] [90416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:39.079Z] DEBUG: [runtime-status] [90416] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:20:39.080Z] DEBUG: [runtime-status] [90416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:39.081Z] DEBUG: [runtime-status] [90416] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:20:39.082Z] DEBUG: [runtime-status] [90416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:39.123Z] DEBUG: [runtime-status] [90416] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:20:39.123Z] DEBUG: [runtime-status] [90416] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:20:39.124Z] DEBUG: [runtime-status] [90416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:39.125Z] DEBUG: [runtime-status] [90416] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:20:39.127Z] DEBUG: [runtime-status] [90416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:39.127Z] DEBUG: [runtime-status] [90416] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:20:41.256Z] DEBUG: [worker-~diagnostic~-1f0d7cdf-8cb9-42b3-a13e-58889ee939f4]: IDLE
+[debug] [2021-10-30T10:20:52.473Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:20:52.475Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:20:52.475Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/1 --> testnetMetadata
+[debug] [2021-10-30T10:20:52.476Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:20:52.486Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:20:52.486Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:20:52.486Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:20:52.487Z] DEBUG: [worker-testnetMetadata-c91e144f-9fb7-4fce-80fe-4975da74923e]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_90862.sock
+[debug] [2021-10-30T10:20:52.487Z] DEBUG: [worker-testnetMetadata-c91e144f-9fb7-4fce-80fe-4975da74923e]: BUSY
+[debug] [2021-10-30T10:20:52.674Z] DEBUG: [runtime-status] [90862] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:20:52.675Z] DEBUG: [runtime-status] [90862] Disabled runtime features: undefined
+[debug] [2021-10-30T10:20:52.678Z] DEBUG: [runtime-status] [90862] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:20:52.680Z] DEBUG: [runtime-status] [90862] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:52.681Z] DEBUG: [runtime-status] [90862] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:20:52.681Z] DEBUG: [runtime-status] [90862] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:52.683Z] DEBUG: [runtime-status] [90862] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:20:52.683Z] DEBUG: [runtime-status] [90862] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:52.735Z] DEBUG: [runtime-status] [90862] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:20:52.735Z] DEBUG: [runtime-status] [90862] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:20:52.736Z] DEBUG: [runtime-status] [90862] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:52.736Z] DEBUG: [runtime-status] [90862] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:20:52.737Z] DEBUG: [runtime-status] [90862] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:20:52.737Z] DEBUG: [runtime-status] [90862] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:20:55.070Z] DEBUG: [runtime-status] [90862] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:20:55.071Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:20:55.071Z] DEBUG: [runtime-status] [90862] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:20:55.071Z] DEBUG: [runtime-status] [90862] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:20:55.074Z] DEBUG: [runtime-status] [90862] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_90862.sock
+[debug] [2021-10-30T10:20:55.087Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:20:55.088Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/1, mapping to path=/testnetapi/rocketeer/1
+[debug] [2021-10-30T10:20:55.095Z] DEBUG: [runtime-status] [90862] Ephemeral server handling GET request
+[debug] [2021-10-30T10:20:56.100Z] DEBUG: [runtime-status] [90862] Ephemeral server survived.
+[warn] ⚠  Google API requested!
+   - URL: "https://oauth2.googleapis.com/token"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://oauth2.googleapis.com/token\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.svg&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.svg&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.svg&uploadType=resumable&upload_id=ADPycdvUDrztG3Ni-Y8ebd7uD79vn4rU-LfdX6RJ2LkD6SrJMlDQeBGTYLIhekvchsOByXqmNCOyUUyUshUnmBXqbh0fKC8h1w"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.svg&uploadType=resumable&upload_id=ADPycdvUDrztG3Ni-Y8ebd7uD79vn4rU-LfdX6RJ2LkD6SrJMlDQeBGTYLIhekvchsOByXqmNCOyUUyUshUnmBXqbh0fKC8h1w\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.png&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.png&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.png&uploadType=resumable&upload_id=ADPycdvb6icv1oKbFqnw4WvLOTK5R4dHDTcL6FCfqj5cWpNjuFUS1yeidY_lsXdhCHXHqvOJDla_Ce2RHoThAX_IzHxSTnA5aQ"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.png&uploadType=resumable&upload_id=ADPycdvb6icv1oKbFqnw4WvLOTK5R4dHDTcL6FCfqj5cWpNjuFUS1yeidY_lsXdhCHXHqvOJDla_Ce2RHoThAX_IzHxSTnA5aQ\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F1.svg/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F1.svg/acl?\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F1.png/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F1.png/acl?\"\n   - Be careful, this may be a production service."}}
+[debug] [2021-10-30T10:21:05.990Z] [functions] Finished "testnetMetadata" in ~6s
+[debug] [2021-10-30T10:21:05.990Z] DEBUG: [worker-testnetMetadata-c91e144f-9fb7-4fce-80fe-4975da74923e]: IDLE
+[debug] [2021-10-30T10:21:05.990Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:24:43.611Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/svg-generator.js changed, reloading triggers
+[debug] [2021-10-30T10:24:44.617Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:24:44.617Z] DEBUG: [worker-~diagnostic~-1f0d7cdf-8cb9-42b3-a13e-58889ee939f4]: FINISHING
+[debug] [2021-10-30T10:24:44.617Z] DEBUG: [worker-pool] Shutting down IDLE worker (testnetMetadata)
+[debug] [2021-10-30T10:24:44.617Z] DEBUG: [worker-testnetMetadata-c91e144f-9fb7-4fce-80fe-4975da74923e]: FINISHING
+[debug] [2021-10-30T10:24:44.625Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:24:44.626Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:24:44.626Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:24:44.627Z] DEBUG: [worker-~diagnostic~-f7df5537-81ac-4216-a5ee-8dc2c6fa7f4d]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_98227.sock
+[debug] [2021-10-30T10:24:44.627Z] DEBUG: [worker-~diagnostic~-f7df5537-81ac-4216-a5ee-8dc2c6fa7f4d]: BUSY
+[debug] [2021-10-30T10:24:44.632Z] DEBUG: [worker-~diagnostic~-1f0d7cdf-8cb9-42b3-a13e-58889ee939f4]: exited
+[debug] [2021-10-30T10:24:44.632Z] DEBUG: [worker-~diagnostic~-1f0d7cdf-8cb9-42b3-a13e-58889ee939f4]: FINISHED
+[debug] [2021-10-30T10:24:44.635Z] DEBUG: [worker-testnetMetadata-c91e144f-9fb7-4fce-80fe-4975da74923e]: exited
+[debug] [2021-10-30T10:24:44.635Z] DEBUG: [worker-testnetMetadata-c91e144f-9fb7-4fce-80fe-4975da74923e]: FINISHED
+[debug] [2021-10-30T10:24:44.837Z] DEBUG: [runtime-status] [98227] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:24:44.838Z] DEBUG: [runtime-status] [98227] Disabled runtime features: undefined
+[debug] [2021-10-30T10:24:44.842Z] DEBUG: [runtime-status] [98227] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:24:44.844Z] DEBUG: [runtime-status] [98227] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:44.845Z] DEBUG: [runtime-status] [98227] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:24:44.845Z] DEBUG: [runtime-status] [98227] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:44.847Z] DEBUG: [runtime-status] [98227] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:24:44.847Z] DEBUG: [runtime-status] [98227] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:44.905Z] DEBUG: [runtime-status] [98227] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:24:44.905Z] DEBUG: [runtime-status] [98227] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:24:44.906Z] DEBUG: [runtime-status] [98227] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:44.908Z] DEBUG: [runtime-status] [98227] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:24:44.908Z] DEBUG: [runtime-status] [98227] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:44.909Z] DEBUG: [runtime-status] [98227] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:24:49.438Z] DEBUG: [worker-~diagnostic~-f7df5537-81ac-4216-a5ee-8dc2c6fa7f4d]: IDLE
+[debug] [2021-10-30T10:24:49.546Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:24:49.547Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:24:49.547Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/1 --> testnetMetadata
+[debug] [2021-10-30T10:24:49.547Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:24:49.547Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:24:49.553Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:24:49.553Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:24:49.553Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:24:49.553Z] DEBUG: [worker-testnetMetadata-aa10aa89-7c1a-46ff-b12e-83ddc03ce363]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_98416.sock
+[debug] [2021-10-30T10:24:49.554Z] DEBUG: [worker-testnetMetadata-aa10aa89-7c1a-46ff-b12e-83ddc03ce363]: BUSY
+[debug] [2021-10-30T10:24:49.804Z] DEBUG: [runtime-status] [98416] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:24:49.805Z] DEBUG: [runtime-status] [98416] Disabled runtime features: undefined
+[debug] [2021-10-30T10:24:49.807Z] DEBUG: [runtime-status] [98416] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:24:49.809Z] DEBUG: [runtime-status] [98416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:49.810Z] DEBUG: [runtime-status] [98416] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:24:49.812Z] DEBUG: [runtime-status] [98416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:49.812Z] DEBUG: [runtime-status] [98416] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:24:49.814Z] DEBUG: [runtime-status] [98416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:49.931Z] DEBUG: [runtime-status] [98416] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:24:49.931Z] DEBUG: [runtime-status] [98416] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:24:49.932Z] DEBUG: [runtime-status] [98416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:49.933Z] DEBUG: [runtime-status] [98416] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:24:49.933Z] DEBUG: [runtime-status] [98416] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:24:49.934Z] DEBUG: [runtime-status] [98416] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:24:53.569Z] DEBUG: [runtime-status] [98416] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:24:53.569Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:24:53.569Z] DEBUG: [runtime-status] [98416] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:24:53.569Z] DEBUG: [runtime-status] [98416] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:24:53.572Z] DEBUG: [runtime-status] [98416] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_98416.sock
+[debug] [2021-10-30T10:24:53.575Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:24:53.576Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/1, mapping to path=/testnetapi/rocketeer/1
+[debug] [2021-10-30T10:24:54.583Z] DEBUG: [runtime-status] [98416] Ephemeral server handling GET request
+[debug] [2021-10-30T10:24:54.584Z] DEBUG: [runtime-status] [98416] Ephemeral server survived.
+[warn] ⚠  Google API requested!
+   - URL: "https://oauth2.googleapis.com/token"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://oauth2.googleapis.com/token\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.svg&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.svg&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.svg&uploadType=resumable&upload_id=ADPycdtuLwZoGhnLsi1PZrdMClFV8PgO1DY1U3L3nCkIvWIezKkjpLKFzUDfRxfPJIe6U3-ifm-XshVwXhrmA8dZsW5En4M1Lg"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.svg&uploadType=resumable&upload_id=ADPycdtuLwZoGhnLsi1PZrdMClFV8PgO1DY1U3L3nCkIvWIezKkjpLKFzUDfRxfPJIe6U3-ifm-XshVwXhrmA8dZsW5En4M1Lg\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.png&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.png&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.png&uploadType=resumable&upload_id=ADPycds0oK2ypoRluWRaU-it-yDbMsRpA08xn2F7QpHC2HDAne9dp3a6g6_dB8I5MVH0s54Thal_YPSQ-WWbh9QpVcJLDmgSCA"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F1.png&uploadType=resumable&upload_id=ADPycds0oK2ypoRluWRaU-it-yDbMsRpA08xn2F7QpHC2HDAne9dp3a6g6_dB8I5MVH0s54Thal_YPSQ-WWbh9QpVcJLDmgSCA\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F1.svg/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F1.svg/acl?\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F1.png/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F1.png/acl?\"\n   - Be careful, this may be a production service."}}
+[debug] [2021-10-30T10:25:03.740Z] [functions] Finished "testnetMetadata" in ~4s
+[debug] [2021-10-30T10:25:03.740Z] DEBUG: [worker-testnetMetadata-aa10aa89-7c1a-46ff-b12e-83ddc03ce363]: IDLE
+[debug] [2021-10-30T10:25:03.740Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:25:06.202Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/assets/master.svg changed, reloading triggers
+[debug] [2021-10-30T10:25:07.204Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:25:07.204Z] DEBUG: [worker-~diagnostic~-f7df5537-81ac-4216-a5ee-8dc2c6fa7f4d]: FINISHING
+[debug] [2021-10-30T10:25:07.205Z] DEBUG: [worker-pool] Shutting down IDLE worker (testnetMetadata)
+[debug] [2021-10-30T10:25:07.205Z] DEBUG: [worker-testnetMetadata-aa10aa89-7c1a-46ff-b12e-83ddc03ce363]: FINISHING
+[debug] [2021-10-30T10:25:07.216Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:25:07.217Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:25:07.217Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:25:07.218Z] DEBUG: [worker-~diagnostic~-28c862d9-fb8b-4b94-9864-cf419fcf59bb]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_98996.sock
+[debug] [2021-10-30T10:25:07.218Z] DEBUG: [worker-~diagnostic~-28c862d9-fb8b-4b94-9864-cf419fcf59bb]: BUSY
+[debug] [2021-10-30T10:25:07.219Z] DEBUG: [worker-~diagnostic~-f7df5537-81ac-4216-a5ee-8dc2c6fa7f4d]: exited
+[debug] [2021-10-30T10:25:07.219Z] DEBUG: [worker-~diagnostic~-f7df5537-81ac-4216-a5ee-8dc2c6fa7f4d]: FINISHED
+[debug] [2021-10-30T10:25:07.303Z] DEBUG: [worker-testnetMetadata-aa10aa89-7c1a-46ff-b12e-83ddc03ce363]: exited
+[debug] [2021-10-30T10:25:07.304Z] DEBUG: [worker-testnetMetadata-aa10aa89-7c1a-46ff-b12e-83ddc03ce363]: FINISHED
+[debug] [2021-10-30T10:25:07.557Z] DEBUG: [runtime-status] [98996] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:25:07.559Z] DEBUG: [runtime-status] [98996] Disabled runtime features: undefined
+[debug] [2021-10-30T10:25:07.565Z] DEBUG: [runtime-status] [98996] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:25:07.567Z] DEBUG: [runtime-status] [98996] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:07.567Z] DEBUG: [runtime-status] [98996] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:25:07.571Z] DEBUG: [runtime-status] [98996] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:07.571Z] DEBUG: [runtime-status] [98996] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:25:07.571Z] DEBUG: [runtime-status] [98996] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:07.632Z] DEBUG: [runtime-status] [98996] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:25:07.632Z] DEBUG: [runtime-status] [98996] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:25:07.633Z] DEBUG: [runtime-status] [98996] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:07.636Z] DEBUG: [runtime-status] [98996] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:25:07.637Z] DEBUG: [runtime-status] [98996] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:07.637Z] DEBUG: [runtime-status] [98996] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:25:10.017Z] DEBUG: [worker-~diagnostic~-28c862d9-fb8b-4b94-9864-cf419fcf59bb]: IDLE
+[debug] [2021-10-30T10:25:43.422Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/svg-generator.js changed, reloading triggers
+[debug] [2021-10-30T10:25:44.424Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:25:44.424Z] DEBUG: [worker-~diagnostic~-28c862d9-fb8b-4b94-9864-cf419fcf59bb]: FINISHING
+[debug] [2021-10-30T10:25:44.424Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:25:44.424Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:25:44.431Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:25:44.432Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:25:44.432Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:25:44.432Z] DEBUG: [worker-~diagnostic~-377db090-610e-4d43-afef-ae928be8e21c]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_392.sock
+[debug] [2021-10-30T10:25:44.433Z] DEBUG: [worker-~diagnostic~-377db090-610e-4d43-afef-ae928be8e21c]: BUSY
+[debug] [2021-10-30T10:25:44.436Z] DEBUG: [worker-~diagnostic~-28c862d9-fb8b-4b94-9864-cf419fcf59bb]: exited
+[debug] [2021-10-30T10:25:44.436Z] DEBUG: [worker-~diagnostic~-28c862d9-fb8b-4b94-9864-cf419fcf59bb]: FINISHED
+[debug] [2021-10-30T10:25:44.601Z] DEBUG: [runtime-status] [392] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:25:44.602Z] DEBUG: [runtime-status] [392] Disabled runtime features: undefined
+[debug] [2021-10-30T10:25:44.606Z] DEBUG: [runtime-status] [392] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:25:44.607Z] DEBUG: [runtime-status] [392] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:44.608Z] DEBUG: [runtime-status] [392] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:25:44.608Z] DEBUG: [runtime-status] [392] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:44.610Z] DEBUG: [runtime-status] [392] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:25:44.610Z] DEBUG: [runtime-status] [392] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:44.653Z] DEBUG: [runtime-status] [392] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:25:44.653Z] DEBUG: [runtime-status] [392] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:25:44.654Z] DEBUG: [runtime-status] [392] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:44.655Z] DEBUG: [runtime-status] [392] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:25:44.658Z] DEBUG: [runtime-status] [392] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:44.658Z] DEBUG: [runtime-status] [392] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:25:46.717Z] DEBUG: [worker-~diagnostic~-377db090-610e-4d43-afef-ae928be8e21c]: IDLE
+[debug] [2021-10-30T10:25:55.541Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:25:55.541Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:25:55.541Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2 --> testnetMetadata
+[debug] [2021-10-30T10:25:55.541Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:25:55.546Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:25:55.547Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:25:55.547Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:25:55.547Z] DEBUG: [worker-testnetMetadata-8196d464-7b7c-44ad-b8b3-33ca2a5b9727]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_885.sock
+[debug] [2021-10-30T10:25:55.547Z] DEBUG: [worker-testnetMetadata-8196d464-7b7c-44ad-b8b3-33ca2a5b9727]: BUSY
+[debug] [2021-10-30T10:25:55.723Z] DEBUG: [runtime-status] [885] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:25:55.724Z] DEBUG: [runtime-status] [885] Disabled runtime features: undefined
+[debug] [2021-10-30T10:25:55.728Z] DEBUG: [runtime-status] [885] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:25:55.729Z] DEBUG: [runtime-status] [885] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:55.730Z] DEBUG: [runtime-status] [885] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:25:55.730Z] DEBUG: [runtime-status] [885] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:55.732Z] DEBUG: [runtime-status] [885] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:25:55.732Z] DEBUG: [runtime-status] [885] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:55.775Z] DEBUG: [runtime-status] [885] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:25:55.775Z] DEBUG: [runtime-status] [885] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:25:55.775Z] DEBUG: [runtime-status] [885] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:55.776Z] DEBUG: [runtime-status] [885] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:25:55.777Z] DEBUG: [runtime-status] [885] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:25:55.777Z] DEBUG: [runtime-status] [885] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:25:57.815Z] DEBUG: [runtime-status] [885] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:25:57.815Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:25:57.815Z] DEBUG: [runtime-status] [885] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:25:57.816Z] DEBUG: [runtime-status] [885] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:25:57.825Z] DEBUG: [runtime-status] [885] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_885.sock
+[debug] [2021-10-30T10:25:57.829Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:25:57.830Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2, mapping to path=/testnetapi/rocketeer/2
+[debug] [2021-10-30T10:25:57.834Z] DEBUG: [runtime-status] [885] Ephemeral server handling GET request
+[debug] [2021-10-30T10:25:58.838Z] DEBUG: [runtime-status] [885] Ephemeral server survived.
+[warn] ⚠  Google API requested!
+   - URL: "https://oauth2.googleapis.com/token"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://oauth2.googleapis.com/token\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable&upload_id=ADPycdv_4OCuTufq9CkU2s-KOgJA5gCxh5WnxGLXkgIVpUGChvIBfZnXjyvYbi-EuHcGgOeq7sAtPIeJXjxCHej-sBE7KyXQEg"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable&upload_id=ADPycdv_4OCuTufq9CkU2s-KOgJA5gCxh5WnxGLXkgIVpUGChvIBfZnXjyvYbi-EuHcGgOeq7sAtPIeJXjxCHej-sBE7KyXQEg\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.png&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.png&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.png&uploadType=resumable&upload_id=ADPycdtX-A6AWTAya62T6RfRebsGJ5ASG2FdOZ_qmIr8hcFyRM--TCj_hcQtCEZKek1nt2So-n2Ny7gPDL-jNMRlRqrOH48Qqg"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.png&uploadType=resumable&upload_id=ADPycdtX-A6AWTAya62T6RfRebsGJ5ASG2FdOZ_qmIr8hcFyRM--TCj_hcQtCEZKek1nt2So-n2Ny7gPDL-jNMRlRqrOH48Qqg\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.svg/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.svg/acl?\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.png/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.png/acl?\"\n   - Be careful, this may be a production service."}}
+[debug] [2021-10-30T10:26:07.603Z] [functions] Finished "testnetMetadata" in ~4s
+[debug] [2021-10-30T10:26:07.603Z] DEBUG: [worker-testnetMetadata-8196d464-7b7c-44ad-b8b3-33ca2a5b9727]: IDLE
+[debug] [2021-10-30T10:26:07.603Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:29:14.650Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/svg-generator.js changed, reloading triggers
+[debug] [2021-10-30T10:29:15.653Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:29:15.653Z] DEBUG: [worker-~diagnostic~-377db090-610e-4d43-afef-ae928be8e21c]: FINISHING
+[debug] [2021-10-30T10:29:15.653Z] DEBUG: [worker-pool] Shutting down IDLE worker (testnetMetadata)
+[debug] [2021-10-30T10:29:15.653Z] DEBUG: [worker-testnetMetadata-8196d464-7b7c-44ad-b8b3-33ca2a5b9727]: FINISHING
+[debug] [2021-10-30T10:29:15.673Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:29:15.674Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:29:15.674Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:29:15.674Z] DEBUG: [worker-~diagnostic~-f2f6f2ee-b3a8-4f84-b131-de3c23d2c9f1]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_7577.sock
+[debug] [2021-10-30T10:29:15.674Z] DEBUG: [worker-~diagnostic~-f2f6f2ee-b3a8-4f84-b131-de3c23d2c9f1]: BUSY
+[debug] [2021-10-30T10:29:15.675Z] DEBUG: [worker-~diagnostic~-377db090-610e-4d43-afef-ae928be8e21c]: exited
+[debug] [2021-10-30T10:29:15.676Z] DEBUG: [worker-~diagnostic~-377db090-610e-4d43-afef-ae928be8e21c]: FINISHED
+[debug] [2021-10-30T10:29:15.679Z] DEBUG: [worker-testnetMetadata-8196d464-7b7c-44ad-b8b3-33ca2a5b9727]: exited
+[debug] [2021-10-30T10:29:15.679Z] DEBUG: [worker-testnetMetadata-8196d464-7b7c-44ad-b8b3-33ca2a5b9727]: FINISHED
+[debug] [2021-10-30T10:29:15.836Z] DEBUG: [runtime-status] [7577] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:29:15.837Z] DEBUG: [runtime-status] [7577] Disabled runtime features: undefined
+[debug] [2021-10-30T10:29:15.841Z] DEBUG: [runtime-status] [7577] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:15.844Z] DEBUG: [runtime-status] [7577] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:15.844Z] DEBUG: [runtime-status] [7577] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:29:15.844Z] DEBUG: [runtime-status] [7577] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:15.846Z] DEBUG: [runtime-status] [7577] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:29:15.846Z] DEBUG: [runtime-status] [7577] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:15.889Z] DEBUG: [runtime-status] [7577] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:29:15.889Z] DEBUG: [runtime-status] [7577] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:29:15.890Z] DEBUG: [runtime-status] [7577] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:15.892Z] DEBUG: [runtime-status] [7577] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:15.894Z] DEBUG: [runtime-status] [7577] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:15.895Z] DEBUG: [runtime-status] [7577] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:29:16.797Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:29:16.797Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:29:16.797Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2 --> testnetMetadata
+[debug] [2021-10-30T10:29:16.797Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:29:16.797Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:29:16.803Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:29:16.804Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:29:16.804Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:29:16.804Z] DEBUG: [worker-testnetMetadata-af968b99-a9af-4034-aa12-fb6d661ab7bf]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_7621.sock
+[debug] [2021-10-30T10:29:16.804Z] DEBUG: [worker-testnetMetadata-af968b99-a9af-4034-aa12-fb6d661ab7bf]: BUSY
+[debug] [2021-10-30T10:29:16.978Z] DEBUG: [runtime-status] [7621] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:29:16.979Z] DEBUG: [runtime-status] [7621] Disabled runtime features: undefined
+[debug] [2021-10-30T10:29:16.983Z] DEBUG: [runtime-status] [7621] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:16.985Z] DEBUG: [runtime-status] [7621] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:16.985Z] DEBUG: [runtime-status] [7621] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:29:16.985Z] DEBUG: [runtime-status] [7621] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:16.987Z] DEBUG: [runtime-status] [7621] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:29:16.988Z] DEBUG: [runtime-status] [7621] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:17.031Z] DEBUG: [runtime-status] [7621] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:29:17.031Z] DEBUG: [runtime-status] [7621] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:29:17.032Z] DEBUG: [runtime-status] [7621] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:17.033Z] DEBUG: [runtime-status] [7621] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:17.035Z] DEBUG: [runtime-status] [7621] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:17.035Z] DEBUG: [runtime-status] [7621] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:29:17.927Z] DEBUG: [worker-~diagnostic~-f2f6f2ee-b3a8-4f84-b131-de3c23d2c9f1]: IDLE
+[debug] [2021-10-30T10:29:19.023Z] DEBUG: [runtime-status] [7621] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:29:19.024Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:29:19.024Z] DEBUG: [runtime-status] [7621] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:29:19.024Z] DEBUG: [runtime-status] [7621] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:29:19.027Z] DEBUG: [runtime-status] [7621] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_7621.sock
+[debug] [2021-10-30T10:29:19.030Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:29:19.031Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2, mapping to path=/testnetapi/rocketeer/2
+[debug] [2021-10-30T10:29:19.035Z] DEBUG: [runtime-status] [7621] Ephemeral server handling GET request
+[debug] [2021-10-30T10:29:20.039Z] DEBUG: [runtime-status] [7621] Ephemeral server survived.
+[info] >  Testnet api error for 2:  [] {"user":"Testnet api error for 2:  []","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m Testnet api error for 2:  []"}}
+[info] >  Error: Value for argument "data" is not a valid Firestore document. Cannot use "undefined" as a Firestore value (found in field "image"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`. {"user":"Error: Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"image\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m Error: Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"image\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`."}}
+[info] >      at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19) {"user":"    at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19)"}}
+[info] >      at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13) {"user":"    at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13)"}}
+[info] >      at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18) {"user":"    at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18)"}}
+[info] >      at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9) {"user":"    at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9)"}}
+[info] >      at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14) {"user":"    at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14)"}}
+[info] >      at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63) {"user":"    at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63)"}}
+[info] >      at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27 {"user":"    at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27"}}
+[debug] [2021-10-30T10:29:24.871Z] [functions] Finished "testnetMetadata" in ~1s
+[debug] [2021-10-30T10:29:24.871Z] DEBUG: [worker-testnetMetadata-af968b99-a9af-4034-aa12-fb6d661ab7bf]: IDLE
+[debug] [2021-10-30T10:29:24.871Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:29:49.501Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/svg-generator.js changed, reloading triggers
+[debug] [2021-10-30T10:29:50.503Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:29:50.503Z] DEBUG: [worker-~diagnostic~-f2f6f2ee-b3a8-4f84-b131-de3c23d2c9f1]: FINISHING
+[debug] [2021-10-30T10:29:50.503Z] DEBUG: [worker-pool] Shutting down IDLE worker (testnetMetadata)
+[debug] [2021-10-30T10:29:50.504Z] DEBUG: [worker-testnetMetadata-af968b99-a9af-4034-aa12-fb6d661ab7bf]: FINISHING
+[debug] [2021-10-30T10:29:50.521Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:29:50.522Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:29:50.522Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:29:50.523Z] DEBUG: [worker-~diagnostic~-f6664f9c-0bd8-4128-910a-693c69639931]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_8732.sock
+[debug] [2021-10-30T10:29:50.523Z] DEBUG: [worker-~diagnostic~-f6664f9c-0bd8-4128-910a-693c69639931]: BUSY
+[debug] [2021-10-30T10:29:50.525Z] DEBUG: [worker-~diagnostic~-f2f6f2ee-b3a8-4f84-b131-de3c23d2c9f1]: exited
+[debug] [2021-10-30T10:29:50.525Z] DEBUG: [worker-~diagnostic~-f2f6f2ee-b3a8-4f84-b131-de3c23d2c9f1]: FINISHED
+[debug] [2021-10-30T10:29:50.526Z] DEBUG: [worker-testnetMetadata-af968b99-a9af-4034-aa12-fb6d661ab7bf]: exited
+[debug] [2021-10-30T10:29:50.526Z] DEBUG: [worker-testnetMetadata-af968b99-a9af-4034-aa12-fb6d661ab7bf]: FINISHED
+[debug] [2021-10-30T10:29:50.715Z] DEBUG: [runtime-status] [8732] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:29:50.716Z] DEBUG: [runtime-status] [8732] Disabled runtime features: undefined
+[debug] [2021-10-30T10:29:50.720Z] DEBUG: [runtime-status] [8732] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:50.721Z] DEBUG: [runtime-status] [8732] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:50.722Z] DEBUG: [runtime-status] [8732] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:29:50.723Z] DEBUG: [runtime-status] [8732] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:50.724Z] DEBUG: [runtime-status] [8732] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:29:50.725Z] DEBUG: [runtime-status] [8732] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:50.782Z] DEBUG: [runtime-status] [8732] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:29:50.782Z] DEBUG: [runtime-status] [8732] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:29:50.783Z] DEBUG: [runtime-status] [8732] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:50.784Z] DEBUG: [runtime-status] [8732] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:50.784Z] DEBUG: [runtime-status] [8732] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:50.784Z] DEBUG: [runtime-status] [8732] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:29:50.897Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:29:50.897Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:29:50.897Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2 --> testnetMetadata
+[debug] [2021-10-30T10:29:50.897Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:29:50.897Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:29:50.904Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:29:50.904Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:29:50.905Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:29:50.905Z] DEBUG: [worker-testnetMetadata-d9161917-0475-44c9-b65b-b4c5ed28edda]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_8733.sock
+[debug] [2021-10-30T10:29:50.905Z] DEBUG: [worker-testnetMetadata-d9161917-0475-44c9-b65b-b4c5ed28edda]: BUSY
+[debug] [2021-10-30T10:29:51.081Z] DEBUG: [runtime-status] [8733] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:29:51.082Z] DEBUG: [runtime-status] [8733] Disabled runtime features: undefined
+[debug] [2021-10-30T10:29:51.086Z] DEBUG: [runtime-status] [8733] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:51.087Z] DEBUG: [runtime-status] [8733] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:51.088Z] DEBUG: [runtime-status] [8733] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:29:51.089Z] DEBUG: [runtime-status] [8733] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:51.090Z] DEBUG: [runtime-status] [8733] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:29:51.091Z] DEBUG: [runtime-status] [8733] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:51.135Z] DEBUG: [runtime-status] [8733] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:29:51.135Z] DEBUG: [runtime-status] [8733] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:29:51.136Z] DEBUG: [runtime-status] [8733] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:51.136Z] DEBUG: [runtime-status] [8733] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:51.138Z] DEBUG: [runtime-status] [8733] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:51.138Z] DEBUG: [runtime-status] [8733] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:29:53.197Z] DEBUG: [worker-~diagnostic~-f6664f9c-0bd8-4128-910a-693c69639931]: IDLE
+[debug] [2021-10-30T10:29:53.197Z] DEBUG: [runtime-status] [8733] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:29:53.197Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:29:53.197Z] DEBUG: [runtime-status] [8733] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:29:53.197Z] DEBUG: [runtime-status] [8733] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:29:53.200Z] DEBUG: [runtime-status] [8733] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_8733.sock
+[debug] [2021-10-30T10:29:53.205Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:29:53.205Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2, mapping to path=/testnetapi/rocketeer/2
+[debug] [2021-10-30T10:29:53.209Z] DEBUG: [runtime-status] [8733] Ephemeral server handling GET request
+[debug] [2021-10-30T10:29:54.212Z] DEBUG: [runtime-status] [8733] Ephemeral server survived.
+[info] >  Testnet api error for 2:  [] {"user":"Testnet api error for 2:  []","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m Testnet api error for 2:  []"}}
+[info] >  Error: Value for argument "data" is not a valid Firestore document. Cannot use "undefined" as a Firestore value (found in field "image"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`. {"user":"Error: Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"image\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m Error: Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"image\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`."}}
+[info] >      at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19) {"user":"    at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19)"}}
+[info] >      at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13) {"user":"    at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13)"}}
+[info] >      at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18) {"user":"    at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18)"}}
+[info] >      at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9) {"user":"    at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9)"}}
+[info] >      at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14) {"user":"    at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14)"}}
+[info] >      at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63) {"user":"    at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63)"}}
+[info] >      at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27 {"user":"    at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27"}}
+[debug] [2021-10-30T10:29:58.584Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/assets/temp.png changed, reloading triggers
+[debug] [2021-10-30T10:29:58.587Z] [functions] Finished "testnetMetadata" in ~1s
+[debug] [2021-10-30T10:29:58.587Z] DEBUG: [worker-testnetMetadata-d9161917-0475-44c9-b65b-b4c5ed28edda]: IDLE
+[debug] [2021-10-30T10:29:58.587Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:29:59.586Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:29:59.586Z] DEBUG: [worker-~diagnostic~-f6664f9c-0bd8-4128-910a-693c69639931]: FINISHING
+[debug] [2021-10-30T10:29:59.586Z] DEBUG: [worker-pool] Shutting down IDLE worker (testnetMetadata)
+[debug] [2021-10-30T10:29:59.586Z] DEBUG: [worker-testnetMetadata-d9161917-0475-44c9-b65b-b4c5ed28edda]: FINISHING
+[debug] [2021-10-30T10:29:59.597Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:29:59.600Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:29:59.600Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:29:59.601Z] DEBUG: [worker-~diagnostic~-72ae8490-93cf-4064-b4dd-c6c41455ce77]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_9019.sock
+[debug] [2021-10-30T10:29:59.601Z] DEBUG: [worker-~diagnostic~-72ae8490-93cf-4064-b4dd-c6c41455ce77]: BUSY
+[debug] [2021-10-30T10:29:59.602Z] DEBUG: [worker-~diagnostic~-f6664f9c-0bd8-4128-910a-693c69639931]: exited
+[debug] [2021-10-30T10:29:59.602Z] DEBUG: [worker-~diagnostic~-f6664f9c-0bd8-4128-910a-693c69639931]: FINISHED
+[debug] [2021-10-30T10:29:59.635Z] DEBUG: [worker-testnetMetadata-d9161917-0475-44c9-b65b-b4c5ed28edda]: exited
+[debug] [2021-10-30T10:29:59.636Z] DEBUG: [worker-testnetMetadata-d9161917-0475-44c9-b65b-b4c5ed28edda]: FINISHED
+[debug] [2021-10-30T10:29:59.764Z] DEBUG: [runtime-status] [9019] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:29:59.766Z] DEBUG: [runtime-status] [9019] Disabled runtime features: undefined
+[debug] [2021-10-30T10:29:59.770Z] DEBUG: [runtime-status] [9019] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:59.771Z] DEBUG: [runtime-status] [9019] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:59.772Z] DEBUG: [runtime-status] [9019] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:29:59.773Z] DEBUG: [runtime-status] [9019] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:59.774Z] DEBUG: [runtime-status] [9019] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:29:59.775Z] DEBUG: [runtime-status] [9019] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:59.820Z] DEBUG: [runtime-status] [9019] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:29:59.820Z] DEBUG: [runtime-status] [9019] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:29:59.820Z] DEBUG: [runtime-status] [9019] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:59.822Z] DEBUG: [runtime-status] [9019] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:29:59.824Z] DEBUG: [runtime-status] [9019] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:29:59.824Z] DEBUG: [runtime-status] [9019] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:30:01.887Z] DEBUG: [worker-~diagnostic~-72ae8490-93cf-4064-b4dd-c6c41455ce77]: IDLE
+[debug] [2021-10-30T10:30:31.761Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/svg-generator.js changed, reloading triggers
+[debug] [2021-10-30T10:30:32.762Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:30:32.762Z] DEBUG: [worker-~diagnostic~-72ae8490-93cf-4064-b4dd-c6c41455ce77]: FINISHING
+[debug] [2021-10-30T10:30:32.762Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:30:32.762Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:30:32.769Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:30:32.770Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:30:32.770Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:30:32.771Z] DEBUG: [worker-~diagnostic~-3cfe7dc9-c539-4650-a179-ea34b2193daa]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_10121.sock
+[debug] [2021-10-30T10:30:32.771Z] DEBUG: [worker-~diagnostic~-3cfe7dc9-c539-4650-a179-ea34b2193daa]: BUSY
+[debug] [2021-10-30T10:30:32.773Z] DEBUG: [worker-~diagnostic~-72ae8490-93cf-4064-b4dd-c6c41455ce77]: exited
+[debug] [2021-10-30T10:30:32.773Z] DEBUG: [worker-~diagnostic~-72ae8490-93cf-4064-b4dd-c6c41455ce77]: FINISHED
+[debug] [2021-10-30T10:30:32.963Z] DEBUG: [runtime-status] [10121] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:30:32.964Z] DEBUG: [runtime-status] [10121] Disabled runtime features: undefined
+[debug] [2021-10-30T10:30:32.969Z] DEBUG: [runtime-status] [10121] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:30:32.971Z] DEBUG: [runtime-status] [10121] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:32.971Z] DEBUG: [runtime-status] [10121] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:30:32.972Z] DEBUG: [runtime-status] [10121] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:32.973Z] DEBUG: [runtime-status] [10121] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:30:32.974Z] DEBUG: [runtime-status] [10121] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:33.022Z] DEBUG: [runtime-status] [10121] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:30:33.023Z] DEBUG: [runtime-status] [10121] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:30:33.023Z] DEBUG: [runtime-status] [10121] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:33.024Z] DEBUG: [runtime-status] [10121] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:30:33.027Z] DEBUG: [runtime-status] [10121] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:33.027Z] DEBUG: [runtime-status] [10121] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:30:34.176Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:30:34.176Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:30:34.176Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2 --> testnetMetadata
+[debug] [2021-10-30T10:30:34.176Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:30:34.183Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:30:34.184Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:30:34.184Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:30:34.184Z] DEBUG: [worker-testnetMetadata-079e7d69-f361-4ec7-a4fe-69981e226be1]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_10181.sock
+[debug] [2021-10-30T10:30:34.184Z] DEBUG: [worker-testnetMetadata-079e7d69-f361-4ec7-a4fe-69981e226be1]: BUSY
+[debug] [2021-10-30T10:30:34.353Z] DEBUG: [runtime-status] [10181] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:30:34.355Z] DEBUG: [runtime-status] [10181] Disabled runtime features: undefined
+[debug] [2021-10-30T10:30:34.358Z] DEBUG: [runtime-status] [10181] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:30:34.360Z] DEBUG: [runtime-status] [10181] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:34.360Z] DEBUG: [runtime-status] [10181] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:30:34.361Z] DEBUG: [runtime-status] [10181] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:34.362Z] DEBUG: [runtime-status] [10181] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:30:34.363Z] DEBUG: [runtime-status] [10181] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:34.409Z] DEBUG: [runtime-status] [10181] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:30:34.409Z] DEBUG: [runtime-status] [10181] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:30:34.410Z] DEBUG: [runtime-status] [10181] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:34.411Z] DEBUG: [runtime-status] [10181] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:30:34.413Z] DEBUG: [runtime-status] [10181] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:34.413Z] DEBUG: [runtime-status] [10181] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:30:35.187Z] DEBUG: [worker-~diagnostic~-3cfe7dc9-c539-4650-a179-ea34b2193daa]: IDLE
+[debug] [2021-10-30T10:30:36.683Z] DEBUG: [runtime-status] [10181] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:30:36.683Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:30:36.683Z] DEBUG: [runtime-status] [10181] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:30:36.683Z] DEBUG: [runtime-status] [10181] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:30:36.686Z] DEBUG: [runtime-status] [10181] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_10181.sock
+[debug] [2021-10-30T10:30:36.691Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:30:36.691Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2, mapping to path=/testnetapi/rocketeer/2
+[debug] [2021-10-30T10:30:36.696Z] DEBUG: [runtime-status] [10181] Ephemeral server handling GET request
+[debug] [2021-10-30T10:30:37.698Z] DEBUG: [runtime-status] [10181] Ephemeral server survived.
+[info] >  Testnet api error for 2:  [] {"user":"Testnet api error for 2:  []","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m Testnet api error for 2:  []"}}
+[info] >  Error: Value for argument "data" is not a valid Firestore document. Cannot use "undefined" as a Firestore value (found in field "image"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`. {"user":"Error: Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"image\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m Error: Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"image\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`."}}
+[info] >      at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19) {"user":"    at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19)"}}
+[info] >      at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13) {"user":"    at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13)"}}
+[info] >      at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18) {"user":"    at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18)"}}
+[info] >      at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9) {"user":"    at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9)"}}
+[info] >      at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14) {"user":"    at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14)"}}
+[info] >      at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63) {"user":"    at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63)"}}
+[info] >      at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27 {"user":"    at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27"}}
+[debug] [2021-10-30T10:30:41.658Z] [functions] Finished "testnetMetadata" in ~1s
+[debug] [2021-10-30T10:30:41.659Z] DEBUG: [worker-testnetMetadata-079e7d69-f361-4ec7-a4fe-69981e226be1]: IDLE
+[debug] [2021-10-30T10:30:41.659Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:30:41.745Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/assets/temp.png changed, reloading triggers
+[debug] [2021-10-30T10:30:42.750Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:30:42.750Z] DEBUG: [worker-~diagnostic~-3cfe7dc9-c539-4650-a179-ea34b2193daa]: FINISHING
+[debug] [2021-10-30T10:30:42.750Z] DEBUG: [worker-pool] Shutting down IDLE worker (testnetMetadata)
+[debug] [2021-10-30T10:30:42.750Z] DEBUG: [worker-testnetMetadata-079e7d69-f361-4ec7-a4fe-69981e226be1]: FINISHING
+[debug] [2021-10-30T10:30:42.763Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:30:42.764Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:30:42.764Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:30:42.765Z] DEBUG: [worker-~diagnostic~-664ab0d7-ae69-48c4-80dd-92936e3d6e35]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_10464.sock
+[debug] [2021-10-30T10:30:42.765Z] DEBUG: [worker-~diagnostic~-664ab0d7-ae69-48c4-80dd-92936e3d6e35]: BUSY
+[debug] [2021-10-30T10:30:42.766Z] DEBUG: [worker-~diagnostic~-3cfe7dc9-c539-4650-a179-ea34b2193daa]: exited
+[debug] [2021-10-30T10:30:42.766Z] DEBUG: [worker-~diagnostic~-3cfe7dc9-c539-4650-a179-ea34b2193daa]: FINISHED
+[debug] [2021-10-30T10:30:42.842Z] DEBUG: [worker-testnetMetadata-079e7d69-f361-4ec7-a4fe-69981e226be1]: exited
+[debug] [2021-10-30T10:30:42.842Z] DEBUG: [worker-testnetMetadata-079e7d69-f361-4ec7-a4fe-69981e226be1]: FINISHED
+[debug] [2021-10-30T10:30:42.939Z] DEBUG: [runtime-status] [10464] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:30:42.940Z] DEBUG: [runtime-status] [10464] Disabled runtime features: undefined
+[debug] [2021-10-30T10:30:42.944Z] DEBUG: [runtime-status] [10464] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:30:42.946Z] DEBUG: [runtime-status] [10464] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:42.947Z] DEBUG: [runtime-status] [10464] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:30:42.948Z] DEBUG: [runtime-status] [10464] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:42.950Z] DEBUG: [runtime-status] [10464] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:30:42.950Z] DEBUG: [runtime-status] [10464] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:43.008Z] DEBUG: [runtime-status] [10464] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:30:43.008Z] DEBUG: [runtime-status] [10464] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:30:43.010Z] DEBUG: [runtime-status] [10464] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:43.010Z] DEBUG: [runtime-status] [10464] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:30:43.012Z] DEBUG: [runtime-status] [10464] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:30:43.013Z] DEBUG: [runtime-status] [10464] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:30:45.008Z] DEBUG: [worker-~diagnostic~-664ab0d7-ae69-48c4-80dd-92936e3d6e35]: IDLE
+[debug] [2021-10-30T10:32:16.511Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/svg-generator.js changed, reloading triggers
+[debug] [2021-10-30T10:32:17.517Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:32:17.517Z] DEBUG: [worker-~diagnostic~-664ab0d7-ae69-48c4-80dd-92936e3d6e35]: FINISHING
+[debug] [2021-10-30T10:32:17.517Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:32:17.517Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:32:17.524Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:32:17.525Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:32:17.525Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:32:17.526Z] DEBUG: [worker-~diagnostic~-e0baf4f7-edd5-430d-9801-665c49629033]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_13548.sock
+[debug] [2021-10-30T10:32:17.526Z] DEBUG: [worker-~diagnostic~-e0baf4f7-edd5-430d-9801-665c49629033]: BUSY
+[debug] [2021-10-30T10:32:17.529Z] DEBUG: [worker-~diagnostic~-664ab0d7-ae69-48c4-80dd-92936e3d6e35]: exited
+[debug] [2021-10-30T10:32:17.529Z] DEBUG: [worker-~diagnostic~-664ab0d7-ae69-48c4-80dd-92936e3d6e35]: FINISHED
+[debug] [2021-10-30T10:32:17.677Z] DEBUG: [runtime-status] [13548] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:32:17.678Z] DEBUG: [runtime-status] [13548] Disabled runtime features: undefined
+[debug] [2021-10-30T10:32:17.682Z] DEBUG: [runtime-status] [13548] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:32:17.683Z] DEBUG: [runtime-status] [13548] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:17.684Z] DEBUG: [runtime-status] [13548] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:32:17.684Z] DEBUG: [runtime-status] [13548] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:17.686Z] DEBUG: [runtime-status] [13548] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:32:17.686Z] DEBUG: [runtime-status] [13548] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:17.726Z] DEBUG: [runtime-status] [13548] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:32:17.727Z] DEBUG: [runtime-status] [13548] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:32:17.727Z] DEBUG: [runtime-status] [13548] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:17.729Z] DEBUG: [runtime-status] [13548] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:32:17.731Z] DEBUG: [runtime-status] [13548] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:17.731Z] DEBUG: [runtime-status] [13548] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:32:18.216Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:32:18.216Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:32:18.216Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2 --> testnetMetadata
+[debug] [2021-10-30T10:32:18.216Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:32:18.222Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:32:18.223Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:32:18.223Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:32:18.223Z] DEBUG: [worker-testnetMetadata-0418afca-1c2b-4bcd-86e3-d5fcc04ba8ad]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_13639.sock
+[debug] [2021-10-30T10:32:18.223Z] DEBUG: [worker-testnetMetadata-0418afca-1c2b-4bcd-86e3-d5fcc04ba8ad]: BUSY
+[debug] [2021-10-30T10:32:18.389Z] DEBUG: [runtime-status] [13639] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:32:18.390Z] DEBUG: [runtime-status] [13639] Disabled runtime features: undefined
+[debug] [2021-10-30T10:32:18.394Z] DEBUG: [runtime-status] [13639] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:32:18.396Z] DEBUG: [runtime-status] [13639] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:18.397Z] DEBUG: [runtime-status] [13639] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:32:18.397Z] DEBUG: [runtime-status] [13639] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:18.399Z] DEBUG: [runtime-status] [13639] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:32:18.400Z] DEBUG: [runtime-status] [13639] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:18.444Z] DEBUG: [runtime-status] [13639] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:32:18.444Z] DEBUG: [runtime-status] [13639] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:32:18.445Z] DEBUG: [runtime-status] [13639] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:18.446Z] DEBUG: [runtime-status] [13639] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:32:18.447Z] DEBUG: [runtime-status] [13639] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:18.447Z] DEBUG: [runtime-status] [13639] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:32:19.702Z] DEBUG: [worker-~diagnostic~-e0baf4f7-edd5-430d-9801-665c49629033]: IDLE
+[debug] [2021-10-30T10:32:20.395Z] DEBUG: [runtime-status] [13639] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:32:20.396Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:32:20.396Z] DEBUG: [runtime-status] [13639] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:32:20.396Z] DEBUG: [runtime-status] [13639] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:32:20.398Z] DEBUG: [runtime-status] [13639] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_13639.sock
+[debug] [2021-10-30T10:32:20.402Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:32:20.402Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2, mapping to path=/testnetapi/rocketeer/2
+[debug] [2021-10-30T10:32:20.407Z] DEBUG: [runtime-status] [13639] Ephemeral server handling GET request
+[debug] [2021-10-30T10:32:21.411Z] DEBUG: [runtime-status] [13639] Ephemeral server survived.
+[info] >  Testnet api error for 2:  [] {"user":"Testnet api error for 2:  []","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m Testnet api error for 2:  []"}}
+[info] >  Error: Value for argument "data" is not a valid Firestore document. Cannot use "undefined" as a Firestore value (found in field "image"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`. {"user":"Error: Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"image\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`.","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m Error: Value for argument \"data\" is not a valid Firestore document. Cannot use \"undefined\" as a Firestore value (found in field \"image\"). If you want to ignore undefined values, enable `ignoreUndefinedProperties`."}}
+[info] >      at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19) {"user":"    at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:277:19)"}}
+[info] >      at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13) {"user":"    at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at Object.validateUserInput (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/serializer.js:269:13)"}}
+[info] >      at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18) {"user":"    at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at validateDocumentData (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:588:18)"}}
+[info] >      at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9) {"user":"    at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at WriteBatch.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/write-batch.js:247:9)"}}
+[info] >      at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14) {"user":"    at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at DocumentReference.set (/Users/mentor/dev/rocketeer-nft/functions/node_modules/@google-cloud/firestore/build/src/reference.js:354:14)"}}
+[info] >      at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63) {"user":"    at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63)","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at generateRocketeer (/Users/mentor/dev/rocketeer-nft/functions/modules/rocketeer.js:98:63)"}}
+[info] >      at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27 {"user":"    at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27","metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"\u001b[90m> \u001b[39m     at async /Users/mentor/dev/rocketeer-nft/functions/modules/testnet.js:17:27"}}
+[debug] [2021-10-30T10:32:27.863Z] [functions] Finished "testnetMetadata" in ~1s
+[debug] [2021-10-30T10:32:27.863Z] DEBUG: [worker-testnetMetadata-0418afca-1c2b-4bcd-86e3-d5fcc04ba8ad]: IDLE
+[debug] [2021-10-30T10:32:27.863Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:32:27.962Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/assets/temp.png changed, reloading triggers
+[debug] [2021-10-30T10:32:28.966Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:32:28.966Z] DEBUG: [worker-~diagnostic~-e0baf4f7-edd5-430d-9801-665c49629033]: FINISHING
+[debug] [2021-10-30T10:32:28.966Z] DEBUG: [worker-pool] Shutting down IDLE worker (testnetMetadata)
+[debug] [2021-10-30T10:32:28.967Z] DEBUG: [worker-testnetMetadata-0418afca-1c2b-4bcd-86e3-d5fcc04ba8ad]: FINISHING
+[debug] [2021-10-30T10:32:28.989Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:32:28.990Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:32:28.990Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:32:28.991Z] DEBUG: [worker-~diagnostic~-17dd2d6a-ce44-47f7-b175-069dda272b41]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_13930.sock
+[debug] [2021-10-30T10:32:28.991Z] DEBUG: [worker-~diagnostic~-17dd2d6a-ce44-47f7-b175-069dda272b41]: BUSY
+[debug] [2021-10-30T10:32:28.992Z] DEBUG: [worker-~diagnostic~-e0baf4f7-edd5-430d-9801-665c49629033]: exited
+[debug] [2021-10-30T10:32:28.992Z] DEBUG: [worker-~diagnostic~-e0baf4f7-edd5-430d-9801-665c49629033]: FINISHED
+[debug] [2021-10-30T10:32:29.027Z] DEBUG: [worker-testnetMetadata-0418afca-1c2b-4bcd-86e3-d5fcc04ba8ad]: exited
+[debug] [2021-10-30T10:32:29.028Z] DEBUG: [worker-testnetMetadata-0418afca-1c2b-4bcd-86e3-d5fcc04ba8ad]: FINISHED
+[debug] [2021-10-30T10:32:29.193Z] DEBUG: [runtime-status] [13930] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:32:29.194Z] DEBUG: [runtime-status] [13930] Disabled runtime features: undefined
+[debug] [2021-10-30T10:32:29.198Z] DEBUG: [runtime-status] [13930] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:32:29.200Z] DEBUG: [runtime-status] [13930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:29.201Z] DEBUG: [runtime-status] [13930] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:32:29.202Z] DEBUG: [runtime-status] [13930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:29.203Z] DEBUG: [runtime-status] [13930] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:32:29.204Z] DEBUG: [runtime-status] [13930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:29.263Z] DEBUG: [runtime-status] [13930] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:32:29.264Z] DEBUG: [runtime-status] [13930] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:32:29.264Z] DEBUG: [runtime-status] [13930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:29.265Z] DEBUG: [runtime-status] [13930] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:32:29.269Z] DEBUG: [runtime-status] [13930] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:32:29.269Z] DEBUG: [runtime-status] [13930] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:32:31.372Z] DEBUG: [worker-~diagnostic~-17dd2d6a-ce44-47f7-b175-069dda272b41]: IDLE
+[debug] [2021-10-30T10:33:03.946Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/svg-generator.js changed, reloading triggers
+[debug] [2021-10-30T10:33:04.951Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:33:04.951Z] DEBUG: [worker-~diagnostic~-17dd2d6a-ce44-47f7-b175-069dda272b41]: FINISHING
+[debug] [2021-10-30T10:33:04.951Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:33:04.951Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:33:04.958Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:33:04.959Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:33:04.959Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:33:04.959Z] DEBUG: [worker-~diagnostic~-7339442b-9138-4850-a26e-cbce31e7bb39]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_15137.sock
+[debug] [2021-10-30T10:33:04.959Z] DEBUG: [worker-~diagnostic~-7339442b-9138-4850-a26e-cbce31e7bb39]: BUSY
+[debug] [2021-10-30T10:33:04.963Z] DEBUG: [worker-~diagnostic~-17dd2d6a-ce44-47f7-b175-069dda272b41]: exited
+[debug] [2021-10-30T10:33:04.963Z] DEBUG: [worker-~diagnostic~-17dd2d6a-ce44-47f7-b175-069dda272b41]: FINISHED
+[debug] [2021-10-30T10:33:05.127Z] DEBUG: [runtime-status] [15137] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:33:05.128Z] DEBUG: [runtime-status] [15137] Disabled runtime features: undefined
+[debug] [2021-10-30T10:33:05.131Z] DEBUG: [runtime-status] [15137] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:33:05.133Z] DEBUG: [runtime-status] [15137] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:05.133Z] DEBUG: [runtime-status] [15137] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:33:05.134Z] DEBUG: [runtime-status] [15137] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:05.136Z] DEBUG: [runtime-status] [15137] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:33:05.136Z] DEBUG: [runtime-status] [15137] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:05.180Z] DEBUG: [runtime-status] [15137] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:33:05.180Z] DEBUG: [runtime-status] [15137] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:33:05.180Z] DEBUG: [runtime-status] [15137] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:05.183Z] DEBUG: [runtime-status] [15137] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:33:05.183Z] DEBUG: [runtime-status] [15137] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:05.184Z] DEBUG: [runtime-status] [15137] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:33:07.085Z] DEBUG: [worker-~diagnostic~-7339442b-9138-4850-a26e-cbce31e7bb39]: IDLE
+[debug] [2021-10-30T10:33:19.376Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:33:19.376Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:33:19.377Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2 --> testnetMetadata
+[debug] [2021-10-30T10:33:19.377Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:33:19.382Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:33:19.383Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:33:19.383Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:33:19.383Z] DEBUG: [worker-testnetMetadata-9771e360-1ec9-464e-865c-a835db4d88fe]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_15646.sock
+[debug] [2021-10-30T10:33:19.383Z] DEBUG: [worker-testnetMetadata-9771e360-1ec9-464e-865c-a835db4d88fe]: BUSY
+[debug] [2021-10-30T10:33:19.547Z] DEBUG: [runtime-status] [15646] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:33:19.548Z] DEBUG: [runtime-status] [15646] Disabled runtime features: undefined
+[debug] [2021-10-30T10:33:19.552Z] DEBUG: [runtime-status] [15646] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:33:19.553Z] DEBUG: [runtime-status] [15646] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:19.554Z] DEBUG: [runtime-status] [15646] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:33:19.554Z] DEBUG: [runtime-status] [15646] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:19.556Z] DEBUG: [runtime-status] [15646] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:33:19.557Z] DEBUG: [runtime-status] [15646] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:19.599Z] DEBUG: [runtime-status] [15646] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:33:19.599Z] DEBUG: [runtime-status] [15646] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:33:19.600Z] DEBUG: [runtime-status] [15646] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:19.601Z] DEBUG: [runtime-status] [15646] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:33:19.601Z] DEBUG: [runtime-status] [15646] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:19.601Z] DEBUG: [runtime-status] [15646] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:33:21.457Z] DEBUG: [runtime-status] [15646] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:33:21.458Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:33:21.458Z] DEBUG: [runtime-status] [15646] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:33:21.458Z] DEBUG: [runtime-status] [15646] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:33:21.462Z] DEBUG: [runtime-status] [15646] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_15646.sock
+[debug] [2021-10-30T10:33:21.472Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:33:21.472Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2, mapping to path=/testnetapi/rocketeer/2
+[debug] [2021-10-30T10:33:21.477Z] DEBUG: [runtime-status] [15646] Ephemeral server handling GET request
+[debug] [2021-10-30T10:33:22.479Z] DEBUG: [runtime-status] [15646] Ephemeral server survived.
+[warn] ⚠  Google API requested!
+   - URL: "https://oauth2.googleapis.com/token"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://oauth2.googleapis.com/token\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable&upload_id=ADPycdu2H6aQzHfhXMl_mA4JD0IzcqpFhglWuDuY1h-bCTBx4_H89T3h5Yjfv-AYNtN7gGWMR_uWABKkzj1qbX71QnM"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable&upload_id=ADPycdu2H6aQzHfhXMl_mA4JD0IzcqpFhglWuDuY1h-bCTBx4_H89T3h5Yjfv-AYNtN7gGWMR_uWABKkzj1qbX71QnM\"\n   - Be careful, this may be a production service."}}
+[debug] [2021-10-30T10:33:26.861Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/assets/temp.png changed, reloading triggers
+[debug] [2021-10-30T10:33:27.863Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:33:27.863Z] DEBUG: [worker-~diagnostic~-7339442b-9138-4850-a26e-cbce31e7bb39]: FINISHING
+[debug] [2021-10-30T10:33:27.863Z] DEBUG: [worker-pool] Marking BUSY worker to finish (testnetMetadata)
+[debug] [2021-10-30T10:33:27.863Z] DEBUG: [worker-testnetMetadata-9771e360-1ec9-464e-865c-a835db4d88fe]: FINISHING
+[debug] [2021-10-30T10:33:27.873Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:33:27.874Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:33:27.874Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:33:27.874Z] DEBUG: [worker-~diagnostic~-068f7bb1-1789-4da0-9926-27098711183a]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_15887.sock
+[debug] [2021-10-30T10:33:27.874Z] DEBUG: [worker-~diagnostic~-068f7bb1-1789-4da0-9926-27098711183a]: BUSY
+[debug] [2021-10-30T10:33:27.878Z] DEBUG: [worker-~diagnostic~-7339442b-9138-4850-a26e-cbce31e7bb39]: exited
+[debug] [2021-10-30T10:33:27.878Z] DEBUG: [worker-~diagnostic~-7339442b-9138-4850-a26e-cbce31e7bb39]: FINISHED
+[debug] [2021-10-30T10:33:28.083Z] DEBUG: [runtime-status] [15887] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:33:28.084Z] DEBUG: [runtime-status] [15887] Disabled runtime features: undefined
+[debug] [2021-10-30T10:33:28.088Z] DEBUG: [runtime-status] [15887] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:33:28.090Z] DEBUG: [runtime-status] [15887] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:28.090Z] DEBUG: [runtime-status] [15887] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:33:28.091Z] DEBUG: [runtime-status] [15887] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:28.092Z] DEBUG: [runtime-status] [15887] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:33:28.093Z] DEBUG: [runtime-status] [15887] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:28.134Z] DEBUG: [runtime-status] [15887] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:33:28.135Z] DEBUG: [runtime-status] [15887] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:33:28.135Z] DEBUG: [runtime-status] [15887] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:28.137Z] DEBUG: [runtime-status] [15887] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:33:28.138Z] DEBUG: [runtime-status] [15887] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:33:28.138Z] DEBUG: [runtime-status] [15887] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.png&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.png&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.png&uploadType=resumable&upload_id=ADPycdvX8LLbg6PqQa8OMCMnxpDxv05iwd_MWthsjkBnOvCN8bGAMCB9v8h2X6gELQZt38vrxsDfYVk4dlE7tDezDuwD4rStbA"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.png&uploadType=resumable&upload_id=ADPycdvX8LLbg6PqQa8OMCMnxpDxv05iwd_MWthsjkBnOvCN8bGAMCB9v8h2X6gELQZt38vrxsDfYVk4dlE7tDezDuwD4rStbA\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.svg/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.svg/acl?\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.png/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.png/acl?\"\n   - Be careful, this may be a production service."}}
+[debug] [2021-10-30T10:33:29.590Z] [functions] Finished "testnetMetadata" in ~4s
+[debug] [2021-10-30T10:33:29.592Z] DEBUG: [worker-testnetMetadata-9771e360-1ec9-464e-865c-a835db4d88fe]: IDLE --> FINISHING
+[debug] [2021-10-30T10:33:29.666Z] DEBUG: [worker-testnetMetadata-9771e360-1ec9-464e-865c-a835db4d88fe]: exited
+[debug] [2021-10-30T10:33:29.666Z] DEBUG: [worker-testnetMetadata-9771e360-1ec9-464e-865c-a835db4d88fe]: FINISHED
+[debug] [2021-10-30T10:33:29.667Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:33:30.001Z] DEBUG: [worker-~diagnostic~-068f7bb1-1789-4da0-9926-27098711183a]: IDLE
+[debug] [2021-10-30T10:36:02.065Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/package.json changed, reloading triggers
+[debug] [2021-10-30T10:36:02.168Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/package-lock.json changed, reloading triggers
+[debug] [2021-10-30T10:36:03.172Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:36:03.172Z] DEBUG: [worker-~diagnostic~-068f7bb1-1789-4da0-9926-27098711183a]: FINISHING
+[debug] [2021-10-30T10:36:03.172Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:36:03.173Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:36:03.192Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:36:03.193Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:36:03.193Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:36:03.193Z] DEBUG: [worker-~diagnostic~-a16d0b77-6681-4452-aba4-f872c80aafb5]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_21748.sock
+[debug] [2021-10-30T10:36:03.193Z] DEBUG: [worker-~diagnostic~-a16d0b77-6681-4452-aba4-f872c80aafb5]: BUSY
+[debug] [2021-10-30T10:36:03.194Z] DEBUG: [worker-~diagnostic~-068f7bb1-1789-4da0-9926-27098711183a]: exited
+[debug] [2021-10-30T10:36:03.194Z] DEBUG: [worker-~diagnostic~-068f7bb1-1789-4da0-9926-27098711183a]: FINISHED
+[debug] [2021-10-30T10:36:03.605Z] DEBUG: [runtime-status] [21748] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:36:03.607Z] DEBUG: [runtime-status] [21748] Disabled runtime features: undefined
+[debug] [2021-10-30T10:36:03.610Z] DEBUG: [runtime-status] [21748] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:36:03.612Z] DEBUG: [runtime-status] [21748] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:03.613Z] DEBUG: [runtime-status] [21748] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:36:03.614Z] DEBUG: [runtime-status] [21748] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:03.616Z] DEBUG: [runtime-status] [21748] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:36:03.616Z] DEBUG: [runtime-status] [21748] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:03.672Z] DEBUG: [runtime-status] [21748] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:36:03.673Z] DEBUG: [runtime-status] [21748] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:36:03.673Z] DEBUG: [runtime-status] [21748] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:03.674Z] DEBUG: [runtime-status] [21748] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:36:03.675Z] DEBUG: [runtime-status] [21748] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:03.675Z] DEBUG: [runtime-status] [21748] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:36:06.146Z] DEBUG: [worker-~diagnostic~-a16d0b77-6681-4452-aba4-f872c80aafb5]: IDLE
+[debug] [2021-10-30T10:36:58.453Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/modules/svg-generator.js changed, reloading triggers
+[debug] [2021-10-30T10:36:59.456Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:36:59.456Z] DEBUG: [worker-~diagnostic~-a16d0b77-6681-4452-aba4-f872c80aafb5]: FINISHING
+[debug] [2021-10-30T10:36:59.456Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:36:59.465Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:36:59.466Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:36:59.466Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:36:59.466Z] DEBUG: [worker-~diagnostic~-3a0d695c-73c2-40a2-beac-0db4ba61cfea]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_23673.sock
+[debug] [2021-10-30T10:36:59.466Z] DEBUG: [worker-~diagnostic~-3a0d695c-73c2-40a2-beac-0db4ba61cfea]: BUSY
+[debug] [2021-10-30T10:36:59.469Z] DEBUG: [worker-~diagnostic~-a16d0b77-6681-4452-aba4-f872c80aafb5]: exited
+[debug] [2021-10-30T10:36:59.469Z] DEBUG: [worker-~diagnostic~-a16d0b77-6681-4452-aba4-f872c80aafb5]: FINISHED
+[debug] [2021-10-30T10:36:59.626Z] DEBUG: [runtime-status] [23673] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:36:59.627Z] DEBUG: [runtime-status] [23673] Disabled runtime features: undefined
+[debug] [2021-10-30T10:36:59.631Z] DEBUG: [runtime-status] [23673] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:36:59.632Z] DEBUG: [runtime-status] [23673] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:59.632Z] DEBUG: [runtime-status] [23673] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:36:59.633Z] DEBUG: [runtime-status] [23673] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:59.634Z] DEBUG: [runtime-status] [23673] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:36:59.635Z] DEBUG: [runtime-status] [23673] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:59.673Z] DEBUG: [runtime-status] [23673] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:36:59.673Z] DEBUG: [runtime-status] [23673] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:36:59.673Z] DEBUG: [runtime-status] [23673] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:59.674Z] DEBUG: [runtime-status] [23673] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:36:59.676Z] DEBUG: [runtime-status] [23673] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:36:59.677Z] DEBUG: [runtime-status] [23673] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:37:00.852Z] DEBUG: [worker-~diagnostic~-3a0d695c-73c2-40a2-beac-0db4ba61cfea]: IDLE
+[debug] [2021-10-30T10:37:05.864Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:37:05.864Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:37:05.864Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2 --> testnetMetadata
+[debug] [2021-10-30T10:37:05.864Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:37:05.870Z] DEBUG: [worker-pool] addWorker(testnetMetadata)
+[debug] [2021-10-30T10:37:05.871Z] DEBUG: [worker-pool] Adding worker with key testnetMetadata, total=1
+[debug] [2021-10-30T10:37:05.871Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:37:05.871Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_23835.sock
+[debug] [2021-10-30T10:37:05.871Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: BUSY
+[debug] [2021-10-30T10:37:06.043Z] DEBUG: [runtime-status] [23835] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:37:06.044Z] DEBUG: [runtime-status] [23835] Disabled runtime features: undefined
+[debug] [2021-10-30T10:37:06.048Z] DEBUG: [runtime-status] [23835] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:37:06.049Z] DEBUG: [runtime-status] [23835] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:06.050Z] DEBUG: [runtime-status] [23835] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:37:06.050Z] DEBUG: [runtime-status] [23835] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:06.052Z] DEBUG: [runtime-status] [23835] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:37:06.052Z] DEBUG: [runtime-status] [23835] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:06.101Z] DEBUG: [runtime-status] [23835] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:37:06.101Z] DEBUG: [runtime-status] [23835] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:37:06.102Z] DEBUG: [runtime-status] [23835] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:06.103Z] DEBUG: [runtime-status] [23835] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:37:06.106Z] DEBUG: [runtime-status] [23835] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:06.106Z] DEBUG: [runtime-status] [23835] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:37:07.435Z] DEBUG: [runtime-status] [23835] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:37:07.435Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:37:07.435Z] DEBUG: [runtime-status] [23835] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:37:07.435Z] DEBUG: [runtime-status] [23835] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:37:07.437Z] DEBUG: [runtime-status] [23835] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_23835.sock
+[debug] [2021-10-30T10:37:07.441Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:37:07.441Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2, mapping to path=/testnetapi/rocketeer/2
+[debug] [2021-10-30T10:37:07.447Z] DEBUG: [runtime-status] [23835] Ephemeral server handling GET request
+[debug] [2021-10-30T10:37:08.450Z] DEBUG: [runtime-status] [23835] Ephemeral server survived.
+[warn] ⚠  Google API requested!
+   - URL: "https://oauth2.googleapis.com/token"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://oauth2.googleapis.com/token\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable&upload_id=ADPycdsb3bJgwWGrXJDI0kMxzhcEwdWOZ3KZgIIZ6J6Oq4lJePl4SB_0q8rKhDwDZn3jrJZh1eYaxwvw5cIf2KDEgqhg5T0a-w"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable&upload_id=ADPycdsb3bJgwWGrXJDI0kMxzhcEwdWOZ3KZgIIZ6J6Oq4lJePl4SB_0q8rKhDwDZn3jrJZh1eYaxwvw5cIf2KDEgqhg5T0a-w\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.jpg&uploadType=resumable"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.jpg&uploadType=resumable\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.jpg&uploadType=resumable&upload_id=ADPycduPxHq0hi9Gnx5QZLleuMv0BTD9O8V-6zo3OriiiFI_wQj0m6ZHf6hg4CVCoJDU11vXpWgy5lGwRphpsesPh-zCy0eGzg"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.jpg&uploadType=resumable&upload_id=ADPycduPxHq0hi9Gnx5QZLleuMv0BTD9O8V-6zo3OriiiFI_wQj0m6ZHf6hg4CVCoJDU11vXpWgy5lGwRphpsesPh-zCy0eGzg\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.svg/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.svg/acl?\"\n   - Be careful, this may be a production service."}}
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.jpg/acl?"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/storage/v1/b/rocketeer-nft.appspot.com/o/rinkebyRocketeers%2F2.jpg/acl?\"\n   - Be careful, this may be a production service."}}
+[debug] [2021-10-30T10:37:18.990Z] [functions] Finished "testnetMetadata" in ~7s
+[debug] [2021-10-30T10:37:18.991Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: IDLE
+[debug] [2021-10-30T10:37:18.991Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:37:40.717Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-10-30T10:37:40.717Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-10-30T10:37:40.717Z] Accepted request GET /rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2 --> testnetMetadata
+[debug] [2021-10-30T10:37:40.717Z] DEBUG: [worker-pool] submitWork(triggerId=testnetMetadata)
+[debug] [2021-10-30T10:37:40.718Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_23835.sock
+[debug] [2021-10-30T10:37:40.718Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: BUSY
+[debug] [2021-10-30T10:37:40.718Z] DEBUG: [runtime-status] [23835] Trigger "testnetMetadata" has been found, beginning invocation!
+[debug] [2021-10-30T10:37:40.718Z] [functions] Beginning execution of "testnetMetadata"
+[debug] [2021-10-30T10:37:40.719Z] DEBUG: [runtime-status] [23835] triggerDefinition {"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"testnetMetadata","entryPoint":"testnetMetadata"}
+[debug] [2021-10-30T10:37:40.719Z] DEBUG: [runtime-status] [23835] Running testnetMetadata in mode HTTPS
+[debug] [2021-10-30T10:37:40.721Z] DEBUG: [runtime-status] [23835] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_23835.sock
+[debug] [2021-10-30T10:37:40.723Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-10-30T10:37:40.724Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/testnetMetadata/testnetapi/rocketeer/2, mapping to path=/testnetapi/rocketeer/2
+[debug] [2021-10-30T10:37:40.727Z] DEBUG: [runtime-status] [23835] Ephemeral server handling GET request
+[debug] [2021-10-30T10:37:41.729Z] DEBUG: [runtime-status] [23835] Ephemeral server survived.
+[debug] [2021-10-30T10:37:45.964Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/assets/temp.jpg changed, reloading triggers
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable&upload_id=ADPycdtNk5VNZ1gcjsiRog0icJ1BHPwdU4hFYE15lp9dX1pRocvm6lxWgmn6MHWl_5l-2w0lHb9XDXfxzw-hscpDKDAeyG0DiQ"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.svg&uploadType=resumable&upload_id=ADPycdtNk5VNZ1gcjsiRog0icJ1BHPwdU4hFYE15lp9dX1pRocvm6lxWgmn6MHWl_5l-2w0lHb9XDXfxzw-hscpDKDAeyG0DiQ\"\n   - Be careful, this may be a production service."}}
+[debug] [2021-10-30T10:37:46.970Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:37:46.970Z] DEBUG: [worker-~diagnostic~-3a0d695c-73c2-40a2-beac-0db4ba61cfea]: FINISHING
+[debug] [2021-10-30T10:37:46.970Z] DEBUG: [worker-pool] Marking BUSY worker to finish (testnetMetadata)
+[debug] [2021-10-30T10:37:46.970Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: FINISHING
+[debug] [2021-10-30T10:37:46.979Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:37:46.982Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:37:46.982Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:37:46.983Z] DEBUG: [worker-~diagnostic~-3dc4d966-e5cb-4bbb-839d-8b82119fd9ea]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_25200.sock
+[debug] [2021-10-30T10:37:46.983Z] DEBUG: [worker-~diagnostic~-3dc4d966-e5cb-4bbb-839d-8b82119fd9ea]: BUSY
+[debug] [2021-10-30T10:37:46.984Z] DEBUG: [worker-~diagnostic~-3a0d695c-73c2-40a2-beac-0db4ba61cfea]: exited
+[debug] [2021-10-30T10:37:46.984Z] DEBUG: [worker-~diagnostic~-3a0d695c-73c2-40a2-beac-0db4ba61cfea]: FINISHED
+[debug] [2021-10-30T10:37:47.192Z] DEBUG: [runtime-status] [25200] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:37:47.193Z] DEBUG: [runtime-status] [25200] Disabled runtime features: undefined
+[debug] [2021-10-30T10:37:47.198Z] DEBUG: [runtime-status] [25200] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:37:47.199Z] DEBUG: [runtime-status] [25200] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:47.201Z] DEBUG: [runtime-status] [25200] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:37:47.201Z] DEBUG: [runtime-status] [25200] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:47.203Z] DEBUG: [runtime-status] [25200] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:37:47.204Z] DEBUG: [runtime-status] [25200] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:47.255Z] DEBUG: [runtime-status] [25200] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:37:47.255Z] DEBUG: [runtime-status] [25200] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:37:47.256Z] DEBUG: [runtime-status] [25200] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:47.257Z] DEBUG: [runtime-status] [25200] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:37:47.260Z] DEBUG: [runtime-status] [25200] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:37:47.260Z] DEBUG: [runtime-status] [25200] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:37:48.979Z] DEBUG: [worker-~diagnostic~-3dc4d966-e5cb-4bbb-839d-8b82119fd9ea]: IDLE
+[warn] ⚠  Google API requested!
+   - URL: "https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.jpg&uploadType=resumable&upload_id=ADPycds_oXHGyFLmWvztw2TgwReozgvP_f3uI-EFKyTtUaXIGzb2VW9zDYPXSC7qd7yO4U3YOVz8O6CfjWIE3gBs3tc"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"testnetMetadata"},"message":"Google API requested!\n   - URL: \"https://storage.googleapis.com/upload/storage/v1/b/rocketeer-nft.appspot.com/o?name=rinkebyRocketeers%2F2.jpg&uploadType=resumable&upload_id=ADPycds_oXHGyFLmWvztw2TgwReozgvP_f3uI-EFKyTtUaXIGzb2VW9zDYPXSC7qd7yO4U3YOVz8O6CfjWIE3gBs3tc\"\n   - Be careful, this may be a production service."}}
+[debug] [2021-10-30T10:37:50.905Z] [functions] Finished "testnetMetadata" in ~7s
+[debug] [2021-10-30T10:37:50.905Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: IDLE --> FINISHING
+[debug] [2021-10-30T10:37:50.967Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: exited
+[debug] [2021-10-30T10:37:50.967Z] DEBUG: [worker-testnetMetadata-8227e7df-996d-4d9d-9832-3446e5b500a4]: FINISHED
+[debug] [2021-10-30T10:37:50.967Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-10-30T10:38:07.491Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/package.json changed, reloading triggers
+[debug] [2021-10-30T10:38:08.493Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-10-30T10:38:08.493Z] DEBUG: [worker-~diagnostic~-3dc4d966-e5cb-4bbb-839d-8b82119fd9ea]: FINISHING
+[debug] [2021-10-30T10:38:08.493Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-10-30T10:38:08.493Z] DEBUG: [worker-pool] Cleaned up workers for testnetMetadata: 1 --> 0
+[debug] [2021-10-30T10:38:08.501Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-10-30T10:38:08.502Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-10-30T10:38:08.502Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-10-30T10:38:08.502Z] DEBUG: [worker-~diagnostic~-ed46a102-3434-4381-b49c-0e8beb1f1fb1]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_25889.sock
+[debug] [2021-10-30T10:38:08.502Z] DEBUG: [worker-~diagnostic~-ed46a102-3434-4381-b49c-0e8beb1f1fb1]: BUSY
+[debug] [2021-10-30T10:38:08.504Z] DEBUG: [worker-~diagnostic~-3dc4d966-e5cb-4bbb-839d-8b82119fd9ea]: exited
+[debug] [2021-10-30T10:38:08.504Z] DEBUG: [worker-~diagnostic~-3dc4d966-e5cb-4bbb-839d-8b82119fd9ea]: FINISHED
+[debug] [2021-10-30T10:38:08.665Z] DEBUG: [runtime-status] [25889] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-10-30T10:38:08.666Z] DEBUG: [runtime-status] [25889] Disabled runtime features: undefined
+[debug] [2021-10-30T10:38:08.670Z] DEBUG: [runtime-status] [25889] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:38:08.671Z] DEBUG: [runtime-status] [25889] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:38:08.672Z] DEBUG: [runtime-status] [25889] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-10-30T10:38:08.672Z] DEBUG: [runtime-status] [25889] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:38:08.674Z] DEBUG: [runtime-status] [25889] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-10-30T10:38:08.675Z] DEBUG: [runtime-status] [25889] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:38:08.719Z] DEBUG: [runtime-status] [25889] Checked functions.config() {"config":{"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"}}}
+[debug] [2021-10-30T10:38:08.719Z] DEBUG: [runtime-status] [25889] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-10-30T10:38:08.719Z] DEBUG: [runtime-status] [25889] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:38:08.720Z] DEBUG: [runtime-status] [25889] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-10-30T10:38:08.722Z] DEBUG: [runtime-status] [25889] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-10-30T10:38:08.722Z] DEBUG: [runtime-status] [25889] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-10-30T10:38:08.873Z] [functions] Stopping Functions Emulator
+[warn] ⚠  Your function was killed because it raised an unhandled error. {"metadata":{"emulator":{"name":"functions"},"message":"Your function was killed because it raised an unhandled error."}}
+[debug] [2021-10-30T10:38:08.878Z] DEBUG: [worker-~diagnostic~-ed46a102-3434-4381-b49c-0e8beb1f1fb1]: exited
+[debug] [2021-10-30T10:38:08.878Z] DEBUG: [worker-~diagnostic~-ed46a102-3434-4381-b49c-0e8beb1f1fb1]: FINISHED

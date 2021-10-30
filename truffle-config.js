@@ -22,7 +22,10 @@ require('dotenv').config()
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
 const LedgerWalletProvider = require('truffle-ledger-provider');
-const ledgerOptions = {}
+const ledgerOptions = {
+  index: process.env.LEDGER_INDEX,
+  path: process.env.LEDGER_PATH
+}
 
 // Copied from https://github.com/ProjectOpenSea/opensea-creatures
 const MNEMONIC = process.env.MNEMONIC;
