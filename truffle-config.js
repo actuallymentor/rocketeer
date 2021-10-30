@@ -75,7 +75,7 @@ module.exports = {
       network_id: 4,
       gasPrice: 2 * 1000000000,
       gas: 5000000,
-      networkCheckTimeout: 1000000
+      networkCheckTimeout: 10000000
     },
     live: {
       network_id: 1,
@@ -83,9 +83,9 @@ module.exports = {
         // console.log( 'Running with ', mainnetNodeUrl )
         return new HDWalletProvider( { privateKeys: [ process.env.ROCKETEER_PRIVKEY ], index: 0, providerOrUrl: mainnetNodeUrl } );
       },
-      gas: 5000000,
-      gasPrice: 20 * 1000000000,
-      networkCheckTimeout: 1000000
+      gas: 3737859 + 229300 + 229300,
+      gasPrice: 200 * 1000000000,
+      networkCheckTimeout: 10000000
     },
   },
 

@@ -194,7 +194,7 @@ export function useChainId() {
 // Contract interactors
 // ///////////////////////////////
 const contractAddressByChainId = {
-	'0x1': '',
+	'0x1': '0xb3767b2033CF24334095DC82029dbF0E9528039d',
 	// '0x4': '0x2829ba9d76e675b8867E1707A9aB49B280D916c6', // Old
 	'0x4': '0x95d6b9549315212D3FDce9FdCa9d80978b8bB41D'
 }
