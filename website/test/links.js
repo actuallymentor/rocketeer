@@ -13,10 +13,14 @@ describe( 'Links in the source files', function( ) {
 		if( process.env.verbose ) console.log( 'Validating ', linksWithFile.length, ' links' )
 
 		const broken = await Promise.all( linksWithFile.map( link => isBroken( link ) ) )
-		const filtered = broken.filter( notfalse => notfalse )
+		let filtered = broken.filter( notfalse => notfalse )
 
 		if( process.env.verbose && filtered.length > 0 ) await fs.writeFile( `${__dirname}/../broken-links.json`, JSON.stringify( filtered, null, 2 ) )
 		if( process.env.verbose && filtered.length > 0 ) console.log( filtered.length , ' links are broken' )
+		if( process.env.verbose && filtered.length > 0 ) console.log( filtered )
+
+		// allow 403
+		filtered = filtered.filter( ( { code } ) => code != 403 )
 
 		return filtered.should.have.length( 0 )
 
