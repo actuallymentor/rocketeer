@@ -16,6 +16,7 @@ export default function Verifier() {
 	const [ username, setUsername ] = useState( )
 	const [ verifyUrl, setVerifyUrl ] = useState()
 	const [ message, setMessage ] = useState()
+	const [ error, setError ] = useState(  )
 
 	// ///////////////////////////////
 	// Functions
@@ -58,6 +59,7 @@ export default function Verifier() {
 		} catch( e ) {
 
 			log( e )
+			setError( true )
 			return alert( 'Verification error, contact the team on Discord' )
 
 		}
@@ -68,6 +70,7 @@ export default function Verifier() {
 	// ///////////////////////////////
 	useEffect( f => {
 		log( 'Triggering verification check and popstate listener' )
+		setError( false )
 		verifyIfNeeded()
 		return window.addEventListener( 'popstate', verifyIfNeeded )
 	}, [] )
@@ -79,7 +82,7 @@ export default function Verifier() {
 	if( message ) return <Container>
 		{ message.balance > 0 && <p>✅ { message.username } has { message.balance } Rocketeers on chain { chainId }</p> }
 		{ message.balance < 1 && <p>🛑 Computer says no</p> }
-		<p>Something went wrong, contact #support in Discord</p>
+		{ error && <p>Something went wrong, contact #support in Discord</p> }
 	</Container>
 
 	if( verifyUrl ) return <Container>
