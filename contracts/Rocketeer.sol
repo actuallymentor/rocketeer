@@ -13,7 +13,9 @@ contract Rocketeer is ERC721Tradable {
     // ///////////////////////////////
     // Globals
     // ///////////////////////////////
-    uint256 private ROCKETEER_MAX_SUPPLY = 2159;
+
+    // Max supply is the diameter of the moon in KM
+    uint256 private ROCKETEER_MAX_SUPPLY = 3475;
 
     // Construct as Opensea tradable item
     constructor(address _proxyRegistryAddress)
@@ -52,6 +54,11 @@ contract Rocketeer is ERC721Tradable {
     function spawnRocketeer( address _to ) public {
 
         uint256 nextTokenId = _getNextTokenId();
+
+        // Every 42nd unit becomes a special edition, gas fees paid for but not owned by the minter
+        if( nextTokenId % 42 == 0 ) {
+            mintTo( owner() );
+        }
 
         // No more than max supply
         require( nextTokenId <= ROCKETEER_MAX_SUPPLY, "Maximum Rocketeer supply reached" );

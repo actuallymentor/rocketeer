@@ -3,6 +3,7 @@ const { db } = require( './firebase' )
 const { getTotalSupply } = require( './contract' )
 const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, lorem } = require( './helpers' )
 const svgFromAttributes = require( './svg-generator' )
+const nameColor = require('color-namer')
 
 // ///////////////////////////////
 // Caching
@@ -94,6 +95,17 @@ async function generateRocketeer( id, network='mainnet' ) {
     // Generate, compile and upload image
     rocketeer.image = await svgFromAttributes( rocketeer.attributes, `${ network }Rocketeers/${id}` )
 
+    // Namify the attributes
+    rocketeer.attributes = rocketeer.attributes.map( attribute => {
+
+        if( !attribute.trait_type.includes( 'color' ) ) return attribute
+        return {
+            ...attribute,
+            value: nameColor( attribute.value )
+        }
+
+    } )
+
     // Save new Rocketeer
     await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer )
 
@@ -103,13 +115,13 @@ async function generateRocketeer( id, network='mainnet' ) {
 
 async function safelyReturnRocketeer( id, network ) {
 
-    // // Chech if this is an illegal ID
-    // const invalidId = await isInvalidRocketeerId( id, network )
-    // if( invalidId ) throw invalidId
+    // Chech if this is an illegal ID
+    const invalidId = await isInvalidRocketeerId( id, network )
+    if( invalidId ) throw invalidId
 
-    // // Get old rocketeer if it exists
-    // const oldRocketeer = await getExistingRocketeer( id, network )
-    // if( oldRocketeer ) return oldRocketeer
+    // Get old rocketeer if it exists
+    const oldRocketeer = await getExistingRocketeer( id, network )
+    if( oldRocketeer ) return oldRocketeer
 
     // If no old rocketeer exists, make a new one and save it
     return generateRocketeer( id, network )
