@@ -85,7 +85,7 @@ function App() {
       
       <a href={ rocketeer.image } className="button">Download Jpeg</a>
 
-      <a href='/#' onClick={ rocketeer.image.replace( 'jpg', 'svg' ) } className="button">Download Svg</a>
+      <a href='/#' onClick={ rocketeer?.image?.replace( 'jpg', 'svg' ) } className="button">Download Svg</a>
 
     </div>
 
