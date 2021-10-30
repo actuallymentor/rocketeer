@@ -55,11 +55,6 @@ contract Rocketeer is ERC721Tradable {
         // No more than max supply
         require( nextTokenId <= ROCKETEER_MAX_SUPPLY, "Maximum Rocketeer supply reached" );
 
-        // Every 42nd unit becomes a special edition, gas fees paid for but not owned by the minter
-        if( nextTokenId % 42 == 0 ) {
-            mintTo( owner() );
-        }
-
         mintTo( _to );
     }
 

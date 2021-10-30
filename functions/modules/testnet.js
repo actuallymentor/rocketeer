@@ -2,7 +2,9 @@ const app = require( './express' )()
 const { getTotalSupply } = require( './contract' )
 const { safelyReturnRocketeer, web2domain } = require( './rocketeer' )
 
+////////////////////////////////
 // Specific Rocketeer instances
+////////////////////////////////
 app.get( '/testnetapi/rocketeer/:id', async ( req, res ) => {
 
     // Parse the request

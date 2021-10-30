@@ -6,7 +6,10 @@ const { promises: fs } = require( 'fs' )
 const { getStorage } = require( 'firebase-admin/storage' )
 
 
-module.exports = async function svgFromAttributes( attributes=[] ) {
+module.exports = async function svgFromAttributes( attributes=[], path='' ) {
+
+	if( !path.length ) throw new Error( 'svgFromAttributes missing path' )
+	if( !attributes.length ) throw new Error( 'svgFromAttributes missing attributes' )
 
 	const { value: primary_color } = attributes.find( ( { trait_type } ) => trait_type == "outfit color" )
 	const { value: accent_color } = attributes.find( ( { trait_type } ) => trait_type == "outfit accent color" )
@@ -119,7 +122,7 @@ module.exports = async function svgFromAttributes( attributes=[] ) {
 	const bucket = storage.bucket()
 
 	// Make file reference	
-	const file = bucket.file( `rocketeers/demo-${ Date.now() }.svg` )
+	const file = bucket.file( path )
 
 	// Save file buffer
 	await file.save( bakedSvg )

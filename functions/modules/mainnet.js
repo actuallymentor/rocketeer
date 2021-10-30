@@ -40,7 +40,7 @@ app.get( '/api/collection', async ( req, res ) => res.json( {
     totalSupply: await getTotalSupply( 'mainnet' ).catch( f => 'error' ),
     description: "A testnet collection",
     external_url: web2domain,
-    image: "https://rocketpool.net/images/rocket.png",
+    image: "https://rocketeer.web.app/assets/draft-rocketeer.png",
     name: `Rocketeer collection`,
     seller_fee_basis_points: 0,
     fee_recipient: "0x0"

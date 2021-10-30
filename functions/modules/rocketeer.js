@@ -79,11 +79,13 @@ async function generateRocketeer( id, network='mainnet' ) {
         value: `rgb( ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) } )`
     } )
 
-    // Write to demo file
+    // Special editions
+    const edition = { "trait_type": "edition", value: "regular" }
+    if( id > 50 ) edition.value = 'genesis'
+    if( id % 42 === 0 ) edition.value = 'hitchhiker'
 
-
-    // TODO: Generate, compile and upload image
-    rocketeer.image = await svgFromAttributes( rocketeer.attributes )
+    // Generate, compile and upload image
+    rocketeer.image = await svgFromAttributes( rocketeer.attributes, `${ network }Rocketeers/${id}.svg` )
 
     // Save new Rocketeer
     await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer )
