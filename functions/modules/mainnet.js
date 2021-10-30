@@ -36,7 +36,7 @@ app.get( '/api/rocketeer/:id', async ( req, res ) => {
 // ///////////////////////////////
 // Static collection data
 // ///////////////////////////////
-app.get( '/api/collection', async ( req, res ) => res.json( {
+app.get( '/api/rocketeer', async ( req, res ) => res.json( {
     totalSupply: await getTotalSupply( 'mainnet' ).catch( f => 'error' ),
     description: '"Moon boots touch the earth. Visored faces tilt upward. Their sole thought is wen." ~ Rocketeer Haiku\n\nThe Rocketeer NFT collection is inspired by the undying patience and excited optimism of the Rocket Pool and ETH2 staking communites.\n\nJoin us at https://rocketeer.fans/',
     external_url: web2domain,
