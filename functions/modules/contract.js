@@ -6,7 +6,7 @@ const { infura } = functions.config()
 // Contract data
 const contractAddress = {
 	mainnet: '',
-	rinkeby: '0x2829ba9d76e675b8867E1707A9aB49B280D916c6'
+	rinkeby: '0x95d6b9549315212D3FDce9FdCa9d80978b8bB41D'
 }
 
 // ABI with only the supply definitions

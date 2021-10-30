@@ -20,12 +20,7 @@
 
 require('dotenv').config()
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-const LedgerWalletProvider = require('truffle-ledger-provider');
-const ledgerOptions = {
-  index: process.env.LEDGER_INDEX,
-  path: process.env.LEDGER_PATH
-}
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 // Copied from https://github.com/ProjectOpenSea/opensea-creatures
 const MNEMONIC = process.env.MNEMONIC;
@@ -74,19 +69,23 @@ module.exports = {
     },
     rinkeby: {
       provider: function () {
-        // return new HDWalletProvider(MNEMONIC, rinkebyNodeUrl);
-        return new LedgerWalletProvider( ledgerOptions, rinkebyNodeUrl );
+        // console.log( 'Running with ', rinkebyNodeUrl )
+        return new HDWalletProvider( { privateKeys: [ process.env.ROCKETEER_PRIVKEY ], index: 0, providerOrUrl: rinkebyNodeUrl } );
       },
       network_id: 4,
+      gasPrice: 2 * 1000000000,
+      gas: 5000000,
+      networkCheckTimeout: 1000000
     },
     live: {
       network_id: 1,
       provider: function () {
-        // return new HDWalletProvider(MNEMONIC, mainnetNodeUrl);
-        return new LedgerWalletProvider( ledgerOptions, rinkebyNodeUrl );
+        // console.log( 'Running with ', mainnetNodeUrl )
+        return new HDWalletProvider( { privateKeys: [ process.env.ROCKETEER_PRIVKEY ], index: 0, providerOrUrl: mainnetNodeUrl } );
       },
-      // gas: 5000000,
-      gasPrice: 5000000000,
+      gas: 5000000,
+      gasPrice: 20 * 1000000000,
+      networkCheckTimeout: 1000000
     },
   },
 

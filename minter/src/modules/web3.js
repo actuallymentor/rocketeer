@@ -196,7 +196,7 @@ export function useChainId() {
 const contractAddressByChainId = {
 	'0x1': '',
 	// '0x4': '0x2829ba9d76e675b8867E1707A9aB49B280D916c6', // Old
-	'0x4': '0x89D9f02D2877A35E8323DC1b578FD1f6014B04d0'
+	'0x4': '0x95d6b9549315212D3FDce9FdCa9d80978b8bB41D'
 }
 
 // Contract ABI with only totalSupply, balanceOf and Transfer
