@@ -13,7 +13,7 @@ export async function callApi( path ) {
       testnet: 'https://rocketeer.fans/testnetapi'
     }
 
-    const querySaysTestnet = window.location.pathname.includes( 'testnet' )
+    const querySaysTestnet = window.location.href.includes( 'testnet' )
     const isLocal = window.location.hostname === 'localhost'
     const chain = ( isLocal || querySaysTestnet ) ? 'testnet' : 'mainnet'
     const callPath = api[ chain ] + path
