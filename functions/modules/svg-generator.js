@@ -122,8 +122,6 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 
 	const bakedRaster = await convert( bakedSvg, {  } )
 
-	await fs.writeFile( `${ __dirname }/../assets/temp.jpg`, bakedRaster )
-
 	// Store file on firebase
 	const storage = getStorage()
 	const bucket = storage.bucket()

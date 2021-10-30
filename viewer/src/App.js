@@ -1,6 +1,6 @@
 import { Container, Loading } from './components/generic'
-import { log, callApi, exportSvg } from './modules/helpers'
-import download from 'downloadjs'
+import { log, callApi } from './modules/helpers'
+// import download from 'downloadjs'
 import DraftRocketeer from './assets/draft-rocketeer.png'
 
 import './App.css'
@@ -64,35 +64,6 @@ function App() {
 
   }, [ rocketeerId ] )
 
-  // ///////////////////////////////
-  // Functions
-  // ///////////////////////////////
-  async function downloadJPEG( e, size ) {
-
-    e.preventDefault()
-
-    try {
-
-      setLoading( `Generating ${ size }x${ size } JPEG` )
-
-      // Fetch SVG as string
-      const svg = await fetch( rocketeer.image, { mode: 'no-cors' } ).then( res => res.text() )
-      const imageUri = await exportSvg( svg, 'jpeg' )
-
-      download( imageUri, `rocketeer-${ rocketeerId }.jpg` )
-
-      setLoading( false )
-
-    } catch( e ) {
-
-      log( 'JPEG error ', e )
-      setError( 'JPEG error' )
-
-    } finally {
-      setLoading( false )
-    }
-
-  }
 
   // ///////////////////////////////
   // Rendering
@@ -112,9 +83,9 @@ function App() {
 
     <div>
       
-      <a href={ rocketeer.image } className="button">Download SVG</a>
+      <a href={ rocketeer.image } className="button">Download Jpeg</a>
 
-      <a href='/#' onClick={ e => downloadJPEG( e, 500 ) } className="button">Download JPEG</a>
+      <a href='/#' onClick={ rocketeer.image.replace( 'jpg', 'svg' ) } className="button">Download Svg</a>
 
     </div>
 

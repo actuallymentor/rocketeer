@@ -19,10 +19,12 @@ contract Rocketeer is ERC721Tradable {
     constructor(address _proxyRegistryAddress)
         ERC721Tradable("Rocketeer", "RCT", _proxyRegistryAddress)
     {
+
+        spawnRocketeer( owner() );
         // Birth the genesis Rocketeers
-        for( uint i=0; i < 50; i++ ) {
-            spawnRocketeer( owner() );
-        }
+        // for( uint i=0; i < 50; i++ ) {
+        //     spawnRocketeer( owner() );
+        // }
         
     }
 
