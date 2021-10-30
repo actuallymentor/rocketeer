@@ -84,7 +84,7 @@ async function generateRocketeer( id, network='mainnet' ) {
     rocketeer.attributes.push( {
       "display_type": "date", 
       "trait_type": "birthday", 
-      "value": Date.now() / 1000
+      "value": Math.floor( Date.now() / 1000 )
     } )
 
     // Special editions

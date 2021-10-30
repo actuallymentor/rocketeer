@@ -128,18 +128,22 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 
 	// Make file reference	
 	const svgFile = bucket.file( `${path}.svg` )
-	const resterFile = bucket.file( `${path}.jpg` )
+	const rasterFile = bucket.file( `${path}.jpg` )
+
+	// Delete testnet file if it already exists
+	await svgFile.delete().catch( f => 'this is fine' )
+	await rasterFile.delete().catch( f => 'this is fine' )
 
 	// Save files
 	await svgFile.save( bakedSvg )
-	await resterFile.save( bakedRaster )
+	await rasterFile.save( bakedRaster )
 
 	// Make file public
 	await svgFile.makePublic( )
-	await resterFile.makePublic( )
+	await rasterFile.makePublic( )
 
 	// Return public url
-	return resterFile.publicUrl()		
+	return rasterFile.publicUrl()		
 
 
 }
