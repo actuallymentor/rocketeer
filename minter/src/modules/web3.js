@@ -36,7 +36,7 @@ export function useAddress() {
 
 	useInterval( () => {
 
-		setTimesChecked( timesChecked++ )
+		setTimesChecked( timesChecked+1 )
 		log( 'Checking for address' )
 		if( window.ethereum && window.ethereum.selectedAddress ) return setAddress( window.ethereum.selectedAddress )
 
