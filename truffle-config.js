@@ -77,7 +77,7 @@ module.exports = {
         // return new HDWalletProvider(MNEMONIC, rinkebyNodeUrl);
         return new LedgerWalletProvider( ledgerOptions, rinkebyNodeUrl );
       },
-      gas: 5000000,
+      gas: 29999944, // very very high
       network_id: 4,
     },
     live: {

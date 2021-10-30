@@ -42,6 +42,15 @@ exports.pickRandomAttributes = ( attributes ) => {
 
 }
 
+const nameColor = require('color-namer')
+exports.getColorName = ( rgb ) => {
+    try {
+        return nameColor( rgb ).basic[0].name
+    } catch( e ) {
+        return rgb
+    }
+}
+
 // ///////////////////////////////
 // Attribute sources
 // ///////////////////////////////

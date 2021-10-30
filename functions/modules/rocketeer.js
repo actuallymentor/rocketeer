@@ -1,9 +1,9 @@
 const name = require( 'random-name' )
 const { db } = require( './firebase' )
 const { getTotalSupply } = require( './contract' )
-const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, lorem } = require( './helpers' )
+const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, lorem, getColorName } = require( './helpers' )
 const svgFromAttributes = require( './svg-generator' )
-const nameColor = require('color-namer')
+
 
 // ///////////////////////////////
 // Caching
@@ -53,7 +53,7 @@ async function generateRocketeer( id, network='mainnet' ) {
     // The base object of a new Rocketeer
     const rocketeer = {
         name: `${ name.first() } ${ name.middle() } ${ name.last() } of ${ id % 42 == 0 ? 'the Towel' : pickRandomArrayEntry( heavenlyBodies ) }`,
-        description: lorem,
+        description: '',
         image: ``,
         external_url: `https://viewer.rocketeer.fans/?rocketeer=${ id }` + ( network == 'mainnet' ? '' : '&testnet=true' ),
         attributes: []
@@ -101,10 +101,13 @@ async function generateRocketeer( id, network='mainnet' ) {
         if( !attribute.trait_type.includes( 'color' ) ) return attribute
         return {
             ...attribute,
-            value: nameColor( attribute.value )
+            value: getColorName( attribute.value )
         }
 
     } )
+
+    // Create description
+    rocketeer.description = `${ rocketeer.name } is a proud member of the ${ rocketeer.attributes.find( ( { trait_type } ) => trait_type == 'patch' ).value } guild.`
 
     // Save new Rocketeer
     await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer )

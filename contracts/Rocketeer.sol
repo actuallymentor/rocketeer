@@ -23,7 +23,7 @@ contract Rocketeer is ERC721Tradable {
     {
 
         // Birth the genesis Rocketeers
-        for( uint i=0; i < 50; i++ ) {
+        for( uint i=0; i < 10; i++ ) {
             spawnRocketeer( owner() );
         }
         
