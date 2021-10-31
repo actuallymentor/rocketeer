@@ -1,7 +1,7 @@
 const name = require( 'random-name' )
 const { db } = require( './firebase' )
 const { getTotalSupply } = require( './contract' )
-const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, lorem, getColorName } = require( './helpers' )
+const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, getColorName } = require( './helpers' )
 const svgFromAttributes = require( './svg-generator' )
 
 
@@ -10,28 +10,35 @@ const svgFromAttributes = require( './svg-generator' )
 // ///////////////////////////////
 async function isInvalidRocketeerId( id, network='mainnet' ) {
 
+    // Force type onto id 
+    id = Number( id )
+
     // Chech if this is an illegal ID
     try {
 
         // Get the last know total supply
-        const { cachedTotalSupply } = await db.collection( 'meta' ).doc( network ).get().then( doc => doc.data() ) || {}
+        let { cachedTotalSupply } = await db.collection( 'meta' ).doc( network ).get().then( doc => doc.data() ) || {}
+
+        // Cast total supply into number
+        cachedTotalSupply = Number( cachedTotalSupply )
 
         // If the requested ID is larger than that, check if the new total supply is more
         if( !cachedTotalSupply || cachedTotalSupply < id ) {
 
             // Get net total supply through infura, if infura fails, return the cached value just in case
-            const totalSupply = await getTotalSupply( network )
+            const totalSupply = Number( await getTotalSupply( network ) )
 
             // Write new value to cache
             await db.collection( 'meta' ).doc( network ).set( { cachedTotalSupply: totalSupply }, { merge: true } )
 
             // If the requested ID is larger than total supply, exit
-            if( Number( totalSupply ) < Number( id ) ) throw new Error( `Invalid ID ${ id }, total supply is ${ totalSupply }` )
+            if( totalSupply < id ) return `Invalid ID ${ id }, total supply is ${ totalSupply }`
 
             // If all good, return true
             return false
 
         }
+
     } catch( e ) {
         return e
     }
