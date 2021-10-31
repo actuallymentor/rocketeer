@@ -26,7 +26,7 @@ async function isInvalidRocketeerId( id, network='mainnet' ) {
             await db.collection( 'meta' ).doc( network ).set( { cachedTotalSupply: totalSupply }, { merge: true } )
 
             // If the requested ID is larger than total supply, exit
-            if( totalSupply < id ) throw new Error( `Invalid ID ${ id }, total supply is ${ totalSupply }` )
+            if( Number( totalSupply ) < Number( id ) ) throw new Error( `Invalid ID ${ id }, total supply is ${ totalSupply }` )
 
             // If all good, return true
             return false

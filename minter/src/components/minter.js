@@ -61,7 +61,7 @@ export default function Minter() {
 			const id = tokenId.toString()
 
 			// Trigger remote generation
-			const rocketeer = await fetch( `https://rocketeer.fans/${ chainId === '0x01' ? '' : 'testnetapi'}/rocketeer/${id}` ).then( res => res.json() )
+			const rocketeer = await fetch( `https://rocketeer.fans/${ chainId === '0x1' ? '' : 'testnetapi'}/rocketeer/${id}` ).then( res => res.json() )
 			log( 'Oracle returned: ', rocketeer )
 
 			// Set token to state
@@ -84,7 +84,7 @@ export default function Minter() {
 			
 			<div className="lds-dual-ring"></div>
 			<p>{ loading }</p>
-			{ txHash && <a className="button" rel='noreferrer' target="_blank" href={ `https://${ chainId === '0x01' ? 'etherscan' : 'rinkeby.etherscan' }.io/tx/${ txHash }` }>View tx on Etherscan</a> }
+			{ txHash && <a className="button" rel='noreferrer' target="_blank" href={ `https://${ chainId === '0x1' ? 'etherscan' : 'rinkeby.etherscan' }.io/tx/${ txHash }` }>View tx on Etherscan</a> }
 
 		</div> }
 	</Container>

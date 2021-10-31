@@ -131,8 +131,8 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 	const rasterFile = bucket.file( `${path}.jpg` )
 
 	// Delete testnet file if it already exists
-	await svgFile.delete().catch( f => 'this is fine' )
-	await rasterFile.delete().catch( f => 'this is fine' )
+	// await svgFile.delete().catch( f => 'this is fine' )
+	// await rasterFile.delete().catch( f => 'this is fine' )
 
 	// Save files
 	await svgFile.save( bakedSvg )
