@@ -61,7 +61,7 @@ export default function Minter() {
 			const id = tokenId.toString()
 
 			// Trigger remote generation
-			const rocketeer = await fetch( `https://rocketeer.fans/${ chainId === '0x1' ? '' : 'testnetapi'}/rocketeer/${id}` ).then( res => res.json() )
+			const rocketeer = await fetch( `https://rocketeer.fans/${ chainId === '0x1' ? 'api' : 'testnetapi'}/rocketeer/${id}` ).then( res => res.json() )
 			log( 'Oracle returned: ', rocketeer )
 
 			// Set token to state
