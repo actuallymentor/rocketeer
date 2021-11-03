@@ -7,11 +7,29 @@ const { getStorage } = require( 'firebase-admin/storage' )
 // SVG to JPEG
 const { convert } = require("convert-svg-to-jpeg")
 
+// Existing file checker
+const checkIfFilesExist = async ( svg, jpeg, path ) => {
+
+	const [ [ svgExists ], [ jpegExists ] ] = await Promise.all( [ svg.exists(), jpeg.exists() ] )
+	if( svgExists || jpegExists ) throw new Error( `${ svgExists ? 'SVG' : '' } ${ jpegExists ? ' and JPEG' : '' } already present at ${ path }. This should never happen!` )
+
+
+}
+
 module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 
+	// Validations
 	if( !path.length ) throw new Error( 'svgFromAttributes missing path' )
 	if( !attributes.length ) throw new Error( 'svgFromAttributes missing attributes' )
 
+	// Create file references and check whether they already exist
+	const storage = getStorage()
+	const bucket = storage.bucket()
+	const svgFile = bucket.file( `${path}.svg` )
+	const rasterFile = bucket.file( `${path}.jpg` )
+	await checkIfFilesExist( svgFile, rasterFile, path )
+
+	// Get properties
 	const { value: primary_color } = attributes.find( ( { trait_type } ) => trait_type == "outfit color" )
 	const { value: accent_color } = attributes.find( ( { trait_type } ) => trait_type == "outfit accent color" )
 	const { value: backpack_color } = attributes.find( ( { trait_type } ) => trait_type == "backpack color" )
@@ -122,17 +140,8 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 
 	const bakedRaster = await convert( bakedSvg, {  } )
 
-	// Store file on firebase
-	const storage = getStorage()
-	const bucket = storage.bucket()
-
-	// Make file reference	
-	const svgFile = bucket.file( `${path}.svg` )
-	const rasterFile = bucket.file( `${path}.jpg` )
-
-	// Delete testnet file if it already exists
-	// await svgFile.delete().catch( f => 'this is fine' )
-	// await rasterFile.delete().catch( f => 'this is fine' )
+	// Double check that files do not yet exist (in case of weird race condition)
+	await checkIfFilesExist( svgFile, rasterFile, path )
 
 	// Save files
 	await svgFile.save( bakedSvg )

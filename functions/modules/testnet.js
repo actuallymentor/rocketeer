@@ -22,8 +22,7 @@ app.get( '/testnetapi/rocketeer/:id', async ( req, res ) => {
     } catch( e ) {
 
         // Log error for debugging
-        console.error( `Testnet api error for ${ id }: `, Object.keys( e ) )
-        console.log( e )
+        console.error( `Testnet api error for ${ id }: `, e )
 
         // Return error to frontend
         return res.json( { error: e.mesage || e.toString() } )
