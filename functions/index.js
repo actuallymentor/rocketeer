@@ -1,6 +1,7 @@
 const functions = require( 'firebase-functions' )
 const testnetAPI = require( './modules/testnet' )
 const mainnetAPI = require( './modules/mainnet' )
+const setAvatarOfValidtor = require( './integrations/avatar' )
 
 // Runtime config
 const runtime = {
@@ -13,3 +14,8 @@ exports.testnetMetadata = functions.runWith( runtime ).https.onRequest( testnetA
 
 // Mainnet endpoint
 exports.mainnetMetadata = functions.runWith( runtime ).https.onRequest( mainnetAPI )
+
+/* ///////////////////////////////
+// Integrations
+// /////////////////////////////*/
+exports.setAvatarOfValidtor = functions.https.onRequest( setAvatarOfValidtor )

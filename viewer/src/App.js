@@ -85,7 +85,9 @@ function App() {
       
       <a href={ rocketeer.image } className="button">Download Jpeg</a>
 
-      <a href='/#' onClick={ rocketeer?.image?.replace( 'jpg', 'svg' ) } className="button">Download Svg</a>
+      <a href={ rocketeer?.image?.replace( 'jpg', 'svg' ) } className="button">Download Svg</a>
+
+      <a rel="noreferrer" target="_blank" href={ `https://opensea.io/assets/0xb3767b2033cf24334095dc82029dbf0e9528039d/${ rocketeerId }` }  className="button">View on Opensea</a>
 
     </div>
 

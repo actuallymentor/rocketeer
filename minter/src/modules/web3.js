@@ -6,9 +6,26 @@ import { log, setListenerAndReturnUnlistener } from './helpers'
 import { ethers } from "ethers"
 
 // Convenience objects
-const { providers: { Web3Provider }, Contract } = ethers
+const { providers: { Web3Provider }, Contract, utils: { verifyMessage } } = ethers
 export const provider = window.ethereum && new Web3Provider( window.ethereum )
 export const signer = provider && provider.getSigner()
+
+/* ///////////////////////////////
+// Wallet interactors
+// /////////////////////////////*/
+export async function sign( message, signatory ) {
+
+	const signature = await signer.signMessage( message )
+	log( `Signed ${ message } to ${ signature }` )
+	const verifiedSignatory = verifyMessage( message, signature ).toLowerCase()
+	log( `Message was signed by ${ verifiedSignatory }. Signature validity: `, signatory === verifiedSignatory )
+	return {
+		message,
+		signature,
+		signatory
+	}
+
+}
 
 // ///////////////////////////////
 // Chain interactors
@@ -38,7 +55,10 @@ export function useAddress() {
 
 		setTimesChecked( timesChecked+1 )
 		log( 'Checking for address' )
-		if( window.ethereum && window.ethereum.selectedAddress ) return setAddress( window.ethereum.selectedAddress )
+		if( window.ethereum && window.ethereum.selectedAddress ) {
+			setAddress( window.ethereum.selectedAddress )
+			return setInterval( null )
+		}
 
 		// if checked five times and interval still running, slow it down
 		if( timesChecked > 5 && !!interval ) setInterval( 5000 )
@@ -73,6 +93,7 @@ export function useAddress() {
 
 }
 
+// Totl supply hook
 export function useTotalSupply() {
 
 	const [ supply, setSupply ] = useState( 'loading' )
@@ -124,10 +145,11 @@ export function useTotalSupply() {
 
 }
 
+// Balance hook
 export function useBalanceOf() {
 
 	const [ balance, setBalance ] = useState( 'loading' )
-	const contract = useContract( )
+	const contract = useContract()
 	const address = useAddress()
 
 	// Create listener to minting
@@ -147,7 +169,7 @@ export function useBalanceOf() {
 
 			} catch( e ) {
 
-				log( 'Error getting initial supply: ', e )
+				log( 'Error getting balance: ', e )
 
 			}
 
@@ -187,6 +209,50 @@ export function useChainId() {
 	}, [] )
 
 	return chain
+
+}
+
+// Token ids of owner hook
+export function useTokenIds() {
+
+	// Deps
+	const address = useAddress()
+	const contract = useContract()
+	const balance = useBalanceOf()
+
+	// State
+	const [ tokens, setTokens ] = useState( [] )
+
+	// Grab tokens from contract
+	useEffect( f => {
+
+		// Do nothing if there is no data yet
+		if( !contract || !balance || !address ) return
+
+		// Load initial supply value
+		( async (  ) => {
+
+			try {
+
+				const ids = await Promise.all( Array.from( { length: balance } ).map( async ( val, index ) => {
+					const id = await contract.tokenOfOwnerByIndex( address, index )
+					return id.toString()
+				} ) )
+				log( 'Tokens detected: ', ids )
+				setTokens( ids )
+
+			} catch( e ) {
+
+				log( 'Error getting tokens of address: ', e )
+
+			}
+
+		} )(  )
+
+
+	}, [ contract, address, balance ] )
+
+	return tokens
 
 }
 
@@ -272,6 +338,31 @@ const ABI = [
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenOfOwnerByIndex",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
     }
 ]
 

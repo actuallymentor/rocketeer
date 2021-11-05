@@ -9,10 +9,11 @@ main {
   justify-content: center;
 }
 
-body * {
+body, body * {
   box-sizing: border-box;
   max-width: 100%;
   overflow-wrap: break-word;
+  overflow-x:  hidden;
 }
 
 code {
@@ -32,6 +33,15 @@ div.container {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+div.container.wide {
+  width:  1024px;
+}
+
+.row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /*Login button*/
@@ -113,4 +123,27 @@ h1, p, label {
   100% {
     transform: rotate(360deg);
   }
+}
+
+
+/* ///////////////////////////////
+/// Avatar page
+// /////////////////////////////*/
+#avatar .rocketeer {
+  margin:  1rem 0;
+  border-radius: 50%;
+  padding:  1rem;
+  width:  200px;
+  height: 200px;
+}
+
+#avatar input {
+  padding: 1rem;
+  width:  350px;
+}
+
+#avatar p {
+  margin:  3rem 0;
+  max-width: 300px;
+  text-align: center;
 }

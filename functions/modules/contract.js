@@ -31,7 +31,7 @@ const ABI = [
 async function getTotalSupply( network='mainnet' ) {
 
 	// Initialise contract connection
-	const web3 = new Web3( `wss://${ network }.infura.io/ws/v3/${ infura.projectid }` )
+  const web3 = new Web3( `wss://${ network }.infura.io/ws/v3/${ infura.projectid }` )
 	const contract = new web3.eth.Contract( ABI, contractAddress[ network ] )
 
 	// Return the call promise which returns the total supply

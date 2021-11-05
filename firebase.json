@@ -20,6 +20,10 @@
         {
           "source": "/testnetapi/**",
           "function": "testnetMetadata"
+        },
+        {
+          "source": "/integrations/avatar",
+          "function": "setAvatarOfValidtor"
         }
       ]
     },

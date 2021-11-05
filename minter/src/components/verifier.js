@@ -4,6 +4,7 @@ import '../App.css'
 import { useState, useEffect } from 'react'
 import { log } from '../modules/helpers'
 import { useAddress, useChainId, useBalanceOf } from '../modules/web3'
+import { useParams } from 'react-router-dom'
 
 export default function Verifier() {
 
@@ -17,6 +18,7 @@ export default function Verifier() {
 	const [ verifyUrl, setVerifyUrl ] = useState()
 	const [ message, setMessage ] = useState()
 	const [ error, setError ] = useState(  )
+	const { verificationCode } = useParams()
 
 	// ///////////////////////////////
 	// Functions
@@ -28,27 +30,23 @@ export default function Verifier() {
 		if( !username ) return alert( 'Please fill in your Discord username to get verified' )
 		if( balance < 1 ) return alert( `The address ${ address } does not own Rocketeers, did you select the right address?` )
 
-		const baseUrl = `https://mint.rocketeer.fans/?mode=verify`
+		const baseUrl = `https://mint.rocketeer.fans/#/verify/`
 		const message = btoa( `{ "username": "${ username }", "address": "${ address }", "balance": "${ balance }" }` )
 
-		setVerifyUrl( baseUrl + `&message=${ message }` )
+		setVerifyUrl( baseUrl + message )
 
 	}
 
-	function verifyIfNeeded() {
+	// ///////////////////////////////
+	// Lifecycle
+	// ///////////////////////////////
+	useEffect( f => {
 
-		log( 'Check the need to verify' )
-
-		if( !window.location.href.includes( 'message' ) ) return
+		if( !verificationCode ) return
 
 		try {
 
-			log( 'Verification started' )
-
-			const { search } = window.location
-			const query = new URLSearchParams( search )
-			const message = query.get( 'message' )
-			const verification = atob( message )
+			const verification = atob( verificationCode )
 			log( 'Received message: ', verification )
 			const json = JSON.parse( verification )
 
@@ -63,17 +61,8 @@ export default function Verifier() {
 			return alert( 'Verification error, contact the team on Discord' )
 
 		}
-	}
-
-	// ///////////////////////////////
-	// Lifecycle
-	// ///////////////////////////////
-	useEffect( f => {
-		log( 'Triggering verification check and popstate listener' )
-		setError( false )
-		verifyIfNeeded()
-		return window.addEventListener( 'popstate', verifyIfNeeded )
-	}, [] )
+		
+	}, [ verificationCode ] )
 
 	// ///////////////////////////////
 	// Rendering
