@@ -14,16 +14,16 @@
       "public": "website/docs",
       "rewrites": [
         {
+          "source": "/api/integrations/avatar",
+          "function": "setAvatarOfValidtor"
+        },
+        {
           "source": "/api/**",
           "function": "mainnetMetadata"
         },
         {
           "source": "/testnetapi/**",
           "function": "testnetMetadata"
-        },
-        {
-          "source": "/integrations/avatar",
-          "function": "setAvatarOfValidtor"
         }
       ]
     },

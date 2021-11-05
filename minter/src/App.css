@@ -9,11 +9,11 @@ main {
   justify-content: center;
 }
 
-body, body * {
+
+body * {
   box-sizing: border-box;
   max-width: 100%;
   overflow-wrap: break-word;
-  overflow-x:  hidden;
 }
 
 code {
