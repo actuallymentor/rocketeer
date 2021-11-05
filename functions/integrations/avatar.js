@@ -7,12 +7,13 @@ const { getStorage } = require( 'firebase-admin/storage' )
 module.exports = async function( req, res ) {
 
 	const chain = process.env.NODE_ENV == 'development' ? '0x4' : '0x1'
+	// const chain = '0x1'
 
 	try {
 
 		// Get request data
-		const { message, signature, signatory, network } = req.body
-		if( !message || !signatory || !signature || !network ) throw new Error( `Malformed request` )
+		const { message, signature, signatory } = req.body
+		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )
 
 		// Decode message
 		const confirmedSignatory = web3.eth.accounts.recover( message, signature )
@@ -20,12 +21,12 @@ module.exports = async function( req, res ) {
 
 		// Validate message
 		const messageObject = JSON.parse( message )
-		const { signer, tokenId, validator, chainId } = messageObject
-		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !tokenId || !validator || chainId !== chain ) throw new Error( `Invalid message` )
+		const { signer, tokenId, validator, chainId, network } = messageObject
+		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !tokenId || !validator || chainId !== chain || !network ) throw new Error( `Invalid message` )
 
 		// Check if validator was already assigned
 		const validatorProfile = await db.collection( `${ network }Validators` ).doc( validator ).get().then( dataFromSnap )
-		if( validatorProfile && validatorProfile.owner !== signatory  ) throw new Error( `Validator already claimed by another wallet. If this is in error, contact mentor.eth on Discord.\n\nThe reason someone else can claim your validator is that we don't want to you to have to expose your validator private key to the world for security reasons <3` )
+		if( validatorProfile.owner && validatorProfile.owner !== signatory  ) throw new Error( `Validator already claimed by another wallet. If this is in error, contact mentor.eth on Discord.\n\nThe reason someone else can claim your validator is that we don't want to you to have to expose your validator private key to the world for security reasons <3` )
 
 		// Write new data to db
 		await db.collection( `${ chain === '0x1' ? 'mainnet' : 'rinkeby' }Validators` ).doc( validator ).set( {

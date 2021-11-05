@@ -33,7 +33,7 @@ app.get( '/api/rocketeer/:id', async ( req, res ) => {
 
 } )
 
-app.post( '/api/integrations/', setAvatarOfValidtor )
+app.post( '/api/integrations/avatar/', setAvatarOfValidtor )
 
 
 // ///////////////////////////////
