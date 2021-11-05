@@ -29,7 +29,7 @@ module.exports = async function( req, res ) {
 		if( validatorProfile.owner && validatorProfile.owner !== signatory  ) throw new Error( `Validator already claimed by another wallet. If this is in error, contact mentor.eth on Discord.\n\nThe reason someone else can claim your validator is that we don't want to you to have to expose your validator private key to the world for security reasons <3` )
 
 		// Write new data to db
-		await db.collection( `${ chain === '0x1' ? 'mainnet' : 'rinkeby' }Validators` ).doc( validator ).set( {
+		await db.collection( `${ network }Validators` ).doc( validator ).set( {
 			tokenId,
 			owner: signatory,
 			src: `https://storage.googleapis.com/rocketeer-nft.appspot.com/${ network }Rocketeers/${ tokenId }.jpg`,
