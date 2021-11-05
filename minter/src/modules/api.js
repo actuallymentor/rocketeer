@@ -22,7 +22,7 @@ export async function callApi( path, options={} ) {
 export function getImage( id, ext='jpg' ) {
 
     const api = {
-      mainnet: 'https://storage.googleapis.com/rocketeer-nft.appspot.com/mainnetRocketeers/',
+      mainnet: 'https://storage.googleapis.com/rocketeer-nft.appspot.com/mainnetRocketeers',
       testnet: 'https://storage.googleapis.com/rocketeer-nft.appspot.com/rinkebyRocketeers'
     }
 
