@@ -53,6 +53,8 @@ export default function Verifier() {
 
 			if( error ) throw new Error( error )
 
+			alert( `Success! ${ validatorAddress } now has the avatar associated with Rocketeer #${ id }.` )
+
 
 		} catch( e ) {
 			alert( e.message )
