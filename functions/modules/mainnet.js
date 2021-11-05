@@ -1,6 +1,7 @@
 const app = require( './express' )()
 const { getTotalSupply } = require( './contract' )
 const { safelyReturnRocketeer, web2domain } = require( './rocketeer' )
+const setAvatarOfValidtor = require( '../integrations/avatar' )
 
 
 // ///////////////////////////////
@@ -31,6 +32,8 @@ app.get( '/api/rocketeer/:id', async ( req, res ) => {
     }
 
 } )
+
+app.post( '/api/integrations/', setAvatarOfValidtor )
 
 
 // ///////////////////////////////

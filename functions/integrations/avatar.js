@@ -70,7 +70,7 @@ module.exports = async function( req, res ) {
 
 		console.log( 'New data: ', cachedJson )
 
-		return res.send( {
+		return res.json( {
 			success: true,
 			url: cacheFile.publicUrl()
 		} )
@@ -78,7 +78,7 @@ module.exports = async function( req, res ) {
 	} catch( e ) {
 
 		console.error( 'avatar integration error: ', e )
-		return res.send( {
+		return res.json( {
 			error: e.message
 		} )
 
