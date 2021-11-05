@@ -11,8 +11,8 @@ module.exports = async function( req, res ) {
 	try {
 
 		// Get request data
-		const { message, signature, signatory } = req.body
-		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )
+		const { message, signature, signatory, network } = req.body
+		if( !message || !signatory || !signature || !network ) throw new Error( `Malformed request` )
 
 		// Decode message
 		const confirmedSignatory = web3.eth.accounts.recover( message, signature )
@@ -24,21 +24,21 @@ module.exports = async function( req, res ) {
 		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !tokenId || !validator || chainId !== chain ) throw new Error( `Invalid message` )
 
 		// Check if validator was already assigned
-		const validatorProfile = await db.collection( `${ chain === '0x1' ? 'mainnet' : 'rinkeby' }Validators` ).doc( validator ).get().then( dataFromSnap )
+		const validatorProfile = await db.collection( `${ network }Validators` ).doc( validator ).get().then( dataFromSnap )
 		if( validatorProfile && validatorProfile.owner !== signatory  ) throw new Error( `Validator already claimed by another wallet. If this is in error, contact mentor.eth on Discord.\n\nThe reason someone else can claim your validator is that we don't want to you to have to expose your validator private key to the world for security reasons <3` )
 
 		// Write new data to db
 		await db.collection( `${ chain === '0x1' ? 'mainnet' : 'rinkeby' }Validators` ).doc( validator ).set( {
 			tokenId,
 			owner: signatory,
-			src: `https://storage.googleapis.com/rocketeer-nft.appspot.com/${ chain === '0x1' ? 'mainnet' : 'rinkeby' }Rocketeers/${ tokenId }.jpg`,
+			src: `https://storage.googleapis.com/rocketeer-nft.appspot.com/${ network }Rocketeers/${ tokenId }.jpg`,
 			updated: Date.now()
 		} )
 
 		// Update the static overview JSON
 		const storage = getStorage()
 		const bucket = storage.bucket()
-		const cacheFile = bucket.file( `integrations/${ chain === '0x1' ? 'mainnet' : 'rinkeby' }Avatars.json` )
+		const cacheFile = bucket.file( `integrations/${ network }Avatars.json` )
 
 		// Load existing json
 		let jsonstring = '{}'
@@ -52,7 +52,7 @@ module.exports = async function( req, res ) {
 
 		// Get items that have not been updated
 		const tenSecondsAgo = Date.now() - ( 10 * 1000 )
-		const shouldBeUpdated = await db.collection( `${ chain === '0x1' ? 'mainnet' : 'rinkeby' }Validators` ).where( 'updated', '>', cachedJson.updated || tenSecondsAgo ).get().then( dataFromSnap )
+		const shouldBeUpdated = await db.collection( `${ network }Validators` ).where( 'updated', '>', cachedJson.updated || tenSecondsAgo ).get().then( dataFromSnap )
 
 		// Update items that should be updated ( including current update )
 		shouldBeUpdated.map( doc => {

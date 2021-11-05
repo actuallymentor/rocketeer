@@ -137,7 +137,7 @@ h1, p, label {
   height: 200px;
 }
 
-#avatar input {
+#avatar input:not([type=radio]) {
   padding: 1rem;
   width:  350px;
 }
@@ -146,4 +146,14 @@ h1, p, label {
   margin:  3rem 0;
   max-width: 300px;
   text-align: center;
+}
+
+.radios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radios .row {
+  width:  200px;
 }

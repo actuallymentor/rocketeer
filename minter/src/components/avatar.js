@@ -15,6 +15,7 @@ export default function Verifier() {
 	const balance = useBalanceOf()
 	const chainId = useChainId()
 	const address = useAddress()
+	const [ network, setNetwork ] = useState( 'mainnet' )
 	const [ loading, setLoading ] = useState(  )
 	const metamaskAddress = useAddress()
 	const [ validatorAddress, setValidatorAddress ] = useState(  )
@@ -36,6 +37,7 @@ export default function Verifier() {
 				signer: address.toLowerCase(),
 				tokenId: id,
 				validator: validatorAddress.toLowerCase(),
+				network,
 				chainId
 			} ), address )
 
@@ -78,6 +80,19 @@ export default function Verifier() {
 		
 		<p>Input the address you want to assign the avatar to.</p>
 		<input type='text' value={ validatorAddress } />
+
+		<p>Select the network you want to assign for:</p>
+		<div className="radios">
+			<div className="row">
+				<input onClick={ f => setNetwork( 'mainnet' ) } id="mainnet" type="radio" name="network" checked={ network == 'mainnet' }/>
+				<label onClick={ f => setNetwork( 'mainnet' ) } for="mainnet">Mainnet</label>
+			</div>
+			<div className="row">
+				<input onClick={ f => setNetwork( 'testnet' ) } id="testnet" type="radio" name="network" checked={ network == 'testnet' }/>
+				<label onClick={ f => setNetwork( 'testnet' ) } for="testnet">Testnet</label>
+			</div>
+		</div>
+		
 
 		<p>Click the Rocketeer you want to assign to this address.</p>
 		<div className="row">
