@@ -64,6 +64,20 @@ export default function Verifier() {
 		
 	}, [ verificationCode ] )
 
+	// Update verificaiton url
+	useEffect( f => {
+
+		if( !username || !address || !balance ) return
+		if( !verifyUrl ) return
+		if( balance < 1 ) return
+
+		const baseUrl = `https://mint.rocketeer.fans/#/verify/`
+		const message = btoa( `{ "username": "${ username }", "address": "${ address }", "balance": "${ balance }" }` )
+
+		setVerifyUrl( baseUrl + message )
+
+	}, [ username, address, balance, verifyUrl ] )
+
 	// ///////////////////////////////
 	// Rendering
 	// ///////////////////////////////
@@ -75,10 +89,14 @@ export default function Verifier() {
 	</Container>
 
 	if( verifyUrl ) return <Container>
+
+		{ !balance && <p>Checking your on-chain balance...</p> }
 		
-		<h1>Verification URL</h1>
-		<p>Post this in the Discord channel #get-verified:</p>
-		<p>{ verifyUrl }</p>
+		{ balance && <>
+			<h1>Verification URL</h1>
+			<p>Post this in the Discord channel #get-verified:</p>
+			<p>{ verifyUrl }</p>
+		</> }
 
 	</Container>
 
