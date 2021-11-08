@@ -15,6 +15,7 @@ function App() {
   const [ rocketeer, setRocketeer ] = useState()
   const [ loading, setLoading ] = useState( false )
   const [ error, setError ] = useState( false )
+  const [ manualSelect, setManualSelect ] = useState(  )
 
   // ///////////////////////////////
   // Lifesycle management
@@ -30,7 +31,7 @@ function App() {
     log( 'Id found: ', id )
 
     // Check if id is a number
-    if( isNaN( id ) ) return setError( 'No rocketeer selected' )
+    if( isNaN( id ) ) return setManualSelect( true )
 
     // If all is good, set the ID to state
     return setRocketeerId( id )
@@ -68,7 +69,10 @@ function App() {
   // ///////////////////////////////
   // Rendering
   // ///////////////////////////////
-
+  if( manualSelect ) return <Container>
+    <input type='number' placeholder='Input Rocketeer ID' onChange={ ( { target } ) => setRocketeerId( target.value ) } />
+    <a href={ `/?rocketeer=${ rocketeerId }` } className="button">View Rocketeer</a>
+  </Container>
   if( error ) return <Container>
     { error }
   </Container>
@@ -80,6 +84,10 @@ function App() {
     <img alt={ `Rocketeer ${ rocketeerId }` } src={ rocketeer.image || DraftRocketeer } />
     <h1>{ rocketeer.name }</h1>
     <p>{ rocketeer.description || "This is a generic Rocketeer without a description. That should only happen during testing. Contact us on Discord if you see this." }</p>
+
+    <ul id="traits">
+      { rocketeer.attributes.map( ( { trait_type, value } ) => <li key={ trait_type }><span>{ trait_type }</span><span>{ value }</span></li> ) }
+    </ul>
 
     <div>
       

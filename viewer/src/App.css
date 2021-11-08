@@ -73,6 +73,22 @@ a img {
   text-align: center;
 }
 
+input[type=number] {
+  text-align: center;
+  padding:  .5rem 1rem;
+}
+
+#traits {
+  padding: 0;
+  width: 100%;
+}
+#traits li {
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+  padding:  .2rem 0;
+}
+
 h1, p, label {
   padding: .2rem .5rem;
 }
