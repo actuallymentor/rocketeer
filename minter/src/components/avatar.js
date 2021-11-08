@@ -81,7 +81,7 @@ export default function Verifier() {
 		<h1>Rocketeer avatar attribution</h1>
 		
 		<p>Input the address you want to assign the avatar to.</p>
-		<input type='text' value={ validatorAddress } />
+		<input type='text' onChange={ ( { target } ) => setValidatorAddress( target.value ) } value={ validatorAddress } />
 
 		<p>Select the network you want to assign for:</p>
 		<div className="radios">
