@@ -403,7 +403,7 @@ export function useContract() {
 export function rocketeerCollectionUriOnOpensea( chainId ) {
 
 	// Opensea collection link depending on network
-	return `${ chainId === '0x1' ? '' : 'testnets.' }opensea.io/collection/rocketeer`
+	return `${ chainId === '0x1' ? '' : 'testnets.' }opensea.io/collection/the-rocketeers`
 
 }
 
