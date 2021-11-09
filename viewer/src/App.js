@@ -86,7 +86,7 @@ function App() {
     <p>{ rocketeer.description || "This is a generic Rocketeer without a description. That should only happen during testing. Contact us on Discord if you see this." }</p>
 
     <ul id="traits">
-      { rocketeer.attributes.map( ( { trait_type, value } ) => <li key={ trait_type }><span>{ trait_type }</span><span>{ value }</span></li> ) }
+      { rocketeer.attributes?.map( ( { trait_type, value } ) => <li key={ trait_type }><span>{ trait_type }</span><span>{ value }</span></li> ) }
     </ul>
 
     <div>

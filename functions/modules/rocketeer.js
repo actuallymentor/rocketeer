@@ -57,6 +57,9 @@ async function getExistingRocketeer( id, network='mainnet' ) {
 // ///////////////////////////////
 async function generateRocketeer( id, network='mainnet' ) {
 
+    // Put dibs on the Rocketeer ID to make race conditions more unlikely
+    await db.collection( `${ network }Rocketeers` ).doc( id ).set( {}, { merge: true } )
+
     // The base object of a new Rocketeer
     const rocketeer = {
         name: `${ name.first() } ${ name.middle() } ${ name.last() } of ${ id % 42 == 0 ? 'the Towel' : pickRandomArrayEntry( heavenlyBodies ) }`,
@@ -118,7 +121,7 @@ async function generateRocketeer( id, network='mainnet' ) {
     rocketeer.description = `${ rocketeer.name } is a proud member of the ${ rocketeer.attributes.find( ( { trait_type } ) => trait_type == 'patch' ).value } guild.`
 
     // Save new Rocketeer
-    await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer )
+    await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer, { merge: true } )
 
     return rocketeer
 
