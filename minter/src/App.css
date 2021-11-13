@@ -43,6 +43,9 @@ div.container.wide {
   flex-wrap: wrap;
   align-items: center;
 }
+p.row {
+  max-width:  100%!important;
+}
 
 /*Login button*/
 a.button {

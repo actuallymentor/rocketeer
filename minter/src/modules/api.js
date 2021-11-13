@@ -1,5 +1,5 @@
 import { log } from './helpers'
-import { useTokenIds } from './web3'
+import { useChainId, useTokenIds } from './web3'
 import { useState, useEffect } from 'react'
 
 export async function callApi( path, options={} ) {
@@ -19,12 +19,14 @@ export async function callApi( path, options={} ) {
 
 }
 
-export function getImage( id, ext='jpg' ) {
+export function getImage( id, ext='jpg', network ) {
 
     const api = {
       mainnet: 'https://storage.googleapis.com/rocketeer-nft.appspot.com/mainnetRocketeers',
       testnet: 'https://storage.googleapis.com/rocketeer-nft.appspot.com/rinkebyRocketeers'
     }
+
+    if( network ) return api[ network ] + `/${ id }.${ext}`
 
     const querySaysTestnet = window.location.href.includes( 'testnet' )
     const isLocal = window.location.hostname === 'localhost'
@@ -58,16 +60,17 @@ export function useRocketeers() {
 export function useRocketeerImages() {
 
     const ids = useTokenIds()
+    const chainId = useChainId()
     const [ images, setImages ] = useState( [] )
 
     useEffect( f => {
 
         setImages( ids.map( id => ( {
             id,
-            src: getImage( id )
+            src: getImage( id, 'jpg', chainId === '0x1' ? 'mainnet' : 'testnet' )
         } ) ) )
 
-    }, [ ids ] )
+    }, [ ids, chainId ] )
 
     return images
 

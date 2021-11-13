@@ -92,7 +92,7 @@ export default function Minter() {
 	if( mintedTokenId ) return <Container>
 
 			<h1>Minting Successful!</h1>
-			<a className="button" rel="noreferrer" target="_blank" alt="Link to opensea details of Rocketeer" href={ rocketeerUriOnOpensea( chainId, mintedTokenId ) }>View on Opensea</a>
+			<a className="button" rel="noreferrer" target="_blank" alt="Link to opensea details of Rocketeer" href='/#/portfolio'>View your Rocketeers</a>
 
 	</Container>
 

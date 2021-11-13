@@ -70,6 +70,7 @@ export default function ComponentName( ) {
 		
 		<div>
 			<Link className='button' to='/mint'>Mint Rocketeer</Link>
+			<Link className='button' to='/portfolio'>View Rocketeer Portfolio</Link>
 			<Link className='button' to='/verify'>Discord verify</Link>
 			<Link className='button' to='/avatar'>Set address avatar</Link>
 		</div>

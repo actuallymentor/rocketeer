@@ -2,6 +2,7 @@ import Minter from './components/minter'
 import Metamask from './components/metamask'
 import Verifier from './components/verifier'
 import Avatar from './components/avatar'
+import Portfolio from './components/portfolio'
 import { Container } from './components/generic'
 import { useState, useEffect } from 'react'
 import { log } from './modules/helpers'
@@ -41,6 +42,7 @@ function App() {
 				<Route path='/verify/:verificationCode' element={ <Verifier /> } />
 			</Route>
 			<Route exact path='/avatar' element={ <Avatar /> } />
+			<Route exact path='/portfolio' element={ <Portfolio /> } />
 
 		</Routes>
 
