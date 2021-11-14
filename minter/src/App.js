@@ -7,8 +7,8 @@ import { Container } from './components/generic'
 import { useState, useEffect } from 'react'
 import { log } from './modules/helpers'
 import { useAddress, getAddress } from './modules/web3'
-import { HashRouter, Routes, Route } from 'react-router-dom'
-
+import { HashRouter} from 'react-router-dom'
+import Router from './components/router'
 
 function App() {
 
@@ -34,17 +34,7 @@ function App() {
 	</Container>
 	return <HashRouter>
 		
-		<Routes>
-			
-			<Route exact path='/' element={ <Metamask /> } />
-			<Route exact path='/mint' element={ <Minter /> } />
-			<Route path='/verify/' element={ <Verifier /> }>
-				<Route path='/verify/:verificationCode' element={ <Verifier /> } />
-			</Route>
-			<Route exact path='/avatar' element={ <Avatar /> } />
-			<Route exact path='/portfolio' element={ <Portfolio /> } />
-
-		</Routes>
+		<Router />
 
 	</HashRouter>
 
