@@ -48,7 +48,7 @@ export async function getAddress() {
 export function useAddress() {
 
 	const [ address, setAddress ] = useState( undefined )
-	const [ interval, setInterval ] = useState( 1000 )
+	const [ interval, setIntervalSize ] = useState( 1000 )
 	const [ timesChecked, setTimesChecked ] = useState( 0 )
 
 	useInterval( () => {
@@ -57,11 +57,11 @@ export function useAddress() {
 		log( 'Checking for address' )
 		if( window.ethereum && window.ethereum.selectedAddress ) {
 			setAddress( window.ethereum.selectedAddress )
-			return setInterval( null )
+			return setIntervalSize( null )
 		}
 
 		// if checked five times and interval still running, slow it down
-		if( timesChecked > 5 && !!interval ) setInterval( 5000 )
+		if( timesChecked > 5 && !!interval ) setIntervalSize( 5000 )
 
 	}, interval )
 
@@ -70,7 +70,7 @@ export function useAddress() {
 		log( 'useAddress setting: ', window.ethereum && window.ethereum.selectedAddress, ` based on `, window.ethereum )
 		if( window.ethereum && window.ethereum.selectedAddress ) {
 			setAddress( window.ethereum.selectedAddress )
-			setInterval( null )
+			setIntervalSize( null )
 		}
 	}, [] )
 
@@ -84,7 +84,7 @@ export function useAddress() {
 
 			// New address? Set it to state and stop interval
 			setAddress( newAddress )
-			setInterval( null )
+			setIntervalSize( null )
 			
 	} ), [ ] )
 

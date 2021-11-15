@@ -1,11 +1,9 @@
-import { Container, Loading } from './generic'
+import { Container } from './generic'
 import '../App.css'
 
 import { useState, useEffect } from 'react'
-import { log } from '../modules/helpers'
-import { useRocketeerImages, callApi } from '../modules/api'
-import { useAddress, useChainId, useBalanceOf, useTokenIds, sign } from '../modules/web3'
-import { useNavigate } from 'react-router-dom'
+import { useRocketeerImages } from '../modules/api'
+import { useAddress } from '../modules/web3'
 
 
 export default function Verifier() {
@@ -13,15 +11,10 @@ export default function Verifier() {
 	// ///////////////////////////////
 	// State management
 	// ///////////////////////////////
-	const balance = useBalanceOf()
-	const chainId = useChainId()
 	const address = useAddress()
-	const [ network, setNetwork ] = useState( 'mainnet' )
-	const [ loading, setLoading ] = useState(  )
 	const metamaskAddress = useAddress()
 	const [ validatorAddress, setValidatorAddress ] = useState(  )
 	const rocketeers = useRocketeerImages()
-	const navigate = useNavigate()
 
 
 	// ///////////////////////////////
@@ -34,7 +27,6 @@ export default function Verifier() {
 	// ///////////////////////////////
 	// Rendering
 	// ///////////////////////////////
-	if( loading ) return <Loading message={ loading } />
 	return <Container id="avatar" className={ rocketeers.length > 1 ? 'wide' : '' }>
 		
 		<h1>Portfolio</h1>

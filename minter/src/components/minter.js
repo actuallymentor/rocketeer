@@ -4,7 +4,7 @@ import '../App.css'
 
 import { useState, useEffect } from 'react'
 
-import { useAddress, useTotalSupply, useContract, useChainId, rocketeerUriOnOpensea } from '../modules/web3'
+import { useAddress, useTotalSupply, useContract, useChainId } from '../modules/web3'
 import { log, setListenerAndReturnUnlistener } from '../modules/helpers'
 
 export default function Minter() {

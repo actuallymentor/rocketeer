@@ -1,12 +1,5 @@
-import Minter from './components/minter'
-import Metamask from './components/metamask'
-import Verifier from './components/verifier'
-import Avatar from './components/avatar'
-import Portfolio from './components/portfolio'
 import { Container } from './components/generic'
 import { useState, useEffect } from 'react'
-import { log } from './modules/helpers'
-import { useAddress, getAddress } from './modules/web3'
 import { HashRouter} from 'react-router-dom'
 import Router from './components/router'
 

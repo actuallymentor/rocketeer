@@ -3,15 +3,13 @@ import { Container, Loading } from './generic'
 import { useState, useEffect } from 'react'
 import { log } from '../modules/helpers'
 import { useAddress, getAddress } from '../modules/web3'
-import { useNavigate, Navigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 // ///////////////////////////////
 // Render component
 // ///////////////////////////////
 export default function ComponentName( ) {
-
-	const navigate = useNavigate()
 
 	// ///////////////////////////////
 	// States

@@ -4,7 +4,7 @@ import '../App.css'
 import { useState, useEffect } from 'react'
 import { log } from '../modules/helpers'
 import { useRocketeerImages, callApi } from '../modules/api'
-import { useAddress, useChainId, useBalanceOf, useTokenIds, sign } from '../modules/web3'
+import { useAddress, useChainId, useBalanceOf, sign } from '../modules/web3'
 
 
 export default function Verifier() {
@@ -12,7 +12,6 @@ export default function Verifier() {
 	// ///////////////////////////////
 	// State management
 	// ///////////////////////////////
-	const balance = useBalanceOf()
 	const chainId = useChainId()
 	const address = useAddress()
 	const [ network, setNetwork ] = useState( 'mainnet' )

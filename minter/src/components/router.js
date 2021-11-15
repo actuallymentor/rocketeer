@@ -3,10 +3,9 @@ import Metamask from './metamask'
 import Verifier from './verifier'
 import Avatar from './avatar'
 import Portfolio from './portfolio'
-import { Container } from './generic'
 import { useState, useEffect } from 'react'
 import { log } from '../modules/helpers'
-import { useAddress, getAddress } from '../modules/web3'
+import { useAddress } from '../modules/web3'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 
@@ -17,13 +16,30 @@ function Router() {
 	// ///////////////////////////////
 	const address = useAddress()
 	const navigate = useNavigate()
+	const [ timer, setTimer ] = useState(  )
+
 	// ///////////////////////////////
 	// Lifecycle
 	// ///////////////////////////////
+
+	// Redirect if metamask not connected
 	useEffect( f => {
+
 		log( 'Address change' )
-		if( !address ) navigate( '/' )
-	}, [ address, navigate ] )
+
+		if( !address ) {
+			log( 'No address, setting timer for navigation' )
+			const timeoutNumber = setTimeout( f => {
+				log( 'Navigating away' )
+				navigate( '/' )
+			}, 1000 )
+			setTimer( timeoutNumber )
+		} else {
+			log( 'Address found, cancelling timer' )
+			if( timer ) clearTimeout( timer )
+		}
+
+	}, [ address, navigate, timer ] )
 
 	// ///////////////////////////////
 	// Rendering
