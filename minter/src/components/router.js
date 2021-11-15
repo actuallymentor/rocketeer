@@ -27,6 +27,10 @@ function Router() {
 
 		log( 'Address change' )
 
+		if( timer ) {
+			log( `cancelling old timer ${ timer }, address: ${ !!address }` )
+			clearTimeout( timer )
+		}
 		if( !address ) {
 			log( 'No address, setting timer for navigation' )
 			const timeoutNumber = setTimeout( f => {
@@ -34,9 +38,6 @@ function Router() {
 				navigate( '/' )
 			}, 1000 )
 			setTimer( timeoutNumber )
-		} else {
-			log( 'Address found, cancelling timer' )
-			if( timer ) clearTimeout( timer )
 		}
 
 	}, [ address, navigate, timer ] )
