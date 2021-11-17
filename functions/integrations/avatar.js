@@ -89,7 +89,7 @@ exports.setAvatar = async function( req, res ) {
 
 exports.resetAvatar = async function( req, res ) {
 
-	const chain = process.env.NODE_ENV == 'development' ? '0x4' : '0x1'
+	// const chain = process.env.NODE_ENV == 'development' ? '0x4' : '0x1'
 	const network = 'mainnet'
 	// const chain = '0x1'
 
@@ -116,6 +116,12 @@ exports.resetAvatar = async function( req, res ) {
 			jsonstring = oldJson
 		}
 		const cachedJson = JSON.parse( jsonstring )
+
+		// Delete the address
+		if( jsonstring.images[ address ] ) {
+			delete jsonstring.images[ address ]
+			delete jsonstring.ids[ address ]
+		}
 
 		// Get items that have not been updated
 		const tenSecondsAgo = Date.now() - ( 10 * 1000 )
