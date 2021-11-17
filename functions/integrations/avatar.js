@@ -118,26 +118,11 @@ exports.resetAvatar = async function( req, res ) {
 		const cachedJson = JSON.parse( jsonstring )
 
 		// Delete the address
-		if( jsonstring.images[ address ] ) {
-			delete jsonstring.images[ address ]
-			delete jsonstring.ids[ address ]
-		}
-
-		// Get items that have not been updated
-		const tenSecondsAgo = Date.now() - ( 10 * 1000 )
-		const shouldBeUpdated = await db.collection( `${ network }Validators` ).where( 'updated', '>', cachedJson.updated || tenSecondsAgo ).get().then( dataFromSnap )
-
-		// Update items that should be updated ( including current update )
-		shouldBeUpdated.map( doc => {
-			if( !cachedJson.images ) cachedJson.images = {}
-			if( !cachedJson.ids ) cachedJson.ids = {}
-			cachedJson.images[ doc.uid ] = doc.src
-			cachedJson.ids[ doc.uid ] = doc.tokenId
-		} )
+		if( cachedJson.images[ address ] ) delete jsonstring.images[ address ]
+		if( cachedJson.ids[ address ] ) delete jsonstring.ids[ address ]
 
 		// Save new data to file
 		cachedJson.updated = Date.now()
-		cachedJson.trail = shouldBeUpdated.length
 		await cacheFile.save( JSON.stringify( cachedJson ) )
 		await cacheFile.makePublic()
 
