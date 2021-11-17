@@ -1,7 +1,7 @@
 const app = require( './express' )()
 const { getTotalSupply } = require( './contract' )
 const { safelyReturnRocketeer, web2domain } = require( './rocketeer' )
-const setAvatarOfValidtor = require( '../integrations/avatar' )
+const { setAvatar, resetAvatar } = require( '../integrations/avatar' )
 
 
 // ///////////////////////////////
@@ -33,7 +33,8 @@ app.get( '/api/rocketeer/:id', async ( req, res ) => {
 
 } )
 
-app.post( '/api/integrations/avatar/', setAvatarOfValidtor )
+app.post( '/api/integrations/avatar/', setAvatar )
+app.delete( '/api/integrations/avatar/', resetAvatar )
 
 
 // ///////////////////////////////
