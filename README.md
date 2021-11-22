@@ -1,34 +1,27 @@
 # Rocketeer NFT
 
-Components:
+This is the official repository of the [Rocketeers]( https://rocketeer.fans ) NFT collection.
 
-- Solidity contract
-- Firebase function for metadata
+- [Mint Rocketeers here]( https://mint.rocketeer.fans/#/mint )
+- [View your Rocketeer portfolio here]( https://mint.rocketeer.fans/#/portfolio )
+- [Set your Rocketpool node avatar here]( https://mint.rocketeer.fans/#/avatar )
 
-Project structure:
+## Rocketeer components
 
-```
+The Rocketeer project consists out of a Solidity `ERC721` contract and a number of `web2` interfaces.
 
-./
-./*.{json,rules,js}
-./- config files for the contracts and API
+### Contract code
 
-./contracts/
-./- Solidity contracts
+You can find the contract source in `contracts`. The `migrations/*` files set the parameters used for deployment.
 
-./migrations/
-./- Migrations for the contracts
+### Minter code
 
-./test/
-./- Tests for the contacts
+The minter interface hosted at [mint.rocketeer.fans]( https://mint.rocketeer.fans/ ) is a React app that connects to Metamask. The code is inside the `minter` folder.
 
-./functions/
-./- Firebase API code
+### Viewer code
 
-```
+The Rocketeer viewer hosted at [viewer.rocketeer.fans]( https://viewer.rocketeer.fans/ ) is the official place to view your Rocketeers. It's code is inside the `viewer` folder.
 
-## Requirements
+### Oracle code
 
-- [ ] `./functions`: set Infura project ID through `firebase functions:config:set infura.projectid=`
-- [ ] `./functions/package.json`: dependencies for backend, run `npm i` in `./functions`
-- [ ] `./package.json`: dependencies for contracts, run `npm i` in root
+The metadata and image oracle generates the Rocketeer data when one is minted. The code is inside the `functions` folder.
