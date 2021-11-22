@@ -17,6 +17,9 @@ app.get( '/api/rocketeer/:id', async ( req, res ) => {
     id = Math.floor( Math.abs( id ) )
     if( typeof id !== 'number' ) return res.json( { error: `Malformed request` } )
 
+    // Set ID to string so firestore can handle it
+    id = `${ id }`
+
     try {
 
         // Get old rocketeer if it exists
