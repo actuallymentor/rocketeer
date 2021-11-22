@@ -10,8 +10,12 @@ const { setAvatar, resetAvatar } = require( '../integrations/avatar' )
 app.get( '/api/rocketeer/:id', async ( req, res ) => {
 
     // Parse the request
-    const { id } = req.params
+    let { id } = req.params
     if( !id ) return res.json( { error: `No ID specified in URL` } )
+
+    // Protect against malformed input
+    id = Math.floor( Math.abs( id ) )
+    if( typeof id !== 'number' ) return res.json( { error: `Malformed request` } )
 
     try {
 
