@@ -6,6 +6,8 @@ This is the official repository of the [Rocketeers]( https://rocketeer.fans ) NF
 - [View your Rocketeer portfolio here]( https://mint.rocketeer.fans/#/portfolio )
 - [Set your Rocketpool node avatar here]( https://mint.rocketeer.fans/#/avatar )
 
+Do you want to contribute to this project? Read `CONTRIBUTING.md`.
+
 ## Rocketeer components
 
 The Rocketeer project consists out of a Solidity `ERC721` contract and a number of `web2` interfaces.
