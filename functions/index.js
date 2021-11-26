@@ -1,6 +1,6 @@
 const functions = require( 'firebase-functions' )
-const testnetAPI = require( './modules/testnet' )
-const mainnetAPI = require( './modules/mainnet' )
+const testnetAPI = require( './endpoints/testnet' )
+const mainnetAPI = require( './endpoints/mainnet' )
 
 // Runtime config
 const runtime = {

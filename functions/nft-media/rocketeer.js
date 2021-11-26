@@ -1,7 +1,7 @@
 const name = require( 'random-name' )
-const { db } = require( './firebase' )
-const { getTotalSupply } = require( './contract' )
-const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, getColorName } = require( './helpers' )
+const { db } = require( '../modules/firebase' )
+const { getTotalSupply } = require( '../modules/contract' )
+const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, getColorName } = require( '../modules/helpers' )
 const svgFromAttributes = require( './svg-generator' )
 
 

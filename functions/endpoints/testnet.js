@@ -1,6 +1,6 @@
 const app = require( './express' )()
-const { getTotalSupply } = require( './contract' )
-const { safelyReturnRocketeer, web2domain } = require( './rocketeer' )
+const { getTotalSupply } = require( '../modules/contract' )
+const { safelyReturnRocketeer, web2domain } = require( '../nft-media/rocketeer' )
 
 ////////////////////////////////
 // Specific Rocketeer instances
