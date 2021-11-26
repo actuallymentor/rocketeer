@@ -45,7 +45,10 @@ export function useRocketeers() {
 
         ( async function() {
 
-            const rocketeerMetas = await Promise.all( ids.map( id => callApi( `/rocketeer/${ id }` ) ) )
+            const rocketeerMetas = await Promise.all( ids.map( async id => ( {
+                ...await callApi( `/rocketeer/${ id }` ),
+                id: id
+            } ) ) )
             log( 'Received rocketeers: ', rocketeerMetas )
             setRocketeers( rocketeerMetas )
 

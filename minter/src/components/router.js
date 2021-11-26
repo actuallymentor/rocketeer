@@ -3,6 +3,7 @@ import Metamask from './metamask'
 import Verifier from './verifier'
 import Avatar from './avatar'
 import Portfolio from './portfolio'
+import Outfits from './outfits'
 import { useState, useEffect } from 'react'
 import { log } from '../modules/helpers'
 import { useAddress } from '../modules/web3'
@@ -25,8 +26,6 @@ function Router() {
 	// Redirect if metamask not connected
 	useEffect( f => {
 
-		log( 'Address change' )
-
 		if( timer ) {
 			log( `cancelling old timer ${ timer }, address: ${ !!address }` )
 			clearTimeout( timer )
@@ -40,7 +39,7 @@ function Router() {
 			setTimer( timeoutNumber )
 		}
 
-	}, [ address, navigate, timer ] )
+	}, [ address, navigate ] ) // Not adding timer on purpose, causes loop
 
 	// ///////////////////////////////
 	// Rendering
@@ -54,6 +53,7 @@ function Router() {
 		</Route>
 		<Route exact path='/avatar' element={ <Avatar /> } />
 		<Route exact path='/portfolio' element={ <Portfolio /> } />
+		<Route exact path='/outfits' element={ <Outfits /> } />
 
 	</Routes>
 
