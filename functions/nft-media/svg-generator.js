@@ -8,7 +8,7 @@ const { getStorage } = require( 'firebase-admin/storage' )
 const { convert } = require("convert-svg-to-jpeg")
 
 // Existing file checker
-const checkIfFilesExist = async ( svg, jpeg, path ) => {
+const failIfFilesExist = async ( svg, jpeg, path ) => {
 
 	const [ [ svgExists ], [ jpegExists ] ] = await Promise.all( [ svg.exists(), jpeg.exists() ] )
 	if( svgExists || jpegExists ) throw new Error( `${ svgExists ? 'SVG' : '' } ${ jpegExists ? ' and JPEG' : '' } already present at ${ path }. This should never happen!` )
@@ -27,7 +27,7 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 	const bucket = storage.bucket()
 	const svgFile = bucket.file( `${path}.svg` )
 	const rasterFile = bucket.file( `${path}.jpg` )
-	await checkIfFilesExist( svgFile, rasterFile, path )
+	await failIfFilesExist( svgFile, rasterFile, path )
 
 	// Get properties
 	const { value: primary_color } = attributes.find( ( { trait_type } ) => trait_type == "outfit color" )
@@ -141,7 +141,7 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 	const bakedRaster = await convert( bakedSvg, {  } )
 
 	// Double check that files do not yet exist (in case of weird race condition)
-	await checkIfFilesExist( svgFile, rasterFile, path )
+	await failIfFilesExist( svgFile, rasterFile, path )
 
 	// Save files
 	await svgFile.save( bakedSvg )

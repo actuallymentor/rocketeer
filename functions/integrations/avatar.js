@@ -1,5 +1,5 @@
 const functions = require( 'firebase-functions' )
-const { integration }= functions.config()
+const { integration } = functions.config()
 const { db, dataFromSnap } = require( '../modules/firebase' )
 const Web3 = require( 'web3' )
 const web3 = new Web3()

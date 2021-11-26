@@ -43,12 +43,20 @@ exports.pickRandomAttributes = ( attributes ) => {
 }
 
 const nameColor = require('color-namer')
+const Color = require('color')
 exports.getColorName = ( rgb ) => {
     try {
         return nameColor( rgb ).basic[0].name
     } catch( e ) {
         return rgb
     }
+}
+exports.getRgbArrayFromColorName = name => {
+
+    const { hex } = nameColor( name ).basic[0]
+    const color = Color( hex )
+    return color.rgb().array()
+
 }
 
 // ///////////////////////////////

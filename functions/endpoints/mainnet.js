@@ -40,6 +40,9 @@ app.get( '/api/rocketeer/:id', async ( req, res ) => {
 
 } )
 
+/* ///////////////////////////////
+// VGR's dashboard integration
+// /////////////////////////////*/
 app.post( '/api/integrations/avatar/', setAvatar )
 app.delete( '/api/integrations/avatar/', resetAvatar )
 
