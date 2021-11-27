@@ -53,7 +53,9 @@ function Router() {
 		</Route>
 		<Route exact path='/avatar' element={ <Avatar /> } />
 		<Route exact path='/portfolio' element={ <Portfolio /> } />
-		<Route exact path='/outfits' element={ <Outfits /> } />
+		<Route path='/outfits/' element={ <Outfits /> }>
+			<Route path='/outfits/:rocketeerId' element={ <Outfits /> } />
+		</Route>
 
 	</Routes>
 

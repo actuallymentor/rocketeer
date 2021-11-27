@@ -36,9 +36,10 @@ export function getImage( id, ext='jpg', network ) {
 
 }
 
-export function useRocketeers() {
+export function useRocketeers( onlyGrabThisId ) {
 
-    const ids = useTokenIds()
+    const tokenIds = useTokenIds()
+    const ids = onlyGrabThisId ? [ onlyGrabThisId ] : tokenIds
     const [ rocketeers, setRocketeers ] = useState( [] )
 
     useEffect( f => {
@@ -54,7 +55,7 @@ export function useRocketeers() {
 
         } )(  )
 
-    }, [ ids ] )
+    }, [ tokenIds, onlyGrabThisId ] )
 
     return rocketeers
 
