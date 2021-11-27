@@ -23,7 +23,7 @@ export const H2 = styled.h2`
 	line-height: 1.2;
 	font-weight: 400;
 	text-align: ${ ( { align } ) => align || 'left' };
-	color: ${ ( { theme } ) => theme.colors.accent };
+	color: ${ ( { theme } ) => theme.colors.primary };
 `
 
 export const Sidenote = styled.p`

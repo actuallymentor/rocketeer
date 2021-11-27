@@ -3,7 +3,7 @@ import styled from 'styled-components'
 // Image that behaves like a background image
 import LaunchBackground from '../../assets/undraw_launch_day_4e04.svg'
 const BackgroundImage = styled.img.attrs( props => ( {
-	src: LaunchBackground
+	// src: LaunchBackground
 } ) )`
 	position: absolute;
 	z-index: -1;
@@ -25,6 +25,7 @@ const Wrapper = styled.div`
 	min-height: 100vh;
 	width: 100%;
 	padding:  0 max( 1rem, calc( 25vw - 4rem ) );
+	margin-bottom: 10rem;
 	box-sizing: border-box;
 	& * {
 		box-sizing: border-box;

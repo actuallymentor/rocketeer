@@ -5,10 +5,15 @@ import { useChainId, useAddress, sign } from '../../modules/web3'
 import { log } from '../../modules/helpers'
 import { useParams, useNavigate } from 'react-router'
 
-import { H1, Text } from '../atoms/Text'
-import Button from '../atoms/Button'
-import Loading from '../molecules/Loading'
 import Container from '../atoms/Container'
+import Section from '../atoms/Section'
+import { H1, H2, Text } from '../atoms/Text'
+import Button from '../atoms/Button'
+import Avatar from '../atoms/Avatar'
+
+
+import Loading from '../molecules/Loading'
+import Hero from '../molecules/Hero'
 
 export default function Verifier() {
 
@@ -159,41 +164,45 @@ export default function Verifier() {
 		
 		<H1>Rocketeers</H1>
 		<Text>Click on a Rocketeer to manage it's outfits</Text>
-		<div className="row">
+		<Section direction="row">
 			
 			{ rocketeers.map( ( { id, image } ) => {
 
-				return <img id={ `rocketeer-${ id }` } onClick={ f => navigate( `/outfits/${ id }` ) } key={ id } className='rocketeer' src={ image } alt={ `Rocketeer number ${ id }` } />
+				return <Avatar id={ `rocketeer-${ id }` } onClick={ f => navigate( `/outfits/${ id }` ) } key={ id } src={ image } alt={ `Rocketeer number ${ id }` } />
 
 			} ) }
 
 			<Text className="row">Rocketeers owned by: { address }.</Text>
 
 
-		</div>
+		</Section>
 
 	</Container>
 
 	// Changing room
 	if( rocketeer ) return <Container>
 		
-		<H1>{ rocketeer.name }</H1>
+		<Hero>
+			<H1>{ rocketeer.name }</H1>
 
-		<img key={ rocketeer.id } className='rocketeer' src={ rocketeer.image } alt={ `Rocketeer number ${ rocketeer.id }` } />
-		{ !rocketeer.new_outfit_available ? <Button onClick={ generateNewOutfit }>Generate new outfit</Button> : <Text>New outfit available on { rocketeer.when_new_outfit.toString() }</Text> }
+			<Avatar key={ rocketeer.id } src={ rocketeer.image } alt={ `Rocketeer number ${ rocketeer.id }` } />
+			{ rocketeer.new_outfit_available ? <Button onClick={ generateNewOutfit }>Generate new outfit</Button> : <Text>New outfit available on { rocketeer.when_new_outfit.toString() }</Text> }
+
+		</Hero>
+		
+
+		<H2>{ rocketeer.name.split( ' ' )[0] }'s outfits</H2>
 		<Text>This Rocketeer has { 1 + rocketeer.outfits } outfits. { rocketeer.outfits > 0 && 'Click any outfit to select it as primary.' }</Text>
+		<Section direction="row">
 
-		<div className="row">
-
-			<img key={ rocketeer.id + 0 } onClick={ f => setPrimaryOutfit( 0 ) } className='rocketeer' src={ rocketeer.image.replace( /-\d\.jpg/, '.jpg' ) } alt={ `Rocketeer number ${ rocketeer.id }` } />
+			<Avatar key={ rocketeer.id + 0 } onClick={ f => setPrimaryOutfit( 0 ) } src={ rocketeer.image.replace( /-\d\.jpg/, '.jpg' ) } alt={ `Rocketeer number ${ rocketeer.id }` } />
 			
 			{ Array.from( Array( rocketeer.outfits ) ).map( ( val, i ) => {
-				return <img onClick={ f => setPrimaryOutfit( i + 1 ) } key={ rocketeer.id + i } className='rocketeer' src={ rocketeer.image.replace( /-\d\.jpg/, `-${ i + 1 }.jpg` ) } alt={ `Rocketeer number ${ rocketeer.id }` } />
+				return <Avatar onClick={ f => setPrimaryOutfit( i + 1 ) } key={ rocketeer.id + i } src={ rocketeer.image.replace( /-\d\.jpg/, `-${ i + 1 }.jpg` ) } alt={ `Rocketeer number ${ rocketeer.id }` } />
 			} ) }
 
-		</div>
+		</Section>
 
-		<Text className="row">Rocketeers owned by: { address }.</Text>
 
 	</Container>
 

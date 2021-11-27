@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components'
 
 const theme = {
 	colors: {
-		primary: 'teal',
-		text: 'rgb(77, 86, 128)',
+		primary: 'black',
+		text: 'rgb( 0, 0, 0, .8 )',
 		accent: 'orange',
 		hint: 'rgba( 0, 0, 0, .4 )',
 		backdrop: 'rgba( 0, 0, 0, .05 )'
