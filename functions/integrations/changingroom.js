@@ -32,12 +32,9 @@ exports.generateNewOutfit = async function( req, res ) {
 		// Validate message
 		const messageObject = JSON.parse( message )
 		const { signer, rocketeerId, chainId } = messageObject
-		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !rocketeerId || chainId !== chain || !network ) throw new Error( `Invalid message` )
+		const network = chainId == '0x1' ? 'mainnet' : 'rinkeby'
+		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !rocketeerId || !network ) throw new Error( `Invalid generateNewOutfit message with ${signer}, ${confirmedSignatory}, ${rocketeerId}, ${network}` )
 		if( rocketeerId != id ) throw new Error( `Invalid Rocketeer in message` )
-
-        // Set chain based on envronnment
-		const chain = process.env.NODE_ENV == 'development' ? '0x4' : '0x1'
-		const network = chain == '0x1' ? 'mainnet' : 'rinkeby'
 
 		// Generate new rocketeer svg
 		const mediaLink = await generateNewOutfitFromId( id, network )
@@ -88,7 +85,8 @@ exports.setPrimaryOutfit = async function( req, res ) {
 		// Validate message
 		const messageObject = JSON.parse( message )
 		let { signer, outfitId, chainId } = messageObject
-		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !outfitId || chainId !== chain || !network ) throw new Error( `Invalid message` )
+		const network = chainId == '0x1' ? 'mainnet' : 'rinkeby'
+		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || outfitId == undefined || !network ) throw new Error( `Invalid setPrimaryOutfit message with ${ signer }, ${confirmedSignatory}, ${outfitId}, ${chainId}, ${network}` )
 		
 		// Validate id format
 		outfitId = Math.floor( Math.abs( outfitId ) )
@@ -96,10 +94,6 @@ exports.setPrimaryOutfit = async function( req, res ) {
 
 		// Set ID to string so firestore can handle it
 		outfitId = `${ outfitId }`
-
-        // Set chain based on envronnment
-		const chain = process.env.NODE_ENV == 'development' ? '0x4' : '0x1'
-		const network = chain == '0x1' ? 'mainnet' : 'rinkeby'
 
 		// Retreive old Rocketeer data
 		const rocketeer = await db.collection( `${ network }Rocketeers` ).doc( id ).get().then( dataFromSnap )
@@ -115,6 +109,8 @@ exports.setPrimaryOutfit = async function( req, res ) {
 		await db.collection( `${ network }Rocketeers` ).doc( id ).set( {
 			image: `https://storage.googleapis.com/rocketeer-nft.appspot.com/${ network }Rocketeers/${ imagePath }`
 		}, { merge: true } )
+
+		return res.json( { success: true } )
 
 
 

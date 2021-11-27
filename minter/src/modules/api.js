@@ -14,7 +14,7 @@ export async function callApi( path, options={} ) {
     const chain = ( isLocal || querySaysTestnet ) ? 'testnet' : 'mainnet'
     const callPath = api[ chain ] + path
 
-    log( 'Calling ', callPath )
+    log( 'Calling ', callPath, ' with ', options )
     return fetch( `${ api[ chain ] }${ path }`, options ).then( res => res.json() )
 
 }

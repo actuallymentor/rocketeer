@@ -29,7 +29,7 @@ exports.generateNewOutfitFromId = async function( id, network='mainnet' ) {
 
 	// Check whether this Rocketeer is allowed to change
 	const timeUntilAllowedToChange = newOutfitAllowedInterval - ( Date.now() - last_outfit_change )
-	if( timeUntilAllowedToChange > 0 ) throw new Error( `You changed your outfit too recently, a change is avalable in ${ Math.floor( timeUntilAllowedToChange / ( 1000 * 60 * 60 ) ) } hours` )
+	if( timeUntilAllowedToChange > 0 ) throw new Error( `You changed your outfit too recently, a change is avalable in ${ Math.floor( timeUntilAllowedToChange / ( 1000 * 60 * 60 ) ) } hours (${ new Date( Date.now() + timeUntilAllowedToChange ).toString() })` )
 
 	// Grab attributes that will not change
 	const staticAttributes = rocketeer.attributes.filter( ( { trait_type } ) => ![ 'last outfit change', 'available outfits' ].includes( trait_type ) )

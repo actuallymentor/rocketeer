@@ -224,33 +224,37 @@ export function useTokenIds() {
 	const [ tokens, setTokens ] = useState( [] )
 
 	// Grab tokens from contract
-	useEffect( f => {
+	useEffect( (  ) => {
 
 		// Do nothing if there is no data yet
 		if( !contract || !balance || !address ) return
 
-		// Load initial supply value
-		( async (  ) => {
+		let cancelled = false;
+
+		( async () => {
 
 			try {
 
-				const ids = await Promise.all( Array.from( { length: balance } ).map( async ( val, index ) => {
-					const id = await contract.tokenOfOwnerByIndex( address, index )
-					return id.toString()
-				} ) )
-				log( 'Tokens detected: ', ids )
-				setTokens( ids )
+					const ids = await Promise.all( Array.from( { length: balance } ).map( async ( val, index ) => {
+						const id = await contract.tokenOfOwnerByIndex( address, index )
+						return id.toString()
+					} ) )
 
-			} catch( e ) {
+					log( 'Tokens detected: ', ids )
+					if( !cancelled ) setTokens( ids )
 
-				log( 'Error getting tokens of address: ', e )
+				} catch( e ) {
 
-			}
+					log( 'Error getting tokens of address: ', e )
 
-		} )(  )
+				}
 
+			} )( )
+
+			return () => cancelled = true
 
 	}, [ contract, address, balance ] )
+	
 
 	return tokens
 

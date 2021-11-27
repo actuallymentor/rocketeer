@@ -2,6 +2,8 @@ import { Container } from './components/generic'
 import { useState, useEffect } from 'react'
 import { HashRouter} from 'react-router-dom'
 import Router from './components/router'
+import Theme from './components/atoms/Theme'
+
 
 function App() {
 
@@ -22,14 +24,19 @@ function App() {
 	// ///////////////////////////////
 	// Rendering
 	// ///////////////////////////////
-	if( error || loading ) return <Container>
-		<p>{ error || loading }</p>
-	</Container>
-	return <HashRouter>
-		
-		<Router />
+	if( error || loading ) return <Theme>
+		<Container>
+			<p>{ error || loading }</p>
+		</Container>
+	</Theme>
 
-	</HashRouter>
+	return <Theme>
+		<HashRouter>
+		
+			<Router />
+
+		</HashRouter>
+	</Theme>
 
 }
 
