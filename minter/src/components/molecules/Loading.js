@@ -32,7 +32,7 @@ const Spinner = styled.div`
 
 `
 
-export default ( { message, ...props } ) => <Container { ...props }>
+export default ( { message, ...props } ) => <Container justify="center" { ...props }>
 	
 	<Spinner />
 	{ message && <Text align="center">{ message }</Text> }

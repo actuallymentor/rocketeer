@@ -21,11 +21,11 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: ${ ( { justify='flex-start' } ) => justify };
 	min-height: 100vh;
 	width: 100%;
-	padding:  0 max( 1rem, calc( 25vw - 4rem ) );
-	margin-bottom: 10rem;
+	padding: ${ ( { gutter=true } ) => gutter ? '0 max( 1rem, calc( 25vw - 4rem ) )' : 'none' };
+	// margin-bottom: 10rem;
 	box-sizing: border-box;
 	& * {
 		box-sizing: border-box;

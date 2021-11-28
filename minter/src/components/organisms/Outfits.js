@@ -9,7 +9,7 @@ import Container from '../atoms/Container'
 import Section from '../atoms/Section'
 import { H1, H2, Text } from '../atoms/Text'
 import Button from '../atoms/Button'
-import Avatar from '../atoms/Avatar'
+import Avatar from '../molecules/Avatar'
 
 
 import Loading from '../molecules/Loading'
@@ -61,8 +61,8 @@ export default function Verifier() {
 
 			if( error ) throw new Error( error )
 
-			alert( `Success! Outfit changed, please click "refresh metadata" on Opensea to update it there.\nForwarding you to the tools homepage.` )
-			navigate( `/` )
+			alert( `Success! Outfit changed, please click "refresh metadata" on Opensea to update it there.` )
+			window?.location.reload()
 
 		} catch( e ) {
 
@@ -144,6 +144,10 @@ export default function Verifier() {
 			selected.last_outfit_change = last_outfit_change
 			selected.new_outfit_available = timeUntilAllowedToChange < 0
 			selected.when_new_outfit = new Date( Date.now() + timeUntilAllowedToChange )
+
+			const [ full, outfitnumber ] = selected.image.match( /(\d)(?:-\d\.jpg)/ ) || []
+			log( `Current outfit of ${ full } is ${ outfitnumber }` )
+			selected.current_outfit = outfitnumber || 0
 		}
 
 		log( "Selecting rocketeer ", selected )
@@ -180,26 +184,40 @@ export default function Verifier() {
 	</Container>
 
 	// Changing room
-	if( rocketeer ) return <Container>
+	if( rocketeer ) return <Container gutter={ false }>
 		
-		<Hero>
-			<H1>{ rocketeer.name }</H1>
-
-			<Avatar key={ rocketeer.id } src={ rocketeer.image } alt={ `Rocketeer number ${ rocketeer.id }` } />
-			{ rocketeer.new_outfit_available ? <Button onClick={ generateNewOutfit }>Generate new outfit</Button> : <Text>New outfit available on { rocketeer.when_new_outfit.toString() }</Text> }
-
+		{  /* Header */ }
+		<Hero background={ rocketeer.image } gutter={ true } shadow={ true }>
+			<H1 banner={ true }>{ rocketeer.name.split( ' ' )[0] }'s changing room</H1>
+			<H2 banner={ true }>Current outfit: { rocketeer.current_outfit ? `#${rocketeer.current_outfit}` : 'Genesis' }</H2>
 		</Hero>
+
+		<Section direction="column" gutter={ true }>
+			<H2>{ rocketeer.name }</H2>
+			<Avatar key={ rocketeer.id } src={ rocketeer.image } alt={ `Rocketeer number ${ rocketeer.id }` } />
+			{ rocketeer.new_outfit_available ? <Button onClick={ generateNewOutfit }>Generate new outfit</Button> : <Text align="center">New outfit available on { rocketeer.when_new_outfit.toString() }</Text> }
+		</Section>
 		
 
-		<H2>{ rocketeer.name.split( ' ' )[0] }'s outfits</H2>
-		<Text>This Rocketeer has { 1 + rocketeer.outfits } outfits. { rocketeer.outfits > 0 && 'Click any outfit to select it as primary.' }</Text>
-		<Section direction="row">
+		{  /* Select outfits */ }
+		<Section align='flex-start' direction="column" gutter={ true } shadow={ true }>
 
-			<Avatar key={ rocketeer.id + 0 } onClick={ f => setPrimaryOutfit( 0 ) } src={ rocketeer.image.replace( /-\d\.jpg/, '.jpg' ) } alt={ `Rocketeer number ${ rocketeer.id }` } />
-			
-			{ Array.from( Array( rocketeer.outfits ) ).map( ( val, i ) => {
-				return <Avatar onClick={ f => setPrimaryOutfit( i + 1 ) } key={ rocketeer.id + i } src={ rocketeer.image.replace( /-\d\.jpg/, `-${ i + 1 }.jpg` ) } alt={ `Rocketeer number ${ rocketeer.id }` } />
-			} ) }
+			<H2>{ rocketeer.name.split( ' ' )[0] }'s outfits</H2>
+			<Text>This Rocketeer has { 1 + rocketeer.outfits } outfits. { rocketeer.outfits > 0 && 'Click any outfit to select it as primary.' }</Text>
+		
+
+			<Section justify='flex-start' direction="row">
+				
+				
+				{ Array.from( Array( rocketeer.outfits ) ).map( ( val, i, arr ) => {
+					const reverseNumber = arr.length - i
+					return <Avatar title={ `Outfit #${ reverseNumber }` } onClick={ f => setPrimaryOutfit( reverseNumber ) } key={ rocketeer.id + reverseNumber } src={ rocketeer.image.replace( /(-\d)?\.jpg/, `-${ reverseNumber }.jpg` ) } alt={ `Rocketeer number ${ rocketeer.id } outfit ${ reverseNumber }` } />
+				} ) }
+
+				{  /* Genesis avatar */ }
+				<Avatar title="Genesis outfit" key={ rocketeer.id + '-genesis' } onClick={ f => setPrimaryOutfit( 0 ) } src={ rocketeer.image.replace( /(-\d)?\.jpg/, '.jpg' ) } alt={ `Rocketeer number ${ rocketeer.id }` } />
+
+			</Section>
 
 		</Section>
 

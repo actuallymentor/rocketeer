@@ -1,4 +1,4 @@
-main {
+/*main {
   display: flex;
   flex-grow: 1;
   flex-shrink: 0;
@@ -46,9 +46,9 @@ div.container.wide {
 p.row {
   max-width:  100%!important;
 }
-
+*/
 /*Login button*/
-.button {
+/*.button {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -91,10 +91,10 @@ input#address {
 
 h1, p, label {
   padding: .2rem .5rem;
-}
+}*/
 
 /*Loading spinner*/
-.loading {
+/*.loading {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,13 +126,13 @@ h1, p, label {
   100% {
     transform: rotate(360deg);
   }
-}
+}*/
 
 
 /* ///////////////////////////////
 /// Avatar page
 // /////////////////////////////*/
-#avatar .rocketeer {
+/*#avatar .rocketeer {
   margin:  1rem 0;
   border-radius: 50%;
   padding:  1rem;
@@ -159,4 +159,4 @@ h1, p, label {
 
 .radios .row {
   width:  200px;
-}
+}*/
