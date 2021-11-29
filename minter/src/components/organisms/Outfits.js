@@ -175,10 +175,9 @@ export default function Verifier() {
 
 			} ) }
 
-			<Text className="row">Rocketeers owned by: { address }.</Text>
-
-
 		</Section>
+
+		<Text className="row">Rocketeers owned by: { address }.</Text>
 
 	</Container>
 
