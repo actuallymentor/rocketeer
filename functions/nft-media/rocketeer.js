@@ -3,7 +3,7 @@ const { db } = require( '../modules/firebase' )
 const { getTotalSupply } = require( '../modules/contract' )
 const { pickRandomArrayEntry, pickRandomAttributes, randomNumberBetween, globalAttributes, heavenlyBodies, web2domain, getColorName } = require( '../modules/helpers' )
 const svgFromAttributes = require( './svg-generator' )
-
+const { forceOpenseaToUpdateMetadataForRocketeer } = require( '../integrations/opensea' )
 
 // ///////////////////////////////
 // Caching
@@ -122,6 +122,9 @@ async function generateRocketeer( id, network='mainnet' ) {
 
     // Save new Rocketeer
     await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer, { merge: true } )
+
+    // Force opensea to update metadata
+    await forceOpenseaToUpdateMetadataForRocketeer( id, network )
 
     return rocketeer
 

@@ -2,6 +2,9 @@
 // Helper functions
 // ///////////////////////////////
 
+// Wait in async
+exports.wait = timeInMs => new Promise( resolve => setTimeout( resolve ), timeInMs )
+
 // Pick random item from an array
 const pickRandomArrayEntry = array => array[ Math.floor( Math.random() * array.length ) ]
 exports.pickRandomArrayEntry = pickRandomArrayEntry

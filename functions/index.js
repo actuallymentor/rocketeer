@@ -13,3 +13,6 @@ exports.testnetMetadata = functions.runWith( runtime ).https.onRequest( testnetA
 
 // Mainnet endpoint
 exports.mainnetMetadata = functions.runWith( runtime ).https.onRequest( mainnetAPI )
+
+// const { forceOpenseaToUpdateMetadataForRocketeer } = require( './integrations/opensea' )
+// exports.refreshOpensea = functions.runWith( runtime ).https.onCall( ( id, context ) => forceOpenseaToUpdateMetadataForRocketeer( id ) )

@@ -40,5 +40,6 @@ async function getTotalSupply( network='mainnet' ) {
 }
 
 module.exports = {
-	getTotalSupply: getTotalSupply
+	getTotalSupply: getTotalSupply,
+  contractAddress: contractAddress
 }

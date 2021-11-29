@@ -2,7 +2,7 @@ const app = require( './express' )()
 const { getTotalSupply } = require( '../modules/contract' )
 const { safelyReturnRocketeer, web2domain } = require( '../nft-media/rocketeer' )
 const { setAvatar, resetAvatar } = require( '../integrations/avatar' )
-
+const { generateNewOutfit, setPrimaryOutfit } = require( '../integrations/changingroom' )
 
 // ///////////////////////////////
 // Specific Rocketeer instances
@@ -46,6 +46,11 @@ app.get( '/api/rocketeer/:id', async ( req, res ) => {
 app.post( '/api/integrations/avatar/', setAvatar )
 app.delete( '/api/integrations/avatar/', resetAvatar )
 
+/* ///////////////////////////////
+// Changing room endpoints
+// /////////////////////////////*/
+app.post( '/api/rocketeer/:id/outfits', generateNewOutfit )
+app.put( '/api/rocketeer/:id/outfits', setPrimaryOutfit )
 
 // ///////////////////////////////
 // Static collection data

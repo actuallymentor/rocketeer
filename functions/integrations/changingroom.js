@@ -21,6 +21,10 @@ exports.generateNewOutfit = async function( req, res ) {
 
 	try {
 
+		// Disable changing room for now
+		const potentialLaunchDate = new Date( `2021-12-10` )
+		if( new Date() < potentialLaunchDate ) throw new Error( `Changing room is not yet live, sorry. Stay tuned on Discord.` )
+
 		// Get request data
 		const { message, signature, signatory } = req.body
 		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )

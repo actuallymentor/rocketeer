@@ -1,0 +1,424 @@
+[debug] [2021-11-29T13:51:15.596Z] ----------------------------------------------------------------------
+[debug] [2021-11-29T13:51:15.598Z] Command:       /Users/mentor/.nvm/versions/node/v12.20.1/bin/node /Users/mentor/.nvm/versions/node/v12.20.1/bin/firebase functions:shell
+[debug] [2021-11-29T13:51:15.598Z] CLI Version:   9.6.1
+[debug] [2021-11-29T13:51:15.598Z] Platform:      darwin
+[debug] [2021-11-29T13:51:15.598Z] Node Version:  v12.20.1
+[debug] [2021-11-29T13:51:15.599Z] Time:          Mon Nov 29 2021 14:51:15 GMT+0100 (Central European Standard Time)
+[debug] [2021-11-29T13:51:15.599Z] ----------------------------------------------------------------------
+[debug] [2021-11-29T13:51:15.599Z] 
+[debug] [2021-11-29T13:51:15.606Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-11-29T13:51:15.607Z] > authorizing via signed-in user
+[debug] [2021-11-29T13:51:15.607Z] [iam] checking project rocketeer-nft for permissions ["firebase.projects.get"]
+[debug] [2021-11-29T13:51:15.609Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-11-29T13:51:15.609Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-11-29T13:51:15.750Z] <<< HTTP RESPONSE 200 {"date":"Mon, 29 Nov 2021 13:51:15 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-11-29T13:51:15.766Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/rocketeer-nft:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-11-29T13:51:16.659Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 29 Nov 2021 13:51:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=577","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-11-29T13:51:16.675Z] [functions] Using node@12 from host.
+[debug] [2021-11-29T13:51:16.677Z] defaultcredentials: writing to file /Users/mentor/.config/firebase/mentorpalokaj_gmail_com_application_default_credentials.json
+[debug] [2021-11-29T13:51:16.678Z] DEBUG: Setting GAC to /Users/mentor/.config/firebase/mentorpalokaj_gmail_com_application_default_credentials.json
+[debug] [2021-11-29T13:51:16.680Z] > refreshing access token with scopes: []
+[debug] [2021-11-29T13:51:16.680Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-11-29T13:51:16.766Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Mon, 29 Nov 2021 13:51:16 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-11-29T13:51:16.783Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/rocketeer-nft/adminSdkConfig [none]
+[debug] [2021-11-29T13:51:17.001Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/rocketeer-nft/adminSdkConfig 200
+[debug] [2021-11-29T13:51:17.001Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/rocketeer-nft/adminSdkConfig {"projectId":"rocketeer-nft","storageBucket":"rocketeer-nft.appspot.com","locationId":"europe-west"}
+[debug] [2021-11-29T13:51:17.029Z] [functions] Watching "/Users/mentor/dev/rocketeer-nft/functions" for Cloud Functions...
+[debug] [2021-11-29T13:51:17.039Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:51:17.040Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2021-11-29T13:51:17.040Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:51:17.040Z] DEBUG: [worker-~diagnostic~-955569ea-8a3b-48b0-94bc-1a0db7286223]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_4794.sock
+[debug] [2021-11-29T13:51:17.040Z] DEBUG: [worker-~diagnostic~-955569ea-8a3b-48b0-94bc-1a0db7286223]: BUSY
+[debug] [2021-11-29T13:51:17.174Z] DEBUG: [runtime-status] [4794] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:51:17.175Z] DEBUG: [runtime-status] [4794] Disabled runtime features: undefined
+[debug] [2021-11-29T13:51:17.179Z] DEBUG: [runtime-status] [4794] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:17.181Z] DEBUG: [runtime-status] [4794] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:17.181Z] DEBUG: [runtime-status] [4794] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:51:17.182Z] DEBUG: [runtime-status] [4794] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:17.183Z] DEBUG: [runtime-status] [4794] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:51:17.184Z] DEBUG: [runtime-status] [4794] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:17.229Z] DEBUG: [runtime-status] [4794] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:51:17.229Z] DEBUG: [runtime-status] [4794] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:51:17.229Z] DEBUG: [runtime-status] [4794] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:17.232Z] DEBUG: [runtime-status] [4794] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:17.232Z] DEBUG: [runtime-status] [4794] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:17.232Z] DEBUG: [runtime-status] [4794] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:51:18.621Z] [functions[testnetMetadata]] http function initialized (http://localhost:5000/rocketeer-nft/us-central1/testnetMetadata).
+[debug] [2021-11-29T13:51:18.622Z] [functions[mainnetMetadata]] http function initialized (http://localhost:5000/rocketeer-nft/us-central1/mainnetMetadata).
+[debug] [2021-11-29T13:51:18.622Z] [functions[refreshOpensea]] http function initialized (http://localhost:5000/rocketeer-nft/us-central1/refreshOpensea).
+[info] i  functions: Loaded functions: testnetMetadata, mainnetMetadata, refreshOpensea 
+[warn] ⚠  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub 
+[debug] [2021-11-29T13:51:18.630Z] DEBUG: [worker-~diagnostic~-955569ea-8a3b-48b0-94bc-1a0db7286223]: IDLE
+[debug] [2021-11-29T13:51:23.489Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-11-29T13:51:23.489Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-11-29T13:51:23.490Z] Accepted request POST /rocketeer-nft/us-central1/refreshOpensea --> refreshOpensea
+[debug] [2021-11-29T13:51:23.497Z] DEBUG: [worker-pool] addWorker(refreshOpensea)
+[debug] [2021-11-29T13:51:23.497Z] DEBUG: [worker-pool] Adding worker with key refreshOpensea, total=1
+[debug] [2021-11-29T13:51:23.497Z] DEBUG: [worker-pool] submitWork(triggerId=refreshOpensea)
+[debug] [2021-11-29T13:51:23.497Z] DEBUG: [worker-refreshOpensea-f408e628-f0d9-4a04-88dc-5863f6be8780]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_4987.sock
+[debug] [2021-11-29T13:51:23.498Z] DEBUG: [worker-refreshOpensea-f408e628-f0d9-4a04-88dc-5863f6be8780]: BUSY
+[debug] [2021-11-29T13:51:23.632Z] DEBUG: [runtime-status] [4987] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:51:23.633Z] DEBUG: [runtime-status] [4987] Disabled runtime features: undefined
+[debug] [2021-11-29T13:51:23.637Z] DEBUG: [runtime-status] [4987] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:23.638Z] DEBUG: [runtime-status] [4987] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:23.638Z] DEBUG: [runtime-status] [4987] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:51:23.639Z] DEBUG: [runtime-status] [4987] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:23.640Z] DEBUG: [runtime-status] [4987] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:51:23.641Z] DEBUG: [runtime-status] [4987] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:23.676Z] DEBUG: [runtime-status] [4987] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:51:23.676Z] DEBUG: [runtime-status] [4987] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:51:23.676Z] DEBUG: [runtime-status] [4987] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:23.679Z] DEBUG: [runtime-status] [4987] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:23.679Z] DEBUG: [runtime-status] [4987] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:23.680Z] DEBUG: [runtime-status] [4987] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:51:24.696Z] DEBUG: [runtime-status] [4987] Trigger "refreshOpensea" has been found, beginning invocation!
+[debug] [2021-11-29T13:51:24.696Z] [functions] Beginning execution of "refreshOpensea"
+[debug] [2021-11-29T13:51:24.696Z] DEBUG: [runtime-status] [4987] triggerDefinition {"labels":{"deployment-callable":"true"},"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"refreshOpensea","entryPoint":"refreshOpensea"}
+[debug] [2021-11-29T13:51:24.696Z] DEBUG: [runtime-status] [4987] Running refreshOpensea in mode HTTPS
+[debug] [2021-11-29T13:51:24.699Z] DEBUG: [runtime-status] [4987] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_4987.sock
+[debug] [2021-11-29T13:51:24.703Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-11-29T13:51:24.704Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/refreshOpensea, mapping to path=/
+[debug] [2021-11-29T13:51:25.713Z] DEBUG: [runtime-status] [4987] Ephemeral server handling POST request
+[debug] [2021-11-29T13:51:25.713Z] DEBUG: [runtime-status] [4987] No callable functions auth found
+[info] >  {"verifications":{"app":"MISSING","auth":"MISSING"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"INFO","message":"Callable request verification passed"} {"user":{"verifications":{"app":"MISSING","auth":"MISSING"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"INFO","message":"Callable request verification passed"},"metadata":{"emulator":{"name":"functions"},"function":{"name":"refreshOpensea"},"message":"\u001b[90m> \u001b[39m {\"verifications\":{\"app\":\"MISSING\",\"auth\":\"MISSING\"},\"logging.googleapis.com/labels\":{\"firebase-log-type\":\"callable-request-verification\"},\"severity\":\"INFO\",\"message\":\"Callable request verification passed\"}"}}
+[debug] [2021-11-29T13:51:37.642Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/pre-debug.png changed, reloading triggers
+[debug] [2021-11-29T13:51:38.646Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:51:38.647Z] DEBUG: [worker-~diagnostic~-955569ea-8a3b-48b0-94bc-1a0db7286223]: FINISHING
+[debug] [2021-11-29T13:51:38.647Z] DEBUG: [worker-pool] Marking BUSY worker to finish (refreshOpensea)
+[debug] [2021-11-29T13:51:38.647Z] DEBUG: [worker-refreshOpensea-f408e628-f0d9-4a04-88dc-5863f6be8780]: FINISHING
+[debug] [2021-11-29T13:51:38.657Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:51:38.659Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:51:38.659Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:51:38.659Z] DEBUG: [worker-~diagnostic~-867b4754-76fa-41af-acc8-e9ec57a45d0c]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_5496.sock
+[debug] [2021-11-29T13:51:38.659Z] DEBUG: [worker-~diagnostic~-867b4754-76fa-41af-acc8-e9ec57a45d0c]: BUSY
+[debug] [2021-11-29T13:51:38.661Z] DEBUG: [worker-~diagnostic~-955569ea-8a3b-48b0-94bc-1a0db7286223]: exited
+[debug] [2021-11-29T13:51:38.661Z] DEBUG: [worker-~diagnostic~-955569ea-8a3b-48b0-94bc-1a0db7286223]: FINISHED
+[debug] [2021-11-29T13:51:38.831Z] DEBUG: [runtime-status] [5496] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:51:38.832Z] DEBUG: [runtime-status] [5496] Disabled runtime features: undefined
+[debug] [2021-11-29T13:51:38.836Z] DEBUG: [runtime-status] [5496] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:38.837Z] DEBUG: [runtime-status] [5496] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:38.838Z] DEBUG: [runtime-status] [5496] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:51:38.838Z] DEBUG: [runtime-status] [5496] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:38.840Z] DEBUG: [runtime-status] [5496] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:51:38.840Z] DEBUG: [runtime-status] [5496] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:38.888Z] DEBUG: [runtime-status] [5496] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:51:38.888Z] DEBUG: [runtime-status] [5496] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:51:38.888Z] DEBUG: [runtime-status] [5496] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:38.891Z] DEBUG: [runtime-status] [5496] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:38.891Z] DEBUG: [runtime-status] [5496] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:38.891Z] DEBUG: [runtime-status] [5496] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:51:40.306Z] DEBUG: [worker-~diagnostic~-867b4754-76fa-41af-acc8-e9ec57a45d0c]: IDLE
+[debug] [2021-11-29T13:51:43.823Z] DEBUG: [runtime-status] [4987] Ephemeral server survived.
+[debug] [2021-11-29T13:51:43.824Z] [functions] Finished "refreshOpensea" in ~19s
+[debug] [2021-11-29T13:51:43.824Z] DEBUG: [worker-refreshOpensea-f408e628-f0d9-4a04-88dc-5863f6be8780]: IDLE --> FINISHING
+[debug] [2021-11-29T13:51:43.843Z] DEBUG: [worker-refreshOpensea-f408e628-f0d9-4a04-88dc-5863f6be8780]: exited
+[debug] [2021-11-29T13:51:43.843Z] DEBUG: [worker-refreshOpensea-f408e628-f0d9-4a04-88dc-5863f6be8780]: FINISHED
+[debug] [2021-11-29T13:51:43.843Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-11-29T13:51:50.412Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/integrations/opensea.js changed, reloading triggers
+[debug] [2021-11-29T13:51:51.414Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:51:51.414Z] DEBUG: [worker-~diagnostic~-867b4754-76fa-41af-acc8-e9ec57a45d0c]: FINISHING
+[debug] [2021-11-29T13:51:51.414Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:51:51.414Z] DEBUG: [worker-pool] Cleaned up workers for refreshOpensea: 1 --> 0
+[debug] [2021-11-29T13:51:51.420Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:51:51.422Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:51:51.422Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:51:51.423Z] DEBUG: [worker-~diagnostic~-ec8d585d-8304-42e3-b3f1-4fdd08b8f73a]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_5980.sock
+[debug] [2021-11-29T13:51:51.423Z] DEBUG: [worker-~diagnostic~-ec8d585d-8304-42e3-b3f1-4fdd08b8f73a]: BUSY
+[debug] [2021-11-29T13:51:51.424Z] DEBUG: [worker-~diagnostic~-867b4754-76fa-41af-acc8-e9ec57a45d0c]: exited
+[debug] [2021-11-29T13:51:51.424Z] DEBUG: [worker-~diagnostic~-867b4754-76fa-41af-acc8-e9ec57a45d0c]: FINISHED
+[debug] [2021-11-29T13:51:51.582Z] DEBUG: [runtime-status] [5980] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:51:51.583Z] DEBUG: [runtime-status] [5980] Disabled runtime features: undefined
+[debug] [2021-11-29T13:51:51.587Z] DEBUG: [runtime-status] [5980] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:51.588Z] DEBUG: [runtime-status] [5980] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:51.588Z] DEBUG: [runtime-status] [5980] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:51:51.589Z] DEBUG: [runtime-status] [5980] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:51.591Z] DEBUG: [runtime-status] [5980] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:51:51.591Z] DEBUG: [runtime-status] [5980] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:51.628Z] DEBUG: [runtime-status] [5980] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:51:51.628Z] DEBUG: [runtime-status] [5980] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:51:51.628Z] DEBUG: [runtime-status] [5980] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:51.631Z] DEBUG: [runtime-status] [5980] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:51.631Z] DEBUG: [runtime-status] [5980] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:51.631Z] DEBUG: [runtime-status] [5980] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:51:52.701Z] DEBUG: [worker-~diagnostic~-ec8d585d-8304-42e3-b3f1-4fdd08b8f73a]: IDLE
+[debug] [2021-11-29T13:51:54.166Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2021-11-29T13:51:54.166Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2021-11-29T13:51:54.166Z] Accepted request POST /rocketeer-nft/us-central1/refreshOpensea --> refreshOpensea
+[debug] [2021-11-29T13:51:54.166Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:51:54.172Z] DEBUG: [worker-pool] addWorker(refreshOpensea)
+[debug] [2021-11-29T13:51:54.173Z] DEBUG: [worker-pool] Adding worker with key refreshOpensea, total=1
+[debug] [2021-11-29T13:51:54.173Z] DEBUG: [worker-pool] submitWork(triggerId=refreshOpensea)
+[debug] [2021-11-29T13:51:54.173Z] DEBUG: [worker-refreshOpensea-52122550-9ad3-4eec-9381-7841a2551adc]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_6079.sock
+[debug] [2021-11-29T13:51:54.173Z] DEBUG: [worker-refreshOpensea-52122550-9ad3-4eec-9381-7841a2551adc]: BUSY
+[debug] [2021-11-29T13:51:54.367Z] DEBUG: [runtime-status] [6079] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:51:54.368Z] DEBUG: [runtime-status] [6079] Disabled runtime features: undefined
+[debug] [2021-11-29T13:51:54.372Z] DEBUG: [runtime-status] [6079] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:54.374Z] DEBUG: [runtime-status] [6079] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:54.374Z] DEBUG: [runtime-status] [6079] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:51:54.375Z] DEBUG: [runtime-status] [6079] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:54.376Z] DEBUG: [runtime-status] [6079] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:51:54.377Z] DEBUG: [runtime-status] [6079] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:54.413Z] DEBUG: [runtime-status] [6079] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:51:54.413Z] DEBUG: [runtime-status] [6079] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:51:54.413Z] DEBUG: [runtime-status] [6079] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:54.416Z] DEBUG: [runtime-status] [6079] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:51:54.417Z] DEBUG: [runtime-status] [6079] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:51:54.417Z] DEBUG: [runtime-status] [6079] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:51:55.421Z] DEBUG: [runtime-status] [6079] Trigger "refreshOpensea" has been found, beginning invocation!
+[debug] [2021-11-29T13:51:55.422Z] [functions] Beginning execution of "refreshOpensea"
+[debug] [2021-11-29T13:51:55.422Z] DEBUG: [runtime-status] [6079] triggerDefinition {"labels":{"deployment-callable":"true"},"timeout":"540s","availableMemoryMb":4096,"httpsTrigger":{},"name":"refreshOpensea","entryPoint":"refreshOpensea"}
+[debug] [2021-11-29T13:51:55.422Z] DEBUG: [runtime-status] [6079] Running refreshOpensea in mode HTTPS
+[debug] [2021-11-29T13:51:55.424Z] DEBUG: [runtime-status] [6079] Attempting to listen to socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_6079.sock
+[debug] [2021-11-29T13:51:55.429Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2021-11-29T13:51:55.429Z] DEBUG: [functions] Got req.url=/rocketeer-nft/us-central1/refreshOpensea, mapping to path=/
+[debug] [2021-11-29T13:51:56.440Z] DEBUG: [runtime-status] [6079] Ephemeral server handling POST request
+[debug] [2021-11-29T13:51:56.440Z] DEBUG: [runtime-status] [6079] No callable functions auth found
+[info] >  {"verifications":{"app":"MISSING","auth":"MISSING"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"INFO","message":"Callable request verification passed"} {"user":{"verifications":{"app":"MISSING","auth":"MISSING"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"INFO","message":"Callable request verification passed"},"metadata":{"emulator":{"name":"functions"},"function":{"name":"refreshOpensea"},"message":"\u001b[90m> \u001b[39m {\"verifications\":{\"app\":\"MISSING\",\"auth\":\"MISSING\"},\"logging.googleapis.com/labels\":{\"firebase-log-type\":\"callable-request-verification\"},\"severity\":\"INFO\",\"message\":\"Callable request verification passed\"}"}}
+[debug] [2021-11-29T13:52:02.559Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/pre-debug.png changed, reloading triggers
+[debug] [2021-11-29T13:52:03.561Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:52:03.561Z] DEBUG: [worker-~diagnostic~-ec8d585d-8304-42e3-b3f1-4fdd08b8f73a]: FINISHING
+[debug] [2021-11-29T13:52:03.561Z] DEBUG: [worker-pool] Marking BUSY worker to finish (refreshOpensea)
+[debug] [2021-11-29T13:52:03.561Z] DEBUG: [worker-refreshOpensea-52122550-9ad3-4eec-9381-7841a2551adc]: FINISHING
+[debug] [2021-11-29T13:52:03.568Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:52:03.570Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:52:03.570Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:52:03.570Z] DEBUG: [worker-~diagnostic~-f5c585bf-3293-452e-b611-f949ea8d47f6]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_6379.sock
+[debug] [2021-11-29T13:52:03.570Z] DEBUG: [worker-~diagnostic~-f5c585bf-3293-452e-b611-f949ea8d47f6]: BUSY
+[debug] [2021-11-29T13:52:03.573Z] DEBUG: [worker-~diagnostic~-ec8d585d-8304-42e3-b3f1-4fdd08b8f73a]: exited
+[debug] [2021-11-29T13:52:03.573Z] DEBUG: [worker-~diagnostic~-ec8d585d-8304-42e3-b3f1-4fdd08b8f73a]: FINISHED
+[debug] [2021-11-29T13:52:03.574Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/debug.png changed, reloading triggers
+[debug] [2021-11-29T13:52:03.714Z] DEBUG: [runtime-status] [6379] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:52:03.715Z] DEBUG: [runtime-status] [6379] Disabled runtime features: undefined
+[debug] [2021-11-29T13:52:03.719Z] DEBUG: [runtime-status] [6379] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:52:03.720Z] DEBUG: [runtime-status] [6379] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:03.720Z] DEBUG: [runtime-status] [6379] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:52:03.721Z] DEBUG: [runtime-status] [6379] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:03.722Z] DEBUG: [runtime-status] [6379] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:52:03.723Z] DEBUG: [runtime-status] [6379] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:03.758Z] DEBUG: [runtime-status] [6379] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:52:03.758Z] DEBUG: [runtime-status] [6379] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:52:03.759Z] DEBUG: [runtime-status] [6379] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:03.762Z] DEBUG: [runtime-status] [6379] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:52:03.762Z] DEBUG: [runtime-status] [6379] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:03.762Z] DEBUG: [runtime-status] [6379] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:52:04.578Z] DEBUG: [worker-pool] Marking BUSY worker to finish (~diagnostic~)
+[debug] [2021-11-29T13:52:04.578Z] DEBUG: [worker-~diagnostic~-f5c585bf-3293-452e-b611-f949ea8d47f6]: FINISHING
+[debug] [2021-11-29T13:52:04.578Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:52:04.584Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:52:04.585Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:52:04.585Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:52:04.585Z] DEBUG: [worker-~diagnostic~-2cbb0c80-2225-474b-9a5b-cfd6d4d7f235]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_6425.sock
+[debug] [2021-11-29T13:52:04.585Z] DEBUG: [worker-~diagnostic~-2cbb0c80-2225-474b-9a5b-cfd6d4d7f235]: BUSY
+[debug] [2021-11-29T13:52:04.727Z] DEBUG: [runtime-status] [6425] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:52:04.728Z] DEBUG: [runtime-status] [6425] Disabled runtime features: undefined
+[debug] [2021-11-29T13:52:04.731Z] DEBUG: [runtime-status] [6425] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:52:04.733Z] DEBUG: [runtime-status] [6425] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:04.733Z] DEBUG: [runtime-status] [6425] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:52:04.734Z] DEBUG: [runtime-status] [6425] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:04.735Z] DEBUG: [runtime-status] [6425] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:52:04.736Z] DEBUG: [runtime-status] [6425] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:04.772Z] DEBUG: [runtime-status] [6425] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:52:04.773Z] DEBUG: [runtime-status] [6425] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:52:04.773Z] DEBUG: [runtime-status] [6425] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:04.774Z] DEBUG: [runtime-status] [6425] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:52:04.779Z] DEBUG: [runtime-status] [6425] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:04.779Z] DEBUG: [runtime-status] [6425] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:52:04.819Z] DEBUG: [worker-~diagnostic~-f5c585bf-3293-452e-b611-f949ea8d47f6]: IDLE --> FINISHING
+[debug] [2021-11-29T13:52:04.829Z] DEBUG: [worker-~diagnostic~-f5c585bf-3293-452e-b611-f949ea8d47f6]: exited
+[debug] [2021-11-29T13:52:04.829Z] DEBUG: [worker-~diagnostic~-f5c585bf-3293-452e-b611-f949ea8d47f6]: FINISHED
+[debug] [2021-11-29T13:52:05.818Z] DEBUG: [worker-~diagnostic~-2cbb0c80-2225-474b-9a5b-cfd6d4d7f235]: IDLE
+[debug] [2021-11-29T13:52:08.822Z] DEBUG: [runtime-status] [6079] Ephemeral server survived.
+[debug] [2021-11-29T13:52:08.822Z] [functions] Finished "refreshOpensea" in ~13s
+[debug] [2021-11-29T13:52:08.822Z] DEBUG: [worker-refreshOpensea-52122550-9ad3-4eec-9381-7841a2551adc]: IDLE --> FINISHING
+[debug] [2021-11-29T13:52:08.832Z] DEBUG: [worker-refreshOpensea-52122550-9ad3-4eec-9381-7841a2551adc]: exited
+[debug] [2021-11-29T13:52:08.832Z] DEBUG: [worker-refreshOpensea-52122550-9ad3-4eec-9381-7841a2551adc]: FINISHED
+[debug] [2021-11-29T13:52:08.832Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2021-11-29T13:52:08.889Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/debug-timeout.png changed, reloading triggers
+[debug] [2021-11-29T13:52:09.895Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:52:09.895Z] DEBUG: [worker-~diagnostic~-2cbb0c80-2225-474b-9a5b-cfd6d4d7f235]: FINISHING
+[debug] [2021-11-29T13:52:09.895Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:52:09.895Z] DEBUG: [worker-pool] Cleaned up workers for refreshOpensea: 1 --> 0
+[debug] [2021-11-29T13:52:09.904Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:52:09.905Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:52:09.905Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:52:09.905Z] DEBUG: [worker-~diagnostic~-22d88933-e8bf-4043-82cb-77dd8835b6d1]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_6571.sock
+[debug] [2021-11-29T13:52:09.905Z] DEBUG: [worker-~diagnostic~-22d88933-e8bf-4043-82cb-77dd8835b6d1]: BUSY
+[debug] [2021-11-29T13:52:09.906Z] DEBUG: [worker-~diagnostic~-2cbb0c80-2225-474b-9a5b-cfd6d4d7f235]: exited
+[debug] [2021-11-29T13:52:09.907Z] DEBUG: [worker-~diagnostic~-2cbb0c80-2225-474b-9a5b-cfd6d4d7f235]: FINISHED
+[debug] [2021-11-29T13:52:10.043Z] DEBUG: [runtime-status] [6571] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:52:10.044Z] DEBUG: [runtime-status] [6571] Disabled runtime features: undefined
+[debug] [2021-11-29T13:52:10.048Z] DEBUG: [runtime-status] [6571] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:52:10.049Z] DEBUG: [runtime-status] [6571] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:10.050Z] DEBUG: [runtime-status] [6571] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:52:10.050Z] DEBUG: [runtime-status] [6571] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:10.052Z] DEBUG: [runtime-status] [6571] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:52:10.052Z] DEBUG: [runtime-status] [6571] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:10.088Z] DEBUG: [runtime-status] [6571] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:52:10.088Z] DEBUG: [runtime-status] [6571] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:52:10.088Z] DEBUG: [runtime-status] [6571] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:10.091Z] DEBUG: [runtime-status] [6571] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:52:10.092Z] DEBUG: [runtime-status] [6571] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:52:10.092Z] DEBUG: [runtime-status] [6571] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:52:11.205Z] DEBUG: [worker-~diagnostic~-22d88933-e8bf-4043-82cb-77dd8835b6d1]: IDLE
+[debug] [2021-11-29T13:53:04.292Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/nft-media/rocketeer.js changed, reloading triggers
+[debug] [2021-11-29T13:53:05.298Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:53:05.298Z] DEBUG: [worker-~diagnostic~-22d88933-e8bf-4043-82cb-77dd8835b6d1]: FINISHING
+[debug] [2021-11-29T13:53:05.298Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:53:05.306Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:53:05.308Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:53:05.308Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:53:05.308Z] DEBUG: [worker-~diagnostic~-500c3e65-0f14-401e-a981-c8e3fc3421ac]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_8410.sock
+[debug] [2021-11-29T13:53:05.308Z] DEBUG: [worker-~diagnostic~-500c3e65-0f14-401e-a981-c8e3fc3421ac]: BUSY
+[debug] [2021-11-29T13:53:05.309Z] DEBUG: [worker-~diagnostic~-22d88933-e8bf-4043-82cb-77dd8835b6d1]: exited
+[debug] [2021-11-29T13:53:05.309Z] DEBUG: [worker-~diagnostic~-22d88933-e8bf-4043-82cb-77dd8835b6d1]: FINISHED
+[debug] [2021-11-29T13:53:05.452Z] DEBUG: [runtime-status] [8410] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:53:05.454Z] DEBUG: [runtime-status] [8410] Disabled runtime features: undefined
+[debug] [2021-11-29T13:53:05.457Z] DEBUG: [runtime-status] [8410] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:53:05.459Z] DEBUG: [runtime-status] [8410] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:05.459Z] DEBUG: [runtime-status] [8410] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:53:05.460Z] DEBUG: [runtime-status] [8410] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:05.461Z] DEBUG: [runtime-status] [8410] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:53:05.461Z] DEBUG: [runtime-status] [8410] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:05.498Z] DEBUG: [runtime-status] [8410] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:53:05.499Z] DEBUG: [runtime-status] [8410] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:53:05.499Z] DEBUG: [runtime-status] [8410] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:05.500Z] DEBUG: [runtime-status] [8410] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:53:05.503Z] DEBUG: [runtime-status] [8410] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:05.503Z] DEBUG: [runtime-status] [8410] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:53:06.583Z] DEBUG: [worker-~diagnostic~-500c3e65-0f14-401e-a981-c8e3fc3421ac]: IDLE
+[debug] [2021-11-29T13:53:22.377Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/integrations/opensea.js changed, reloading triggers
+[debug] [2021-11-29T13:53:23.379Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:53:23.379Z] DEBUG: [worker-~diagnostic~-500c3e65-0f14-401e-a981-c8e3fc3421ac]: FINISHING
+[debug] [2021-11-29T13:53:23.380Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:53:23.388Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:53:23.390Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:53:23.390Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:53:23.390Z] DEBUG: [worker-~diagnostic~-c2703dbc-52ca-484f-a116-81e987c03ea1]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_8989.sock
+[debug] [2021-11-29T13:53:23.390Z] DEBUG: [worker-~diagnostic~-c2703dbc-52ca-484f-a116-81e987c03ea1]: BUSY
+[debug] [2021-11-29T13:53:23.391Z] DEBUG: [worker-~diagnostic~-500c3e65-0f14-401e-a981-c8e3fc3421ac]: exited
+[debug] [2021-11-29T13:53:23.391Z] DEBUG: [worker-~diagnostic~-500c3e65-0f14-401e-a981-c8e3fc3421ac]: FINISHED
+[debug] [2021-11-29T13:53:23.529Z] DEBUG: [runtime-status] [8989] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:53:23.530Z] DEBUG: [runtime-status] [8989] Disabled runtime features: undefined
+[debug] [2021-11-29T13:53:23.534Z] DEBUG: [runtime-status] [8989] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:53:23.535Z] DEBUG: [runtime-status] [8989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:23.535Z] DEBUG: [runtime-status] [8989] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:53:23.536Z] DEBUG: [runtime-status] [8989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:23.537Z] DEBUG: [runtime-status] [8989] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:53:23.538Z] DEBUG: [runtime-status] [8989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:23.573Z] DEBUG: [runtime-status] [8989] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:53:23.573Z] DEBUG: [runtime-status] [8989] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:53:23.573Z] DEBUG: [runtime-status] [8989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:23.576Z] DEBUG: [runtime-status] [8989] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:53:23.576Z] DEBUG: [runtime-status] [8989] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:53:23.576Z] DEBUG: [runtime-status] [8989] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:53:24.633Z] DEBUG: [worker-~diagnostic~-c2703dbc-52ca-484f-a116-81e987c03ea1]: IDLE
+[debug] [2021-11-29T13:53:59.379Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/integrations/opensea.js changed, reloading triggers
+[debug] [2021-11-29T13:54:00.384Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:54:00.384Z] DEBUG: [worker-~diagnostic~-c2703dbc-52ca-484f-a116-81e987c03ea1]: FINISHING
+[debug] [2021-11-29T13:54:00.384Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:54:00.393Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:54:00.394Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:54:00.394Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:54:00.394Z] DEBUG: [worker-~diagnostic~-98c239f3-1752-4fb2-8f02-5817640696d2]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_10243.sock
+[debug] [2021-11-29T13:54:00.394Z] DEBUG: [worker-~diagnostic~-98c239f3-1752-4fb2-8f02-5817640696d2]: BUSY
+[debug] [2021-11-29T13:54:00.396Z] DEBUG: [worker-~diagnostic~-c2703dbc-52ca-484f-a116-81e987c03ea1]: exited
+[debug] [2021-11-29T13:54:00.396Z] DEBUG: [worker-~diagnostic~-c2703dbc-52ca-484f-a116-81e987c03ea1]: FINISHED
+[debug] [2021-11-29T13:54:00.543Z] DEBUG: [runtime-status] [10243] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:54:00.545Z] DEBUG: [runtime-status] [10243] Disabled runtime features: undefined
+[debug] [2021-11-29T13:54:00.549Z] DEBUG: [runtime-status] [10243] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:54:00.550Z] DEBUG: [runtime-status] [10243] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:00.550Z] DEBUG: [runtime-status] [10243] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:54:00.551Z] DEBUG: [runtime-status] [10243] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:00.552Z] DEBUG: [runtime-status] [10243] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:54:00.553Z] DEBUG: [runtime-status] [10243] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:00.593Z] DEBUG: [runtime-status] [10243] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:54:00.593Z] DEBUG: [runtime-status] [10243] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:54:00.594Z] DEBUG: [runtime-status] [10243] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:00.595Z] DEBUG: [runtime-status] [10243] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:54:00.595Z] DEBUG: [runtime-status] [10243] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:00.597Z] DEBUG: [runtime-status] [10243] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:54:01.705Z] DEBUG: [worker-~diagnostic~-98c239f3-1752-4fb2-8f02-5817640696d2]: IDLE
+[debug] [2021-11-29T13:54:05.899Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/index.js changed, reloading triggers
+[debug] [2021-11-29T13:54:06.901Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:54:06.902Z] DEBUG: [worker-~diagnostic~-98c239f3-1752-4fb2-8f02-5817640696d2]: FINISHING
+[debug] [2021-11-29T13:54:06.902Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:54:06.908Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:54:06.909Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:54:06.909Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:54:06.909Z] DEBUG: [worker-~diagnostic~-917542ae-c835-4ceb-b732-8d995c0d93d8]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_10467.sock
+[debug] [2021-11-29T13:54:06.910Z] DEBUG: [worker-~diagnostic~-917542ae-c835-4ceb-b732-8d995c0d93d8]: BUSY
+[debug] [2021-11-29T13:54:06.911Z] DEBUG: [worker-~diagnostic~-98c239f3-1752-4fb2-8f02-5817640696d2]: exited
+[debug] [2021-11-29T13:54:06.911Z] DEBUG: [worker-~diagnostic~-98c239f3-1752-4fb2-8f02-5817640696d2]: FINISHED
+[debug] [2021-11-29T13:54:07.059Z] DEBUG: [runtime-status] [10467] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:54:07.060Z] DEBUG: [runtime-status] [10467] Disabled runtime features: undefined
+[debug] [2021-11-29T13:54:07.063Z] DEBUG: [runtime-status] [10467] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:54:07.064Z] DEBUG: [runtime-status] [10467] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:07.065Z] DEBUG: [runtime-status] [10467] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:54:07.065Z] DEBUG: [runtime-status] [10467] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:07.067Z] DEBUG: [runtime-status] [10467] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:54:07.068Z] DEBUG: [runtime-status] [10467] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:07.106Z] DEBUG: [runtime-status] [10467] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:54:07.106Z] DEBUG: [runtime-status] [10467] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:54:07.107Z] DEBUG: [runtime-status] [10467] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:07.107Z] DEBUG: [runtime-status] [10467] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:54:07.108Z] DEBUG: [runtime-status] [10467] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:07.108Z] DEBUG: [runtime-status] [10467] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:54:08.176Z] DEBUG: [worker-~diagnostic~-917542ae-c835-4ceb-b732-8d995c0d93d8]: IDLE
+[debug] [2021-11-29T13:54:13.401Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/integrations/opensea.js changed, reloading triggers
+[debug] [2021-11-29T13:54:14.404Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:54:14.404Z] DEBUG: [worker-~diagnostic~-917542ae-c835-4ceb-b732-8d995c0d93d8]: FINISHING
+[debug] [2021-11-29T13:54:14.404Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:54:14.412Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:54:14.413Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:54:14.413Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:54:14.413Z] DEBUG: [worker-~diagnostic~-1c9a9909-2014-4d29-8afc-5fb6012fc70d]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_10726.sock
+[debug] [2021-11-29T13:54:14.413Z] DEBUG: [worker-~diagnostic~-1c9a9909-2014-4d29-8afc-5fb6012fc70d]: BUSY
+[debug] [2021-11-29T13:54:14.414Z] DEBUG: [worker-~diagnostic~-917542ae-c835-4ceb-b732-8d995c0d93d8]: exited
+[debug] [2021-11-29T13:54:14.414Z] DEBUG: [worker-~diagnostic~-917542ae-c835-4ceb-b732-8d995c0d93d8]: FINISHED
+[debug] [2021-11-29T13:54:14.567Z] DEBUG: [runtime-status] [10726] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:54:14.568Z] DEBUG: [runtime-status] [10726] Disabled runtime features: undefined
+[debug] [2021-11-29T13:54:14.571Z] DEBUG: [runtime-status] [10726] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:54:14.572Z] DEBUG: [runtime-status] [10726] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:14.573Z] DEBUG: [runtime-status] [10726] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:54:14.576Z] DEBUG: [runtime-status] [10726] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:14.576Z] DEBUG: [runtime-status] [10726] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:54:14.576Z] DEBUG: [runtime-status] [10726] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:14.614Z] DEBUG: [runtime-status] [10726] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:54:14.614Z] DEBUG: [runtime-status] [10726] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:54:14.614Z] DEBUG: [runtime-status] [10726] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:14.615Z] DEBUG: [runtime-status] [10726] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:54:14.617Z] DEBUG: [runtime-status] [10726] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:14.618Z] DEBUG: [runtime-status] [10726] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:54:15.676Z] DEBUG: [worker-~diagnostic~-1c9a9909-2014-4d29-8afc-5fb6012fc70d]: IDLE
+[debug] [2021-11-29T13:54:18.105Z] DEBUG: File /Users/mentor/dev/rocketeer-nft/functions/integrations/opensea.js changed, reloading triggers
+[debug] [2021-11-29T13:54:19.111Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2021-11-29T13:54:19.111Z] DEBUG: [worker-~diagnostic~-1c9a9909-2014-4d29-8afc-5fb6012fc70d]: FINISHING
+[debug] [2021-11-29T13:54:19.111Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2021-11-29T13:54:19.126Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2021-11-29T13:54:19.127Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2021-11-29T13:54:19.127Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2021-11-29T13:54:19.127Z] DEBUG: [worker-~diagnostic~-9a6400ca-8655-45b5-9d84-6aa03d29e9ab]: Assigning socketPath: /var/folders/px/qc_bkgpd79n7vssdnpwhqbs00000gn/T/fire_emu_10870.sock
+[debug] [2021-11-29T13:54:19.127Z] DEBUG: [worker-~diagnostic~-9a6400ca-8655-45b5-9d84-6aa03d29e9ab]: BUSY
+[debug] [2021-11-29T13:54:19.129Z] DEBUG: [worker-~diagnostic~-1c9a9909-2014-4d29-8afc-5fb6012fc70d]: exited
+[debug] [2021-11-29T13:54:19.129Z] DEBUG: [worker-~diagnostic~-1c9a9909-2014-4d29-8afc-5fb6012fc70d]: FINISHED
+[debug] [2021-11-29T13:54:19.316Z] DEBUG: [runtime-status] [10870] Functions runtime initialized. {"cwd":"/Users/mentor/dev/rocketeer-nft/functions","node_version":"12.20.1"}
+[debug] [2021-11-29T13:54:19.317Z] DEBUG: [runtime-status] [10870] Disabled runtime features: undefined
+[debug] [2021-11-29T13:54:19.320Z] DEBUG: [runtime-status] [10870] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:54:19.321Z] DEBUG: [runtime-status] [10870] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:19.322Z] DEBUG: [runtime-status] [10870] Found local functions config: /Users/mentor/dev/rocketeer-nft/functions/.runtimeconfig.json
+[debug] [2021-11-29T13:54:19.322Z] DEBUG: [runtime-status] [10870] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:19.324Z] DEBUG: [runtime-status] [10870] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2021-11-29T13:54:19.324Z] DEBUG: [runtime-status] [10870] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:19.361Z] DEBUG: [runtime-status] [10870] Checked functions.config() {"config":{"api":{"secret":"Only Mentor should ever manually call this endpoint!"},"infura":{"projectid":"47881c52385944a9b92504e7e975f6ec"},"integration":{"secret":"Only Mentor should ever manually call this endpoint!"}}}
+[debug] [2021-11-29T13:54:19.361Z] DEBUG: [runtime-status] [10870] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2021-11-29T13:54:19.362Z] DEBUG: [runtime-status] [10870] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:19.363Z] DEBUG: [runtime-status] [10870] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2021-11-29T13:54:19.365Z] DEBUG: [runtime-status] [10870] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.15.7","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2021-11-29T13:54:19.365Z] DEBUG: [runtime-status] [10870] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.0.0","resolution":"/Users/mentor/dev/rocketeer-nft/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2021-11-29T13:54:20.052Z] [functions] Stopping Functions Emulator
+[warn] ⚠  Your function was killed because it raised an unhandled error. {"metadata":{"emulator":{"name":"functions"},"message":"Your function was killed because it raised an unhandled error."}}
+[debug] [2021-11-29T13:54:20.061Z] DEBUG: [worker-~diagnostic~-9a6400ca-8655-45b5-9d84-6aa03d29e9ab]: exited
+[debug] [2021-11-29T13:54:20.061Z] DEBUG: [worker-~diagnostic~-9a6400ca-8655-45b5-9d84-6aa03d29e9ab]: FINISHED
