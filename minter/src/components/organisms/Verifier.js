@@ -1,9 +1,11 @@
-import { Container } from './generic'
-import '../App.css'
+import Container from '../atoms/Container'
+import { H1, Text } from '../atoms/Text'
+import Button from '../atoms/Button'
+import Input from '../molecules/Input'
 
 import { useState, useEffect } from 'react'
-import { log } from '../modules/helpers'
-import { useAddress, useChainId, useBalanceOf } from '../modules/web3'
+import { log } from '../../modules/helpers'
+import { useAddress, useChainId, useBalanceOf } from '../../modules/web3'
 import { useParams } from 'react-router-dom'
 
 export default function Verifier() {
@@ -83,29 +85,29 @@ export default function Verifier() {
 	// ///////////////////////////////
 	log('Rendering with ', message, verifyUrl )
 	if( message ) return <Container>
-		{ message.balance > 0 && <p>✅ { message.username } has { message.balance } Rocketeers on chain { chainId }</p> }
-		{ message.balance < 1 && <p>🛑 Computer says no</p> }
-		{ error && <p>Something went wrong, contact #support in Discord</p> }
+		{ message.balance > 0 && <Text>✅ { message.username } has { message.balance } Rocketeers on chain { chainId }</Text> }
+		{ message.balance < 1 && <Text>🛑 Computer says no</Text> }
+		{ error && <Text>Something went wrong, contact #support in Discord</Text> }
 	</Container>
 
 	if( verifyUrl ) return <Container>
 
-		{ !balance && <p>Checking your on-chain balance...</p> }
+		{ !balance && <Text>Checking your on-chain balance...</Text> }
 		
 		{ balance && <>
-			<h1>Verification URL</h1>
-			<p>Post this in the Discord channel #get-verified:</p>
-			<p>{ verifyUrl }</p>
+			<H1>Verification URL</H1>
+			<Text align="center">Post this in the Discord channel #get-verified:</Text>
+			<Text align="center">{ verifyUrl }</Text>
 		</> }
 
 	</Container>
 
 	return <Container>
 
-		<h1>Verify your hodlr status</h1>
-		<p>Verify your Rocketeer status by logging in with your wallet. This does NOT trigger a transaction. Therefore it is free.</p>
-		<input onChange={ e => setUsername( e.target.value ) } type="text" placeholder="Your Discord username" />
-		<a onClick={ showVerificationUrl } href="/#" className="button">Verify</a>
+		<H1 align="center">Verify your hodlr status</H1>
+		<Text align="center">Verify your Rocketeer status by logging in with your wallet. This does NOT trigger a transaction. Therefore it is free.</Text>
+		<Input onChange={ e => setUsername( e.target.value ) } type="text" placeholder="Your Discord username"/>
+		<Button onClick={ showVerificationUrl }>Verify</Button>
 		
 	</Container>
 }

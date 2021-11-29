@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import { useRocketeers, callApi } from '../../modules/api'
 import { useChainId, useAddress, sign } from '../../modules/web3'
@@ -164,7 +163,7 @@ export default function Verifier() {
 	if( !rocketeers.length || loading ) return <Loading message={ loading || "Loading Rocketeers, please make sure you selected the right wallet" } />
 
 	// Rocketeer selector
-	if(!rocketeer ) return <Container>
+	if(!rocketeer ) return <Container justify="flex-start">
 		
 		<H1>Rocketeers</H1>
 		<Text>Click on a Rocketeer to manage it's outfits</Text>
@@ -184,7 +183,7 @@ export default function Verifier() {
 	</Container>
 
 	// Changing room
-	if( rocketeer ) return <Container gutter={ false }>
+	if( rocketeer ) return <Container justify="flex-start" gutter={ false }>
 		
 		{  /* Header */ }
 		<Hero background={ rocketeer.image } gutter={ true } shadow={ true }>

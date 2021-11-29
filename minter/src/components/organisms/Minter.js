@@ -1,11 +1,15 @@
-import Fox from '../assets/metamask-fox.svg'
-import { Container } from './generic'
-import '../App.css'
+import Fox from '../../assets/metamask-fox.svg'
+
+import Container from '../atoms/Container'
+import { H1, Text } from '../atoms/Text'
+import Button from '../atoms/Button'
+import Input from '../molecules/Input'
+import Loading from '../molecules/Loading'
 
 import { useState, useEffect } from 'react'
 
-import { useAddress, useTotalSupply, useContract, useChainId } from '../modules/web3'
-import { log, setListenerAndReturnUnlistener } from '../modules/helpers'
+import { useAddress, useTotalSupply, useContract, useChainId } from '../../modules/web3'
+import { log, setListenerAndReturnUnlistener } from '../../modules/helpers'
 
 export default function Minter() {
 
@@ -78,21 +82,14 @@ export default function Minter() {
 	// Rendering
 	// ///////////////////////////////
 
-	if( error || loading ) return <Container>
-		{ error && <p>{ error }</p> }
-		{ !error && loading && <div className="loading">
-			
-			<div className="lds-dual-ring"></div>
-			<p>{ loading }</p>
-			{ txHash && <a className="button" rel='noreferrer' target="_blank" href={ `https://${ chainId === '0x1' ? 'etherscan' : 'rinkeby.etherscan' }.io/tx/${ txHash }` }>View tx on Etherscan</a> }
-
-		</div> }
-	</Container>
+	if( error || loading ) return <Loading message={ error || loading }>
+		{ txHash && <Button to={ `https://${ chainId === '0x1' ? 'etherscan' : 'rinkeby.etherscan' }.io/tx/${ txHash }` }>View tx on Etherscan</Button> }
+	</Loading>
 
 	if( mintedTokenId ) return <Container>
 
-			<h1>Minting Successful!</h1>
-			<a className="button" rel="noreferrer" target="_blank" alt="Link to opensea details of Rocketeer" href='/#/portfolio'>View your Rocketeers</a>
+			<H1>Minting Successful!</H1>
+			<Button to='/portfolio'>View your Rocketeers</Button>
 
 	</Container>
 
@@ -100,15 +97,15 @@ export default function Minter() {
 	return (
 		<Container>
 
-				<h1>Rocketeer Minter</h1>
-				<p>We are ready to mint! There are currently { totalSupply } minted Rocketeers.</p>
+				<H1>Rocketeer Minter</H1>
+				<Text>We are ready to mint! There are currently { totalSupply } minted Rocketeers.</Text>
 
-				<label htmlFor='address'>Minting to:</label>
-				<input id='address' value={ address } disabled />
-				{ contract && <a className="button" href="/#" onClick={ mintRocketeer }>
-					<img alt="metamask fox" src={ Fox } />
+
+				<Input label="Minting to:" id="address" value={ address } info="This is the currently selected address in your Metamask" disabled />
+
+				{ contract && <Button icon={ Fox } onClick={ mintRocketeer }>
 					Mint new Rocketeer
-				</a> }
+				</Button> }
 
 
 		</Container>

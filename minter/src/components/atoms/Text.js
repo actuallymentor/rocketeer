@@ -9,6 +9,8 @@ export const Text = styled.p`
 	padding: ${ ( { banner } ) => banner ? '.5rem 1rem' : 'initial' };
 	box-shadow: ${ ( { banner } ) => banner ? '0 0 20px 2px rgb(0 0 0 / 70%)' : '' };
 	text-align: ${ ( { align } ) => align || 'left' };
+	max-width: 90%;
+    overflow-wrap: anywhere;
 `
 
 export const H1 = styled.h1`

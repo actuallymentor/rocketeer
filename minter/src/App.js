@@ -1,4 +1,4 @@
-import { Container } from './components/generic'
+import Container from './components/atoms/Container'
 import { useState, useEffect } from 'react'
 import { HashRouter} from 'react-router-dom'
 import Router from './components/router'
@@ -24,16 +24,11 @@ function App() {
 	// ///////////////////////////////
 	// Rendering
 	// ///////////////////////////////
-	if( error || loading ) return <Theme>
-		<Container>
-			<p>{ error || loading }</p>
-		</Container>
-	</Theme>
 
 	return <Theme>
 		<HashRouter>
 		
-			<Router />
+			{ error || loading ? <Container> <p>{ error || loading }</p> </Container> : <Router /> }
 
 		</HashRouter>
 	</Theme>

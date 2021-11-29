@@ -1,8 +1,8 @@
-import Minter from './minter'
-import Metamask from './metamask'
-import Verifier from './verifier'
-import Avatar from './avatar'
-import Portfolio from './portfolio'
+import Minter from './organisms/Minter'
+import Home from './organisms/Home'
+import Verifier from './organisms/Verifier'
+import Avatar from './organisms/Avatar'
+import Portfolio from './organisms/Portfolio'
 import Outfits from './organisms/Outfits'
 import { useState, useEffect } from 'react'
 import { log } from '../modules/helpers'
@@ -46,7 +46,7 @@ function Router() {
 	// ///////////////////////////////
 	return <Routes>
 			
-		<Route exact path='/' element={ <Metamask /> } />
+		<Route exact path='/' element={ <Home /> } />
 		<Route exact path='/mint' element={ <Minter /> } />
 		<Route path='/verify/' element={ <Verifier /> }>
 			<Route path='/verify/:verificationCode' element={ <Verifier /> } />

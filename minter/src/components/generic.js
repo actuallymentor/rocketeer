@@ -12,11 +12,12 @@ export const Container = ( { className, children, ...props } ) => <main { ...pro
 
 </main>
 
-export const Loading = ( { message } ) => <Container>
+export const Loading = ( { message, children } ) => <Container>
 	<div className="loading">
 			
 		<div className="lds-dual-ring"></div>
 		<p>{ message }</p>
+		{ children }
 
 	</div>
 </Container>

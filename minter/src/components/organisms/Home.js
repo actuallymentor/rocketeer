@@ -1,9 +1,24 @@
-import Fox from '../assets/metamask-fox.svg'
-import { Container, Loading } from './generic'
+// Icons
+import Fox from '../../assets/metamask-fox.svg'
+import Discord from '../../assets/discord-logo-black.svg'
+import Mint from '../../assets/rocket-fill.svg'
+import Avatar from '../../assets/account-circle-fill.svg'
+import Outfits from '../../assets/door-closed-fill.svg'
+import Portfolio from '../../assets/pie-chart-fill.svg'
+
+// Functionality
 import { useState, useEffect } from 'react'
-import { log } from '../modules/helpers'
-import { useAddress, getAddress } from '../modules/web3'
-import { Link } from 'react-router-dom'
+import { log } from '../../modules/helpers'
+import { useAddress, getAddress } from '../../modules/web3'
+
+// Visual
+import Container from '../atoms/Container'
+import { H1 } from '../atoms/Text'
+import Button from '../atoms/Button'
+import Section from '../atoms/Section'
+
+
+import Loading from '../molecules/Loading'
 
 
 // ///////////////////////////////
@@ -54,25 +69,20 @@ export default function ComponentName( ) {
 	// ///////////////////////////////
 
 	// Loading component
-	if( loading ) return <Loading message={ loading } />
-
-	// Error interface
-	if( error ) return <Container>
-		<p>{ error }</p>
-	</Container>
+	if( loading || error ) return <Loading message={ loading || error } />
 
 	// Actions menu
 	if( address ) return <Container>
 
-		<h1>Rocketeer Tools</h1>
+		<H1>Rocketeer NFT Tools</H1>
 		
-		<div>
-			<Link className='button' to='/mint'>Mint Rocketeer</Link>
-			<Link className='button' to='/portfolio'>View Rocketeer Portfolio</Link>
-			<Link className='button' to='/outfits'>Use Changing Room</Link>
-			<Link className='button' to='/verify'>Discord verify</Link>
-			<Link className='button' to='/avatar'>Set address avatar</Link>
-		</div>
+		<Section direction="row">
+			<Button direction="column" icon={ Mint } to='/mint'>Mint Rocketeer</Button>
+			<Button direction="column" icon={ Portfolio } to='/portfolio'>Rocketeer Portfolio</Button>
+			<Button direction="column" icon={ Outfits } to='/outfits'>Changing Room</Button>
+			<Button direction="column" icon={ Discord } to='/verify'>Discord verify</Button>
+			<Button direction="column" icon={ Avatar } to='/avatar'>Set node avatar</Button>
+		</Section>
 
 
 	</Container>
@@ -80,11 +90,10 @@ export default function ComponentName( ) {
 	// Login interface
 	return <Container>
 
-			<h1>Rocketeer Interface</h1>
-			<a className="button" href="/#" onClick={ metamasklogin }>
-				<img alt="metamask fox" src={ Fox } />
+			<H1>Rocketeer Interface</H1>
+			<Button icon={ Fox } onClick={ metamasklogin }>
 				Connect wallet
-			</a>
+			</Button>
 
 	</Container>
 

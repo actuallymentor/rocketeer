@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.section`
 	position: relative;
-	padding: ${ ( { gutter=false } ) => gutter ? '5rem max( 1rem, calc( 25vw - 4rem ) )' : '5rem 0' };
+	padding: ${ ( { topGutter=true, gutter=false } ) => gutter ? `${ topGutter ? '5rem' : '0' } max( 1rem, calc( 25vw - 4rem ) )` : `${ topGutter ? '5rem' : '0' } 0` };
 	display: flex;
 	flex-direction: ${ ( { direction } ) => direction || 'column' };
 	width: ${ ( { width } ) => width || '100%' };
