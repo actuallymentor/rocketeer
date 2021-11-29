@@ -43,10 +43,10 @@ export default function Verifier() {
 
 			} ) }
 
-			<Text>Rocketeers owned by: { address }.</Text>
-
 
 		</Section>
+
+		<Text>Rocketeers owned by: { address }.</Text>
 
 	</Container>
 }
