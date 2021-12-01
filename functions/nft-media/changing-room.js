@@ -15,17 +15,19 @@ exports.generateNewOutfitFromId = async function( id, network='mainnet' ) {
 	let colorEntropy = 20
 	const newOutfitAllowedInterval = 1000 * 60 * 60 * 24 * 30
 	const specialEditionMultiplier = 1.1
+	const entropyMultiplier = 1.05
 
 	// Retreive old Rocketeer data
 	const rocketeer = await db.collection( `${ network }Rocketeers` ).doc( id ).get().then( dataFromSnap )
 
-	// Apply special properties
-	const { value: edition } = rocketeer.attributes.find( ( { trait_type } ) => trait_type == "edition" )
-	if( edition != 'regular' ) colorEntropy *= specialEditionMultiplier
-
 	// Validate this request
 	const { value: available_outfits } = rocketeer.attributes.find( ( { trait_type } ) => trait_type == "available outfits" ) || { value: 0 }
 	const { value: last_outfit_change } = rocketeer.attributes.find( ( { trait_type } ) => trait_type == "last outfit change" ) || { value: 0 }
+
+	// Apply entropy levels based on edition status and outfits available
+	const { value: edition } = rocketeer.attributes.find( ( { trait_type } ) => trait_type == "edition" )
+	if( edition != 'regular' ) colorEntropy *= specialEditionMultiplier
+	if( available_outfits ) colorEntropy *= ( entropyMultiplier * available_outfits )
 
 	// Check whether this Rocketeer is allowed to change
 	const timeUntilAllowedToChange = newOutfitAllowedInterval - ( Date.now() - last_outfit_change )

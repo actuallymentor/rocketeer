@@ -1,7 +1,11 @@
 const { generateNewOutfitFromId } = require( '../nft-media/changing-room' )
 const { db, dataFromSnap } = require( '../modules/firebase' )
+
+// Web3 APIs
+const { getOwingAddressOfTokenId } = require( '../modules/contract' )
 const Web3 = require( 'web3' )
 const web3 = new Web3()
+
 
 /* ///////////////////////////////
 // POST handler for new avatars
@@ -39,6 +43,10 @@ exports.generateNewOutfit = async function( req, res ) {
 		const network = chainId == '0x1' ? 'mainnet' : 'rinkeby'
 		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !rocketeerId || !network ) throw new Error( `Invalid generateNewOutfit message with ${signer}, ${confirmedSignatory}, ${rocketeerId}, ${network}` )
 		if( rocketeerId != id ) throw new Error( `Invalid Rocketeer in message` )
+
+		// Check that the signer is the owner of the token
+		const owner = await getOwingAddressOfTokenId( id, network )
+		if( owner !== confirmedSignatory ) throw new Error( `You are not the owner of this Rocketeer. Did you sign with the right wallet?` )
 
 		// Generate new rocketeer svg
 		const mediaLink = await generateNewOutfitFromId( id, network )
@@ -95,6 +103,10 @@ exports.setPrimaryOutfit = async function( req, res ) {
 		// Validate id format
 		outfitId = Math.floor( Math.abs( outfitId ) )
 		if( typeof outfitId !== 'number' ) return res.json( { error: `Malformed request` } )
+
+		// Check that the signer is the owner of the token
+		const owner = await getOwingAddressOfTokenId( id, network )
+		if( owner !== confirmedSignatory ) throw new Error( `You are not the owner of this Rocketeer. Did you sign with the right wallet?` )
 
 		// Set ID to string so firestore can handle it
 		outfitId = `${ outfitId }`

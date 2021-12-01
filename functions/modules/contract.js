@@ -24,22 +24,55 @@ const ABI = [
       "stateMutability": "view",
       "type": "function",
       "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
     }
 ]
 
 // Total current supply, in accordance with ERC721 spec
 async function getTotalSupply( network='mainnet' ) {
 
-	// Initialise contract connection
+  // Initialise contract connection
   const web3 = new Web3( `wss://${ network }.infura.io/ws/v3/${ infura.projectid }` )
-	const contract = new web3.eth.Contract( ABI, contractAddress[ network ] )
+  const contract = new web3.eth.Contract( ABI, contractAddress[ network ] )
 
-	// Return the call promise which returns the total supply
-	return contract.methods.totalSupply().call()
+  // Return the call promise which returns the total supply
+  return contract.methods.totalSupply().call()
+
+}
+
+// Total current supply, in accordance with ERC721 spec
+async function getOwingAddressOfTokenId( id, network='mainnet' ) {
+
+  // Initialise contract connection
+  const web3 = new Web3( `wss://${ network }.infura.io/ws/v3/${ infura.projectid }` )
+  const contract = new web3.eth.Contract( ABI, contractAddress[ network ] )
+
+  // Return the call promise which returns the total supply
+  return contract.methods.ownerOf( id ).call()
 
 }
 
 module.exports = {
-	getTotalSupply: getTotalSupply,
-  contractAddress: contractAddress
+	getTotalSupply,
+  contractAddress,
+  getOwingAddressOfTokenId
 }
