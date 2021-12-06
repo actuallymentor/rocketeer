@@ -72,6 +72,26 @@ async function generateRocketeer( id, network='mainnet' ) {
     // Generate randomized attributes
     rocketeer.attributes = pickRandomAttributes( globalAttributes )
 
+    // Set birthday
+    rocketeer.attributes.push( {
+      "display_type": "date", 
+      "trait_type": "birthday", 
+      "value": Math.floor( Date.now() / 1000 )
+    } )
+
+    // Special editions
+    const edition = { "trait_type": "edition", value: "regular" }
+    if( id <= 50 ) edition.value = 'genesis'
+    if( id % 42 === 0 ) edition.value = 'hitchhiker'
+    if( ( id - 1 ) % 42 == 0 ) edition.value = 'generous'
+    rocketeer.attributes.push( edition )
+
+    // Create description
+    rocketeer.description = `${ rocketeer.name } is a proud member of the ${ rocketeer.attributes.find( ( { trait_type } ) => trait_type == 'patch' ).value } guild.`
+
+    // Write the incomplete Rocketeer to the database, because opensea doesn't update metadata by itself
+    await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer, { merge: true } )
+
     // Generate color attributes
     rocketeer.attributes.push( {
         "trait_type": "outfit color",
@@ -90,20 +110,6 @@ async function generateRocketeer( id, network='mainnet' ) {
         value: `rgb( ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) }, ${ randomNumberBetween( 0, 255 ) } )`
     } )
 
-    // Set birthday
-    rocketeer.attributes.push( {
-      "display_type": "date", 
-      "trait_type": "birthday", 
-      "value": Math.floor( Date.now() / 1000 )
-    } )
-
-    // Special editions
-    const edition = { "trait_type": "edition", value: "regular" }
-    if( id <= 50 ) edition.value = 'genesis'
-    if( id % 42 === 0 ) edition.value = 'hitchhiker'
-    if( ( id - 1 ) % 42 == 0 ) edition.value = 'generous'
-    rocketeer.attributes.push( edition )
-
     // Generate, compile and upload image
     rocketeer.image = await svgFromAttributes( rocketeer.attributes, `${ network }Rocketeers/${id}` )
 
@@ -117,9 +123,6 @@ async function generateRocketeer( id, network='mainnet' ) {
         }
 
     } )
-
-    // Create description
-    rocketeer.description = `${ rocketeer.name } is a proud member of the ${ rocketeer.attributes.find( ( { trait_type } ) => trait_type == 'patch' ).value } guild.`
 
     // Save new Rocketeer
     await db.collection( `${ network }Rocketeers` ).doc( id ).set( rocketeer, { merge: true } )
