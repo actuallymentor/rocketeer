@@ -49,10 +49,6 @@ jobs:
         run: npm i
         working-directory: website
 
-      - name: test if all links work
-        run: npm test
-        working-directory: website
-
       - name: Build website files
         env:
           NODE_ENV: production

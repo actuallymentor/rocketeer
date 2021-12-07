@@ -42,20 +42,31 @@ export function useRocketeers( onlyGrabThisId ) {
     const ids = onlyGrabThisId ? [ onlyGrabThisId ] : tokenIds
     const [ rocketeers, setRocketeers ] = useState( [] )
 
-    useEffect( f => {
+    useEffect( (  ) => {
 
-        ( async function() {
+        let cancelled = false;
 
-            const rocketeerMetas = await Promise.all( ids.map( async id => ( {
-                ...await callApi( `/rocketeer/${ id }` ),
-                id: id
-            } ) ) )
-            log( 'Received rocketeers: ', rocketeerMetas )
-            setRocketeers( rocketeerMetas )
+        ( async () => {
 
-        } )(  )
+            try {
+
+                if( !ids.length || cancelled ) return
+                const rocketeerMetas = await callApi( `/rocketeers/?ids=${ ids.join( ',' ) }` )
+                log( 'Received rocketeers: ', rocketeerMetas )
+                if( !cancelled ) setRocketeers( rocketeerMetas )
+
+            } catch( e ) {
+
+            } finally {
+
+            }
+
+        } )( )
+
+        return () => cancelled = true
 
     }, [ tokenIds, onlyGrabThisId ] )
+
 
     return rocketeers
 
@@ -65,16 +76,18 @@ export function useRocketeerImages() {
 
     const ids = useTokenIds()
     const chainId = useChainId()
+    const rocketeers = useRocketeers()
     const [ images, setImages ] = useState( [] )
 
     useEffect( f => {
 
+        if( rocketeers.length ) setImages( rocketeers.map( ( { image, id }, i ) => ( { src: image, id: id || i } ) ) )
         setImages( ids.map( id => ( {
             id,
             src: getImage( id, 'jpg', chainId === '0x1' ? 'mainnet' : 'testnet' )
         } ) ) )
 
-    }, [ ids, chainId ] )
+    }, [ ids, chainId, rocketeers ] )
 
     return images
 

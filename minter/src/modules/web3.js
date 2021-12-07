@@ -216,6 +216,7 @@ export function useChainId() {
 export function useTokenIds() {
 
 	// Deps
+	const chain = useChainId()
 	const address = useAddress()
 	const contract = useContract()
 	const balance = useBalanceOf()
@@ -253,7 +254,7 @@ export function useTokenIds() {
 
 			return () => cancelled = true
 
-	}, [ contract, address, balance ] )
+	}, [ contract, address, balance, chain ] )
 	
 
 	return tokens

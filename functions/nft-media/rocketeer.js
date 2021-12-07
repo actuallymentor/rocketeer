@@ -155,8 +155,11 @@ async function safelyReturnMultipleRocketeers( ids=[], network='mainnet' ) {
     const invalidIds = await Promise.all( ids.map( id => isInvalidRocketeerId( id, network ) ) )
     if( invalidIds.includes( true ) ) throw invalidIds
 
-    // Get old rocketeers
-    const rocketeers = await Promise.all( ids.map( id => getExistingRocketeer( id ) ) )
+    // Get old rocketeers and append their ids
+    const rocketeers = await Promise.all( ids.map( async id => ( {
+        ...await getExistingRocketeer( id ),
+        id: id
+    } ) ) )
 
     // Send back an array of rocketeers, but not any failed ones
     return rocketeers.filter( rocketeer => rocketeer )
