@@ -30,26 +30,29 @@ html( lang=content.lang )
 					| Their sole thought is wen.
 
 				div.row
-					a( target='_blank' href='https://mint.rocketeer.fans/' ).button Mint now
+					a( target='_blank' href='https://tools.rocketeer.fans/#/mint' ).button Mint now
 					a.button.shadow.invert( href="https://opensea.io/collection/the-rocketeers" ) View on Opensea
 				
 				//- p Launching Soon™️
 				+rimg.stretch( src=site.system.url+'/assets/draft-rocketeer.png' )
 
 			section#manage
-				h1 Manage your Rocketeers
-				p If you own a Rocketeer, you are entitled to the @verified-hodler status on Discord.
-				p If you are also a Rocketpool node operator you can associate a Rocketeer with your validator on the <a target="_blank" href="https://www.rp-metrics-dashboard.com/">Rocketpool metrics dashboard</a>.
+				h1 Rocketeer Utility
+				p Rocketeers are the unofficial spirit animals of the Ethereum staking community, their utility is mostly within this community:
+				
+				p 📈 If you are also a Rocketpool node operator you can associate a Rocketeer with your validator on the <a target="_blank" href="https://www.rp-metrics-dashboard.com/">Rocketpool metrics dashboard</a>.
+				p 👔 Once a month you can use the <a target="_blank" href="https://rocketeer.fans/changingroom.html">Changing Room</a> to generate a new outfit for your Rocketeer.
+				p 💬 If you are on our <a target="_blank" href="https://discord.gg/rocketeers">Discord</a> you can apply the the @Verified Holder role. See the #get-verified channel.
+
 				br
 				div.row
-					a( target='_blank' href='https://mint.rocketeer.fans/#/verify' ).button.outline Verify your ownership
-					a( target='_blank' href='https://mint.rocketeer.fans/#/avatar' ).button.outline Set your validator avatar
+					a( target='_blank' href='https://tools.rocketeer.fans/' ).button.outline Open Rocketeer toolkit
 
 			section#story
 				+cimg.circle( size=200 src=site.system.url+'/assets/draft-rocketeer.png' )
 				p Until minted, each Rocketeer exists in a quantum superposition of many possible identities. They are each unique, but share a foundational desire to reach the moon.
 				div.row
-					a( target='_blank' href='https://mint.rocketeer.fans/' ).button Mint now
+					a( target='_blank' href='https://tools.rocketeer.fans/#/mint' ).button Mint now
 					a.button.shadow.outline( href="https://opensea.io/collection/the-rocketeers" ) View on Opensea
 
 
@@ -94,7 +97,7 @@ html( lang=content.lang )
 				p The attributes have weighted probabilities. Upon mint a random number generator probablistically determines the attributes.
 
 				h2 How is the team paid?
-				p The team does not earn money from minting. Every 42nd Rocketeer is sent to the contract wallet, to be used for community ends. If you are the one minting it it will cost you some more gas. There is also a 5% trading royalty on Opensea designed to recoup the gas fees associated with development.
+				p The team does not earn money from minting. Every 42nd Rocketeer is sent to the contract wallet, to be used for community ends. If you are the one minting it it will cost you some more gas. There is also a 5% trading royalty on Opensea designed to recoup the costs associated with development.
 
 				h2 What inspired the Rocketeer NFT?
 				p The undying patience and excited optimism of the Rocket Pool and ETH2 staking communites.
@@ -104,6 +107,8 @@ html( lang=content.lang )
 
 				h2 Is the code open source?
 				p Yes, you can find it 
+					a( href="https://etherscan.io/address/0xb3767b2033cf24334095dc82029dbf0e9528039d#code" ) here on Etherscan
+					span  and  
 					a( href="https://github.com/actuallymentor/rocketeer" ) in this Github repository.
 
 

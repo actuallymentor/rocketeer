@@ -34,6 +34,7 @@
     "dotenv": "^8.6.0",
     "html-minifier": "^4.0.0",
     "ip": "^1.1.5",
+    "jstransformer-markdown-it": "^2.1.0",
     "mkdirp": "^1.0.4",
     "ncp": "^2.0.0",
     "node-sass": "^5.0.0",

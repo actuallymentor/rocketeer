@@ -1,0 +1,45 @@
+//- --------------------------------
+//- HiPew settings
+//- --------------------------------
+
+//- This is pace-specific metadata
+-
+	const page = {
+		title: 'Rocketeer NFT', desc: 'Mint your Rocketeer NFT', url: '/',
+		published: '2020-02-11', featuredimg: '/assets/mike-kiev-Opzk_hvwO9Q-unsplash.jpg'
+	}
+//- This is a file with helpers
+include pug/_helpers.pug
+
+
+//- --------------------------------
+//- Webpage source code
+//- --------------------------------
+
+doctype html
+html( lang=content.lang )
+	include pug/_header.pug
+	body#page
+		
+		main
+			section#hero
+				h1 Changing room FAQ
+				//- h1 30 Oct 2021
+				h2 The changing room lets you generate new outfit colors once a month.
+
+				div.row
+					//- a( target='_blank' href='https://mint.rocketeer.fans/' ).button Mint now
+					a.button.shadow.invert( href="https://tools.rocketeer.fans/#/outfits" ) View changing room
+				
+				//- p Launching Soon™️
+				+rimg.stretch( src=site.system.url+'/assets/draft-rocketeer.png' )
+
+			section#content
+				include:markdown-it _changingroom.md
+
+			
+
+
+			
+
+		include pug/_footer.pug
