@@ -1,6 +1,6 @@
 const app = require( './express' )()
 const { getTotalSupply } = require( '../modules/contract' )
-const { safelyReturnRocketeer, web2domain } = require( '../nft-media/rocketeer' )
+const { safelyReturnRocketeer, web2domain, safelyReturnMultipleRocketeers } = require( '../nft-media/rocketeer' )
 const { setAvatar, resetAvatar } = require( '../integrations/avatar' )
 const { generateNewOutfit, setPrimaryOutfit } = require( '../integrations/changingroom' )
 
@@ -37,6 +37,24 @@ app.get( '/api/rocketeer/:id', async ( req, res ) => {
         return res.json( { error: e.mesage || e.toString() } )
 
     }
+
+} )
+
+app.get( '/api/rocketeers/', async ( req, res ) => {
+
+    try {
+
+        // Parse the request
+        let { ids } = req.query
+        ids = ids.split( ',' )
+        if( ids.length > 100 ) throw new Error( 'Please do not ask for so much data at once :)' )
+        const rocketeers = await safelyReturnMultipleRocketeers( ids, 'testnet' )
+        return res.json( rocketeers )
+
+    } catch( e ) {
+        return res.json( { error: e.message || e.toString() } )
+    }
+
 
 } )
 

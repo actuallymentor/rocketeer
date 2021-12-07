@@ -149,7 +149,22 @@ async function safelyReturnRocketeer( id, network ) {
 
 }
 
+async function safelyReturnMultipleRocketeers( ids=[], network='mainnet' ) {
+
+    // Chech if this is an illegal ID
+    const invalidIds = await Promise.all( ids.map( id => isInvalidRocketeerId( id, network ) ) )
+    if( invalidIds.includes( true ) ) throw invalidIds
+
+    // Get old rocketeers
+    const rocketeers = await Promise.all( ids.map( id => getExistingRocketeer( id ) ) )
+
+    // Send back an array of rocketeers, but not any failed ones
+    return rocketeers.filter( rocketeer => rocketeer )
+
+}
+
 module.exports = {
-    web2domain: web2domain,
-    safelyReturnRocketeer: safelyReturnRocketeer
+    web2domain,
+    safelyReturnRocketeer,
+    safelyReturnMultipleRocketeers
 }
