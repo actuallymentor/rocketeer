@@ -1,66 +1,20 @@
 const app = require( './express' )()
 const { getTotalSupply } = require( '../modules/contract' )
-const { safelyReturnRocketeer, web2domain, safelyReturnMultipleRocketeers } = require( '../nft-media/rocketeer' )
-const { generateNewOutfit, setPrimaryOutfit } = require( '../integrations/changingroom' )
+const { web2domain } = require( '../nft-media/rocketeer' )
+const { rocketeerFromRequest, multipleRocketeersFromRequest } = require( '../integrations/rocketeers' )
+const { generateNewOutfit, setPrimaryOutfit, generateMultipleNewOutfits } = require( '../integrations/changingroom' )
 
 ////////////////////////////////
 // Specific Rocketeer instances
 ////////////////////////////////
-app.get( '/testnetapi/rocketeer/:id', async ( req, res ) => {
-
-    // Parse the request
-    let { id } = req.params
-    if( !id ) return res.json( { error: `No ID specified in URL` } )
-
-    // Protect against malformed input
-    id = Math.floor( Math.abs( id ) )
-    if( typeof id !== 'number' ) return res.json( { error: `Malformed request` } )
-
-    // Set ID to string so firestore can handle it
-    id = `${ id }`
-
-    try {
-
-        // Get old rocketeer if it exists
-        const rocketeer = await safelyReturnRocketeer( id, 'rinkeby' )
-
-        // Return the new rocketeer
-        return res.json( rocketeer )
-
-    } catch( e ) {
-
-        // Log error for debugging
-        console.error( `Testnet api error for ${ id }: `, e )
-
-        // Return error to frontend
-        return res.json( { error: e.mesage || e.toString() } )
-
-    }
-
-} )
-
-app.get( '/testnetapi/rocketeers/', async ( req, res ) => {
-
-    try {
-
-        // Parse the request
-        let { ids } = req.query
-        ids = ids.split( ',' ) 
-        if( ids.length > 100 ) throw new Error( 'Please do not ask for so much data at once :)' )
-        const rocketeers = await safelyReturnMultipleRocketeers( ids, 'testnet' )
-        return res.json( rocketeers )
-
-    } catch( e ) {
-        return res.json( { error: e.message || e.toString() } )
-    }
-
-
-} )
+app.get( '/testnetapi/rocketeer/:id', ( req, res ) => rocketeerFromRequest( req, res, 'rinkeby' ) )
+app.get( '/testnetapi/rocketeers/', ( req, res ) => multipleRocketeersFromRequest( req, res, 'rinkeby' ) )
 
 /* ///////////////////////////////
 // Changing room endpoints
 // /////////////////////////////*/
 app.post( '/testnetapi/rocketeer/:id/outfits', generateNewOutfit )
+app.post( '/testnetapi/rocketeers/:address', generateMultipleNewOutfits )
 app.put( '/testnetapi/rocketeer/:id/outfits', setPrimaryOutfit )
 
 // Collection data

@@ -151,13 +151,14 @@ async function safelyReturnRocketeer( id, network ) {
 
 async function safelyReturnMultipleRocketeers( ids=[], network='mainnet' ) {
 
+
     // Chech if this is an illegal ID
     const invalidIds = await Promise.all( ids.map( id => isInvalidRocketeerId( id, network ) ) )
     if( invalidIds.includes( true ) ) throw invalidIds
 
     // Get old rocketeers and append their ids
     const rocketeers = await Promise.all( ids.map( async id => ( {
-        ...await getExistingRocketeer( id ),
+        ...await getExistingRocketeer( id, network ),
         id: id
     } ) ) )
 

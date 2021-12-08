@@ -1,67 +1,21 @@
 const app = require( './express' )()
 const { getTotalSupply } = require( '../modules/contract' )
-const { safelyReturnRocketeer, web2domain, safelyReturnMultipleRocketeers } = require( '../nft-media/rocketeer' )
+const { web2domain } = require( '../nft-media/rocketeer' )
 const { setAvatar, resetAvatar } = require( '../integrations/avatar' )
-const { generateNewOutfit, setPrimaryOutfit } = require( '../integrations/changingroom' )
+const { rocketeerFromRequest, multipleRocketeersFromRequest } = require( '../integrations/rocketeers' )
+const { generateNewOutfit, setPrimaryOutfit, generateMultipleNewOutfits } = require( '../integrations/changingroom' )
 
 // ///////////////////////////////
 // Specific Rocketeer instances
 // ///////////////////////////////
-app.get( '/api/rocketeer/:id', async ( req, res ) => {
-
-    // Parse the request
-    let { id } = req.params
-    if( !id ) return res.json( { error: `No ID specified in URL` } )
-
-    // Protect against malformed input
-    id = Math.floor( Math.abs( id ) )
-    if( typeof id !== 'number' ) return res.json( { error: `Malformed request` } )
-
-    // Set ID to string so firestore can handle it
-    id = `${ id }`
-
-    try {
-
-        // Get old rocketeer if it exists
-        const rocketeer = await safelyReturnRocketeer( id, 'mainnet' )
-
-        // Return the new rocketeer
-        return res.json( rocketeer )
-
-    } catch( e ) {
-
-        // Log error for debugging
-        console.error( `Mainnet api error for ${ id }: `, e )
-
-        // Return error to frontend
-        return res.json( { error: e.mesage || e.toString() } )
-
-    }
-
-} )
-
-app.get( '/api/rocketeers/', async ( req, res ) => {
-
-    try {
-
-        // Parse the request
-        let { ids } = req.query
-        ids = ids.split( ',' )
-        if( ids.length > 100 ) throw new Error( 'Please do not ask for so much data at once :)' )
-        const rocketeers = await safelyReturnMultipleRocketeers( ids, 'testnet' )
-        return res.json( rocketeers )
-
-    } catch( e ) {
-        return res.json( { error: e.message || e.toString() } )
-    }
-
-
-} )
+app.get( '/api/rocketeer/:id', async ( req, res ) => rocketeerFromRequest( req, res, 'mainnet' ) )
+app.get( '/api/rocketeers/', async ( req, res ) => multipleRocketeersFromRequest( req, res, 'mainnet' ) )
 
 /* ///////////////////////////////
 // VGR's dashboard integration
 // /////////////////////////////*/
 app.post( '/api/integrations/avatar/', setAvatar )
+app.post( '/api/rocketeers/:address', generateMultipleNewOutfits )
 app.delete( '/api/integrations/avatar/', resetAvatar )
 
 /* ///////////////////////////////

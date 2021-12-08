@@ -1,11 +1,13 @@
 const { db, dataFromSnap } = require( '../modules/firebase' )
 const { getRgbArrayFromColorName, randomNumberBetween } = require( '../modules/helpers' )
+const { getTokenIdsOfAddress } = require( '../modules/contract' )
 const svgFromAttributes = require( './svg-generator' )
+const Throttle = require( 'promise-parallel-throttle' )
 
 // ///////////////////////////////
 // Rocketeer generator
 // ///////////////////////////////
-exports.generateNewOutfitFromId = async function( id, network='mainnet' ) {
+async function generateNewOutfitFromId( id, network='mainnet' ) {
 
 
 	/* ///////////////////////////////
@@ -27,7 +29,7 @@ exports.generateNewOutfitFromId = async function( id, network='mainnet' ) {
 	// Apply entropy levels based on edition status and outfits available
 	const { value: edition } = rocketeer.attributes.find( ( { trait_type } ) => trait_type == "edition" )
 	if( edition != 'regular' ) colorEntropy *= specialEditionMultiplier
-	if( available_outfits ) colorEntropy *= ( entropyMultiplier * available_outfits )
+	if( available_outfits ) colorEntropy *= ( entropyMultiplier ** available_outfits )
 
 	// Check whether this Rocketeer is allowed to change
 	const timeUntilAllowedToChange = newOutfitAllowedInterval - ( Date.now() - last_outfit_change )
@@ -87,4 +89,32 @@ exports.generateNewOutfitFromId = async function( id, network='mainnet' ) {
 
 	return newOutfitSvg
 
+}
+
+async function generateNewOutfitsByAddress( address, network='mainnet' ) {
+
+
+	const ids = await getTokenIdsOfAddress( address, network )
+	const queue = ids.map( id => function() {
+		return generateNewOutfitFromId( id, network ).then( outfit => ( { id: id, src: outfit } ) ).catch( e => {
+			console.log( e )
+			return ( { id: id, error: e.message } )
+		} )
+	} )
+	const outfits = await Throttle.all( queue, {
+		maxInProgress: 2,
+		progressCallback: ( { amountDone } ) => process.env.NODE_ENV == 'development' ? console.log( `Completed ${amountDone}/${queue.length}` ) : false
+	} )
+
+	return {
+		success: outfits.filter( ( { src } ) => src ),
+		error: outfits.filter( ( { error } ) => error ),
+	}
+
+
+}
+
+module.exports = {
+	generateNewOutfitFromId,
+	generateNewOutfitsByAddress
 }

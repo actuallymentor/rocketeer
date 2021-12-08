@@ -24,27 +24,72 @@ const ABI = [
       "stateMutability": "view",
       "type": "function",
       "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "ownerOf",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    }
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ownerOf",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "tokenOfOwnerByIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  }
 ]
 
 // Total current supply, in accordance with ERC721 spec
@@ -71,8 +116,28 @@ async function getOwingAddressOfTokenId( id, network='mainnet' ) {
 
 }
 
+async function getTokenIdsOfAddress( address, network='mainnet' ) {
+
+  // Initialise contract connection
+  const web3 = new Web3( `wss://${ network }.infura.io/ws/v3/${ infura.projectid }` )
+  const contract = new web3.eth.Contract( ABI, contractAddress[ network ] )
+
+  // Get balance of address
+  const balance = await contract.methods.balanceOf( address ).call()
+
+  // Get tokens of address
+  const ids = await Promise.all( Array.from( { length: balance } ).map( async ( val, index ) => {
+    const id = await contract.methods.tokenOfOwnerByIndex( address, index ).call()
+    return id.toString()
+  } ) )
+
+  return ids
+
+}
+
 module.exports = {
 	getTotalSupply,
   contractAddress,
-  getOwingAddressOfTokenId
+  getOwingAddressOfTokenId,
+  getTokenIdsOfAddress
 }
