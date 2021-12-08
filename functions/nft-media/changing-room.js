@@ -85,9 +85,27 @@ async function generateNewOutfitFromId( id, network='mainnet' ) {
 
 	// Generate, compile and upload image
 	// Path format of new rocketeers is id-outfitnumber.{svg,jpg}
-	const newOutfitSvg = await svgFromAttributes( rocketeer.attributes, `${ network }Rocketeers/${ id }-${ available_outfits + 1 }` )
+	try {
 
-	return newOutfitSvg
+		const newOutfitSvg = await svgFromAttributes( rocketeer.attributes, `${ network }Rocketeers/${ id }-${ available_outfits + 1 }` )
+
+		return newOutfitSvg
+
+	} catch( e ) {
+
+		// If the svg generation failed, reset the attributes to their previous value
+		await db.collection( `${ network }Rocketeers` ).doc( id ).set( {
+			attributes: [
+				...staticAttributes,
+				{ trait_type: 'available outfits', value: available_outfits, },
+				{ trait_type: 'last outfit change', value: last_outfit_change, display_type: "date" }
+			]
+		} ,{ merge: true } )
+
+		// Propagate error
+		throw e
+
+	}
 
 }
 
