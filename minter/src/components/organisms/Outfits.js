@@ -24,7 +24,6 @@ export default function Verifier() {
 	// ///////////////////////////////
 	const address = useAddress()
 	const metamaskAddress = useAddress()
-	const [ validatorAddress, setValidatorAddress ] = useState(  )
 	const rocketeers = useRocketeers( rocketeerId )
 	const chainId = useChainId()
 	const [ rocketeer, setRocketeer ] = useState(  )
@@ -169,8 +168,9 @@ export default function Verifier() {
 	// Lifecycle
 	// ///////////////////////////////
 	useEffect( f => {
-		if( !validatorAddress && metamaskAddress ) setValidatorAddress( metamaskAddress )
-	}, [ metamaskAddress, validatorAddress ] )
+		if( !rocketeerId ) setRocketeer( undefined )
+	}, [ rocketeerId ] )
+
 
 	useEffect( f => {
 

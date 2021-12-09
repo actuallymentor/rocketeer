@@ -1,6 +1,6 @@
 import { log } from './helpers'
 import { useChainId, useTokenIds } from './web3'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export async function callApi( path, options={} ) {
 
@@ -42,7 +42,15 @@ export function useRocketeers( onlyGrabThisId ) {
     const ids = onlyGrabThisId ? [ onlyGrabThisId ] : tokenIds
     const [ rocketeers, setRocketeers ] = useState( [] )
 
+    // Track whether a request is already going
+    const loading = useRef()
+
     useEffect( (  ) => {
+
+        if( loading.current ) {
+            log( 'Already loading Rocketeers, doing nothing' )
+            return
+        }
 
         let cancelled = false;
 
@@ -50,20 +58,38 @@ export function useRocketeers( onlyGrabThisId ) {
 
             try {
 
+                // Set loading status to throttle dupes
+                loading.current = true
+
+                // if onlyGrabThisId changed but rocketeer is already present, do not continue
+                if( onlyGrabThisId && rocketeers.find( ( { id } ) => id == onlyGrabThisId ) ) {
+                    return log( 'Rocketeer already in cache, not refreshing' )
+                }
+
+                // If not onlyGrabThisId and tokenIds are equal length to cache, exit
+                if( !onlyGrabThisId && rocketeers.length === tokenIds.length ) {
+                    return log( 'Requested token length same as cache, not doing a request' )
+                }
+
                 if( !ids.length || cancelled ) return
                 const rocketeerMetas = await callApi( `/rocketeers/?ids=${ ids.join( ',' ) }` )
                 log( 'Received rocketeers: ', rocketeerMetas )
                 if( !cancelled ) setRocketeers( rocketeerMetas )
 
             } catch( e ) {
-
+                log( 'Error getting Rocketeers: ', e )
             } finally {
 
+                // Set loading status to let newer requests continue
+                loading.current = false
             }
 
         } )( )
 
-        return () => cancelled = true
+        return () => {
+            cancelled = true
+            loading.current = false
+        }
 
     }, [ tokenIds, onlyGrabThisId ] )
 

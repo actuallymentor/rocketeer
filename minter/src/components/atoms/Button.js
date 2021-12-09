@@ -10,7 +10,8 @@ const PrettyButton = styled( DynamicButton )`
 	flex-direction: ${ ( { direction='row' } ) => direction };
 	align-items: center;
 	justify-content: center;
-	border: 1px solid ${ ( { theme } ) => theme.colors.text };
+	border: 2px solid ${ ( { theme } ) => theme.colors.text };
+	background: none;
 	color: ${ ( { theme } ) => theme.colors.text };
 	text-decoration: none;
 	font-size: 1.5rem;
@@ -18,7 +19,8 @@ const PrettyButton = styled( DynamicButton )`
 	margin:  1rem .5rem;
 
 	&:hover {
-		box-shadow: 0 0 20px 2px rgb(0 0 0 / 20%);
+		opacity: .5;
+		cursor: pointer;
 	}
 
 	& img {
