@@ -114,10 +114,7 @@ async function generateNewOutfitsByAddress( address, network='mainnet' ) {
 
 	const ids = await getTokenIdsOfAddress( address, network )
 	const queue = ids.map( id => function() {
-		return generateNewOutfitFromId( id, network ).then( outfit => ( { id: id, src: outfit } ) ).catch( e => {
-			console.log( e )
-			return ( { id: id, error: e.message } )
-		} )
+		return generateNewOutfitFromId( id, network ).then( outfit => ( { id: id, src: outfit } ) ).catch( e => ( { id: id, error: e.message } ) )
 	} )
 	const outfits = await Throttle.all( queue, {
 		maxInProgress: 2,

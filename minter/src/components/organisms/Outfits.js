@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router'
 
 import Container from '../atoms/Container'
 import Section from '../atoms/Section'
-import { H1, H2, Text } from '../atoms/Text'
+import { H1, H2, Text, Sidenote } from '../atoms/Text'
 import Button from '../atoms/Button'
 import Avatar from '../molecules/Avatar'
 
@@ -119,6 +119,52 @@ export default function Verifier() {
 
 	}
 
+	async function generateByAddress( ) {
+
+		try {
+
+			log( `Generating new outfit for address ${ address }` )
+			setLoading( `Generating new outfits for ${ address }` )
+			alert( 'You will be prompted to sign a message, this is NOT a transaction' )
+
+			const signature = await sign( JSON.stringify( {
+				signer: address.toLowerCase(),
+				action: 'generateMultipleNewOutfits',
+				chainId,
+			} ), address )
+
+			log( 'Making request with ', signature )
+
+			setLoading( 'Generating new outfits, this can take a few minutes' )
+
+			const { error, success } = await callApi( `/rocketeers/${ address }`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify( signature )
+			} )
+			log( `Errored: `, error )
+			log( `Succeeded: `, success )
+
+			if( typeof error == 'string' ) throw new Error( error )
+
+
+			alert( `Success! ${ success.length } outfits generated, ${ error.length } failed.` )
+			window?.location.reload()
+
+
+		} catch( e ) {
+
+			log( e )
+			alert( e.message )
+
+		} finally {
+
+			setLoading( false )
+
+		}
+
+	}
+
 	// ///////////////////////////////
 	// Lifecycle
 	// ///////////////////////////////
@@ -178,6 +224,7 @@ export default function Verifier() {
 		</Section>
 
 		<Text className="row">Rocketeers owned by: { address }.</Text>
+		<Sidenote onClick={ generateByAddress } className="row">_</Sidenote>
 
 	</Container>
 
