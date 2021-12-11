@@ -25,9 +25,6 @@ exports.generateNewOutfit = async function( req, res ) {
 
 	try {
 
-		// Internal beta
-		if( id != 1 ) return res.json( { error: `Sorry the changing room is in private beta for now <3` } )
-
 		// Get request data
 		const { message, signature, signatory } = req.body
 		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )

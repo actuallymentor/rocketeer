@@ -14,10 +14,10 @@ async function generateNewOutfitFromId( id, network='mainnet' ) {
 	// Changing room variables
 	// /////////////////////////////*/
 	// Set the entropy level. 255 would mean 0 can become 255 and -255
-	let colorEntropy = 20
+	let colorEntropy = 10
 	const newOutfitAllowedInterval = 1000 * 60 * 60 * 24 * 30
 	const specialEditionMultiplier = 1.1
-	const entropyMultiplier = 1.05
+	const entropyMultiplier = 1.1
 
 	// Retreive old Rocketeer data
 	const rocketeer = await db.collection( `${ network }Rocketeers` ).doc( id ).get().then( dataFromSnap )
