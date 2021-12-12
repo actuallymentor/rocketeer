@@ -190,7 +190,7 @@ export default function Verifier() {
 			selected.new_outfit_available = timeUntilAllowedToChange < 0
 			selected.when_new_outfit = new Date( Date.now() + timeUntilAllowedToChange )
 
-			const [ full, outfitnumber ] = selected.image.match( /(\d)(?:-\d\.jpg)/ ) || []
+			const [ full, outfitnumber ] = selected.image.match( /(?:-)(\d*)(?:\.jpg)/ ) || []
 			log( `Current outfit of ${ full } is ${ outfitnumber }` )
 			selected.current_outfit = outfitnumber || 0
 		}
