@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/deploy-minter.yml'
+      - '.github/workflows/deploy-functions.yml'
       - 'functions/**'
 
 jobs:
