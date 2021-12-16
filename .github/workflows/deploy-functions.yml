@@ -49,20 +49,6 @@ jobs:
           gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID_PRODUCTION }}
           echo "Project is now set to ${{ secrets.FIREBASE_PROJECT_ID_PRODUCTION }}"
           gcloud firestore export ${{ secrets.GCP_BUCKET_LINK_PRODUCTION }}/firestore-backups/$(date +'%Y-%m-%d-%s')/
-
-      - name: Backup Rocketeer storage
-        run: |
-          mkdir rocketeer-image-backups
-          gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID_PRODUCTION }}
-          echo "Project is now set to ${{ secrets.FIREBASE_PROJECT_ID_PRODUCTION }}"
-          gcloud -m cp -r ${{ secrets.GCP_BUCKET_LINK_PRODUCTION }}/mainnetRocketeers ./rocketeer-image-backups/
-          gzip -r -v -9 ./rocketeer-image-backups/
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: rocketeer-image-backup.gz
-          path: ./rocketeer-image-backups.gz
-
           
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
