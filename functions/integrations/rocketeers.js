@@ -42,7 +42,7 @@ exports.multipleRocketeersFromRequest = async function( req, res, network='mainn
         // Parse the request
         let { ids } = req.query
         ids = ids.split( ',' )
-        if( ids.length > 100 ) throw new Error( 'Please do not ask for so much data at once :)' )
+        if( ids.length > 250 ) throw new Error( 'Please do not ask for so much data at once :)' )
         const rocketeers = await safelyReturnMultipleRocketeers( ids, network )
         return res.json( rocketeers )
 
