@@ -3,12 +3,12 @@ const { getRgbArrayFromColorName, randomNumberBetween } = require( '../modules/h
 const { getTokenIdsOfAddress } = require( '../modules/contract' )
 const svgFromAttributes = require( './svg-generator' )
 const Throttle = require( 'promise-parallel-throttle' )
+const { notifyDiscordWebhook } = require( '../integrations/discord' )
 
 // ///////////////////////////////
 // Rocketeer generator
 // ///////////////////////////////
 async function generateNewOutfitFromId( id, network='mainnet' ) {
-
 
 	/* ///////////////////////////////
 	// Changing room variables
@@ -87,7 +87,18 @@ async function generateNewOutfitFromId( id, network='mainnet' ) {
 	// Path format of new rocketeers is id-outfitnumber.{svg,jpg}
 	try {
 
+		// Generate new outfit
 		const newOutfitSvg = await svgFromAttributes( rocketeer.attributes, `${ network }Rocketeers/${ id }-${ available_outfits + 1 }` )
+
+		// Notify discord
+		const [ firstname ] = rocketeer.name.split( ' ' )
+	 	await notifyDiscordWebhook(
+			rocketeer.name,
+			`${ firstname } obtained a new outfit on ${ network }!`,
+			rocketeer.image,
+			`Outfit #${ available_outfits + 1 }`,
+			newOutfitSvg.replace( '.svg','.jpg' )
+ 		)
 
 		return newOutfitSvg
 
