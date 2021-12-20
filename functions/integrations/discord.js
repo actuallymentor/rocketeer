@@ -24,7 +24,8 @@ exports.notifyDiscordWebhook = async function( username, content, avatar_url, im
 		}
 
 		// Make webhook request
-		await fetch( discord.webhookurl, options )
+		const data = await fetch( discord.webhookurl, options ).then( res => res.json() )
+		if( data.code ) throw new Error ( `Discord webhook failed with ${ data.code }: ${ data.message }` )
 
 	} catch( e ) {
 		console.error( 'Discord error ', e )
