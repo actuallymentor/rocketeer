@@ -5,7 +5,7 @@ import Avatar from '../molecules/Avatar'
 import Loading from '../molecules/Loading'
 
 import { useState, useEffect } from 'react'
-import { useRocketeerImages } from '../../modules/api'
+import { useRocketeers } from '../../modules/api'
 import { useAddress } from '../../modules/web3'
 
 
@@ -17,7 +17,7 @@ export default function Verifier() {
 	const address = useAddress()
 	const metamaskAddress = useAddress()
 	const [ validatorAddress, setValidatorAddress ] = useState(  )
-	const rocketeers = useRocketeerImages()
+	const rocketeers = useRocketeers()
 
 
 	// ///////////////////////////////
@@ -37,9 +37,9 @@ export default function Verifier() {
 		<Text>Click a Rocketeer to view it's details.</Text>
 		<Section direction="row">
 			
-			{ rocketeers.map( ( { id, src } ) => {
+			{ rocketeers.map( ( { id, image } ) => {
 
-				return <Avatar onClick={ f => window.location.href =`https://viewer.rocketeer.fans/?rocketeer=${ id }` } key={ id } src={ src } alt={ `Rocketeer number ${ id }` } />
+				return <Avatar onClick={ f => window.location.href =`https://viewer.rocketeer.fans/?rocketeer=${ id }` } key={ id } src={ image } alt={ `Rocketeer number ${ id }` } />
 
 			} ) }
 

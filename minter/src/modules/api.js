@@ -72,9 +72,35 @@ export function useRocketeers( onlyGrabThisId ) {
                 }
 
                 if( !ids.length || cancelled ) return
+
+                // Grab Rocketeer metadata
                 const rocketeerMetas = await callApi( `/rocketeers/?ids=${ ids.join( ',' ) }` )
                 log( 'Received rocketeers: ', rocketeerMetas )
-                if( !cancelled ) setRocketeers( rocketeerMetas )
+
+                // Annotate Rocketeers
+                const annotatedRocketeers = rocketeerMetas.map( rocketeer => {
+
+                	// This is a dev environment issue where the token ids do not correspond to date
+                	if( !rocketeer.attributes ) return rocketeer
+
+                	const newOutfitAllowedInterval = 1000 * 60 * 60 * 24 * 30
+									const { value: outfits } = rocketeer.attributes.find( ( { trait_type } ) => trait_type === 'available outfits' ) || { value: 0 }
+									const { value: last_outfit_change } = rocketeer.attributes.find( ( { trait_type } ) => trait_type === 'last outfit change' ) || { value: 0 }
+									const timeUntilAllowedToChange = newOutfitAllowedInterval - ( Date.now() - last_outfit_change )
+
+									rocketeer.outfits = outfits
+									rocketeer.last_outfit_change = last_outfit_change
+									rocketeer.new_outfit_available = timeUntilAllowedToChange < 0
+									rocketeer.when_new_outfit = new Date( Date.now() + timeUntilAllowedToChange )
+
+									const [ full, outfitnumber ] = rocketeer.image.match( /(?:-)(\d*)(?:\.jpg)/ ) || []
+									rocketeer.current_outfit = outfitnumber || 0
+
+									return rocketeer
+
+                } )
+
+                if( !cancelled ) setRocketeers( annotatedRocketeers )
 
             } catch( e ) {
                 log( 'Error getting Rocketeers: ', e )

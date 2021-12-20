@@ -6,6 +6,7 @@ export default styled.img`
 	width: 150px;
 	margin: 1rem;
 	cursor: ${ ( { onClick } ) => onClick ? 'pointer' : 'none' };
+	border: ${ ( { highlight } ) => highlight ? '5px solid orange' : 'none' };
 	&:hover {
 		box-shadow: ${ ( { onClick } ) => onClick ? '0 0 20px 2px rgb(0 0 0 / 20%)' : 'none' };
 	}

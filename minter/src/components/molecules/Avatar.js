@@ -3,7 +3,6 @@ import CircleImage from '../atoms/CircleImage'
 import { Text } from '../atoms/Text'
 
 const Wrapper = styled.div`
-	
 `
 
 export default ( { title, ...props } ) => <Wrapper>
