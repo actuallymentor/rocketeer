@@ -92,13 +92,13 @@ async function generateNewOutfitFromId( id, network='mainnet' ) {
 
 		// Notify discord
 		const [ firstname ] = rocketeer.name.split( ' ' )
-	 	await notifyDiscordWebhook(
+		await notifyDiscordWebhook(
 			rocketeer.name,
-			`${ firstname } obtained a new outfit on ${ network }!`,
+			`${ firstname } obtained a new outfit on ${ network }! \n\nView this Rocketeer on Opensea: https://opensea.io/assets/0xb3767b2033cf24334095dc82029dbf0e9528039d/${ id }.\n\nView all outfits on the Rocketeer toolkit: https://tools.rocketeer.fans/#/outfits/${ id }`,
 			rocketeer.image,
 			`Outfit #${ available_outfits + 1 }`,
 			newOutfitSvg.replace( '.svg','.jpg' )
- 		)
+		)
 
 		return newOutfitSvg
 

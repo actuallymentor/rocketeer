@@ -177,24 +177,6 @@ export default function Verifier() {
 		// Find the data for the clicked Rocketeer
 		const selected = rocketeers.find( ( { id } ) => id === rocketeerId )
 		
-		// If the selected rocketeer is available, compute it's available outfits to an easy to access property
-		if( selected ) {
-
-			const newOutfitAllowedInterval = 1000 * 60 * 60 * 24 * 30
-			const { value: outfits } = selected.attributes.find( ( { trait_type } ) => trait_type === 'available outfits' ) || { value: 0 }
-			const { value: last_outfit_change } = selected.attributes.find( ( { trait_type } ) => trait_type === 'last outfit change' ) || { value: 0 }
-			const timeUntilAllowedToChange = newOutfitAllowedInterval - ( Date.now() - last_outfit_change )
-
-			selected.outfits = outfits
-			selected.last_outfit_change = last_outfit_change
-			selected.new_outfit_available = timeUntilAllowedToChange < 0
-			selected.when_new_outfit = new Date( Date.now() + timeUntilAllowedToChange )
-
-			const [ full, outfitnumber ] = selected.image.match( /(?:-)(\d*)(?:\.jpg)/ ) || []
-			log( `Current outfit of ${ full } is ${ outfitnumber }` )
-			selected.current_outfit = outfitnumber || 0
-		}
-
 		log( "Selecting rocketeer ", selected )
 
 		// Set the selected rocketeer to state
@@ -215,9 +197,9 @@ export default function Verifier() {
 		<Text>Click on a Rocketeer to manage it's outfits</Text>
 		<Section direction="row">
 			
-			{ rocketeers.map( ( { id, image } ) => {
+			{ rocketeers.map( ( { id, image, new_outfit_available } ) => {
 
-				return <Avatar id={ `rocketeer-${ id }` } onClick={ f => navigate( `/outfits/${ id }` ) } key={ id } src={ image } alt={ `Rocketeer number ${ id }` } />
+				return <Avatar highlight={ new_outfit_available } id={ `rocketeer-${ id }` } onClick={ f => navigate( `/outfits/${ id }` ) } key={ id } src={ image } alt={ `Rocketeer number ${ id }` } />
 
 			} ) }
 
