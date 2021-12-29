@@ -35,6 +35,8 @@ export default function Minter() {
 
 		e.preventDefault()
 
+		return alert( `Sorry, all Rocketeers have been minted!` )
+
 		try {
 
 			if( !address ) setError( 'No destination address selected' )

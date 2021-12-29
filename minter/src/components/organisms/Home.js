@@ -77,7 +77,7 @@ export default function ComponentName( ) {
 		<H1>Rocketeer NFT Tools</H1>
 		
 		<Section direction="row">
-			<Button direction="column" icon={ Mint } to='/mint'>Mint Rocketeer</Button>
+			{ /* <Button direction="column" icon={ Mint } to='/mint'>Mint Rocketeer</Button> */ }
 			<Button direction="column" icon={ Portfolio } to='/portfolio'>Rocketeer Portfolio</Button>
 			<Button direction="column" icon={ Outfits } to='/outfits'>Changing Room</Button>
 			<Button direction="column" icon={ Discord } to='/verify'>Discord verify</Button>
