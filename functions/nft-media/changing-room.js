@@ -125,10 +125,15 @@ async function generateNewOutfitsByAddress( address, network='mainnet' ) {
 
 	const ids = await getTokenIdsOfAddress( address, network )
 	const queue = ids.map( id => function() {
-		return generateNewOutfitFromId( id, network ).then( outfit => ( { id: id, src: outfit } ) ).catch( e => ( { id: id, error: e.message } ) )
+		return generateNewOutfitFromId( id, network ).then( outfit => ( { id: id, src: outfit } ) ).catch( e => {
+			console.error( `Error in generateNewOutfitsByAddress: `, e.message || e )
+			return { id: id, error: e.message }
+		} )
 	} )
+
 	const outfits = await Throttle.all( queue, {
-		maxInProgress: 2,
+		maxInProgress: 1,
+		failFast: false,
 		progressCallback: ( { amountDone } ) => process.env.NODE_ENV == 'development' ? console.log( `Completed ${amountDone}/${queue.length}` ) : false
 	} )
 
