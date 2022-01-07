@@ -1,4 +1,4 @@
-const { generateNewOutfitFromId, generateNewOutfitsByAddress } = require( '../nft-media/changing-room' )
+const { generateNewOutfitFromId, queueRocketeersOfAddressForOutfitChange } = require( '../nft-media/changing-room' )
 const { db, dataFromSnap } = require( '../modules/firebase' )
 
 // Web3 APIs
@@ -69,17 +69,17 @@ exports.generateNewOutfit = async function( req, res ) {
 exports.generateMultipleNewOutfits = async function( req, res ) {
 
 	// Parse the request
-    let { address } = req.params
-    if( !address ) return res.json( { error: `No address specified in URL` } )
+  let { address } = req.params
+  if( !address ) return res.json( { error: `No address specified in URL` } )
 
-    // Protect against malformed input
-    if( !address.match( /0x.{40}/ ) ) return res.json( { error: `Malformed request` } )
+  // Protect against malformed input
+  if( !address.match( /0x.{40}/ ) ) return res.json( { error: `Malformed request` } )
 
 	// Lowercase the address
 	address = address.toLowerCase()
 
-    // Internal beta
-    if( !address.includes( '0xe3ae14' ) && !address.includes( '0x7dbf68' ) ) return res.json( { error: `Sorry this endpoint is in private beta for now <3` } )
+  // Internal beta
+  // if( !address.includes( '0xe3ae14' ) && !address.includes( '0x7dbf68' ) ) return res.json( { error: `Sorry this endpoint is in private beta for now <3` } )
 
 	try {
 
@@ -97,28 +97,30 @@ exports.generateMultipleNewOutfits = async function( req, res ) {
 		const network = chainId == '0x1' ? 'mainnet' : 'rinkeby'
 		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || action != 'generateMultipleNewOutfits' || !network ) throw new Error( `Invalid setPrimaryOutfit message with ${ signer }, ${confirmedSignatory}, ${action}, ${chainId}, ${network}` )
 
+
 		// Check that the signer is the owner of the token
-		const outfits = await generateNewOutfitsByAddress( address, network )
+		const amountOfOutfits = await queueRocketeersOfAddressForOutfitChange( address, network )
 
 		await db.collection( 'meta' ).doc( address ).set( {
 			last_changing_room: Date.now(),
-			last_changing_room_errors: outfits.error.map( ( { id } ) => id ),
-			last_changing_room_successes: outfits.success.map( ( { id } ) => id )
+			outfits_last_changing_room: amountOfOutfits,
+			outfits_in_queue: amountOfOutfits,
+			updated: Date.now()
 		}, { merge: true } )
 
-		return res.json( outfits )
+		return res.json( { amountOfOutfits } )
 
 
 
-    } catch( e ) {
+  } catch( e ) {
 
-        // Log error for debugging
-        console.error( `POST generateMultipleNewOutfits Changing room api error for ${ address }: `, e )
+      // Log error for debugging
+      console.error( `POST generateMultipleNewOutfits Changing room api error for ${ address }: `, e )
 
-        // Return error to frontend
-        return res.json( { error: e.mesage || e.toString() } )
+      // Return error to frontend
+      return res.json( { error: e.mesage || e.toString() } )
 
-    }
+  }
 
 }
 

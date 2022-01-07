@@ -136,19 +136,14 @@ export default function Verifier() {
 
 			setLoading( 'Generating new outfits, this can take a few minutes' )
 
-			const { error, success } = await callApi( `/rocketeers/${ address }`, {
+			const { amountOfOutfits } = await callApi( `/rocketeers/${ address }`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify( signature )
 			} )
-			log( `Errored: `, error )
-			log( `Succeeded: `, success )
+			log( `Amount of outfits queued: `, amountOfOutfits )
 
-			if( typeof error == 'string' ) throw new Error( error )
-
-
-			alert( `Success! ${ success.length } outfits generated, ${ error.length } failed.` )
-			window?.location.reload()
+			alert( `Success! Outfit generation started, check back in a few minutes to view your new outfits!` )
 
 
 		} catch( e ) {
