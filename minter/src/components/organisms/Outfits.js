@@ -189,7 +189,7 @@ export default function Verifier() {
 	if(!rocketeer ) return <Container justify="flex-start">
 		
 		<H1>Rocketeers</H1>
-		<Text>Click on a Rocketeer to manage it's outfits</Text>
+		<Text>Click on a Rocketeer to manage its outfits</Text>
 		<Section direction="row">
 			
 			{ rocketeers.map( ( { id, image, new_outfit_available } ) => {
