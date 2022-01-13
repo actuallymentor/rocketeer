@@ -2,7 +2,7 @@ const functions = require( 'firebase-functions' )
 const { discord } = functions.config()
 const fetch = require( 'isomorphic-fetch' )
 
-exports.notifyDiscordWebhook = async function( username, content, avatar_url, image_title, image_url ) {
+exports.notify_discord_of_new_outfit = async function( username, content, avatar_url, image_title, image_url ) {
 
 	try {
 
@@ -11,9 +11,12 @@ exports.notifyDiscordWebhook = async function( username, content, avatar_url, im
 			username,
 			content,
 			avatar_url,
-			embeds: [ {
-				title: image_title, image: { url: image_url }
-			} ]
+			allowed_mentions: {
+				parse: [ 'users' ]
+			},
+			embeds: [
+				{ title: 'Current outfit', thumbnail: { url: avatar_url } },
+				{ title: image_title, thumbnail: { url: image_url } } ]
 		}
 
 		// Construct request options

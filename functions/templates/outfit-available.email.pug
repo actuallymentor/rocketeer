@@ -1,0 +1,17 @@
+doctype html
+html( lang='en' )
+	head
+		style= headStyles
+	body
+		h1 Outfit available for #{ rocketeer.name }
+		h2 Monthly outfit available for generation now.
+
+		p Your Rocketeer is eligible for a new outfit. You can generate it for free at the changing room.
+		img.avatar( src=rocketeer.image )
+		a.button( href='https://tools.rocketeer.fans/#/outfits/' + rocketeer.uid ) View #{ rocketeer.first_name }'s changing room
+		a.button( href='https://tools.rocketeer.fans/#/outfits/' ) View all available outfits
+
+		p If you have any questions or suggestions, please have a look at the FAQ here: https://rocketeer.fans/changingroom.
+		p For other questions or suggestions, please do not hesitate to reach out to us on discord: https://discord.gg/rocketeers
+		p ~ rocketeers.eth
+

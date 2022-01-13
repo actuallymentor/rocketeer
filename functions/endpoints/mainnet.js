@@ -4,6 +4,7 @@ const { web2domain } = require( '../nft-media/rocketeer' )
 const { setAvatar, resetAvatar } = require( '../integrations/avatar' )
 const { rocketeerFromRequest, multipleRocketeersFromRequest } = require( '../integrations/rocketeers' )
 const { generateNewOutfit, setPrimaryOutfit, generateMultipleNewOutfits } = require( '../integrations/changingroom' )
+const { subscribe_address_to_notifications } = require( '../integrations/notifier' )
 
 // ///////////////////////////////
 // Specific Rocketeer instances
@@ -23,6 +24,12 @@ app.delete( '/api/integrations/avatar/', resetAvatar )
 // /////////////////////////////*/
 app.post( '/api/rocketeer/:id/outfits', generateNewOutfit )
 app.put( '/api/rocketeer/:id/outfits', setPrimaryOutfit )
+
+/* ///////////////////////////////
+// Notification API
+// /////////////////////////////*/
+app.post( '/api/notifications/:address', subscribe_address_to_notifications )
+
 
 // ///////////////////////////////
 // Static collection data

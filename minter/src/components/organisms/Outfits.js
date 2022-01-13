@@ -28,6 +28,7 @@ export default function Verifier() {
 	const chainId = useChainId()
 	const [ rocketeer, setRocketeer ] = useState(  )
 	const [ loading, setLoading ] = useState(  )
+	const [ outfitsAvailable, setOutfitsAvailable ] = useState( 0 )
 
 
 	/* ///////////////////////////////
@@ -179,6 +180,18 @@ export default function Verifier() {
 
 	}, [ rocketeerId, rocketeers.length ] )
 
+	useEffect( f => {
+
+		// Find the data for the clicked Rocketeer
+		const outfits = rocketeers.filter( ( { new_outfit_available } ) => new_outfit_available )
+		
+		log( "Outfits available: ", outfits.length )
+
+		setOutfitsAvailable( outfits.length )
+
+
+	}, [ rocketeerId, rocketeers.length ] )
+
 	// ///////////////////////////////
 	// Rendering
 	// ///////////////////////////////
@@ -190,6 +203,7 @@ export default function Verifier() {
 		
 		<H1>Rocketeers</H1>
 		<Text>Click on a Rocketeer to manage its outfits</Text>
+		{ outfitsAvailable > 1 && <Button onClick={ generateByAddress }>Generate { outfitsAvailable } available outfits</Button> }
 		<Section direction="row">
 			
 			{ rocketeers.map( ( { id, image, new_outfit_available } ) => {
@@ -201,7 +215,6 @@ export default function Verifier() {
 		</Section>
 
 		<Text className="row">Rocketeers owned by: { address }.</Text>
-		<Sidenote onClick={ generateByAddress } className="row">_</Sidenote>
 
 	</Container>
 
