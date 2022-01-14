@@ -78,10 +78,11 @@ export default function ComponentName( ) {
 		
 		<Section direction="row">
 			{ /* <Button direction="column" icon={ Mint } to='/mint'>Mint Rocketeer</Button> */ }
-			<Button direction="column" icon={ Portfolio } to='/portfolio'>Rocketeer Portfolio</Button>
+			
 			<Button direction="column" icon={ Outfits } to='/outfits'>Changing Room</Button>
-			<Button direction="column" icon={ Discord } to='/verify'>Discord verify</Button>
+			{ /* <Button direction="column" icon={ Discord } to='/verify'>Discord verify</Button> */ }
 			<Button direction="column" icon={ Avatar } to='/avatar'>Set node avatar</Button>
+			<Button direction="column" icon={ Portfolio } to='/portfolio'>Rocketeer Portfolio</Button>
 		</Section>
 
 
