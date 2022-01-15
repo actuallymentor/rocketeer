@@ -140,8 +140,8 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 
 	const bakedRaster = await convert( bakedSvg, {
 		quality: 80,
-		height: 500,
-		width: 500
+		// height: 500,
+		// width: 500
 	} )
 
 	// Double check that files do not yet exist (in case of weird race condition)
