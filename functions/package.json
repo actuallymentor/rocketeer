@@ -5,16 +5,17 @@
     "lint": "eslint .",
     "runtime": "firebase functions:config:get > .runtimeconfig.json",
     "serve": "firebase emulators:start --only functions",
-    "shell": "NODE_ENV=development firebase functions:shell",
-    "start": "NODE_ENV=development npm run shell",
+    "shell": "development=true firebase functions:shell",
+    "start": "development=true npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "12"
+    "node": "16"
   },
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.19.1",
     "color": "^4.0.2",
     "color-namer": "^1.4.0",
     "convert-svg-to-jpeg": "^0.5.0",
@@ -23,7 +24,6 @@
     "express": "^4.17.1",
     "firebase-admin": "^10.0.0",
     "firebase-functions": "^3.11.0",
-    "form-data": "^4.0.0",
     "isomorphic-fetch": "^3.0.0",
     "jsdom": "^18.0.0",
     "juice": "^8.0.0",

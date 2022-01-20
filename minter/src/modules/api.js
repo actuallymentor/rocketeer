@@ -145,3 +145,14 @@ export function useRocketeerImages() {
 
 }
 
+export function make_merch_order( order ) {
+
+    return callApi( `/merch/order`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( order )
+    } )
+
+}

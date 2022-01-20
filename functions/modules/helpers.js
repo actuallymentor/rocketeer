@@ -2,6 +2,10 @@
 // Helper functions
 // ///////////////////////////////
 
+exports.log = ( ...messages ) => {
+    if( process.env.development ) console.log( ...messages )
+}
+
 // Wait in async
 exports.wait = timeInMs => new Promise( resolve => setTimeout( resolve ), timeInMs )
 

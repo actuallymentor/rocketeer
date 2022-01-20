@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: ${ ( { align='center' } ) => align };
 	justify-content: ${ ( { justify='center' } ) => justify };
 	min-height: 100vh;
 	width: 100%;

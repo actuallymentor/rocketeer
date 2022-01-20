@@ -5,6 +5,7 @@ const { setAvatar, resetAvatar } = require( '../integrations/avatar' )
 const { rocketeerFromRequest, multipleRocketeersFromRequest } = require( '../integrations/rocketeers' )
 const { generateNewOutfit, setPrimaryOutfit, generateMultipleNewOutfits } = require( '../integrations/changingroom' )
 const { subscribe_address_to_notifications } = require( '../integrations/notifier' )
+const { order_merch } = require( '../integrations/merch' )
 
 // ///////////////////////////////
 // Specific Rocketeer instances
@@ -28,8 +29,12 @@ app.put( '/api/rocketeer/:id/outfits', setPrimaryOutfit )
 /* ///////////////////////////////
 // Notification API
 // /////////////////////////////*/
-app.post( '/api/notifications/:address', subscribe_address_to_notifications )
+app.post( '/api/notifications/:address', ( req, res ) => order_merch( req.body ) )
 
+/* ///////////////////////////////
+// Merch API
+// /////////////////////////////*/
+app.post( '/api/merch/order', subscribe_address_to_notifications )
 
 // ///////////////////////////////
 // Static collection data

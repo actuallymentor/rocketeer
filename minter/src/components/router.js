@@ -4,10 +4,11 @@ import Verifier from './organisms/Verifier'
 import Avatar from './organisms/Avatar'
 import Portfolio from './organisms/Portfolio'
 import Outfits from './organisms/Outfits'
+import Merch from './organisms/Merch'
 import { useState, useEffect } from 'react'
 import { log } from '../modules/helpers'
 import { useAddress } from '../modules/web3'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
 
 
 function Router() {
@@ -55,6 +56,11 @@ function Router() {
 		<Route exact path='/portfolio' element={ <Portfolio /> } />
 		<Route path='/outfits/' element={ <Outfits /> }>
 			<Route path='/outfits/:rocketeerId' element={ <Outfits /> } />
+		</Route>
+
+		<Route path='/merch/' element={ <Merch /> }>
+			<Route path='/merch/success/:order_id' element={ <Merch /> } />
+			<Route path='/merch/:rocketeer_id' element={ <Merch /> } />
 		</Route>
 
 	</Routes>

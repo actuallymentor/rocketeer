@@ -4,6 +4,7 @@ const { web2domain } = require( '../nft-media/rocketeer' )
 const { rocketeerFromRequest, multipleRocketeersFromRequest } = require( '../integrations/rocketeers' )
 const { generateNewOutfit, setPrimaryOutfit, generateMultipleNewOutfits } = require( '../integrations/changingroom' )
 const { subscribe_address_to_notifications } = require( '../integrations/notifier' )
+const { order_merch } = require( '../integrations/merch' )
 
 ////////////////////////////////
 // Specific Rocketeer instances
@@ -22,6 +23,11 @@ app.put( '/testnetapi/rocketeer/:id/outfits', setPrimaryOutfit )
 // Notification API
 // /////////////////////////////*/
 app.post( '/testnetapi/notifications/:address', subscribe_address_to_notifications )
+
+/* ///////////////////////////////
+// Merch API
+// /////////////////////////////*/
+app.post( '/testnetapi/merch/order', order_merch )
 
 // Collection data
 app.get( '/testnetapi/collection', async ( req, res ) => res.json( {
