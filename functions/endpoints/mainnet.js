@@ -29,12 +29,12 @@ app.put( '/api/rocketeer/:id/outfits', setPrimaryOutfit )
 /* ///////////////////////////////
 // Notification API
 // /////////////////////////////*/
-app.post( '/api/notifications/:address', ( req, res ) => order_merch( req.body ) )
+app.post( '/api/notifications/:address', subscribe_address_to_notifications )
 
 /* ///////////////////////////////
 // Merch API
 // /////////////////////////////*/
-app.post( '/api/merch/order', subscribe_address_to_notifications )
+app.post( '/api/merch/order', order_merch )
 
 // ///////////////////////////////
 // Static collection data

@@ -23,7 +23,7 @@ export default function Verifier() {
 	const [ rocketeer, setRocketeer ] = useState(  )
 	const [ order, setOrder ] = useState( {  } )
 	const [ payment, setPayment ] = useState(  )
-	const { rocketeer_id } = useParams()
+	const { rocketeer_id, order_id } = useParams()
 	const navigate = useNavigate()
 	const rocketeers = useRocketeers( rocketeer_id )
 	const [ loading, setLoading ] = useState(  )
@@ -83,6 +83,7 @@ export default function Verifier() {
 				product_id: 'kurk_20x20'
 			} )
 
+			log( `API responded with `, error, pending_order )
 			if( error ) throw new Error( error )
 
 			log( `Order created: `, pending_order )
@@ -106,6 +107,11 @@ export default function Verifier() {
 	// ///////////////////////////////
 
 	if( loading ) return <Loading message={ loading } />
+
+	if( order_id ) return <Container align='flex-start'>
+		<H1>Order { order_id } confirmed</H1>
+		<Text>Write that number down in case of apocalypse. You'll be kept up to date via email. Emails might be in Dutch. Sorry, not sorry.</Text>
+	</Container>
 
 	if( payment ) return <Container align='flex-start'>
 		
