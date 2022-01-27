@@ -110,7 +110,7 @@ export default function Verifier() {
 
 	if( order_id ) return <Container align='flex-start'>
 		<H1>Order { order_id } confirmed</H1>
-		<Text>Write that number down in case of apocalypse. You'll be kept up to date via email. Emails might be in Dutch. Sorry, not sorry.</Text>
+		<Text>Write that number down in case of apocalypse. You will NOT be kept up to date via email, still working on that. Sorry, not sorry.</Text>
 	</Container>
 
 	if( payment ) return <Container align='flex-start'>
@@ -138,7 +138,7 @@ export default function Verifier() {
 			<Text>There is currently only one merch option: A 20cm x 20cm print on cork.</Text>
 
 			<H2>Shipping details</H2>
-			<Text>These are not saved anywhere, only the printing and logistics partner saves these.</Text>
+			<Text>These are not saved on our end, only the printing and logistics partner saves these.</Text>
 			<Input value={ order.name } onChange={ ( { target } ) => updateOrder( 'name', target.value ) } label='Your name' />
 			<Input value={ order.email } onChange={ ( { target } ) => updateOrder( 'email', target.value ) } label='Your email' />
 			<Input value={ order.line1 } onChange={ ( { target } ) => updateOrder( 'line1', target.value ) } label='Address (street + number)' />
@@ -158,6 +158,7 @@ export default function Verifier() {
 		<Text>Select the Rocketeer you want merch for.</Text>
 		<Section direction="row">
 			
+			{ !rocketeers.length && <Text>Loading Rocketeers, make sure you selected the right wallet...</Text> }
 			{ rocketeers.map( ( { id, image } ) => {
 
 				return <Avatar onClick={ f => navigate( `/merch/${ id }` ) } key={ id } src={ image } alt={ `Rocketeer number ${ id }` } />

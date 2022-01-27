@@ -2,6 +2,7 @@
 import Fox from '../../assets/metamask-fox.svg'
 import Discord from '../../assets/discord-logo-black.svg'
 import Mint from '../../assets/rocket-fill.svg'
+import Merch from '../../assets/present-icon.svg'
 import Avatar from '../../assets/account-circle-fill.svg'
 import Outfits from '../../assets/door-closed-fill.svg'
 import Portfolio from '../../assets/pie-chart-fill.svg'
@@ -83,6 +84,7 @@ export default function ComponentName( ) {
 			{ /* <Button direction="column" icon={ Discord } to='/verify'>Discord verify</Button> */ }
 			<Button direction="column" icon={ Avatar } to='/avatar'>Set node avatar</Button>
 			<Button direction="column" icon={ Portfolio } to='/portfolio'>Rocketeer Portfolio</Button>
+			<Button direction="column" icon={ Merch } to='/merch'>Merch (beta)</Button>
 		</Section>
 
 
