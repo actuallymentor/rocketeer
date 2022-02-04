@@ -1,3 +1,5 @@
+const wait = ( durationinMs=1000 ) => new Promise( resolve => setTimeout( resolve, durationinMs ) )
+
 /* ///////////////////////////////
 // Twitter
 // scraping for signer.is
@@ -31,10 +33,16 @@ async function get_addresses_from_twitter_links( links ) {
 
 }
 
+async function get_address_from_twitter_link( link ) {
+
+	const resolved_twitter_redirect = await fetch( link ).then( res => res.text() )
+	const address = get_address_from_base64( resolved_twitter_redirect )
+	return address
+
+}
+
 async function scrape_signer_links_in_replies(  ) {
 	
-	console.log( '⚠️ Disable security policy headers with a chrome extension' )
-
 	const hrefs = document.querySelectorAll( 'a' )
 	const has_signer_is = [ ...hrefs ].filter( ( { innerText, ...rest } ) => {
 		return innerText.includes( 'signer.is/#/verify' )
@@ -42,7 +50,7 @@ async function scrape_signer_links_in_replies(  ) {
 	const signer_is_hrefs = has_signer_is.map( ( { href } ) => href )
 	const addresses = await get_addresses_from_twitter_links( signer_is_hrefs )
 
-	console.log( addresses.join( '\n' ) )
+	return addresses
 
 }
 
@@ -50,11 +58,11 @@ async function scrape_signer_links_in_replies(  ) {
 
 async function scrape_signer_links_in_dm(  ) {
 
+	const scroll_interval = 50
 	console.log( `This function runs for an indeterminate length, keep an eye on it and run get_addresses_from_twitter_links when results stagnate` )
 
-	const wait = ( durationinMs=1000 ) => new Promise( resolve => setTimeout( resolve, durationinMs ) )
 	function get_handle_from_element( element ) {
-		const [ match, handle ] = element.innerHTML.match( /(@.+?)(?:<\/)/ )
+		const [ match, handle ] = element.innerHTML.match( /(@.+?)(?:<\/)/ ) || []
 		if( handle ) return handle
 		else return false
 	}
@@ -80,15 +88,22 @@ async function scrape_signer_links_in_dm(  ) {
 			const { href, ...rest } = [ ...links ].find( ( { innerText } ) => innerText.includes( 'signer.is/#/verify' ) ) || []
 			
 			// Save the link and mark the handle as done of need be
-			if( href ) hits.push( href )
+			if( href ) {
+
+				const address = await get_address_from_twitter_link( href ).catch( e => false )
+				hits.push( address )
+
+			}
 			done.push( handle )
 
 			document.querySelector( '[aria-label="Back"]' ).click()
 			await wait()
+			window.scrollBy(0, -scroll_interval)
 
 		}
 
-		console.log( `Checked ${ done.length } handles. Found: `, hits )
+		console.log( `Checked ${ done.length } handles. Found: `, hits.join( '\n' ) )
+		await wait()
 
 	}
 
@@ -106,3 +121,34 @@ function discord_channel_scraping() {
 	console.log( addresses.join( '\n' ) )
 
 }
+
+/* ///////////////////////////////
+// Function handlers
+// /////////////////////////////*/
+async function get_all_addressed_from_replies() {
+
+	let all = []
+	const scroll_interval = 300
+	console.log( 'This function will run in perpetuity because twitter does not let us access all tweets unless they are in view. Manually handle that.' )
+	while( true ) {
+
+		const addresses = await scrape_signer_links_in_replies()
+		let new_all = [ ...all, ...addresses ]
+		new_all = [ ...new Set( new_all ) ]
+
+		if( all.length != new_all.length ) console.log( new_all.join( '\n' ) )
+
+		all = new_all
+
+		window.scrollBy(0,scroll_interval)
+		await wait( 1000 )
+
+	}
+
+	console.log( `${ all.length } addresses: \n`, all.join( '\n' ) )
+
+}
+
+// get_all_addressed_from_replies( )
+
+scrape_signer_links_in_dm( )
