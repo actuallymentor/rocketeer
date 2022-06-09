@@ -1,5 +1,0 @@
-Rocketeer %%name%% has a new outfit available!
-
-You can generate it at https://tools.rocketeer.fans
-
-Have fun!

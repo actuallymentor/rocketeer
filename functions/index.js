@@ -20,3 +20,9 @@ exports.mainnetMetadata = functions.runWith( runtime ).https.onRequest( mainnetA
 const { handleQueuedRocketeerOutfit } = require( './nft-media/changing-room' )
 exports.mainnetGenerateOutfitsOnQueue = functions.runWith( runtime ).firestore.document( `mainnetQueueOutfitGeneration/{rocketeerId}` ).onWrite( handleQueuedRocketeerOutfit )
 exports.rinkebyGenerateOutfitsOnQueue = functions.runWith( runtime ).firestore.document( `rinkebyQueueOutfitGeneration/{rocketeerId}` ).onWrite( handleQueuedRocketeerOutfit )
+
+/* ///////////////////////////////
+// Daemons
+// /////////////////////////////*/
+const { notify_holders_of_changing_room_updates } = require( './integrations/changingroom' )
+exports.notify_holders_of_changing_room_updates = functions.pubsub.schedule( '0 0 * * *' ).onRun( notify_holders_of_changing_room_updates )

@@ -1,7 +1,7 @@
 // ///////////////////////////////
 // Helper functions
 // ///////////////////////////////
-
+exports.dev = !!process.env.development
 exports.log = ( ...messages ) => {
     if( process.env.development ) console.log( ...messages )
 }

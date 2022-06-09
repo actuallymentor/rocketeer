@@ -1,5 +1,8 @@
 const { generateNewOutfitFromId, queueRocketeersOfAddressForOutfitChange } = require( '../nft-media/changing-room' )
-const { db, dataFromSnap } = require( '../modules/firebase' )
+const { db, dataFromSnap, FieldPath } = require( '../modules/firebase' )
+const { dev, log } = require( '../modules/helpers' )
+const { ask_signer_is_for_available_emails } = require( './signer_is' )
+const { send_outfit_available_email } = require( './ses' )
 
 // Web3 APIs
 const { getOwingAddressOfTokenId } = require( '../modules/contract' )
@@ -196,5 +199,72 @@ exports.setPrimaryOutfit = async function( req, res ) {
         return res.json( { error: e.mesage || e.toString() } )
 
     }
+
+}
+
+/* ///////////////////////////////
+// Notify of changing room updates
+// /////////////////////////////*/
+exports.notify_holders_of_changing_room_updates = async context => {
+
+	try {
+
+		// Get all Rocketeers with outfits available
+		const network = dev ? `rinkeby` : `mainnet`
+		const limit = dev ? 50 : 2000
+		log( `Getting ${ limit } rocketeers on ${ network }` )
+		const all_rocketeers = await db.collection( `${ network }Rocketeers` )
+									.limit( limit ).get().then( dataFromSnap )
+		log( `Got ${ all_rocketeers.length } Rocketeers` )
+		const has_outfit_available = all_rocketeers.filter( rocketeer => {
+
+			const { attributes } = rocketeer
+			const outfit_available = attributes.find( ( { trait_type } ) => trait_type == 'last outfit change' )
+			// If outfit available is in the past, keep it
+			if( outfit_available?.value < Date.now() ) return true
+
+			// If outfit available in the future, discard
+			return false
+
+		} )
+
+		const owners = await Promise.all( has_outfit_available.map( async ( { uid } ) => {
+			log( `Getting owner of `, uid )
+			const owning_address = await getOwingAddressOfTokenId( uid )
+			return { uid, owning_address }
+		} )  )
+
+		const owners_with_signer_email = await ask_signer_is_for_available_emails( owners.map( ( { owning_address } ) => owning_address ) )
+
+		const rocketeers_by_address = has_outfit_available.reduce( ( wallets, rocketeer ) => {
+
+			const new_wallet_list = { ...wallets }
+			const { owning_address } = owners.find( ( { uid } ) => uid == rocketeer.uid )
+
+			// If this owner has no email, ignore it
+			if( !owners_with_signer_email.includes( owning_address ) ) return new_wallet_list
+
+			// If the wallet object does now have this one yet, add an empty array
+			if( !new_wallet_list[ owning_address ] ) new_wallet_list[owning_address] = []
+
+			new_wallet_list[owning_address] = [ ...new_wallet_list[owning_address], rocketeer ]
+			return new_wallet_list
+
+		}, {} )
+
+		const owners_to_email = Object.keys( rocketeers_by_address )
+
+		// Send emails to the relevant owners
+		await Promise.all( owners_to_email.map( async owning_address => {
+
+			const rocketeers = rocketeers_by_address[ owning_address ]
+			await send_outfit_available_email( rocketeers, `${ owning_address }@signer.is` )
+
+		} ) )
+
+
+	} catch( e ) {
+		console.error( `notify_holders_of_changing_room_updates error: `, e )
+	}
 
 }
