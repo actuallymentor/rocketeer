@@ -1,5 +1,5 @@
 const { generateNewOutfitFromId, queueRocketeersOfAddressForOutfitChange } = require( '../nft-media/changing-room' )
-const { db, dataFromSnap, FieldPath } = require( '../modules/firebase' )
+const { db, dataFromSnap } = require( '../modules/firebase' )
 const { dev, log } = require( '../modules/helpers' )
 const { ask_signer_is_for_available_emails } = require( './signer_is' )
 const { send_outfit_available_email } = require( './ses' )
