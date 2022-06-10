@@ -211,11 +211,12 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		// Get all Rocketeers with outfits available
 		const network = dev ? `rinkeby` : `mainnet`
-		const limit = dev ? 50 : 2000
+		const limit = dev ? 50 : 5000 // max supply 3475
 		log( `Getting ${ limit } rocketeers on ${ network }` )
-		const all_rocketeers = await db.collection( `${ network }Rocketeers` )
-									.limit( limit ).get().then( dataFromSnap )
+		const all_rocketeers = await db.collection( `${ network }Rocketeers` ).limit( limit ).get().then( dataFromSnap )
 		log( `Got ${ all_rocketeers.length } Rocketeers` )
+
+		// Check which rocketeers have outfits available
 		const has_outfit_available = all_rocketeers.filter( rocketeer => {
 
 			const { attributes } = rocketeer
@@ -228,14 +229,17 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		} )
 
+		// Get the owning wallets of available outfits
 		const owners = await Promise.all( has_outfit_available.map( async ( { uid } ) => {
 			log( `Getting owner of `, uid )
 			const owning_address = await getOwingAddressOfTokenId( uid )
 			return { uid, owning_address }
 		} )  )
 
+		// Check which owners have signer.is emails
 		const owners_with_signer_email = await ask_signer_is_for_available_emails( owners.map( ( { owning_address } ) => owning_address ) )
 
+		// Format rocketeers by address
 		const rocketeers_by_address = has_outfit_available.reduce( ( wallets, rocketeer ) => {
 
 			const new_wallet_list = { ...wallets }
@@ -252,6 +256,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		}, {} )
 
+		// List the owning emails
 		const owners_to_email = Object.keys( rocketeers_by_address )
 
 		// Send emails to the relevant owners
@@ -261,6 +266,9 @@ exports.notify_holders_of_changing_room_updates = async context => {
 			await send_outfit_available_email( rocketeers, `${ owning_address }@signer.is` )
 
 		} ) )
+
+		// Log result
+		console.log( `Sent ${ owners_to_email.length } emails for ${ network } outfits` )
 
 
 	} catch( e ) {
