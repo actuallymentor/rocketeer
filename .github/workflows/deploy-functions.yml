@@ -52,7 +52,7 @@ jobs:
           gcloud firestore export ${{ secrets.GCP_BUCKET_LINK_PRODUCTION }}/firestore-backups/$(date +'%Y-%m-%d-%s')/
           
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: docker://w9jds/firebase-action:master
         with:
           args: deploy --only=functions
         env:
