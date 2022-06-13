@@ -1,7 +1,7 @@
 {
   "name": "static-page-boilerplate-webpack-browsersync",
   "version": "1.0.0",
-  "description": "Static Webpage with Webpack and Browsersync Boilerplate",
+  "description": "Rocketeer Website",
   "main": "app.js",
   "scripts": {
     "nvm": "nodever=$(<.nvmrc) && node -v | grep -q \"v$nodever\" && echo \"Correct node version\" || ( echo  \"[x] Node version $nodever required\\n\\n\" && exit 1 )",
