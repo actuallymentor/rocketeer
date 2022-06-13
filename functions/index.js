@@ -25,4 +25,4 @@ exports.rinkebyGenerateOutfitsOnQueue = functions.runWith( runtime ).firestore.d
 // Daemons
 // /////////////////////////////*/
 const { notify_holders_of_changing_room_updates } = require( './integrations/changingroom' )
-exports.notify_holders_of_changing_room_updates = functions.runWith( runtime ).pubsub.schedule( '0 0 * * *' ).onRun( notify_holders_of_changing_room_updates )
+exports.notify_holders_of_changing_room_updates = functions.runWith( runtime ).pubsub.schedule( '0 1 * * *' ).onRun( notify_holders_of_changing_room_updates )
