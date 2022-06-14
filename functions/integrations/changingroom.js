@@ -212,9 +212,13 @@ exports.notify_holders_of_changing_room_updates = async context => {
 		// Get all Rocketeers with outfits available
 		const network = dev ? `rinkeby` : `mainnet`
 		const limit = dev ? 50 : 5000 // max supply 3475
-		log( `Getting ${ limit } rocketeers on ${ network }` )
-		const all_rocketeers = await db.collection( `${ network }Rocketeers` ).limit( limit ).get().then( dataFromSnap )
-		log( `Got ${ all_rocketeers.length } Rocketeers` )
+		console.log( `Getting ${ limit } rocketeers on ${ network }` )
+		let all_rocketeers = await db.collection( `${ network }Rocketeers` ).limit( limit ).get().then( dataFromSnap )
+		console.log( `Got ${ all_rocketeers.length } Rocketeers` )
+
+		// FIlter out API abuse rocketeers
+		all_rocketeers = all_rocketeers.filter( ( {uid} ) => uid > 0 && uid <= 3475 )
+		console.log( `Proceeding with ${ all_rocketeers.length } valid Rocketeers` )
 
 		// Check which rocketeers have outfits available
 		const has_outfit_available = all_rocketeers.filter( rocketeer => {
@@ -228,6 +232,8 @@ exports.notify_holders_of_changing_room_updates = async context => {
 			return false
 
 		} )
+
+
 
 		// Get the owning wallets of available outfits
 		const owners = await Promise.all( has_outfit_available.map( async ( { uid } ) => {
