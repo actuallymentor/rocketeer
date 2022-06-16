@@ -11,7 +11,7 @@ const mail = instance.client( {
 	key: mailgun.api_key,
 	url: mailgun.api_url
 })
-
+)
 // Email templates
 const pug = require('pug')
 const { promises: fs } = require( 'fs' )
