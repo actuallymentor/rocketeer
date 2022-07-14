@@ -4,6 +4,7 @@ const { dev, log } = require( '../modules/helpers' )
 const { ask_signer_is_for_available_emails } = require( './signer_is' )
 const { send_outfit_available_email } = require( './ses' )
 const { throttle_and_retry } = require( '../modules/helpers' )
+const { notify_discord_of_outfit_notifications } = require( './discord' )
 
 // Web3 APIs
 const { getOwingAddressOfTokenId } = require( '../modules/contract' )
@@ -214,7 +215,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		// Get all Rocketeers with outfits available
 		const network = dev ? `rinkeby` : `mainnet`
-		const limit = dev ? 5000 : 5000 // max supply 3475
+		const limit = dev ? 5 : 5000 // max supply 3475
 		console.log( `Getting ${ limit } rocketeers on ${ network }` )
 		let all_rocketeers = await db.collection( `${ network }Rocketeers` ).limit( limit ).get().then( dataFromSnap )
 		console.log( `Got ${ all_rocketeers.length } Rocketeers` )
@@ -300,6 +301,9 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		// Log result
 		console.log( `Sent ${ owners_to_email.length } emails for ${ network } outfits` )
+
+		// Notify Discord too
+		await notify_discord_of_outfit_notifications( owners_to_email.length )
 
 
 	} catch( e ) {
