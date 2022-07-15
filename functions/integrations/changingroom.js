@@ -260,6 +260,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		// Check which owners have signer.is emails
 		const owners_with_signer_email = await ask_signer_is_for_available_emails( owners.map( ( { owning_address } ) => owning_address ) )
+		console.log( `Owners with signer emails ${ owners_with_signer_email.length }` )
 
 		// Format rocketeers by address
 		const rocketeers_by_address = has_outfit_available.reduce( ( wallets, rocketeer ) => {
@@ -280,13 +281,14 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		// List the owning emails
 		const owners_to_email = Object.keys( rocketeers_by_address )
+		console.log( `${ owners_to_email.length } owners to email: `, owners_to_email.slice( 0, 10 ).join( ', ' ) )
 
 		// Take note of who we emailed so as to not spam them
 		const meta_writing_queue = owners_to_email.map( ( address ) => () => {
 
 			return db.collection( `meta` ).doc( address ).set( { last_emailed_about_outfit: Date.now(), updated: Date.now(), updated_human: new Date().toString() }, { merge: true } )
 
-	} )
+		} )
 		await throttle_and_retry( meta_writing_queue, 50, `keep track of who we emailed`, 2, 10 )
 
 		// Send emails to the relevant owners
