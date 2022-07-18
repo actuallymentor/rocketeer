@@ -214,8 +214,9 @@ exports.notify_holders_of_changing_room_updates = async context => {
 	try {
 
 		// Get all Rocketeers with outfits available
-		const network = dev ? `rinkeby` : `mainnet`
-		const limit = dev ? 5 : 5000 // max supply 3475
+		// const network = dev ? `rinkeby` : `mainnet`
+		const network = 'mainnet'
+		const limit = dev ? 5000 : 5000 // max supply 3475
 		console.log( `Getting ${ limit } rocketeers on ${ network }` )
 		let all_rocketeers = await db.collection( `${ network }Rocketeers` ).limit( limit ).get().then( dataFromSnap )
 		console.log( `Got ${ all_rocketeers.length } Rocketeers` )
@@ -239,14 +240,31 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		} )
 
+		// Get owner cache
+		const one_day_in_ms = 1000 * 60 * 60 * 24
+		const owner_cache = await db.collection( `rocketeer_owner_cache` ).where( 'updated', '>', Date.now() - one_day_in_ms ).get().then( dataFromSnap )
+
 		// Get the owning wallets of available outfits
 		const owner_getting_queue = has_outfit_available.map( ( { uid } ) => async () => {
-			log( `Getting owner of ${ uid }` )
+
+			// Try for cached owner
+			const cached_owner = owner_cache.find( ( { tokenId } ) => uid == tokenId )
+			if( cached_owner ) return cached_owner
+
+			// Ask infura for owner
 			const owning_address = await getOwingAddressOfTokenId( uid )
+
 			return { uid, owning_address }
+
 		} )
-		let owners = await throttle_and_retry( owner_getting_queue, 10, `get owners`, 2, 5 )
+		let owners = await throttle_and_retry( owner_getting_queue, 50, `get owners`, 2, 5 )
 		console.log( `${ owners.length } Rocketeer owners found` )
+
+		// Set owner cache to spare infura
+		const owner_cache_writing_queue = owners.map( ( { uid, owning_address } ) => () => {
+			return db.collection( `rocketeer_owner_cache` ).doc( uid ).set( { tokenId: uid, owning_address, updated: Date.now(), updated_human: new Date().toString() }, { merge: true } )
+		} )
+		await throttle_and_retry( owner_cache_writing_queue, 50, `writing owner cache`, 2, 10 )
 
 		// Get the owners we have already emailed recently
 		const owner_meta = await db.collection( `meta` ).get().then( dataFromSnap )
@@ -260,7 +278,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		// Check which owners have signer.is emails
 		const owners_with_signer_email = await ask_signer_is_for_available_emails( owners.map( ( { owning_address } ) => owning_address ) )
-		console.log( `Owners with signer emails ${ owners_with_signer_email.length }` )
+		console.log( `Owners with signer emails ${ owners_with_signer_email.length }: ` )
 
 		// Format rocketeers by address
 		const rocketeers_by_address = has_outfit_available.reduce( ( wallets, rocketeer ) => {
@@ -269,7 +287,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 			const { owning_address } = owners.find( ( { uid } ) => uid == rocketeer.uid )
 
 			// If this owner has no email, ignore it
-			if( !owners_with_signer_email.includes( owning_address ) ) return new_wallet_list
+			if( !owners_with_signer_email.includes( owning_address.toLowerCase() ) ) return new_wallet_list
 
 			// If the wallet object does now have this one yet, add an empty array
 			if( !new_wallet_list[ owning_address ] ) new_wallet_list[owning_address] = []
@@ -285,9 +303,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		// Take note of who we emailed so as to not spam them
 		const meta_writing_queue = owners_to_email.map( ( address ) => () => {
-
 			return db.collection( `meta` ).doc( address ).set( { last_emailed_about_outfit: Date.now(), updated: Date.now(), updated_human: new Date().toString() }, { merge: true } )
-
 		} )
 		await throttle_and_retry( meta_writing_queue, 50, `keep track of who we emailed`, 2, 10 )
 
@@ -305,7 +321,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 		console.log( `Sent ${ owners_to_email.length } emails for ${ network } outfits` )
 
 		// Notify Discord too
-		await notify_discord_of_outfit_notifications( owners_to_email.length )
+		await notify_discord_of_outfit_notifications( owners_to_email.length, owners.length )
 
 
 	} catch( e ) {
