@@ -252,7 +252,8 @@ exports.notify_holders_of_changing_room_updates = async context => {
 			if( cached_owner ) return cached_owner
 
 			// Ask infura for owner
-			const owning_address = await getOwingAddressOfTokenId( uid )
+			let owning_address = await getOwingAddressOfTokenId( uid )
+			owning_address = owning_address.toLowerCase()
 
 			return { uid, owning_address }
 
@@ -270,14 +271,15 @@ exports.notify_holders_of_changing_room_updates = async context => {
 		const owner_meta = await db.collection( `meta` ).get().then( dataFromSnap )
 		const owners_emailed_recently = owner_meta
 											.filter( ( { last_emailed_about_outfit } ) => last_emailed_about_outfit > ( Date.now() - newOutfitAllowedInterval ) )
-											.map( ( { uid } ) => uid )
+											.map( ( { uid } ) => uid.toLowerCase() )
 		
 		// Remove owners from list of they were emailed too recently
 		console.log( `${ owners_emailed_recently.length } owners emailed too recently` )
-		owners = owners.filter( address => !owners_emailed_recently.includes( address ) )
+		owners = owners.filter( address => !owners_emailed_recently.includes( address ) ).map( address => address.toLowerCase() )
 
 		// Check which owners have signer.is emails
-		const owners_with_signer_email = await ask_signer_is_for_available_emails( owners.map( ( { owning_address } ) => owning_address ) )
+		let owners_with_signer_email = await ask_signer_is_for_available_emails( owners.map( ( { owning_address } ) => owning_address ) )
+		owners_with_signer_email = owners_with_signer_email.map( address => address.toLowerCase() )
 		console.log( `Owners with signer emails ${ owners_with_signer_email.length }: ` )
 
 		// Format rocketeers by address
@@ -287,7 +289,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 			const { owning_address } = owners.find( ( { uid } ) => uid == rocketeer.uid )
 
 			// If this owner has no email, ignore it
-			if( !owners_with_signer_email.includes( owning_address.toLowerCase() ) ) return new_wallet_list
+			if( !owners_with_signer_email.includes( owning_address ) ) return new_wallet_list
 
 			// If the wallet object does now have this one yet, add an empty array
 			if( !new_wallet_list[ owning_address ] ) new_wallet_list[owning_address] = []
