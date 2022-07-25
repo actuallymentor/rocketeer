@@ -209,6 +209,7 @@ exports.setPrimaryOutfit = async function( req, res ) {
 // /////////////////////////////*/
 exports.notify_holders_of_changing_room_updates = async context => {
 
+	// One month in ms
 	const newOutfitAllowedInterval = 1000 * 60 * 60 * 24 * 30
 
 	try {
@@ -239,13 +240,14 @@ exports.notify_holders_of_changing_room_updates = async context => {
 			return false
 
 		} )
+		log( `${ has_outfit_available.length } Rocketeers have outfits available` )
 
 		// Get owner cache
 		const one_day_in_ms = 1000 * 60 * 60 * 24
 		const owner_cache = await db.collection( `rocketeer_owner_cache` ).where( 'updated', '>', Date.now() - one_day_in_ms ).get().then( dataFromSnap )
 
 		// Get the owning wallets of available outfits
-		const owner_getting_queue = has_outfit_available.map( ( { uid } ) => async () => {
+		const get_rocketeer_owners_queue = has_outfit_available.map( ( { uid } ) => async () => {
 
 			// Try for cached owner
 			const cached_owner = owner_cache.find( ( { tokenId } ) => uid == tokenId )
@@ -258,35 +260,51 @@ exports.notify_holders_of_changing_room_updates = async context => {
 			return { uid, owning_address }
 
 		} )
-		let owners = await throttle_and_retry( owner_getting_queue, 50, `get owners`, 2, 5 )
-		console.log( `${ owners.length } Rocketeer owners found` )
+		const rocketeers_with_owners = await throttle_and_retry( get_rocketeer_owners_queue, 50, `get owners`, 2, 5 )
+		console.log( `${ rocketeers_with_owners.length } Rocketeer owners found` )
 
 		// Set owner cache to spare infura
-		const owner_cache_writing_queue = owners.map( ( { uid, owning_address } ) => () => {
+		const owner_cache_writing_queue = rocketeers_with_owners.map( ( { uid, owning_address } ) => () => {
 			return db.collection( `rocketeer_owner_cache` ).doc( uid ).set( { tokenId: uid, owning_address, updated: Date.now(), updated_human: new Date().toString() }, { merge: true } )
 		} )
 		await throttle_and_retry( owner_cache_writing_queue, 50, `writing owner cache`, 2, 10 )
 
 		// Get the owners we have already emailed recently
 		const owner_meta = await db.collection( `meta` ).get().then( dataFromSnap )
+		console.log( `${ owner_meta.length } Owners in cache` )
 		const owners_emailed_recently = owner_meta
-											.filter( ( { last_emailed_about_outfit } ) => last_emailed_about_outfit > ( Date.now() - newOutfitAllowedInterval ) )
+											// Too recently means last_emailed is larger than the point in the past past which it's been too long 
+											.filter( ( { last_emailed_about_outfit } ) => !last_emailed_about_outfit || ( last_emailed_about_outfit > ( Date.now() - newOutfitAllowedInterval ) ) )
 											.map( ( { uid } ) => uid.toLowerCase() )
 		
 		// Remove owners from list of they were emailed too recently
-		console.log( `${ owners_emailed_recently.length } owners emailed too recently` )
-		owners = owners.filter( address => !owners_emailed_recently.includes( address ) ).map( address => address.toLowerCase() )
+		console.log( `${ owners_emailed_recently.length } owners emailed too recently: `, owners_emailed_recently.slice( 0, 10 ) )
 
 		// Check which owners have signer.is emails
-		let owners_with_signer_email = await ask_signer_is_for_available_emails( owners.map( ( { owning_address } ) => owning_address ) )
-		owners_with_signer_email = owners_with_signer_email.map( address => address.toLowerCase() )
-		console.log( `Owners with signer emails ${ owners_with_signer_email.length }: ` )
+		let owners_of_rocketeers = rocketeers_with_owners.map( ( { owning_address } ) => owning_address ).map( address => address.toLowerCase() )
+		owners_of_rocketeers = [ ...new Set( owners_of_rocketeers ) ]
+		log( `${ owners_of_rocketeers.length } unique owners found` )
+		const owners_with_signer_email = await ask_signer_is_for_available_emails( owners_of_rocketeers )
+		console.log( owners_with_signer_email )
+		console.log( `${ owners_with_signer_email.length } Owners have signer emails` )
+
+		// Filter out owners that were emailed too recdently
+		const owners_to_email = owners_with_signer_email.map( address => address.toLowerCase() ).filter( address => !owners_emailed_recently.includes( address ) )
+
+		// // List the owning emails
+		console.log( `${ owners_to_email.length } owners to email: `, owners_to_email.slice( 0, 10 ).join( ', ' ) )
+
+		// Take note of who we emailed so as to not spam them
+		const meta_writing_queue = owners_to_email.map( ( address ) => () => {
+			return db.collection( `meta` ).doc( address ).set( { last_emailed_about_outfit: Date.now(), updated: Date.now(), updated_human: new Date().toString() }, { merge: true } )
+		} )
+		await throttle_and_retry( meta_writing_queue, 50, `keep track of who we emailed`, 2, 10 )
 
 		// Format rocketeers by address
 		const rocketeers_by_address = has_outfit_available.reduce( ( wallets, rocketeer ) => {
 
 			const new_wallet_list = { ...wallets }
-			const { owning_address } = owners.find( ( { uid } ) => uid == rocketeer.uid )
+			const { owning_address } = rocketeers_with_owners.find( ( { uid } ) => uid == rocketeer.uid )
 
 			// If this owner has no email, ignore it
 			if( !owners_with_signer_email.includes( owning_address ) ) return new_wallet_list
@@ -299,18 +317,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 
 		}, {} )
 
-		// List the owning emails
-		const owners_to_email = Object.keys( rocketeers_by_address )
-		console.log( `${ owners_to_email.length } owners to email: `, owners_to_email.slice( 0, 10 ).join( ', ' ) )
-
-		// Take note of who we emailed so as to not spam them
-		const meta_writing_queue = owners_to_email.map( ( address ) => () => {
-			return db.collection( `meta` ).doc( address ).set( { last_emailed_about_outfit: Date.now(), updated: Date.now(), updated_human: new Date().toString() }, { merge: true } )
-		} )
-		await throttle_and_retry( meta_writing_queue, 50, `keep track of who we emailed`, 2, 10 )
-
 		// Send emails to the relevant owners
-		console.log( `Sending email to ${ owners_to_email.length } addresses` )
 		const email_sending_queue = owners_to_email.map( ( owning_address ) => async () => {
 
 			const rocketeers = rocketeers_by_address[ owning_address ]
@@ -323,7 +330,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 		console.log( `Sent ${ owners_to_email.length } emails for ${ network } outfits` )
 
 		// Notify Discord too
-		await notify_discord_of_outfit_notifications( owners_to_email.length, owners.length )
+		await notify_discord_of_outfit_notifications( owners_to_email.length, has_outfit_available.length )
 
 
 	} catch( e ) {
