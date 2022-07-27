@@ -330,6 +330,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 		console.log( `Sent ${ owners_to_email.length } emails for ${ network } outfits` )
 
 		// Notify Discord too
+		if( !owners_to_email.length ) return console.log( `Zero people to email, not sending Discord webhook` )
 		await notify_discord_of_outfit_notifications( owners_to_email.length, has_outfit_available.length )
 
 
