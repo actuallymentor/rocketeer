@@ -7,7 +7,7 @@ const { notify_discord_of_new_outfit } = require( '../integrations/discord' )
 // ///////////////////////////////
 // Rocketeer outfit generator
 // ///////////////////////////////
-async function getRocketeerIfOutfitAvailable( id, network='mainnet' ) {
+async function getRocketeerIfOutfitAvailable( id, network='mainnet', retry=false ) {
 
 	const newOutfitAllowedInterval = 1000 * 60 * 60 * 24 * 30
 
@@ -19,13 +19,13 @@ async function getRocketeerIfOutfitAvailable( id, network='mainnet' ) {
 
 	// Check whether this Rocketeer is allowed to change
 	const timeUntilAllowedToChange = newOutfitAllowedInterval - ( Date.now() - last_outfit_change )
-	if( timeUntilAllowedToChange > 0 ) throw new Error( `You changed your outfit too recently, a change is avalable in ${ Math.floor( timeUntilAllowedToChange / ( 1000 * 60 * 60 ) ) } hours (${ new Date( Date.now() + timeUntilAllowedToChange ).toString() })` )
+	if( !retry && timeUntilAllowedToChange > 0 ) throw new Error( `You changed your outfit too recently, a change is avalable in ${ Math.floor( timeUntilAllowedToChange / ( 1000 * 60 * 60 ) ) } hours (${ new Date( Date.now() + timeUntilAllowedToChange ).toString() })` )
 
 	return rocketeer
 
 
 }
-async function generateNewOutfitFromId( id, network='mainnet' ) {
+async function generateNewOutfitFromId( id, network='mainnet', retry ) {
 
 	/* ///////////////////////////////
 	// Changing room variables
@@ -36,7 +36,7 @@ async function generateNewOutfitFromId( id, network='mainnet' ) {
 	const entropyMultiplier = 1.1
 
 	// Retreive old Rocketeer data if outfit is available
-	const rocketeer = await getRocketeerIfOutfitAvailable( id, network )
+	const rocketeer = await getRocketeerIfOutfitAvailable( id, network, retry )
 
 	// Validate this request
 	const { value: available_outfits } = rocketeer.attributes.find( ( { trait_type } ) => trait_type == "available outfits" ) || { value: 0 }
@@ -190,7 +190,7 @@ async function handleQueuedRocketeerOutfit( change, context ) {
 	if( !change.after.exists ) return
 
 	const { rocketeerId } = context.params
-	const { network, running, address } = change.after.data()
+	const { network, running, address, retry } = change.after.data()
 
 	try {
 
@@ -207,7 +207,7 @@ async function handleQueuedRocketeerOutfit( change, context ) {
 		await db.collection( `${network}QueueOutfitGeneration` ).doc( rocketeerId ).set( { running: true, updated: Date.now() }, { merge: true } )
 
 		// Generate the new outfit
-		await generateNewOutfitFromId( rocketeerId, network )
+		await generateNewOutfitFromId( rocketeerId, network, retry )
 
 	} catch( e ) {
 
