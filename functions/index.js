@@ -5,7 +5,7 @@ const mainnetAPI = require( './endpoints/mainnet' )
 // Runtime config
 const runtime = {
 	timeoutSeconds: 540,
-	memory: '4GB'
+	memory: '512MB'
 }
 
 // Testnet endpoint

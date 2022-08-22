@@ -76,50 +76,50 @@ export default function Verifier() {
 
 	}
 
-	async function generateNewOutfit( ) {
+	// async function generateNewOutfit(  ) {
 
-		try {
+	// 	try {
 
-			log( `Generating new outfit for #${ rocketeerId }` )
-			setLoading( `Generating new outfit for #${ rocketeerId }` )
-			alert( 'You will be prompted to sign a message, this is NOT a transaction' )
+	// 		log( `Generating new outfit for #${ rocketeerId }` )
+	// 		setLoading( `Generating new outfit for #${ rocketeerId }` )
+	// 		alert( 'You will be prompted to sign a message, this is NOT a transaction' )
 
-			const signature = await sign( JSON.stringify( {
-				signer: address.toLowerCase(),
-				rocketeerId,
-				chainId,
-			} ), address )
+	// 		const signature = await sign( JSON.stringify( {
+	// 			signer: address.toLowerCase(),
+	// 			rocketeerId,
+	// 			chainId,
+	// 		} ), address )
 
-			log( 'Making request with ', signature )
+	// 		log( 'Making request with ', signature )
 
-			setLoading( 'Generating new outfit, this can take a minute' )
+	// 		setLoading( 'Generating new outfit, this can take a minute' )
 
-			const { error, success } = await callApi( `/rocketeer/${ rocketeerId }/outfits`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify( signature )
-			} )
+	// 		const { error, success } = await callApi( `/rocketeer/${ rocketeerId }/outfits`, {
+	// 			method: 'POST',
+	// 			headers: { 'Content-Type': 'application/json' },
+	// 			body: JSON.stringify( signature )
+	// 		} )
 
-			if( error ) throw new Error( error )
+	// 		if( error ) throw new Error( error )
 
-			alert( `Success! Outfit generated.` )
-			window?.location.reload()
+	// 		alert( `Success! Outfit generated.` )
+	// 		window?.location.reload()
 
 
-		} catch( e ) {
+	// 	} catch( e ) {
 
-			log( e )
-			alert( e.message )
+	// 		log( e )
+	// 		alert( e.message )
 
-		} finally {
+	// 	} finally {
 
-			setLoading( false )
+	// 		setLoading( false )
 
-		}
+	// 	}
 
-	}
+	// }
 
-	async function generateByAddress( ) {
+	async function generateByAddress() {
 
 		try {
 
@@ -230,7 +230,7 @@ export default function Verifier() {
 		<Section direction="column" gutter={ true }>
 			<H2>{ rocketeer.name }</H2>
 			<Avatar key={ rocketeer.id } src={ rocketeer.image } alt={ `Rocketeer number ${ rocketeer.id }` } />
-			{ rocketeer.new_outfit_available ? <Button onClick={ generateNewOutfit }>Generate new outfit</Button> : <Text align="center">New outfit available on { rocketeer.when_new_outfit.toString() }</Text> }
+			{ rocketeer.new_outfit_available ? <Button onClick={ generateByAddress }>Generate new outfit</Button> : <Text align="center">New outfit available on { rocketeer.when_new_outfit.toString() }</Text> }
 		</Section>
 		
 
