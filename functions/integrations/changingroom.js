@@ -274,7 +274,7 @@ exports.notify_holders_of_changing_room_updates = async context => {
 		console.log( `${ owner_meta.length } Owners in cache` )
 		const owners_emailed_recently = owner_meta
 											// Too recently means last_emailed is larger than the point in the past past which it's been too long 
-											.filter( ( { last_emailed_about_outfit } ) => !last_emailed_about_outfit || ( last_emailed_about_outfit > ( Date.now() - newOutfitAllowedInterval ) ) )
+											.filter( ( { last_emailed_about_outfit } ) => last_emailed_about_outfit && ( last_emailed_about_outfit > ( Date.now() - newOutfitAllowedInterval ) ) )
 											.map( ( { uid } ) => uid.toLowerCase() )
 		
 		// Remove owners from list of they were emailed too recently
