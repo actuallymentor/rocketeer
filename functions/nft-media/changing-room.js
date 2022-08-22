@@ -9,17 +9,22 @@ const { notify_discord_of_new_outfit } = require( '../integrations/discord' )
 // ///////////////////////////////
 async function getRocketeerIfOutfitAvailable( id, network='mainnet', retry=false ) {
 
+	if( retry ) console.log( `Retry of getRocketeerIfOutfitAvailable for ${ id } on ${ network }` )
+
 	const newOutfitAllowedInterval = 1000 * 60 * 60 * 24 * 30
 
 	// Retreive old Rocketeer data
 	const rocketeer = await db.collection( `${ network }Rocketeers` ).doc( id ).get().then( dataFromSnap )
+
+	// If this is a retry attempt, skip last change validation
+	if( retry ) return rocketeer
 
 	// Validate this request
 	const { value: last_outfit_change } = rocketeer.attributes.find( ( { trait_type } ) => trait_type == "last outfit change" ) || { value: 0 }
 
 	// Check whether this Rocketeer is allowed to change
 	const timeUntilAllowedToChange = newOutfitAllowedInterval - ( Date.now() - last_outfit_change )
-	if( !retry && timeUntilAllowedToChange > 0 ) throw new Error( `You changed your outfit too recently, a change is avalable in ${ Math.floor( timeUntilAllowedToChange / ( 1000 * 60 * 60 ) ) } hours (${ new Date( Date.now() + timeUntilAllowedToChange ).toString() })` )
+	if( timeUntilAllowedToChange > 0 ) throw new Error( `You changed your outfit too recently, a change is avalable in ${ Math.floor( timeUntilAllowedToChange / ( 1000 * 60 * 60 ) ) } hours (${ new Date( Date.now() + timeUntilAllowedToChange ).toString() })` )
 
 	return rocketeer
 
@@ -191,6 +196,8 @@ async function handleQueuedRocketeerOutfit( change, context ) {
 
 	const { rocketeerId } = context.params
 	const { network, running, address, retry } = change.after.data()
+
+	if( retry ) console.log( `Document change for ${network}QueueOutfitGeneration/${rocketeerId} is a retry attempt` )
 
 	try {
 
