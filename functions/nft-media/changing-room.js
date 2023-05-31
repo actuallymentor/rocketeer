@@ -188,14 +188,15 @@ async function queueRocketeersOfAddressForOutfitChange( address, network='mainne
 
 async function handleQueuedRocketeerOutfit( change, context ) {
 
-	// If this was not a newly added queue item, exit gracefully
-	if( change.before.exists ) return
-
 	// If this was a deletion, exit gracefully
 	if( !change.after.exists ) return
 
+	// Get data
 	const { rocketeerId } = context.params
 	const { network, running, address, retry } = change.after.data()
+
+	// If this was not a newly added queue item, exit gracefully
+	if( !retry && change.before.exists ) return
 
 	if( retry ) console.log( `Document change for ${network}QueueOutfitGeneration/${rocketeerId} is a retry attempt` )
 

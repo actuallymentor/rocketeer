@@ -30,3 +30,9 @@ exports.rinkebyGenerateOutfitsOnQueue = functions.runWith( expensive_runtime ).f
 // /////////////////////////////*/
 const { notify_holders_of_changing_room_updates } = require( './integrations/changingroom' )
 exports.notify_holders_of_changing_room_updates = functions.runWith( cheap_runtime ).pubsub.schedule( '30 1 * * *' ).onRun( notify_holders_of_changing_room_updates )
+
+/* ///////////////////////////////
+// Manual actions
+// /////////////////////////////*/
+const { mark_rocketeers_as_gitched } = require('./integrations/glitched')
+exports.mark_rocketeers_as_gitched = functions.https.onCall( mark_rocketeers_as_gitched )
