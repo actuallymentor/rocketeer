@@ -34,7 +34,7 @@ export default function Verifier() {
 	return <Container>
 		
 		<H1>Portfolio</H1>
-		<Text>Click a Rocketeer to view it's details.</Text>
+		<Text>Click a Rocketeer to view its details.</Text>
 		<Section direction="row">
 			
 			{ rocketeers.map( ( { id, image } ) => {
