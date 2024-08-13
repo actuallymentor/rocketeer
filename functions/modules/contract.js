@@ -1,7 +1,6 @@
 // Dependencies
-const Web3 = require( 'web3' )
 const functions = require( 'firebase-functions' )
-const { infura } = functions.config()
+const { rpc } = functions.config()
 
 // Contract data
 const contractAddress = {
@@ -92,15 +91,38 @@ const ABI = [
   }
 ]
 
+// Provider
+let provider_cache = {}
+function get_web3( network='mainnet' ) {
+  const Web3 = require( 'web3' )
+  if( provider_cache[ network ] ) return provider_cache[ network ]
+  provider_cache[ network ] = new Web3( rpc.mainnet )
+  return provider_cache[ network ]
+}
+
+function get_contract( network='mainnet' ) {
+  const web3 = get_web3( network )
+  return new web3.eth.Contract( ABI, contractAddress[ network ] )
+}
+
 // Total current supply, in accordance with ERC721 spec
 async function getTotalSupply( network='mainnet' ) {
 
-  // Initialise contract connection
-  const web3 = new Web3( `wss://${ network }.infura.io/ws/v3/${ infura.projectid }` )
-  const contract = new web3.eth.Contract( ABI, contractAddress[ network ] )
+  // The  mint has completed at 3475, so we can hardcode this
+  if( network == 'mainnet' ) return 3475
 
-  // Return the call promise which returns the total supply
-  return contract.methods.totalSupply().call()
+  try {
+    // Initialise contract connection
+    const contract = get_contract( network )
+
+    // Return the call promise which returns the total supply
+    return contract.methods.totalSupply().call()
+
+
+  } catch( e ) {
+    console.error( `Error in getTotalSupply: `, e )
+    return 0
+  }
 
 }
 
@@ -108,8 +130,7 @@ async function getTotalSupply( network='mainnet' ) {
 async function getOwingAddressOfTokenId( id, network='mainnet' ) {
 
   // Initialise contract connection
-  const web3 = new Web3( `wss://${ network }.infura.io/ws/v3/${ infura.projectid }` )
-  const contract = new web3.eth.Contract( ABI, contractAddress[ network ] )
+  const contract = get_contract( network )
 
   // Return the call promise which returns the total supply
   return contract.methods.ownerOf( id ).call()
@@ -119,8 +140,7 @@ async function getOwingAddressOfTokenId( id, network='mainnet' ) {
 async function getTokenIdsOfAddress( address, network='mainnet' ) {
 
   // Initialise contract connection
-  const web3 = new Web3( `wss://${ network }.infura.io/ws/v3/${ infura.projectid }` )
-  const contract = new web3.eth.Contract( ABI, contractAddress[ network ] )
+  const contract = get_contract( network )
 
   // Get balance of address
   const balance = await contract.methods.balanceOf( address ).call()
