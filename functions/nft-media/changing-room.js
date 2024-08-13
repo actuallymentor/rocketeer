@@ -115,7 +115,7 @@ async function generateNewOutfitFromId( id, network='mainnet', retry ) {
 			rocketeer.image,
 			`Outfit #${ available_outfits + 1 }`,
 			newOutfitSvg.replace( '.svg','.jpg' )
-		)
+		).catch( e => console.error( `Error in notify_discord_of_new_outfit: `, e ) )
 
 		return newOutfitSvg
 
