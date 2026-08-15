@@ -2,12 +2,10 @@ const { initializeApp, applicationDefault } = require( `firebase-admin/app` )
 const { getStorage } = require( `firebase-admin/storage` )
 const throttle = require( `promise-parallel-throttle` )
 const fetch = require( `isomorphic-fetch` )
-const { gzip, constants: zlib_constants } = require( `zlib` )
-const { promisify } = require( `util` )
-const { compress_svg } = require( `../nft-media/svg-compressor` )
+const { Worker } = require( `worker_threads` )
 
-const gzip_async = promisify( gzip )
 const immutable_cache = `public, max-age=31536000, immutable`
+const compression_worker_path = `${ __dirname }/compress-storage-svg-worker.js`
 
 const arguments_list = process.argv.slice( 2 )
 const has_argument = name => arguments_list.includes( `--${ name }` )
@@ -26,13 +24,30 @@ const numeric_argument = ( name, fallback ) => {
 
 }
 
+const shard_argument = () => {
+
+	const value = argument_value( `shard` )
+	if( !value ) return
+
+	const [ shard_number, shard_count ] = value.split( `/` ).map( Number )
+	const valid = Number.isInteger( shard_number ) && Number.isInteger( shard_count ) && shard_number >= 1 && shard_number <= shard_count
+
+	if( !valid ) throw new Error( `--shard must use 1/N through N/N` )
+
+	return { number: shard_number, count: shard_count }
+
+}
+
 const options = {
 	apply: has_argument( `apply` ),
 	all: has_argument( `all` ),
+	quiet: has_argument( `quiet` ),
+	summary_only: has_argument( `summary-only` ),
 	bucket: argument_value( `bucket` ),
 	prefix: argument_value( `prefix`, `` ),
 	limit: numeric_argument( `limit`, 10 ),
-	concurrency: numeric_argument( `concurrency`, 1 )
+	concurrency: numeric_argument( `concurrency`, 1 ),
+	shard: shard_argument()
 }
 
 const output = value => process.stdout.write( `${ typeof value === `string` ? value : JSON.stringify( value, null, 2 ) }\n` )
@@ -91,12 +106,45 @@ const download_file = async ( file, get_access_token ) => {
 
 }
 
+const compress_contents = contents => new Promise( ( resolve, reject ) => {
+
+	const worker = new Worker( compression_worker_path )
+	const transferable = contents.buffer.slice( contents.byteOffset, contents.byteOffset + contents.byteLength )
+	let settled = false
+
+	const finish = callback => {
+
+		if( settled ) return
+
+		settled = true
+		callback()
+		worker.terminate()
+
+	}
+
+	worker.once( `message`, result => finish( () => {
+
+		if( result.error ) reject( new Error( result.error ) )
+		else resolve( { ...result, compressed: Buffer.from( result.compressed ) } )
+
+	} ) )
+	worker.once( `error`, error => finish( () => reject( error ) ) )
+	worker.once( `exit`, code => {
+
+		if( !settled ) finish( () => reject( new Error( `Compression worker exited with code ${ code }` ) ) )
+
+	} )
+
+	worker.postMessage( transferable, [ transferable ] )
+
+} )
+
 const compress_file = async ( file, apply, get_access_token, object_acl_enabled ) => {
 
 	const [ metadata ] = await file.getMetadata()
 	const contents = await download_file( file, get_access_token )
-	const optimized = compress_svg( contents.toString() )
-	const compressed = await gzip_async( optimized.svg, { level: zlib_constants.Z_BEST_COMPRESSION } )
+	const optimized = await compress_contents( contents )
+	const { compressed } = optimized
 	const original_bytes = Number( metadata.size )
 	const compressed_bytes = compressed.length
 	const smaller = compressed_bytes < original_bytes
@@ -151,7 +199,10 @@ const main = async () => {
 		`--limit=NUMBER      process at most NUMBER objects`,
 		`--prefix=PREFIX     restrict object names`,
 		`--bucket=NAME       override the default Firebase bucket`,
-		`--concurrency=NUMBER  simultaneous downloads; default 1`
+		`--concurrency=NUMBER  simultaneous files; default 1`,
+		`--shard=NUMBER/TOTAL  process one deterministic shard; 1-based`,
+		`--quiet             suppress progress messages`,
+		`--summary-only      omit per-file results from final output`
 	].join( `\n` ) )
 
 	const credential = applicationDefault()
@@ -175,7 +226,8 @@ const main = async () => {
 	const get_access_token = access_token_provider( credential )
 	const [ files ] = await bucket.getFiles( { prefix: options.prefix } )
 	const svg_files = files.filter( file => file.name.endsWith( `.svg` ) ).sort( ( first, second ) => first.name.localeCompare( second.name ) )
-	const selected_files = options.all ? svg_files : svg_files.slice( 0, options.limit )
+	const sharded_files = options.shard ? svg_files.filter( ( file, index ) => index % options.shard.count === options.shard.number - 1 ) : svg_files
+	const selected_files = options.all ? sharded_files : sharded_files.slice( 0, options.limit )
 	const queue = selected_files.map( file => async () => {
 
 		try {
@@ -202,7 +254,7 @@ const main = async () => {
 		maxInProgress: options.concurrency,
 		progressCallback: ( { amountDone } ) => {
 
-			if( amountDone && amountDone % 10 === 0 ) process.stderr.write( `Processed ${ amountDone }/${ selected_files.length } SVGs\n` )
+			if( !options.quiet && amountDone && amountDone % 10 === 0 ) process.stderr.write( `Processed ${ amountDone }/${ selected_files.length } SVGs\n` )
 			if( global.gc ) global.gc()
 
 		}
@@ -214,10 +266,13 @@ const main = async () => {
 		mode: options.apply ? `apply` : `dry-run`,
 		bucket: bucket_name,
 		prefix: options.prefix || null,
+		shard: options.shard ? `${ options.shard.number }/${ options.shard.count }` : null,
 		available_files: svg_files.length,
 		failed_files,
 		...summarize( results ),
-		results
+		...( options.summary_only ? {
+			failures: results.filter( ( { status } ) => status === `failed` ).slice( 0, 10 ).map( ( { name, error } ) => ( { name, error } ) )
+		} : { results } )
 	} )
 
 	if( failed_files ) process.exitCode = 1

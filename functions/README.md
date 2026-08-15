@@ -28,11 +28,18 @@ temporarily increase during a full migration.
 
 Use `--apply --all --prefix=mainnetRocketeers/` for the full mainnet set. Repeat
 for each audited Rocketeer prefix; do not run an unscoped whole-bucket rewrite.
+Large sets can run as parallel, non-overlapping workers with `--shard=1/6`
+through `--shard=6/6`. Add `--quiet --summary-only` for compact job logs;
+failed runs still report the first ten object errors.
+Each SVG is compressed in a disposable worker thread to keep JSDOM memory
+bounded; `--concurrency` controls simultaneous workers and memory usage. The
+caller needs object read/write and object ACL read permissions when the bucket
+uses object ACLs.
 
 Run the full migration in Google Cloud near the `EU` bucket with at least 2 GB
-of memory and the default concurrency of one. The job downloads each original;
-running `--all` from a local machine can incur data-transfer charges.
+of memory at the default concurrency, and scale memory with concurrency. The
+job downloads each original; running `--all` locally can incur transfer charges.
 
-The deployed Functions runtime still targets decommissioned Node 16. The batch
-migration can run separately now, but generator changes require a tested runtime
-and dependency upgrade before Firebase will accept a new deployment.
+Functions target Node 22 and deploy through the pinned Firebase CLI. Keep the
+current Gen1 Firebase SDK majors until runtime configuration is migrated away
+from `functions.config()`.

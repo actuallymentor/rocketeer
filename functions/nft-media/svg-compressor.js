@@ -4,6 +4,9 @@ const { JSDOM } = require( `jsdom` )
 // references cover the less common case where CSS points at a definition.
 const href_reference = /^#(.+)$/
 const url_reference = /url\(\s*["']?#([^)'"\s]+)["']?\s*\)/g
+const embedded_raster_data = /((?:href|xlink:href)\s*=\s*["']data:image\/[^;,"']+(?:;[^,"']*)?;base64,)[^"']*(["'])/gi
+const image_element = /<image\b[^>]*?(?:\/\s*>|>[\s\S]*?<\/image\s*>)/gi
+const id_attribute = /\bid\s*=\s*(["'])(.*?)\1/i
 
 const referenced_definition_ids = document => {
 
@@ -79,17 +82,26 @@ function compress_svg( svg ) {
 
 	if( !svg.includes( `<svg` ) ) throw new Error( `Cannot compress input without an <svg> root` )
 
-	const svg_start = svg.indexOf( `<svg` )
-	const document_prefix = svg.slice( 0, svg_start )
-	const { window } = new JSDOM( svg )
+	// Base64 payloads dominate these documents. JSDOM does not need their bytes
+	// to resolve references, so mask them while calculating the unreachable IDs.
+	const masked_svg = svg.replace( embedded_raster_data, `$1$2` )
+	const { window } = new JSDOM( masked_svg )
 
 	try {
 
 		const { document } = window
+		const raster_ids = new Set( [ ...document.querySelectorAll( `defs image[id]` ) ].map( image => image.id ) )
 		const result = prune_unused_raster_definitions( document )
-		const root = document.querySelector( `svg` )
+		const retained_ids = new Set( [ ...document.querySelectorAll( `defs image[id]` ) ].map( image => image.id ) )
+		const removed_ids = new Set( [ ...raster_ids ].filter( id => !retained_ids.has( id ) ) )
+		const optimized_svg = svg.replace( image_element, element => {
 
-		return { svg: `${ document_prefix }${ root.outerHTML }`, ...result }
+			const match = element.match( id_attribute )
+			return match && removed_ids.has( match[2] ) ? `` : element
+
+		} )
+
+		return { svg: optimized_svg, ...result }
 
 	} finally {
 
