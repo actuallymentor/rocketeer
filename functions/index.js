@@ -9,6 +9,14 @@ const expensive_runtime = {
 	memory: '4GB',
 	secrets: [ runtime_config ]
 }
+
+// SVG generation launches Chromium and extracts its binary into memory-backed /tmp.
+const metadata_runtime = {
+	timeoutSeconds: 540,
+	memory: `2GB`,
+	secrets: [ runtime_config ]
+}
+
 const cheap_runtime = {
 	timeoutSeconds: 540,
 	memory: '512MB',
@@ -16,10 +24,10 @@ const cheap_runtime = {
 }
 
 // Testnet endpoint
-exports.testnetMetadata = functions.runWith( cheap_runtime ).https.onRequest( testnetAPI )
+exports.testnetMetadata = functions.runWith( metadata_runtime ).https.onRequest( testnetAPI )
 
 // Mainnet endpoint
-exports.mainnetMetadata = functions.runWith( cheap_runtime ).https.onRequest( mainnetAPI )
+exports.mainnetMetadata = functions.runWith( metadata_runtime ).https.onRequest( mainnetAPI )
 
 /* ///////////////////////////////
 // Firestore listeners

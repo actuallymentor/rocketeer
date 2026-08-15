@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1] - 2026-08-15
+
+### Fixed
+
+- keep informational storage reports read-only before the billing window
+- reject live legacy storage during realized-cost verification
+- reserve enough memory for browser-backed metadata generation
+
 ## [0.3.0] - 2026-08-15
 
 ### Added

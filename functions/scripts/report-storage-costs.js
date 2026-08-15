@@ -192,6 +192,7 @@ async function run_billing_verification( table_id ) {
 function assert_storage_savings( storage ) {
 
 	if( Date.now() < hard_delete_complete_at.getTime() ) throw new Error( `Verification must run after ${ hard_delete_complete_at.toISOString() }` )
+	if( storage.live_buckets.some( ( { name } ) => name === legacy_artifact_bucket ) ) throw new Error( `Legacy artifact bucket is still live` )
 	if( storage.legacy_artifact_bucket.soft_deleted ) throw new Error( `Legacy artifact bucket is still soft-deleted` )
 	if( storage.soft_deleted_app_bucket.mainnet_svg.count ) throw new Error( `Soft-deleted mainnet SVGs remain` )
 	if( storage.soft_deleted_app_bucket.rinkeby_svg.count ) throw new Error( `Soft-deleted rinkeby SVGs remain` )
@@ -205,9 +206,11 @@ async function main() {
 
 	const storage = await storage_report()
 	const billing_table = await detailed_billing_table()
-	const billing = billing_table
-		? await run_billing_verification( billing_table )
-		: { status: `pending`, reason: `Detailed Cloud Billing export table not found` }
+	const billing = !billing_table
+		? { status: `pending`, reason: `Detailed Cloud Billing export table not found` }
+		: verify
+			? await run_billing_verification( billing_table )
+			: { status: `ready`, table: billing_table, reason: `Run with --verify after billing data loads through 2026-08-25` }
 
 	if( verify ) {
 

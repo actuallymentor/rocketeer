@@ -29,4 +29,7 @@ secret_bound_functions.forEach( function_name => {
 } )
 
 assert.deepStrictEqual( functions.mark_rocketeers_as_gitched.__endpoint?.secretEnvironmentVariables || [], [] )
+assert.strictEqual( functions.testnetMetadata.__endpoint?.availableMemoryMb, 2_048 )
+assert.strictEqual( functions.mainnetMetadata.__endpoint?.availableMemoryMb, 2_048 )
+assert.strictEqual( functions.notify_holders_of_changing_room_updates.__endpoint?.availableMemoryMb, 512 )
 process.stdout.write( `Runtime config tests passed\n` )

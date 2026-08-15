@@ -75,7 +75,7 @@ Gen1 imports explicit; bare imports use Gen2 behavior in current SDK releases.
 
 Enable the Cloud Billing **Detailed usage cost** export for project
 `rocketeer-nft` into the EU dataset `cloud_billing_export`. Then inspect current
-storage and any available billing attribution:
+storage and billing-export availability:
 
 ```bash
 cd functions
