@@ -110,7 +110,10 @@ const compress_file = async ( file, apply, get_access_token, object_acl_enabled 
 		await file.save( compressed, {
 			resumable: false,
 			validation: `crc32c`,
-			preconditionOpts: { ifGenerationMatch: Number( metadata.generation ) },
+			preconditionOpts: {
+				ifGenerationMatch: Number( metadata.generation ),
+				ifMetagenerationMatch: Number( metadata.metageneration )
+			},
 			metadata: preserved_metadata( metadata, acl )
 		} )
 
@@ -156,14 +159,14 @@ const main = async () => {
 	const project_id = configured_project_id || ( credential.getProjectId && await credential.getProjectId() )
 
 	if( !project_id ) throw new Error( `Could not determine a Google Cloud project ID` )
-	if( options.apply && !options.prefix ) throw new Error( `--apply requires --prefix to prevent an accidental whole-bucket rewrite` )
+	if( options.apply && ( !options.prefix || !options.prefix.endsWith( `/` ) ) ) throw new Error( `--apply requires a directory-like --prefix ending in /` )
 
 	const bucket_name = options.bucket || `${ project_id }.appspot.com`
 
 	initializeApp( { credential, storageBucket: bucket_name } )
 
 	const bucket = getStorage().bucket()
-	const [ bucket_metadata ] = await bucket.getMetadata()
+	const [ bucket_metadata ] = options.apply ? await bucket.getMetadata() : [ {} ]
 	const soft_delete_seconds = Number( bucket_metadata.softDeletePolicy && bucket_metadata.softDeletePolicy.retentionDurationSeconds )
 	const object_acl_enabled = !( bucket_metadata.iamConfiguration && bucket_metadata.iamConfiguration.uniformBucketLevelAccess && bucket_metadata.iamConfiguration.uniformBucketLevelAccess.enabled )
 

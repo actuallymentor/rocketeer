@@ -20,8 +20,9 @@ GOOGLE_APPLICATION_CREDENTIALS=../.github-actions-deployer.json npm run compress
 
 The command is a ten-file dry run by default. Review the savings, then pilot one
 Rocketeer prefix with `--apply --prefix=mainnetRocketeers/ --limit=10`. Apply
-requires a prefix and an enabled soft-delete policy. Rewrites use generation
-preconditions and preserve object ACLs, custom metadata, and storage class.
+requires a directory-like prefix ending in `/` and an enabled soft-delete
+policy. Rewrites use generation and metageneration preconditions and preserve
+object ACLs, custom metadata, and storage class.
 Cloud Storage soft delete retains replaced bytes for seven days, so storage can
 temporarily increase during a full migration.
 
