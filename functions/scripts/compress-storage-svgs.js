@@ -3,9 +3,11 @@ const { getStorage } = require( `firebase-admin/storage` )
 const throttle = require( `promise-parallel-throttle` )
 const fetch = require( `isomorphic-fetch` )
 const { Worker } = require( `worker_threads` )
+const { createHash } = require( `crypto` )
 
 const immutable_cache = `public, max-age=31536000, immutable`
 const compression_worker_path = `${ __dirname }/compress-storage-svg-worker.js`
+const compression_timeout_ms = 120_000
 
 const arguments_list = process.argv.slice( 2 )
 const has_argument = name => arguments_list.includes( `--${ name }` )
@@ -51,6 +53,15 @@ const options = {
 }
 
 const output = value => process.stdout.write( `${ typeof value === `string` ? value : JSON.stringify( value, null, 2 ) }\n` )
+
+const object_name_comparison = ( first, second ) => first.name < second.name ? -1 : first.name > second.name ? 1 : 0
+
+const object_is_in_shard = ( file, shard ) => {
+
+	const hash_prefix = createHash( `sha256` ).update( file.name ).digest().readUInt32BE( 0 )
+	return hash_prefix % shard.count === shard.number - 1
+
+}
 
 const preserved_metadata = ( metadata, acl ) => {
 
@@ -111,12 +122,14 @@ const compress_contents = contents => new Promise( ( resolve, reject ) => {
 	const worker = new Worker( compression_worker_path )
 	const transferable = contents.buffer.slice( contents.byteOffset, contents.byteOffset + contents.byteLength )
 	let settled = false
+	let timeout
 
 	const finish = callback => {
 
 		if( settled ) return
 
 		settled = true
+		clearTimeout( timeout )
 		callback()
 		worker.terminate()
 
@@ -134,6 +147,7 @@ const compress_contents = contents => new Promise( ( resolve, reject ) => {
 		if( !settled ) finish( () => reject( new Error( `Compression worker exited with code ${ code }` ) ) )
 
 	} )
+	timeout = setTimeout( () => finish( () => reject( new Error( `Compression worker timed out after ${ compression_timeout_ms }ms` ) ) ), compression_timeout_ms )
 
 	worker.postMessage( transferable, [ transferable ] )
 
@@ -170,6 +184,7 @@ const compress_file = async ( file, apply, get_access_token, object_acl_enabled 
 	return {
 		name: file.name,
 		status: apply && smaller ? `compressed` : smaller ? `dry-run` : `already-smaller`,
+		original_generation: metadata.generation,
 		removed_rasters: optimized.removed,
 		retained_rasters: optimized.retained,
 		original_bytes,
@@ -225,8 +240,8 @@ const main = async () => {
 
 	const get_access_token = access_token_provider( credential )
 	const [ files ] = await bucket.getFiles( { prefix: options.prefix } )
-	const svg_files = files.filter( file => file.name.endsWith( `.svg` ) ).sort( ( first, second ) => first.name.localeCompare( second.name ) )
-	const sharded_files = options.shard ? svg_files.filter( ( file, index ) => index % options.shard.count === options.shard.number - 1 ) : svg_files
+	const svg_files = files.filter( file => file.name.endsWith( `.svg` ) ).sort( object_name_comparison )
+	const sharded_files = options.shard ? svg_files.filter( file => object_is_in_shard( file, options.shard ) ) : svg_files
 	const selected_files = options.all ? sharded_files : sharded_files.slice( 0, options.limit )
 	const queue = selected_files.map( file => async () => {
 
@@ -261,6 +276,13 @@ const main = async () => {
 	} )
 
 	const failed_files = results.filter( ( { status } ) => status === `failed` ).length
+	const changes = results.filter( ( { status } ) => status === `compressed` ).map( ( { name, original_generation, original_bytes, compressed_bytes, saved_bytes } ) => ( {
+		name,
+		original_generation,
+		original_bytes,
+		compressed_bytes,
+		saved_bytes
+	} ) )
 
 	output( {
 		mode: options.apply ? `apply` : `dry-run`,
@@ -271,6 +293,7 @@ const main = async () => {
 		failed_files,
 		...summarize( results ),
 		...( options.summary_only ? {
+			...( options.apply ? { changes } : {} ),
 			failures: results.filter( ( { status } ) => status === `failed` ).slice( 0, 10 ).map( ( { name, error } ) => ( { name, error } ) )
 		} : { results } )
 	} )

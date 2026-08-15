@@ -29,8 +29,9 @@ temporarily increase during a full migration.
 Use `--apply --all --prefix=mainnetRocketeers/` for the full mainnet set. Repeat
 for each audited Rocketeer prefix; do not run an unscoped whole-bucket rewrite.
 Large sets can run as parallel, non-overlapping workers with `--shard=1/6`
-through `--shard=6/6`. Add `--quiet --summary-only` for compact job logs;
-failed runs still report the first ten object errors.
+through `--shard=6/6`; object-name hashes keep assignment stable across hosts.
+Add `--quiet --summary-only` for compact job logs. Apply summaries retain the
+rollback generation for every changed object and the first ten object errors.
 Each SVG is compressed in a disposable worker thread to keep JSDOM memory
 bounded; `--concurrency` controls simultaneous workers and memory usage. The
 caller needs object read/write and object ACL read permissions when the bucket

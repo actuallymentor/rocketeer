@@ -6,7 +6,28 @@ const href_reference = /^#(.+)$/
 const url_reference = /url\(\s*["']?#([^)'"\s]+)["']?\s*\)/g
 const embedded_raster_data = /((?:href|xlink:href)\s*=\s*["']data:image\/[^;,"']+(?:;[^,"']*)?;base64,)[^"']*(["'])/gi
 const image_element = /<image\b[^>]*?(?:\/\s*>|>[\s\S]*?<\/image\s*>)/gi
-const id_attribute = /\bid\s*=\s*(["'])(.*?)\1/i
+const id_attribute = /\sid\s*=\s*(["'])(.*?)\1/i
+
+const masked_svg = svg => svg.replace( embedded_raster_data, `$1$2` )
+
+const canonical_svg_root = svg => {
+
+	const { window } = new JSDOM( svg )
+
+	try {
+
+		const root = window.document.querySelector( `svg` )
+		if( !root ) throw new Error( `Cannot verify input without an <svg> root` )
+
+		return root.outerHTML
+
+	} finally {
+
+		window.close()
+
+	}
+
+}
 
 const referenced_definition_ids = document => {
 
@@ -84,8 +105,8 @@ function compress_svg( svg ) {
 
 	// Base64 payloads dominate these documents. JSDOM does not need their bytes
 	// to resolve references, so mask them while calculating the unreachable IDs.
-	const masked_svg = svg.replace( embedded_raster_data, `$1$2` )
-	const { window } = new JSDOM( masked_svg )
+	const masked_input = masked_svg( svg )
+	const { window } = new JSDOM( masked_input )
 
 	try {
 
@@ -96,10 +117,15 @@ function compress_svg( svg ) {
 		const removed_ids = new Set( [ ...raster_ids ].filter( id => !retained_ids.has( id ) ) )
 		const optimized_svg = svg.replace( image_element, element => {
 
-			const match = element.match( id_attribute )
+			const opening_tag = element.slice( 0, element.indexOf( `>` ) + 1 )
+			const match = opening_tag.match( id_attribute )
 			return match && removed_ids.has( match[2] ) ? `` : element
 
 		} )
+		const expected_root = document.querySelector( `svg` ).outerHTML
+		const actual_root = canonical_svg_root( masked_svg( optimized_svg ) )
+
+		if( actual_root !== expected_root ) throw new Error( `Source-preserving SVG prune did not match the DOM result` )
 
 		return { svg: optimized_svg, ...result }
 
