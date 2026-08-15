@@ -3,6 +3,12 @@ const jsdom = require("jsdom")
 const { JSDOM } = jsdom
 const { promises: fs } = require( 'fs' )
 const { getStorage } = require( 'firebase-admin/storage' )
+const { gzip, constants: zlib_constants } = require( `zlib` )
+const { promisify } = require( `util` )
+const { prune_unused_raster_definitions } = require( `./svg-compressor` )
+
+const gzip_async = promisify( gzip )
+const immutable_cache = `public, max-age=31536000, immutable`
 
 // SVG to JPEG
 const { convert } = require("convert-svg-to-jpeg")
@@ -16,7 +22,14 @@ const failIfFilesExist = async ( svg, jpeg, path ) => {
 
 }
 
-module.exports = async function svgFromAttributes( attributes=[], path='' ) {
+/**
+ * Generates and stores one SVG and its JPEG rendition.
+ *
+ * @param {Array<Object>} attributes - Selected Rocketeer traits.
+ * @param {string} path - Object path without a file extension.
+ * @returns {Promise<string>} Public URL for the JPEG rendition.
+ */
+module.exports = async function svg_from_attributes( attributes=[], path='' ) {
 
 	// Validations
 	if( !path.length ) throw new Error( 'svgFromAttributes missing path' )
@@ -132,12 +145,19 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 	replace( defaultVisor, visor_color )
 	replace( defaultBackpack, backpack_color )
 
+	// The master keeps raster artwork in <defs>. Removing an outfit or
+	// background does not remove those heavy definitions by itself.
+	prune_unused_raster_definitions( document )
+
 	const bakedSvg = [
 		`<?xml version="1.0" encoding="UTF-8" standalone="no"?>`,
 		`<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">`,
 		document.querySelector( 'svg' ).outerHTML
 	].join( '' )
 
+	// Store the text SVG compressed. Cloud Storage serves it transparently
+	// through Content-Encoding while charging only for the compressed bytes.
+	const compressed_svg = await gzip_async( bakedSvg, { level: zlib_constants.Z_BEST_COMPRESSION } )
 	const bakedRaster = await convert( bakedSvg, {
 		quality: 80,
 		// height: 500,
@@ -148,8 +168,21 @@ module.exports = async function svgFromAttributes( attributes=[], path='' ) {
 	await failIfFilesExist( svgFile, rasterFile, path )
 
 	// Save files
-	await svgFile.save( bakedSvg )
-	await rasterFile.save( bakedRaster )
+	await svgFile.save( compressed_svg, {
+		resumable: false,
+		metadata: {
+			contentType: `image/svg+xml`,
+			contentEncoding: `gzip`,
+			cacheControl: immutable_cache
+		}
+	} )
+	await rasterFile.save( bakedRaster, {
+		resumable: false,
+		metadata: {
+			contentType: `image/jpeg`,
+			cacheControl: immutable_cache
+		}
+	} )
 
 	// Make file public
 	await svgFile.makePublic( )

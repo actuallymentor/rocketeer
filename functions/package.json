@@ -2,13 +2,15 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
+    "compress:storage:svgs": "node --expose-gc scripts/compress-storage-svgs.js",
     "lint": "eslint .",
     "runtime": "firebase functions:config:get > .runtimeconfig.json",
     "serve": "firebase emulators:start --only functions",
     "shell": "development=true firebase functions:shell",
     "start": "development=true npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "test": "node test/svg-compressor.test.js"
   },
   "engines": {
     "node": "16"
