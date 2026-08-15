@@ -1,11 +1,12 @@
-const functions = require( 'firebase-functions' )
-const { discord } = functions.config()
+const { get_runtime_config } = require( `../modules/runtime-config` )
 const fetch = require( 'isomorphic-fetch' )
 const { dev } = require('../modules/helpers')
 
 exports.notify_discord_of_new_outfit = async function( username, content, avatar_url, image_title, image_url ) {
 
 	try {
+
+		const { discord } = get_runtime_config()
 
 		// Construct discord webhook message
 		const message = {
@@ -43,6 +44,8 @@ exports.notify_discord_of_outfit_notifications = async function( amount_notified
 
 	try {
 
+		const { discord } = get_runtime_config()
+
 		// Construct discord webhook message
 		const message = {
 			username: "Gretal Marchall Alon of Jupiter",
@@ -58,7 +61,7 @@ exports.notify_discord_of_outfit_notifications = async function( amount_notified
 		}
 
 		// Make webhook request
-		const data = await fetch( discord.chatterwebhookurl, options )
+		await fetch( discord.chatterwebhookurl, options )
 
 	} catch( e ) {
 		console.error( 'Discord error ', e )

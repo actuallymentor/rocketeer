@@ -1,5 +1,4 @@
-const functions = require( 'firebase-functions' )
-const { integration } = functions.config()
+const { get_runtime_config } = require( `../modules/runtime-config` )
 const { db, dataFromSnap } = require( '../modules/firebase' )
 const Web3 = require( 'web3' )
 const web3 = new Web3()
@@ -94,6 +93,8 @@ exports.resetAvatar = async function( req, res ) {
 	// const chain = '0x1'
 
 	try {
+
+		const { integration } = get_runtime_config()
 
 		// Get request data
 		const { address, secret } = req.body

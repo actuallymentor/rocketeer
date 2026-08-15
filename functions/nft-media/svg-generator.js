@@ -12,11 +12,7 @@ const immutable_cache = `public, max-age=31536000, immutable`
 
 // SVG to JPEG
 const { convert } = require("convert-svg-to-jpeg")
-const local_chromium = process.env.PUPPETEER_EXECUTABLE_PATH
-const puppeteer_options = local_chromium ? {
-	executablePath: local_chromium,
-	args: [ `--no-sandbox`, `--disable-setuid-sandbox` ]
-} : undefined
+const { get_browser_launch_options } = require( `../modules/browser` )
 
 // Existing file checker
 const failIfFilesExist = async ( svg, jpeg, path ) => {
@@ -165,7 +161,7 @@ module.exports = async function svg_from_attributes( attributes=[], path='' ) {
 	const compressed_svg = await gzip_async( bakedSvg, { level: zlib_constants.Z_BEST_COMPRESSION } )
 	const bakedRaster = await convert( bakedSvg, {
 		quality: 80,
-		puppeteer: puppeteer_options,
+		launch: await get_browser_launch_options(),
 		// height: 500,
 		// width: 500
 	} )

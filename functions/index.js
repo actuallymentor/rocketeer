@@ -1,15 +1,18 @@
-const functions = require( 'firebase-functions' )
+const functions = require( `firebase-functions/v1` )
+const { runtime_config } = require( `./modules/runtime-config` )
 const testnetAPI = require( './endpoints/testnet' )
 const mainnetAPI = require( './endpoints/mainnet' )
 
 // Runtime config
 const expensive_runtime = {
 	timeoutSeconds: 540,
-	memory: '4GB'
+	memory: '4GB',
+	secrets: [ runtime_config ]
 }
 const cheap_runtime = {
 	timeoutSeconds: 540,
-	memory: '512MB'
+	memory: '512MB',
+	secrets: [ runtime_config ]
 }
 
 // Testnet endpoint

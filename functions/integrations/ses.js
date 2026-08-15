@@ -1,13 +1,23 @@
 const AWS = require('aws-sdk')
-const functions = require( 'firebase-functions' )
-const { aws } = functions.config()
+const { get_runtime_config } = require( `../modules/runtime-config` )
 const { log } = require( '../modules/helpers' )
-const SES_CONFIG = {
-    accessKeyId: aws?.ses?.keyid,
-    secretAccessKey: aws?.ses?.secretkey,
-    region: aws?.ses?.region,
+
+let ses_cache
+function get_ses() {
+
+    if( ses_cache ) return ses_cache
+
+    const { aws } = get_runtime_config()
+    const config = {
+        accessKeyId: aws?.ses?.keyid,
+        secretAccessKey: aws?.ses?.secretkey,
+        region: aws?.ses?.region,
+    }
+
+    ses_cache = { client: new AWS.SES( config ), from_email: aws.ses.fromemail }
+    return ses_cache
+
 }
-const AWS_SES = new AWS.SES( SES_CONFIG )
 
 // Email templates
 const pug = require('pug')
@@ -35,8 +45,9 @@ async function compile_pug_to_email( pugFile, data ) {
 
 async function send_email( recipient, subject, html, text ) {
 
+    const { client, from_email } = get_ses()
     const options = {
-        Source: aws.ses.fromemail,
+        Source: from_email,
         Destination: {
             ToAddresses: [ recipient ]
         },
@@ -53,7 +64,7 @@ async function send_email( recipient, subject, html, text ) {
 
     log( `Sending email "${ options.Message.Subject.Data }" from ${ options.Source } to ${ options.Destination.ToAddresses[0] }` )
 
-    return AWS_SES.sendEmail( options ).promise()
+    return client.sendEmail( options ).promise()
 
 }
 

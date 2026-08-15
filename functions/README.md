@@ -1,10 +1,37 @@
 ## Requirements
 
-- [ ] `./functions`: set Infura project ID through `firebase functions:config:set infura.projectid=`
-	- [ ] also set `integration.secret`
-	- [ ] also set `discord.webhookurl`
-	- [ ] also set `mailgun.api_key`, `mailgun.api_url`, `mailgun.from_domain`, `mailgun.from_email`
-- [ ] `./functions/package.json`: dependencies for backend, run `npm i` in `./functions`
+- [ ] use Node 22 from `./functions/.nvmrc`
+- [ ] install backend dependencies with `npm ci` in `./functions`
+- [ ] store the legacy configuration JSON in the `RUNTIME_CONFIG` secret
+- [ ] grant the Gen1 runtime service account access to that secret:
+
+```bash
+gcloud secrets add-iam-policy-binding RUNTIME_CONFIG \
+  --project=rocketeer-nft \
+  --member=serviceAccount:rocketeer-nft@appspot.gserviceaccount.com \
+  --role=roles/secretmanager.secretAccessor
+```
+
+Configuration is loaded lazily inside function invocations. Keep legacy Runtime
+Config intact until the secret-backed functions have been deployed and smoked.
+
+## Deploy functions
+
+The default deployment updates the HTTP APIs, outfit queues, and callable
+maintenance function. It intentionally excludes the dormant monthly holder
+notifier so a deploy cannot recreate its Cloud Scheduler job.
+
+```bash
+cd functions
+nvm use
+npm run deploy
+```
+
+Deploy the holder notifier only when its scheduled email behavior should resume:
+
+```bash
+npm run deploy:scheduler
+```
 
 ## Compress stored SVGs
 
@@ -42,5 +69,27 @@ of memory at the default concurrency, and scale memory with concurrency. The
 job downloads each original; running `--all` locally can incur transfer charges.
 
 Functions target Node 22 and deploy through the pinned Firebase CLI. Keep the
-current Gen1 Firebase SDK majors until runtime configuration is migrated away
-from `functions.config()`.
+Gen1 imports explicit; bare imports use Gen2 behavior in current SDK releases.
+
+## Verify storage costs
+
+Enable the Cloud Billing **Detailed usage cost** export for project
+`rocketeer-nft` into the EU dataset `cloud_billing_export`. Then inspect current
+storage and any available billing attribution:
+
+```bash
+cd functions
+GOOGLE_APPLICATION_CREDENTIALS=../.github-actions-deployer.json npm run report:storage:costs
+```
+
+After the soft-deleted migration data and legacy artifact bucket expire, enforce
+the expected savings and materialize a pre/post cost comparison:
+
+```bash
+GOOGLE_APPLICATION_CREDENTIALS=../.github-actions-deployer.json \
+  npm run report:storage:costs -- --verify
+```
+
+Verification requires billing export data through 2026-08-25. It fails if old
+SVG generations remain, the legacy bucket remains soft-deleted, live SVGs lack
+gzip encoding, or the detailed export is unavailable.

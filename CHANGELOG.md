@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0] - 2026-08-15
+
+### Added
+
+- add live storage and realized-cost verification reports
+- add structured Secret Manager runtime configuration
+
+### Changed
+
+- update Gen1 Firebase SDKs and Chromium tooling for Node 22
+- exclude the dormant holder notifier from default function deployments
+
 ## [0.2.0] - 2026-08-15
 
 ### Added

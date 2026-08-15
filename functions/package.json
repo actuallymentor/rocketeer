@@ -3,30 +3,32 @@
   "description": "Cloud Functions for Firebase",
   "scripts": {
     "compress:storage:svgs": "node --expose-gc scripts/compress-storage-svgs.js",
+    "report:storage:costs": "node scripts/report-storage-costs.js",
     "lint": "eslint .",
-    "runtime": "firebase functions:config:get > .runtimeconfig.json",
     "serve": "firebase emulators:start --only functions",
     "shell": "development=true firebase functions:shell",
     "start": "development=true npm run shell",
-    "deploy": "npx --yes firebase-tools@15.27.0 deploy --only functions --config ../firebase.json",
+    "deploy": "npx --yes firebase-tools@15.27.0 deploy --only functions:testnetMetadata,functions:mainnetMetadata,functions:mainnetGenerateOutfitsOnQueue,functions:rinkebyGenerateOutfitsOnQueue,functions:mark_rocketeers_as_gitched --config ../firebase.json",
+    "deploy:scheduler": "npx --yes firebase-tools@15.27.0 deploy --only functions:notify_holders_of_changing_room_updates --config ../firebase.json",
     "logs": "firebase functions:log",
-    "test": "node test/svg-compressor.test.js"
+    "test": "node test/svg-compressor.test.js && node test/runtime-config.test.js"
   },
   "engines": {
     "node": "22"
   },
   "main": "index.js",
   "dependencies": {
+    "@sparticuz/chromium": "148.0.0",
     "aws-sdk": "^2.1149.0",
     "body-parser": "^1.19.1",
     "color": "^4.0.2",
     "color-namer": "^1.4.0",
-    "convert-svg-to-jpeg": "^0.5.0",
+    "convert-svg-to-jpeg": "0.7.1",
     "cors": "^2.8.5",
     "csso": "^5.0.3",
     "express": "^4.17.1",
-    "firebase-admin": "^10.0.0",
-    "firebase-functions": "3.24.1",
+    "firebase-admin": "14.2.0",
+    "firebase-functions": "7.3.2",
     "isomorphic-fetch": "^3.0.0",
     "jsdom": "^18.0.0",
     "juice": "^8.0.0",
@@ -34,9 +36,9 @@
     "promise-parallel-throttle": "^3.3.0",
     "promise-retry": "^2.0.1",
     "pug": "^3.0.2",
-    "puppeteer": "^12.0.0",
-    "puppeteer-extra": "^3.2.3",
-    "puppeteer-extra-plugin-stealth": "^2.9.0",
+    "puppeteer-core": "24.43.1",
+    "puppeteer-extra": "3.3.6",
+    "puppeteer-extra-plugin-stealth": "2.11.2",
     "random-name": "^0.1.2",
     "web3": "^1.6.0"
   },
@@ -44,8 +46,7 @@
     "@babel/core": "^7.15.8",
     "@babel/eslint-parser": "^7.15.8",
     "eslint": "^7.6.0",
-    "eslint-config-google": "^0.14.0",
-    "firebase-functions-test": "^0.2.0"
+    "eslint-config-google": "^0.14.0"
   },
   "private": true
 }

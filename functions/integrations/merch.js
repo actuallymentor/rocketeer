@@ -1,5 +1,4 @@
-const functions = require( 'firebase-functions' )
-const { printapi } = functions.config()
+const { get_runtime_config } = require( `../modules/runtime-config` )
 const { db, dataFromSnap } = require( '../modules/firebase' )
 const { log } = require( '../modules/helpers' )
 const fetch = require( 'isomorphic-fetch' )
@@ -13,6 +12,7 @@ async function call_printapi( endpoint, data, method='POST', format='json', auth
 
 	try {
 
+		const { printapi } = get_runtime_config()
 		logs.push( `Call requested: ${method}/${format} ${endpoint} with `, JSON.stringify( data ) )
 
 		// Format url, if it has https use the link as provided
@@ -92,6 +92,8 @@ async function get_auth_token(  ) {
 	const logs = []
 
 	try {
+
+		const { printapi } = get_runtime_config()
 
 		// Get cached token
 		let { expires=0, access_token } = await db.collection( 'secrets' ).doc( 'printapi' ).get( ).then( dataFromSnap )

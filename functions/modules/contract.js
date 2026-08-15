@@ -1,6 +1,5 @@
 // Dependencies
-const functions = require( 'firebase-functions' )
-const { rpc } = functions.config()
+const { get_runtime_config } = require( `./runtime-config` )
 
 // Contract data
 const contractAddress = {
@@ -96,6 +95,7 @@ let provider_cache = {}
 function get_web3( network='mainnet' ) {
   const Web3 = require( 'web3' )
   if( provider_cache[ network ] ) return provider_cache[ network ]
+  const { rpc } = get_runtime_config()
   provider_cache[ network ] = new Web3( rpc.mainnet )
   return provider_cache[ network ]
 }

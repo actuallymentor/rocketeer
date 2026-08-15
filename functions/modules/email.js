@@ -1,17 +1,23 @@
-const functions = require( 'firebase-functions' )
 const juice = require('juice')
+const { get_runtime_config } = require( `./runtime-config` )
 
 // Email package
-const { mailgun } = functions.config()
 const formData = require( 'form-data' )
 const Mailgun = require( 'mailgun.js' )
 const instance = new Mailgun( formData )
-const mail = instance.client( {
-	username: 'api',
-	key: mailgun.api_key,
-	url: mailgun.api_url
-})
-)
+
+function get_mailgun() {
+
+	const { mailgun } = get_runtime_config()
+	const mail = instance.client( {
+		username: `api`,
+		key: mailgun.api_key,
+		url: mailgun.api_url
+	} )
+
+	return { mail, mailgun }
+
+}
 // Email templates
 const pug = require('pug')
 const { promises: fs } = require( 'fs' )
@@ -40,6 +46,7 @@ exports.send_email_outfit_available = async ( email, rocketeer ) => {
 
 	try {
 
+		const { mail, mailgun } = get_mailgun()
 		rocketeer = { ...rocketeer, first_name: rocketeer.name.split( ' ' )[0] }
 
 		// Build email
