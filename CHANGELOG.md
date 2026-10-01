@@ -4,6 +4,7 @@
 
 ### Fixed
 
+- show bulk outfit generation errors in the changing room instead of a false success
 - render outfit JPEGs in the default browser context; serverless Chromium crashed on per-render contexts, breaking every outfit since 2026-08-15
 
 ### Removed

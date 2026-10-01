@@ -137,14 +137,18 @@ export default function Verifier() {
 
 			setLoading( 'Generating new outfits, this can take a few minutes' )
 
-			const { amountOfOutfits } = await callApi( `/rocketeers/${ address }`, {
+			const { amountOfOutfits, error } = await callApi( `/rocketeers/${ address }`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify( signature )
 			} )
 			log( `Amount of outfits queued: `, amountOfOutfits )
 
-			alert( `Success! Outfit generation started, check back in a few minutes to view your new outfits!` )
+			// Surface backend rejections instead of reporting success
+			if( error ) throw new Error( error )
+			if( !amountOfOutfits ) throw new Error( `No outfits are available for your Rocketeers right now` )
+
+			alert( `Success! Generation of ${ amountOfOutfits } outfit${ amountOfOutfits > 1 ? 's' : '' } started, check back in a few minutes to view them!` )
 
 
 		} catch( e ) {
