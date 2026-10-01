@@ -11,8 +11,7 @@ const gzip_async = promisify( gzip )
 const immutable_cache = `public, max-age=31536000, immutable`
 
 // SVG to JPEG
-const { convert } = require("convert-svg-to-jpeg")
-const { get_browser_launch_options } = require( `../modules/browser` )
+const { render_svg_to_jpeg } = require( `../modules/browser` )
 
 // Existing file checker
 const failIfFilesExist = async ( svg, jpeg, path ) => {
@@ -159,12 +158,7 @@ module.exports = async function svg_from_attributes( attributes=[], path='' ) {
 	// Store the text SVG compressed. Cloud Storage serves it transparently
 	// through Content-Encoding while charging only for the compressed bytes.
 	const compressed_svg = await gzip_async( bakedSvg, { level: zlib_constants.Z_BEST_COMPRESSION } )
-	const bakedRaster = await convert( bakedSvg, {
-		quality: 80,
-		launch: await get_browser_launch_options(),
-		// height: 500,
-		// width: 500
-	} )
+	const bakedRaster = await render_svg_to_jpeg( bakedSvg, { quality: 80 } )
 
 	// Double check that files do not yet exist (in case of weird race condition)
 	await failIfFilesExist( svgFile, rasterFile, path )

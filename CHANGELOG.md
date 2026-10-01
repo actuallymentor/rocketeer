@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.2] - 2026-10-01
+
+### Fixed
+
+- render outfit JPEGs in the default browser context; serverless Chromium crashed on per-render contexts, breaking every outfit since 2026-08-15
+
+### Removed
+
+- remove `convert-svg-to-jpeg` in favour of a direct Puppeteer render
+
 ## [0.4.1] - 2026-10-01
 
 ### Fixed

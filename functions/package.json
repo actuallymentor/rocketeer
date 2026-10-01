@@ -11,7 +11,7 @@
     "deploy": "npx --yes firebase-tools@15.27.0 deploy --only functions:testnetMetadata,functions:mainnetMetadata,functions:mainnetGenerateOutfitsOnQueue,functions:rinkebyGenerateOutfitsOnQueue,functions:mark_rocketeers_as_gitched --config ../firebase.json",
     "deploy:scheduler": "npx --yes firebase-tools@15.27.0 deploy --only functions:notify_holders_of_changing_room_updates --config ../firebase.json",
     "logs": "firebase functions:log",
-    "test": "node test/svg-compressor.test.js && node test/runtime-config.test.js && node test/chain.test.js"
+    "test": "node test/svg-compressor.test.js && node test/runtime-config.test.js && node test/chain.test.js && node test/render.test.js"
   },
   "engines": {
     "node": "22"
@@ -23,7 +23,6 @@
     "chainlist-rpcs": "0.5.314",
     "color": "^4.0.2",
     "color-namer": "^1.4.0",
-    "convert-svg-to-jpeg": "0.7.1",
     "cors": "^2.8.5",
     "csso": "^5.0.3",
     "express": "^4.17.1",
