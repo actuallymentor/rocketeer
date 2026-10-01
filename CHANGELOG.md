@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1] - 2026-10-01
+
+### Fixed
+
+- reject bulk outfit requests for wallets other than the signer
+- reject non-integer outfit ids before they reach public metadata
+- cap public RPC fallbacks and shorten timeouts to bound request latency
+
 ## [0.4.0] - 2026-10-01
 
 ### Added

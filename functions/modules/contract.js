@@ -36,17 +36,20 @@ async function get_public_rpcs() {
 }
 
 // One client per cold start, the configured RPC goes first
+const max_public_rpcs = 3
 let client_cache
 async function get_client() {
 
 	if( client_cache ) return client_cache
 
 	const { rpc } = get_runtime_config()
-	const rpc_urls = [ rpc?.mainnet, ...await get_public_rpcs() ].filter( Boolean )
-	const transports = rpc_urls.map( url => http( url, { timeout: 10_000, retryCount: 0 } ) )
+	// Cap the public pool so a run of stalled endpoints cannot exhaust the request budget
+	const public_rpcs = ( await get_public_rpcs() ).slice( 0, max_public_rpcs )
+	const rpc_urls = [ rpc?.mainnet, ...public_rpcs ].filter( Boolean )
+	const transports = rpc_urls.map( url => http( url, { timeout: 5_000, retryCount: 0 } ) )
 
 	// Multicall batching folds parallel reads, like token enumeration, into one RPC call
-	client_cache = createPublicClient( { chain: mainnet, transport: fallback( transports ), batch: { multicall: true } } )
+	client_cache = createPublicClient( { chain: mainnet, transport: fallback( transports, { retryCount: 0 } ), batch: { multicall: true } } )
 	return client_cache
 
 }

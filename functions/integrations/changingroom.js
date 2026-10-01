@@ -102,7 +102,8 @@ exports.generateMultipleNewOutfits = async function( req, res ) {
 		if( !same_address( signer, confirmedSignatory ) || action != 'generateMultipleNewOutfits' || !network ) throw new Error( `Invalid setPrimaryOutfit message with ${ signer }, ${confirmedSignatory}, ${action}, ${chainId}, ${network}` )
 
 
-		// Check that the signer is the owner of the token
+		// Only the wallet owner may queue its own Rocketeers
+		if( !same_address( address, confirmedSignatory ) ) throw new Error( `You can only generate outfits for your own wallet` )
 		const amountOfOutfits = await queueRocketeersOfAddressForOutfitChange( address, network )
 
 		await db.collection( 'meta' ).doc( address ).set( {
@@ -162,8 +163,8 @@ exports.setPrimaryOutfit = async function( req, res ) {
 		if( !same_address( signer, confirmedSignatory ) || outfitId == undefined || !network ) throw new Error( `Invalid setPrimaryOutfit message with ${ signer }, ${confirmedSignatory}, ${outfitId}, ${chainId}, ${network}` )
 		
 		// Validate id format
-		outfitId = Math.floor( Math.abs( outfitId ) )
-		if( typeof outfitId !== 'number' ) return res.json( { error: `Malformed request` } )
+		outfitId = Number( outfitId )
+		if( !Number.isSafeInteger( outfitId ) || outfitId < 0 ) return res.json( { error: `Malformed request` } )
 
 		// Check that the signer is the owner of the token
 		const owner = await getOwingAddressOfTokenId( id, network )
@@ -179,7 +180,7 @@ exports.setPrimaryOutfit = async function( req, res ) {
 		const { value: available_outfits } = rocketeer.attributes.find( ( { trait_type } ) => trait_type == "available outfits" ) || { value: 0 }
 
 		// Only allow to set existing outfits
-		if( available_outfits < outfitId ) throw new Error( `Your Rocketeer has ${ available_outfits }, you can't select outfit ${ outfitId }` )
+		if( available_outfits < Number( outfitId ) ) throw new Error( `Your Rocketeer has ${ available_outfits }, you can't select outfit ${ outfitId }` )
 
 		// Change the primary media file
 		const imagePath = `${ outfitId == 0 ? id : `${ id }-${ outfitId }` }.jpg`
