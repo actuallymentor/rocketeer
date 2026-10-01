@@ -1,7 +1,6 @@
 const { initializeApp, applicationDefault } = require( `firebase-admin/app` )
 const { getStorage } = require( `firebase-admin/storage` )
 const throttle = require( `promise-parallel-throttle` )
-const fetch = require( `isomorphic-fetch` )
 const { Worker } = require( `worker_threads` )
 const { createHash } = require( `crypto` )
 

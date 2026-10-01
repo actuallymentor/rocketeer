@@ -7,7 +7,7 @@ module.exports = {
     parser: "@babel/eslint-parser",
     parserOptions: {
         requireConfigFile: false,
-        ecmaVersion: 12,
+        ecmaVersion: 2022,
         sourceType: "module",
         ecmaFeatures: {
             experimentalObjectRestSpread: true
@@ -30,7 +30,8 @@ module.exports = {
         browser: true,
         mocha: true,
         jest: true,
-        es6: true
+        es6: true,
+        es2020: true
     },
 
     // What global variables should be assumed to exist

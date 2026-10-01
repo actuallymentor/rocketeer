@@ -1,3 +1,4 @@
+const { recover_signer, same_address } = require( '../modules/signatures' )
 const { generateNewOutfitFromId, queueRocketeersOfAddressForOutfitChange } = require( '../nft-media/changing-room' )
 const { db, dataFromSnap } = require( '../modules/firebase' )
 const { dev, log } = require( '../modules/helpers' )
@@ -8,8 +9,6 @@ const { notify_discord_of_outfit_notifications } = require( './discord' )
 
 // Web3 APIs
 const { getOwingAddressOfTokenId } = require( '../modules/contract' )
-const Web3 = require( 'web3' )
-const web3 = new Web3()
 
 
 /* ///////////////////////////////
@@ -35,19 +34,19 @@ exports.generateNewOutfit = async function( req, res ) {
 		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )
 
 		// Decode message
-		const confirmedSignatory = web3.eth.accounts.recover( message, signature )
-		if( signatory.toLowerCase() !== confirmedSignatory.toLowerCase() ) throw new Error( `Bad signature` )
+		const confirmedSignatory = await recover_signer( message, signature )
+		if( !same_address( signatory, confirmedSignatory ) ) throw new Error( `Bad signature` )
 
 		// Validate message
 		const messageObject = JSON.parse( message )
 		const { signer, rocketeerId, chainId } = messageObject
 		const network = chainId == '0x1' ? 'mainnet' : 'rinkeby'
-		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !rocketeerId || !network ) throw new Error( `Invalid generateNewOutfit message with ${signer}, ${confirmedSignatory}, ${rocketeerId}, ${network}` )
+		if( !same_address( signer, confirmedSignatory ) || !rocketeerId || !network ) throw new Error( `Invalid generateNewOutfit message with ${signer}, ${confirmedSignatory}, ${rocketeerId}, ${network}` )
 		if( rocketeerId != id ) throw new Error( `Invalid Rocketeer in message` )
 
 		// Check that the signer is the owner of the token
 		const owner = await getOwingAddressOfTokenId( id, network )
-		if( owner !== confirmedSignatory ) throw new Error( `You are not the owner of this Rocketeer. Did you sign with the right wallet?` )
+		if( !same_address( owner, confirmedSignatory ) ) throw new Error( `You are not the owner of this Rocketeer. Did you sign with the right wallet?` )
 
 		// Generate new rocketeer svg
 		const mediaLink = await generateNewOutfitFromId( id, network )
@@ -93,14 +92,14 @@ exports.generateMultipleNewOutfits = async function( req, res ) {
 		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )
 
 		// Decode message
-		const confirmedSignatory = web3.eth.accounts.recover( message, signature )
-		if( signatory.toLowerCase() !== confirmedSignatory.toLowerCase() ) throw new Error( `Bad signature` )
+		const confirmedSignatory = await recover_signer( message, signature )
+		if( !same_address( signatory, confirmedSignatory ) ) throw new Error( `Bad signature` )
 
 		// Validate message
 		const messageObject = JSON.parse( message )
 		let { signer, action, chainId } = messageObject
 		const network = chainId == '0x1' ? 'mainnet' : 'rinkeby'
-		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || action != 'generateMultipleNewOutfits' || !network ) throw new Error( `Invalid setPrimaryOutfit message with ${ signer }, ${confirmedSignatory}, ${action}, ${chainId}, ${network}` )
+		if( !same_address( signer, confirmedSignatory ) || action != 'generateMultipleNewOutfits' || !network ) throw new Error( `Invalid setPrimaryOutfit message with ${ signer }, ${confirmedSignatory}, ${action}, ${chainId}, ${network}` )
 
 
 		// Check that the signer is the owner of the token
@@ -153,14 +152,14 @@ exports.setPrimaryOutfit = async function( req, res ) {
 		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )
 
 		// Decode message
-		const confirmedSignatory = web3.eth.accounts.recover( message, signature )
-		if( signatory.toLowerCase() !== confirmedSignatory.toLowerCase() ) throw new Error( `Bad signature` )
+		const confirmedSignatory = await recover_signer( message, signature )
+		if( !same_address( signatory, confirmedSignatory ) ) throw new Error( `Bad signature` )
 
 		// Validate message
 		const messageObject = JSON.parse( message )
 		let { signer, outfitId, chainId } = messageObject
 		const network = chainId == '0x1' ? 'mainnet' : 'rinkeby'
-		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || outfitId == undefined || !network ) throw new Error( `Invalid setPrimaryOutfit message with ${ signer }, ${confirmedSignatory}, ${outfitId}, ${chainId}, ${network}` )
+		if( !same_address( signer, confirmedSignatory ) || outfitId == undefined || !network ) throw new Error( `Invalid setPrimaryOutfit message with ${ signer }, ${confirmedSignatory}, ${outfitId}, ${chainId}, ${network}` )
 		
 		// Validate id format
 		outfitId = Math.floor( Math.abs( outfitId ) )
@@ -168,7 +167,7 @@ exports.setPrimaryOutfit = async function( req, res ) {
 
 		// Check that the signer is the owner of the token
 		const owner = await getOwingAddressOfTokenId( id, network )
-		if( owner !== confirmedSignatory ) throw new Error( `You are not the owner of this Rocketeer. Did you sign with the right wallet?` )
+		if( !same_address( owner, confirmedSignatory ) ) throw new Error( `You are not the owner of this Rocketeer. Did you sign with the right wallet?` )
 
 		// Set ID to string so firestore can handle it
 		outfitId = `${ outfitId }`

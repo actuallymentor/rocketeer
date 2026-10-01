@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.4.0] - 2026-10-01
+
+### Added
+
+- add public chainlist RPC fallbacks behind the configured mainnet RPC
+- add live-network contract read and signature recovery tests
+
+### Changed
+
+- replace archived web3.js with viem for contract reads and signature recovery
+- batch Rocketeer token enumeration into a single multicall
+- move SES emails from end-of-support AWS SDK v2 to `@aws-sdk/client-ses` v3
+- use native `fetch` and `express.json` instead of extra dependencies
+- bump `firebase-functions` to 7.4.0 and `firebase-admin` to 14.5.0
+
+### Removed
+
+- remove the unused Mailgun email module
+
 ## [0.3.1] - 2026-08-15
 
 ### Fixed

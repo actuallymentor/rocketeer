@@ -1,4 +1,4 @@
-const AWS = require('aws-sdk')
+const { SESClient, SendEmailCommand } = require( `@aws-sdk/client-ses` )
 const { get_runtime_config } = require( `../modules/runtime-config` )
 const { log } = require( '../modules/helpers' )
 
@@ -8,13 +8,15 @@ function get_ses() {
     if( ses_cache ) return ses_cache
 
     const { aws } = get_runtime_config()
-    const config = {
-        accessKeyId: aws?.ses?.keyid,
-        secretAccessKey: aws?.ses?.secretkey,
+    const client = new SESClient( {
         region: aws?.ses?.region,
-    }
+        credentials: {
+            accessKeyId: aws?.ses?.keyid,
+            secretAccessKey: aws?.ses?.secretkey
+        }
+    } )
 
-    ses_cache = { client: new AWS.SES( config ), from_email: aws.ses.fromemail }
+    ses_cache = { client, from_email: aws.ses.fromemail }
     return ses_cache
 
 }
@@ -64,7 +66,7 @@ async function send_email( recipient, subject, html, text ) {
 
     log( `Sending email "${ options.Message.Subject.Data }" from ${ options.Source } to ${ options.Destination.ToAddresses[0] }` )
 
-    return client.sendEmail( options ).promise()
+    return client.send( new SendEmailCommand( options ) )
 
 }
 

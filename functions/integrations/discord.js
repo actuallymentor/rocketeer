@@ -1,5 +1,4 @@
 const { get_runtime_config } = require( `../modules/runtime-config` )
-const fetch = require( 'isomorphic-fetch' )
 const { dev } = require('../modules/helpers')
 
 exports.notify_discord_of_new_outfit = async function( username, content, avatar_url, image_title, image_url ) {

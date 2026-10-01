@@ -1,7 +1,6 @@
 const { get_runtime_config } = require( `../modules/runtime-config` )
 const { db, dataFromSnap } = require( '../modules/firebase' )
 const { log } = require( '../modules/helpers' )
-const fetch = require( 'isomorphic-fetch' )
 
 /* ///////////////////////////////
 // API handlers

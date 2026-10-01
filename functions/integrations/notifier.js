@@ -1,8 +1,6 @@
+const { recover_signer, same_address } = require( '../modules/signatures' )
 const { db } = require( '../modules/firebase' )
 
-// Web3 APIs
-const Web3 = require( 'web3' )
-const web3 = new Web3()
 
 /* ///////////////////////////////
 // POST handler for notifier signup
@@ -26,14 +24,14 @@ exports.subscribe_address_to_notifications = async function( req, res ) {
 		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )
 
 		// Decode message
-		const confirmedSignatory = web3.eth.accounts.recover( message, signature )
-		if( signatory.toLowerCase() !== confirmedSignatory.toLowerCase() ) throw new Error( `Bad signature` )
+		const confirmedSignatory = await recover_signer( message, signature )
+		if( !same_address( signatory, confirmedSignatory ) ) throw new Error( `Bad signature` )
 
 		// Validate message
 		const messageObject = JSON.parse( message )
 		let { signer, discord_handle, chainId } = messageObject
 		const network = chainId == '0x1' ? 'mainnet' : 'rinkeby'
-		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !discord_handle || !network ) {
+		if( !same_address( signer, confirmedSignatory ) || !discord_handle || !network ) {
 			throw new Error( `Invalid subscribeToAddress message with ${ signer }, ${confirmedSignatory}, ${discord_handle}, ${chainId}, ${network}` )
 		}
 

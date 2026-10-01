@@ -1,7 +1,6 @@
+const { recover_signer, same_address } = require( '../modules/signatures' )
 const { get_runtime_config } = require( `../modules/runtime-config` )
 const { db, dataFromSnap } = require( '../modules/firebase' )
-const Web3 = require( 'web3' )
-const web3 = new Web3()
 const { getStorage } = require( 'firebase-admin/storage' )
 
 
@@ -17,13 +16,13 @@ exports.setAvatar = async function( req, res ) {
 		if( !message || !signatory || !signature ) throw new Error( `Malformed request` )
 
 		// Decode message
-		const confirmedSignatory = web3.eth.accounts.recover( message, signature )
-		if( signatory.toLowerCase() !== confirmedSignatory.toLowerCase() ) throw new Error( `Bad signature` )
+		const confirmedSignatory = await recover_signer( message, signature )
+		if( !same_address( signatory, confirmedSignatory ) ) throw new Error( `Bad signature` )
 
 		// Validate message
 		const messageObject = JSON.parse( message )
 		const { signer, tokenId, validator, chainId, network } = messageObject
-		if( signer.toLowerCase() !== confirmedSignatory.toLowerCase() || !tokenId || !validator || chainId !== chain || !network ) throw new Error( `Invalid message` )
+		if( !same_address( signer, confirmedSignatory ) || !tokenId || !validator || chainId !== chain || !network ) throw new Error( `Invalid message` )
 
 		// Check if validator was already assigned
 		const validatorProfile = await db.collection( `${ network }Validators` ).doc( validator ).get().then( dataFromSnap )

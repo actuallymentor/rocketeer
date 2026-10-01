@@ -1,163 +1,110 @@
-// Dependencies
+const { createPublicClient, fallback, http, parseAbi } = require( `viem` )
+const { mainnet } = require( `viem/chains` )
 const { get_runtime_config } = require( `./runtime-config` )
 
-// Contract data
+// Contract data, rinkeby is a dead chain kept only for the legacy testnet endpoints
 const contractAddress = {
-	mainnet: '0xb3767b2033CF24334095DC82029dbF0E9528039d',
-	rinkeby: '0x95d6b9549315212D3FDce9FdCa9d80978b8bB41D'
+	mainnet: `0xb3767b2033CF24334095DC82029dbF0E9528039d`,
+	rinkeby: `0x95d6b9549315212D3FDce9FdCa9d80978b8bB41D`
 }
 
-// ABI with only the supply definitions
-const ABI = [
-	{
-      "inputs": [],
-      "name": "totalSupply",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "ownerOf",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "owner",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "index",
-        "type": "uint256"
-      }
-    ],
-    "name": "tokenOfOwnerByIndex",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "owner",
-        "type": "address"
-      }
-    ],
-    "name": "balanceOf",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  }
-]
+// Only the ERC721 reads the backend needs
+const abi = parseAbi( [
+	`function totalSupply() view returns (uint256)`,
+	`function ownerOf(uint256 tokenId) view returns (address)`,
+	`function balanceOf(address owner) view returns (uint256)`,
+	`function tokenOfOwnerByIndex(address owner, uint256 index) view returns (uint256)`
+] )
 
-// Provider
-let provider_cache = {}
-function get_web3( network='mainnet' ) {
-  const Web3 = require( 'web3' )
-  if( provider_cache[ network ] ) return provider_cache[ network ]
-  const { rpc } = get_runtime_config()
-  provider_cache[ network ] = new Web3( rpc.mainnet )
-  return provider_cache[ network ]
-}
+/**
+ * Public mainnet RPCs without user tracking, used as fallbacks behind the configured RPC.
+ * Imports the raw chainlist data file because the package entry point uses extensionless
+ * ESM imports that plain Node cannot resolve.
+ * @returns {Promise<string[]>} RPC urls
+ */
+async function get_public_rpcs() {
 
-function get_contract( network='mainnet' ) {
-  const web3 = get_web3( network )
-  return new web3.eth.Contract( ABI, contractAddress[ network ] )
-}
+	const { default: chainlist } = await import( `chainlist-rpcs/constants/extraRpcs.js` )
+	const { rpcs = [] } = chainlist[ 1 ] || {}
 
-// Total current supply, in accordance with ERC721 spec
-async function getTotalSupply( network='mainnet' ) {
-
-  // The  mint has completed at 3475, so we can hardcode this
-  if( network == 'mainnet' ) return 3475
-
-  try {
-    // Initialise contract connection
-    const contract = get_contract( network )
-
-    // Return the call promise which returns the total supply
-    return contract.methods.totalSupply().call()
-
-
-  } catch( e ) {
-    console.error( `Error in getTotalSupply: `, e )
-    return 0
-  }
+	// Entries are either plain urls or { url, tracking } objects
+	const entries = rpcs.map( rpc => typeof rpc == `string` ? { url: rpc, tracking: `none` } : rpc )
+	return entries
+		.filter( ( { url, tracking } ) => url?.startsWith( `https://` ) && tracking == `none` )
+		.map( ( { url } ) => url )
 
 }
 
-// Total current supply, in accordance with ERC721 spec
-async function getOwingAddressOfTokenId( id, network='mainnet' ) {
+// One client per cold start, the configured RPC goes first
+let client_cache
+async function get_client() {
 
-  // Initialise contract connection
-  const contract = get_contract( network )
+	if( client_cache ) return client_cache
 
-  // Return the call promise which returns the total supply
-  return contract.methods.ownerOf( id ).call()
+	const { rpc } = get_runtime_config()
+	const rpc_urls = [ rpc?.mainnet, ...await get_public_rpcs() ].filter( Boolean )
+	const transports = rpc_urls.map( url => http( url, { timeout: 10_000, retryCount: 0 } ) )
+
+	// Multicall batching folds parallel reads, like token enumeration, into one RPC call
+	client_cache = createPublicClient( { chain: mainnet, transport: fallback( transports ), batch: { multicall: true } } )
+	return client_cache
 
 }
 
-async function getTokenIdsOfAddress( address, network='mainnet' ) {
+// Shorthand for a read call on the Rocketeer contract
+const read = async ( functionName, args=[], network=`mainnet` ) => {
+	const client = await get_client()
+	return client.readContract( { address: contractAddress[ network ], abi, functionName, args } )
+}
 
-  // Initialise contract connection
-  const contract = get_contract( network )
+/**
+ * Total supply in accordance with the ERC721 spec
+ * @param {string} network - mainnet or rinkeby
+ * @returns {Promise<number>} Total supply, 0 on failure
+ */
+async function getTotalSupply( network=`mainnet` ) {
 
-  // Get balance of address
-  const balance = await contract.methods.balanceOf( address ).call()
+	// The mint completed at 3475, so we can hardcode this
+	if( network == `mainnet` ) return 3475
 
-  // Get tokens of address
-  const ids = await Promise.all( Array.from( { length: balance } ).map( async ( val, index ) => {
-    const id = await contract.methods.tokenOfOwnerByIndex( address, index ).call()
-    return id.toString()
-  } ) )
+	try {
+		return Number( await read( `totalSupply`, [], network ) )
+	} catch( e ) {
+		console.error( `Error in getTotalSupply: `, e )
+		return 0
+	}
 
-  return ids
+}
+
+/**
+ * Owner of a Rocketeer
+ * @param {string|number} id - Token id
+ * @param {string} network - mainnet or rinkeby
+ * @returns {Promise<string>} Checksummed owner address
+ */
+const getOwingAddressOfTokenId = ( id, network=`mainnet` ) => read( `ownerOf`, [ BigInt( id ) ], network )
+
+/**
+ * Token ids held by an address
+ * @param {string} address - Wallet address
+ * @param {string} network - mainnet or rinkeby
+ * @returns {Promise<string[]>} Token ids as strings
+ */
+async function getTokenIdsOfAddress( address, network=`mainnet` ) {
+
+	const balance = await read( `balanceOf`, [ address ], network )
+
+	// Enumerate in parallel, the client batches these into a single multicall
+	const indices = Array.from( { length: Number( balance ) }, ( _, index ) => BigInt( index ) )
+	const ids = await Promise.all( indices.map( index => read( `tokenOfOwnerByIndex`, [ address, index ], network ) ) )
+
+	return ids.map( id => id.toString() )
 
 }
 
 module.exports = {
 	getTotalSupply,
-  contractAddress,
-  getOwingAddressOfTokenId,
-  getTokenIdsOfAddress
+	contractAddress,
+	getOwingAddressOfTokenId,
+	getTokenIdsOfAddress
 }

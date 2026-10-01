@@ -1,4 +1,3 @@
-const fetch = require( 'isomorphic-fetch' )
 
 exports.ask_signer_is_for_available_emails = async function( addresses ) {
 
